@@ -1,12 +1,14 @@
 import React from 'react';
-import './App.css';
+import { redirect } from 'react-router-dom';
 
 function App() {
+  let loggedIn = true;
   return (
-    <div className="App">
-      
-    </div>
+    <>
+    <h1>app</h1>
+    </>
   );
+  
 }
 
 export default App;

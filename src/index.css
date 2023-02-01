@@ -1,3 +1,22 @@
+:root {
+  --bg-clr: #FFFFFF;
+  --main-500: #17181C;
+  --main-400: #17181C80;
+  --main-300: #17181C60;
+  --main-200: #17181C40;
+  --main-100: #17181C20;
+  --add1-500: #FA4753;
+  --add1-400: #FA475380;
+  --add1-300: #FA475360;
+  --add1-200: #FA475340;
+  --add1-100: #FA475320;
+  --add2-500: #9BA5C9;
+  --add2-400: #9BA5C980;
+  --add2-300: #9BA5C960;
+  --add2-200: #9BA5C940;
+  --add2-100: #9BA5C920;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +24,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--add2-300);
 }
 
 code {
