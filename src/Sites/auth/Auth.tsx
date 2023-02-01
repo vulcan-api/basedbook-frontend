@@ -1,9 +1,17 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 const Auth = () => {
-    return <>
-    <Navigate to="/auth/login" replace={true} />
-    </>
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const sSE = async () => {
+            await navigate("/auth/login");
+        }
+
+        sSE();
+    },[navigate])
+
+    return <></>;
 }
 
 export default Auth;
