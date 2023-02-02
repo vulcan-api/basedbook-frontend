@@ -4,8 +4,8 @@ const Auth = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const sSE = async () => {
-            await navigate("/auth/login");
+        const sSE = () => {
+            navigate("/auth/login");
         }
 
         sSE();
