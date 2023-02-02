@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Zen+Dots');
 
 .navbar {
-    background-color: #1D1D1D;
+    background-color: var(--bg-clr);
     display: flex;
     justify-content: space-between;
     padding-inline: 3rem;
