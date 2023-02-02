@@ -1,0 +1,56 @@
+.img {
+    width: 50%;
+    background-image: url('./Graphics/bglogin.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.formSide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.loginFlex {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px;
+    gap: 28px;
+    width: 60%;
+    height: auto;
+    border: 1px solid var(--main-100);
+    box-shadow : 0px 1px 0px var(--main-200);
+    border-radius: 8px;
+}
+
+.loginForm > p {
+    font-size: 28px;
+    color: var(--main-300);
+}
+
+.loginForm > p:last-of-type {
+    font-size: 24px;
+}
+
+.form {
+    width: 100%;
+}
+
+.form > input:not(.form > input:nth-of-type(2)), .form > div {
+    margin-bottom: 16px;
+}
+
+.form > p {
+    font-size: 24px;
+    margin-top: 8px;
+    color: var(--main-300);
+}

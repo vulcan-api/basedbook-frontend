@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Zen+Dots');
 
 :root {
-  --bg-clr: #FFFFFF;
+  --bg-clr: #fdfdfd;
   --main-500: #17181C;
   --main-400: #17181C80;
   --main-300: #17181C60;
@@ -27,8 +27,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--add2-300);
-  display: flex;
+  background-color: var(--bg-clr);
 }
 
 code {
@@ -47,4 +46,9 @@ code {
 
 ::-ms-input-placeholder {
   color: var(--main-300);
+}
+
+p {
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
