@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   createBrowserRouter,
+  Outlet,
   RouterProvider,
 } from "react-router-dom";
 import Login from './Sites/auth/Login/Login';
@@ -22,9 +23,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <Sidebar />
-  },
+    element: <div><Sidebar /><Outlet/></div>,
+    children: [
+    {
+      path: "poo",
+      element: <div></div>
+    }]
+  }
 ]);
+
 
 
 function App() {
