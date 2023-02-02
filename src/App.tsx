@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import Login from './Sites/auth/Login/Login';
 import Auth from './Sites/auth/Auth';
+import Sidebar from './Layout/Sidebar';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,11 @@ const router = createBrowserRouter([
   {
     path: "/auth/signup",
     element: <Login />
-  }
+  },
+  {
+    path: "/",
+    element: <Sidebar />
+  },
 ]);
 
 

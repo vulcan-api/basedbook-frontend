@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Zen+Dots');
+
+.navbar {
+    background-color: #1D1D1D;
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 3rem;
+    padding-block: 2rem;
+    flex-direction: column;
+    height: 100vh;
+    box-sizing: border-box;
+    font-size: 1.6rem;
+    overflow-y: scroll;
+}
+
+.mainLogo {
+    color: #FA4753;
+    font-family: 'Zen Dots';
+    font-size: 1rem;
+    position: sticky;
+}
