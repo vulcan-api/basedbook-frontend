@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
 :root {
   --bg-clr: #FFFFFF;
   --main-500: #17181C;
@@ -25,9 +27,23 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--add2-300);
+  display: flex;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+::placeholder {
+  color: var(--main-300);
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: var(--main-300);
+}
+
+::-ms-input-placeholder {
+  color: var(--main-300);
 }
