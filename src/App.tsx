@@ -7,6 +7,7 @@ import {
 import Login from './Sites/auth/Login/Login';
 import Auth from './Sites/auth/Auth';
 import Sidebar from './Layout/Sidebar';
+import Register from './Sites/auth/Register/Register';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/auth/signup",
-    element: <Login />
+    element: <Register />
   },
   {
     path: "/",

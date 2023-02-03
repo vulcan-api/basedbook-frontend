@@ -3,7 +3,8 @@ import Input from '../../../Components/Input';
 import Checkbox from '../../../Components/Checkbox';
 import classes from './Login.module.css';
 import Button from '../../../Components/Button';
-import loginImg from './Graphics/loginImg.png'
+import loginImg from './Graphics/loginImg.png';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
@@ -20,7 +21,7 @@ const Login = () => {
                         <Checkbox label="Zapamiętaj hasło"/>
                         <Button buttonText="Zaloguj się"/>
                     </form>
-                    <p>Nie masz konta? Zarejestruj się !</p>
+                    <Link to={'/auth/signup'}>Nie masz konta? Zarejestruj się!</Link>
                 </div>
             </div>
         </div>

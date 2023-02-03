@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { string } from 'yargs';
+import { NavLink } from 'react-router-dom';
 import classes from './Link.module.css';
 
 const LinkSection = (props: {elements: {destination: string, label: string, icon: any}[]}) => {
@@ -11,10 +10,10 @@ const LinkSection = (props: {elements: {destination: string, label: string, icon
             props.elements.map((item) => {
                 return (
                 <li>
-                    <Link to={item.destination} className={classes.link}>
+                    <NavLink to={item.destination} className={classes.link} style={({ isActive }) => isActive ? {color: 'red'} : {color: 'var(--add2-500)'}}>
                         <span className={classes.linkIcon}>{item.icon}</span>
                         <span>{item.label}</span>
-                    </Link>
+                    </NavLink>
                 </li>)
             })
         }

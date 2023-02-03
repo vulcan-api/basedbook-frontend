@@ -3,14 +3,24 @@
     background-color: var(--bg-clr);
     display: flex;
     justify-content: space-between;
-    padding-inline: 3rem;
-    padding-block: 2rem;
+    padding: 2rem 3rem;
     flex-direction: column;
     height: 100vh;
     box-sizing: border-box;
     font-size: 1.6rem;
-    overflow-y: scroll;
+    overflow-y: hidden;
+    position: relative;
     width: fit-content;
+}
+
+.navbar::after {
+    content: '';
+    width: 1px;
+    height: 100%;
+    background-color: var(--main-100);
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .mainLogo {
