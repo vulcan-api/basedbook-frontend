@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Homepage.module.css';
+// import classes from './Homepage.module.css';
 
 const Homepage = () => {
     return (

@@ -7,7 +7,7 @@
     height: 100vh;
     box-sizing: border-box;
     font-size: 1.5em;
-    overflow-y: scroll;
+    overflow-y: hidden;
     position: relative;
     min-width: fit-content;
 }
