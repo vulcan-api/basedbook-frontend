@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import classes from './Link.module.css';
+import classes from './LinkSection.module.css';
 
 const LinkSection = (props: {elements: {destination: string, label: string, icon: any}[]}) => {
     return (

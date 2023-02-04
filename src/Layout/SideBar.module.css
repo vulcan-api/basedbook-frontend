@@ -1,16 +1,15 @@
-
 .navbar {
     background-color: var(--bg-clr);
     display: flex;
     justify-content: space-between;
-    padding: 2rem 3rem;
+    padding: 1em 2em;
     flex-direction: column;
     height: 100vh;
     box-sizing: border-box;
-    font-size: 1.6rem;
-    overflow-y: hidden;
+    font-size: 1.5em;
+    overflow-y: scroll;
     position: relative;
-    width: fit-content;
+    min-width: fit-content;
 }
 
 .navbar::after {
@@ -24,8 +23,5 @@
 }
 
 .mainLogo {
-    color: #FA4753;
-    font-family: 'Zen Dots';
-    font-size: 1rem;
-    position: sticky;
+    font-size: .7em;
 }

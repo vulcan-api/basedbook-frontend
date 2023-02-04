@@ -1,0 +1,10 @@
+.flexRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.wrapper {
+    padding: 1.5em;
+    width: 100%;
+    box-sizing: border-box;
+}

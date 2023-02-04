@@ -6,8 +6,10 @@ import {
 } from "react-router-dom";
 import Login from './Sites/auth/Login/Login';
 import Auth from './Sites/auth/Auth';
-import Sidebar from './Layout/Sidebar';
 import Register from './Sites/auth/Register/Register';
+import Main from './Sites/main/Main';
+import Homepage from './Sites/main/Homepage/Homepage';
+import Spotted from './Sites/main/Spotted/Spotted';
 
 const router = createBrowserRouter([
   {
@@ -24,12 +26,17 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <div><Sidebar /><Outlet/></div>,
+    element: <Main />,
     children: [
-    {
-      path: "poo",
-      element: <div></div>
-    }]
+      {
+        path: "",
+        element: <Homepage />
+      },
+      {
+        path: "spotted",
+        element: <Spotted />
+      },
+    ]
   }
 ]);
 

@@ -52,3 +52,23 @@ p {
   margin-block-start: 0;
   margin-block-end: 0;
 }
+
+h1, h2 {
+  color: #FA4753;
+  font-family: 'Zen Dots';
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+    padding-inline: 1rem;
+    padding-bottom: 1.2rem;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: var(--main-100);
+    border-style: solid;
+    margin-block: 2rem;
+}
