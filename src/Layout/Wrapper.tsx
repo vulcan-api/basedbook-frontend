@@ -3,7 +3,7 @@ import classes from "./Wrapper.module.css";
 
 const Wrapper = (props:any) => {
     return (
-        <div className={classes.wrapper}>
+        <div className={classes.wrapper} style={props.style} key={props.klucz}>
             {props.children}
         </div>
     )
