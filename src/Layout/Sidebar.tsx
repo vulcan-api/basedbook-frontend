@@ -14,7 +14,7 @@ const Sidebar = () => {
                     <h1>Muj elektryk</h1>
                 </NavLink>
             </div>
-            <div className={classes.mainSection}>
+            <div>
                 <LinkSection 
                     elements={[
                         {
@@ -28,7 +28,7 @@ const Sidebar = () => {
                             icon: <Icon.PeopleFill/>
                         },
                         {
-                            destination: '/matrix',
+                            destination: '/chat',
                             label: 'Komunikator',
                             icon: <Icon.ChatFill/>
                         },
@@ -38,14 +38,14 @@ const Sidebar = () => {
                             icon: <Icon.CardChecklist/>
                         },
                         {
-                            destination: '/diary',
+                            destination: '/school',
                             label: 'Dziennik',
                             icon: <Icon.JournalBookmarkFill/>
                         },
                     ]}
                     />
             </div>
-            <div className={classes.settingsSection}>
+            <div>
                 <LinkSection 
                     elements={[
                         {

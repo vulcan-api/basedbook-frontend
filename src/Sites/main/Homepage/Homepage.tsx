@@ -1,5 +1,6 @@
 import React from 'react';
 // import classes from './Homepage.module.css';
+import Wrapper from '../../../Layout/Wrapper';
 
 const Homepage = () => {
     return (
@@ -7,15 +8,15 @@ const Homepage = () => {
         <div>
             <h1>Witaj twoja mama 69!</h1>
         </div>
-        <div className={'container'}>
+        <Wrapper>
             <h2>Aktualności</h2>
             <p>Konkurs Historyczny "Age of Violence"</p>
-        </div>
-        <div className={'container'}>
+        </Wrapper>
+        <Wrapper>
             <h2>Spotted</h2>
             <p>Nowe komentarze</p>
             <p>Proponowane posty</p>
-        </div>
+        </Wrapper>
     </>
     );
 }
