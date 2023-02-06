@@ -6,15 +6,16 @@ import Wrapper from '../../../Layout/Wrapper';
 import { useState } from 'react';
 
 const Spotted = () => {
-    let posts = [
+    const [posts, setPosts] = useState([
         {
             id: '1',
             user: 'anonim',
             date: '6.9.2137',
             time: '21:37',
             content: 'Treść posta na spotted. Jakieś gówno, obgadywanie ludzi',
-            likes: '69420',
-            comments: '420',
+            likes: 69420,
+            comments: 420,
+            isLiked: false,
         },
         {
             id: '2',
@@ -22,10 +23,31 @@ const Spotted = () => {
             date: '9.6.2137',
             time: '21:37',
             content: 'post 2 jebać disa',
-            likes: '69420',
-            comments: '420',
+            likes: 69420,
+            comments: 420,
+            isLiked: false,
         },
-    ]
+        {
+            id: '3',
+            user: 'twoja mama',
+            date: '9.6.2137',
+            time: '21:37',
+            content: 'post 2 jebać disa',
+            likes: 69420,
+            comments: 420,
+            isLiked: false,
+        },
+        {
+            id: '4',
+            user: 'twoja mama',
+            date: '9.6.2137',
+            time: '21:37',
+            content: 'post 2 jebać disapost 2 jebać disapost 2 jebać disapost 2 jebać disapost 2 jebać disapost 2 jebać disa',
+            likes: 69420,
+            comments: 420,
+            isLiked: false,
+        },
+    ]);
 
     const [listType, setListType] = useState({
         width: '40%',
@@ -38,6 +60,19 @@ const Spotted = () => {
         setListType({
             width: length+'%',
         });
+    }
+
+    function likeHandler(postId:any) {
+        let postsCopy = [...posts];
+        if (posts[postId - 1].isLiked) {
+            postsCopy[postId - 1].isLiked = false;
+            postsCopy[postId - 1].likes -= 1;
+            setPosts(postsCopy);
+        } else {
+            postsCopy[postId - 1].isLiked = true;
+            postsCopy[postId - 1].likes += 1;
+            setPosts(postsCopy);
+        }
     }
 
     const posty = posts.map((post) => {
@@ -62,9 +97,10 @@ const Spotted = () => {
                             {post.content}
                         </div>
                         <div className={classes.bottomData}>
-                            <div>
-                                <Icon.Heart />
-                                {post.likes}
+                            <div onClick={() => {likeHandler(post.id)}}>
+                                {post.isLiked && <Icon.HeartFill style={{color: 'var(--add1-500)'}}/>}
+                                {!post.isLiked && <Icon.Heart />}
+                                <p style={post.isLiked ? {color: 'var(--add1-500)'} : {}}>{post.likes}</p>
                             </div>
                             <div>
                                 <Icon.ChatLeftText />
