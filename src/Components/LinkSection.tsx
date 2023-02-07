@@ -7,9 +7,9 @@ const LinkSection = (props: {elements: {destination: string, label: string, icon
         <>
         <ul className={classes.linkList}>
         {
-            props.elements.map((item) => {
+            props.elements.map((item, index) => {
                 return (
-                <li>
+                <li key={index}>
                     <NavLink to={item.destination} className={classes.link} style={({ isActive }) => isActive ? {color: 'red'} : {color: 'var(--add2-500)'}}>
                         <span className={classes.linkIcon}>{item.icon}</span>
                         <span>{item.label}</span>

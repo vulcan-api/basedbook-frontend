@@ -39,8 +39,8 @@
     flex-wrap: wrap;
 }
 
-.posts > div {
-    width: 40%;
+.post{
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -60,6 +60,10 @@
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+.bottomData > div > p {
+    transition: color .1s linear;
 }
 
 .bottomData > div {

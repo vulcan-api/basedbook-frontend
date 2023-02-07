@@ -75,9 +75,20 @@ const Spotted = () => {
         }
     }
 
-    const posty = posts.map((post) => {
+    return (
+        <>
+            <div className={classes.menu}>
+                <div>
+                    <Icon.List className={isActive ? '' : classes.active} onClick={() => changeListTypeHandler(100, 1)}/>
+                    <Icon.GridFill className={isActive ? classes.active : ''} onClick={() => changeListTypeHandler(40, 0)}/>
+                </div>
+                <Button className='alternate' buttonText='Dodaj post'/>
+            </div>
+            <div className={classes.posts}>
+                {posts.map((post) => {
                     return (
-                    <Wrapper klucz={post.id} style={listType}>
+                    <div key={post.id} style={listType}>
+                    <Wrapper className={classes.post}>
                         <div className={classes.topData}>
                             <div>
                                 <Icon.PersonFill />
@@ -107,20 +118,9 @@ const Spotted = () => {
                                 {post.comments + ' komentarzy'}
                             </div>
                         </div>
-                    </Wrapper>)
-                })
-
-    return (
-        <>
-            <div className={classes.menu}>
-                <div>
-                    <Icon.List className={isActive ? '' : classes.active} onClick={() => changeListTypeHandler(100, 1)}/>
-                    <Icon.GridFill className={isActive ? classes.active : ''} onClick={() => changeListTypeHandler(40, 0)}/>
-                </div>
-                <Button className='alternate' buttonText='Dodaj post'/>
-            </div>
-            <div className={classes.posts}>
-                {posty}
+                    </Wrapper>
+                    </div>)
+                })}
             </div>
         </>
     )
