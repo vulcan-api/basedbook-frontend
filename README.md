@@ -1,6 +1,6 @@
 # Muj Elektryk - Frontend
 
-This is frontend of our powerfull application.
+This is frontend of our powerful application.
 
 ## Build
 That's important to clone submodules, because we embed matrix client via one.
