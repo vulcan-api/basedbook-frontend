@@ -1,0 +1,3 @@
+[submodule "src/matrix"]
+	path = src/matrix
+	url = https://github.com/Muj-Elektryk/embeddable-matrix-client
