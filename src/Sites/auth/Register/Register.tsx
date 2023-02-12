@@ -18,7 +18,7 @@ const Register = () => {
                         <Input placeholder="Nazwa użytkownika"/>
                         <Input type="password" placeholder="Hasło"/>
                         <Input type="password" placeholder="Powtórz hasło"/>
-                        <Checkbox label="Akceptuję regulamin"/>
+                        <Checkbox id="acceptRegulamin" label="Akceptuję regulamin"/>
                         <Button buttonText="Zarejestruj się"/>
                     </form>
                     <Link to={'/auth/login'}>Masz już konto? Zaloguj się!</Link>

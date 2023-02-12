@@ -4,6 +4,7 @@ import Button from '../../../Components/Button';
 import * as Icon from 'react-bootstrap-icons';
 import Wrapper from '../../../Layout/Wrapper';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Spotted = () => {
     const [posts, setPosts] = useState([
@@ -82,7 +83,7 @@ const Spotted = () => {
                     <Icon.List className={isActive ? '' : classes.active} onClick={() => changeListTypeHandler(100, 1)}/>
                     <Icon.GridFill className={isActive ? classes.active : ''} onClick={() => changeListTypeHandler(40, 0)}/>
                 </div>
-                <Button className='alternate' buttonText='Dodaj post'/>
+                <Link to="/spotted/add"><Button buttonText="Dodaj post" className='alternate' /></Link>
             </div>
             <div className={classes.posts}>
                 {posts.map((post) => {

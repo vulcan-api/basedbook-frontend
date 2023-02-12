@@ -9,6 +9,7 @@ import Register from './Sites/auth/Register/Register';
 import Main from './Sites/main/Main';
 import Homepage from './Sites/main/Homepage/Homepage';
 import Spotted from './Sites/main/Spotted/Spotted';
+import Addpost from './Sites/main/Spotted/Addpost';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "spotted",
         element: <Spotted />
+      },
+      {
+        path: "spotted/add",
+        element: <Addpost />
       },
     ]
   }

@@ -4,8 +4,8 @@ import classes from "./Checkbox.module.css";
 const Checkbox = (props:any) => {
     return (
         <div className={classes.checkboxFlex}>
-            <input id="regulamin" type="checkbox" className={classes.checkbox}/>
-            <label htmlFor="regulamin" className={classes.label}>{props.label || "nieDałeśLabela"}</label>
+            <input id={props.id} type="checkbox" className={classes.checkbox} onChange={props.onChange} checked={props.checked}/>
+            <label htmlFor={props.id} className={classes.label}>{props.label || "nieDałeśLabela"}</label>
         </div>
     )
 }

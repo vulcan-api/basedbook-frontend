@@ -18,7 +18,7 @@ const Login = () => {
                         <Input placeholder="E-Mail"/>
                         <Input type="password" placeholder="Hasło"/>
                         <p>Nie pamiętasz hasła?</p>
-                        <Checkbox label="Zapamiętaj hasło"/>
+                        <Checkbox id="passwordRemember" label="Zapamiętaj hasło"/>
                         <Button buttonText="Zaloguj się"/>
                     </form>
                     <Link to={'/auth/signup'}>Nie masz konta? Zarejestruj się!</Link>

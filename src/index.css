@@ -48,6 +48,11 @@ code {
   color: var(--main-300);
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.7) saturate(5) hue-rotate(175deg);
+}
+
 p {
   margin-block-start: 0;
   margin-block-end: 0;
@@ -63,4 +68,8 @@ h1, h2 {
 
 a {
   text-decoration: none;
+}
+
+input:disabled {
+  background-color: var(--add1-300);
 }
