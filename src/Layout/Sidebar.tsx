@@ -3,9 +3,11 @@ import LinkSection from '../Components/LinkSection';
 import * as Icon from 'react-bootstrap-icons';
 import classes from './Sidebar.module.css';
 import {NavLink} from 'react-router-dom';
+import Searchbar from '../Components/Searchbar';
+
+
 
 const Sidebar = () => {
-
     return (
         <>
             <div className={classes.navbar}>
@@ -33,7 +35,7 @@ const Sidebar = () => {
                                 icon: <Icon.ChatFill/>
                             },
                             {
-                                destination: '/Olyphiads',
+                                destination: '/olyphiads',
                                 label: 'Olimpiady',
                                 icon: <Icon.CardChecklist/>
                             },
