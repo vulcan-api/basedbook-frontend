@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import classes from './Spotted.module.css';
 import Button from '../../../Components/Button';
 import * as Icon from 'react-bootstrap-icons';
 import Wrapper from '../../../Layout/Wrapper';
-import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import {useState} from 'react';
+import {Link, useParams} from 'react-router-dom';
 import axios from '../../../axios';
 
 const Spotted = () => {
-    let { postId } = useParams();
+    let {postId} = useParams();
     const [posts, setPosts] = useState([
         {
             id: 69,
@@ -96,11 +96,6 @@ const Spotted = () => {
 
     useEffect(() => {
         getAllPosts();
-        if (window.location.pathname === '/spotted') {
-            console.log("/spotted");
-        } else if (window.location.pathname === (`/spotted/post/${postId}`)) {
-            console.log(postId);
-        }
     }, []);
 
     async function getAllPosts() {
@@ -108,6 +103,7 @@ const Spotted = () => {
         const posts = res.data;
         setPosts(posts);
     }
+
 
     return (
         <>
@@ -163,7 +159,7 @@ const Spotted = () => {
                                 </div>
                             </Wrapper>
                         </div>)
-            })}
+                })}
             </div>}
         </>
     )
