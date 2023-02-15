@@ -4,11 +4,7 @@ const Auth = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const sSE = () => {
             navigate("/auth/login");
-        }
-
-        sSE();
     },[navigate])
 
     return <></>;

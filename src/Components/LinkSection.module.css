@@ -17,6 +17,10 @@
     align-items: center;
 }
 
+.clickable {
+    color: var(--add2-500);
+}
+
 .clickable:hover {
     cursor: pointer;
     user-select: none;

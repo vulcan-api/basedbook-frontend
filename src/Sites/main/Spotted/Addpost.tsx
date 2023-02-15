@@ -2,9 +2,11 @@ import React from "react";
 import classes from "./Addpost.module.css";
 import Checkbox from "../../../Components/Checkbox";
 import Button from "../../../Components/Button";
-import {useState} from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Addpost = () => {
+    const navigate = useNavigate();
     const [dateHourAuto, setDateHourAuto] = useState(true);
     const [postText, setPostText] = useState('');
     const [anonymous, setAnonymous] = useState(false);
@@ -16,7 +18,6 @@ const Addpost = () => {
     }
 
     async function addPost(event: any) {
-
         event.preventDefault();
 
         if (dateHourAuto) {
@@ -30,15 +31,23 @@ const Addpost = () => {
             publishAt: postDate
         };
 
-        fetch('http://localhost:3000/spotted/post', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body: JSON.stringify(post)
-        }).then(res => res.json()).then(console.log).catch(err => console.log(err));
+            const throwObject = {};
 
+            const spottedPosts = await fetch("http://localhost:3000/spotted/post", {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              credentials: "include",
+              body: JSON.stringify(post),
+            })
+              .then((res) => res.json())
+              .catch((err) => {
+                console.error(err);
+                return throwObject;
+              });
+
+            if (spottedPosts.statusCode === 200 || Array.isArray(spottedPosts)) {navigate("/spotted");}
     }
 
     const changeTextHandler = (event: { target: { value: any; }; }) => {

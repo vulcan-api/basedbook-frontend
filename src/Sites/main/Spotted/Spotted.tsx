@@ -1,13 +1,12 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import classes from './Spotted.module.css';
 import Button from '../../../Components/Button';
 import * as Icon from 'react-bootstrap-icons';
 import Wrapper from '../../../Layout/Wrapper';
-import {useState} from 'react';
-import {Link, useParams} from 'react-router-dom';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Spotted = () => {
-    let {postId} = useParams();
     const [posts, setPosts] = useState([
         {
             id: 69,
@@ -54,12 +53,16 @@ const Spotted = () => {
     }, []);
 
     async function getAllPosts() {
+        try {
         fetch('http://localhost:3000/spotted/post', {
             method: 'GET',
             credentials: 'include',
         })
             .then(res => res.json())
             .then(setPosts);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { ArrowFunction } from 'typescript';
 import classes from './LinkSection.module.css';
 
 interface LinkProperties {
@@ -20,7 +19,7 @@ const LinkSection = (props: {elements: LinkProperties[]}) => {
                 <li key={index}>
                     {
                         // TODO: make it work
-                        item.destination?
+                        item.destination ?
 
                         <NavLink 
                             to={item.destination} 
