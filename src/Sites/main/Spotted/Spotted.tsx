@@ -1,13 +1,14 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import classes from './Spotted.module.css';
 import Button from '../../../Components/Button';
 import * as Icon from 'react-bootstrap-icons';
 import Wrapper from '../../../Layout/Wrapper';
-import {useState} from 'react';
-import {Link} from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import axios from '../../../axios';
 
 const Spotted = () => {
+    let { postId } = useParams();
     const [posts, setPosts] = useState([
         {
             id: 69,
@@ -79,33 +80,38 @@ const Spotted = () => {
         });
     }
 
-    function likeHandler(postId: any) {
+    function likeHandler(post: any) {
         let postsCopy = [...posts];
-        if (posts[postId - 1].isLiked) {
-            postsCopy[postId - 1].isLiked = false;
-            postsCopy[postId - 1].likes -= 1;
+        let index = postsCopy.indexOf(post);
+        if (posts[index].isLiked) {
+            posts[index].isLiked = false;
+            posts[index].likes -= 1;
             setPosts(postsCopy);
         } else {
-            postsCopy[postId - 1].isLiked = true;
-            postsCopy[postId - 1].likes += 1;
+            posts[index].isLiked = true;
+            posts[index].likes += 1;
             setPosts(postsCopy);
         }
     }
 
     useEffect(() => {
         getAllPosts();
+        if (window.location.pathname === '/spotted') {
+            console.log("/spotted");
+        } else if (window.location.pathname === (`/spotted/post/${postId}`)) {
+            console.log(postId);
+        }
     }, []);
 
     async function getAllPosts() {
         const res = await axios.get('/spotted/post');
         const posts = res.data;
-        console.log(posts);
         setPosts(posts);
     }
 
     return (
         <>
-            <div className={classes.menu}>
+            {window.location.pathname === '/spotted' && <div className={classes.menu}>
                 <div>
                     <Icon.List className={isActive ? '' : classes.active}
                                onClick={() => changeListTypeHandler(100, 1)}/>
@@ -114,9 +120,9 @@ const Spotted = () => {
                 </div>
                 <Link to="/spotted/add"><Button buttonText="Dodaj post" className='alternate'/></Link>
             </div>
-            <div className={classes.posts}>
+            }
+            {window.location.pathname === '/spotted' && <div className={classes.posts}>
                 {posts.map((post) => {
-
                     return (
                         <div key={post.id} style={listType}>
                             <Wrapper className={classes.post}>
@@ -144,21 +150,21 @@ const Spotted = () => {
                                 </div>
                                 <div className={classes.bottomData}>
                                     <div onClick={() => {
-                                        likeHandler(post.id)
+                                        likeHandler(post)
                                     }}>
                                         {post.isLiked && <Icon.HeartFill style={{color: 'var(--add1-500)'}}/>}
                                         {!post.isLiked && <Icon.Heart/>}
                                         <p style={post.isLiked ? {color: 'var(--add1-500)'} : {}}>{post.likes}</p>
                                     </div>
-                                    {/*<div>*/}
-                                    {/*    <Icon.ChatLeftText/>*/}
-                                    {/*    {post.comments + ' komentarzy'}*/}
-                                    {/*</div>*/}
+                                    {/* <div>
+                                        <Icon.ChatLeftText/>
+                                        {post.comments + ' komentarzy'}
+                                    </div> */}
                                 </div>
                             </Wrapper>
                         </div>)
-                })}
-            </div>
+            })}
+            </div>}
         </>
     )
 }
