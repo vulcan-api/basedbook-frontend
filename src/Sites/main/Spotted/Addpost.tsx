@@ -3,7 +3,6 @@ import classes from "./Addpost.module.css";
 import Checkbox from "../../../Components/Checkbox";
 import Button from "../../../Components/Button";
 import {useState} from "react";
-import axios from "../../../axios";
 
 const Addpost = () => {
     const [dateHourAuto, setDateHourAuto] = useState(true);

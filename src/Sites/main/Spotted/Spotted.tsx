@@ -5,7 +5,6 @@ import * as Icon from 'react-bootstrap-icons';
 import Wrapper from '../../../Layout/Wrapper';
 import {useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
-import axios from '../../../axios';
 
 const Spotted = () => {
     let {postId} = useParams();
@@ -13,58 +12,14 @@ const Spotted = () => {
         {
             id: 69,
             createdAt: new Date("2023-02-06T19:21:38.727Z"),
+            authorId: 1,
             title: "Lekcja z symfony u stopiarza",
             text: "Chciałem się pochwalić że prowadziłem lekcje u stopiarza",
             isAnonymous: false,
-            author: {
-                username: "test_weryfikacji",
-                name: "Seweryn",
-                surname: "Pajor"
-            },
-            likes: 0,
-            dislikes: 0,
-            isLiked: false
-        }
-        // {
-        //     id: '1',
-        //     user: 'anonim',
-        //     date: '6.9.2137',
-        //     time: '21:37',
-        //     content: 'Treść posta na spotted. Jakieś gówno, obgadywanie ludzi',
-        //     likes: 69420,
-        //     comments: 420,
-        //     isLiked: false,
-        // },
-        // {
-        //     id: '2',
-        //     user: 'twoja mama',
-        //     date: '9.6.2137',
-        //     time: '21:37',
-        //     content: 'post 2 jebać disa',
-        //     likes: 69420,
-        //     comments: 420,
-        //     isLiked: false,
-        // },
-        // {
-        //     id: '3',
-        //     user: 'twoja mama',
-        //     date: '9.6.2137',
-        //     time: '21:37',
-        //     content: 'post 2 jebać disa',
-        //     likes: 69420,
-        //     comments: 420,
-        //     isLiked: false,
-        // },
-        // {
-        //     id: '4',
-        //     user: 'twoja mama',
-        //     date: '9.6.2137',
-        //     time: '21:37',
-        //     content: 'post 2 jebać disapost 2 jebać disapost 2 jebać disapost 2 jebać disapost 2 jebać disapost 2 jebać disa',
-        //     likes: 69420,
-        //     comments: 420,
-        //     isLiked: false,
-        // },
+            isLiked: false,
+            likes: 69,
+            username: "jajco",
+        },
     ]);
 
     const [listType, setListType] = useState({
@@ -99,9 +54,12 @@ const Spotted = () => {
     }, []);
 
     async function getAllPosts() {
-        const res = await axios.get('/spotted/post');
-        const posts = res.data;
-        setPosts(posts);
+        fetch('http://localhost:3000/spotted/post', {
+            method: 'GET',
+            credentials: 'include',
+        })
+            .then(res => res.json())
+            .then(setPosts);
     }
 
 
@@ -125,10 +83,7 @@ const Spotted = () => {
                                 <div className={classes.topData}>
                                     <div>
                                         <Icon.PersonFill/>
-                                        {post.isAnonymous ? (
-                                            'anonim'
-                                        ) : (post.author.name + ' ' + post.author.surname)
-                                        }
+                                        {post.isAnonymous ? ('anonim') : post.username}
                                     </div>
                                     <>
                                         <Icon.CalendarDate/>

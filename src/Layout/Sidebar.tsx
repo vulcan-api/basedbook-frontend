@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LinkSection from '../Components/LinkSection';
 import * as Icon from 'react-bootstrap-icons';
 import classes from './Sidebar.module.css';
 import {NavLink} from 'react-router-dom';
 import Searchbar from '../Components/Searchbar';
 
-
-
 const Sidebar = () => {
+    const [ clicked, setClicked ] = useState(true);
+    const toggleClick = () => {
+        clicked ? setClicked(false) : setClicked(true);
+    }
     return (
         <>
             <div className={classes.navbar}>
@@ -20,9 +22,9 @@ const Sidebar = () => {
                     <LinkSection
                         elements={[
                             {
-                                destination: '/search',
                                 label: 'Szukaj',
-                                icon: <Icon.Search/>
+                                icon: <Icon.Search/>,
+                                onClick: toggleClick
                             },
                             {
                                 destination: '/spotted',
