@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import Input from "../../../Components/Input";
 import Checkbox from "../../../Components/Checkbox";
 import classes from "./Login.module.css";
@@ -12,12 +12,46 @@ const Login = () => {
     const passwordRef = useRef();
     const remeberPasswordRef = useRef();
 
+    useEffect(() => {
+      fetchPosts();
+    },[])
+
+    const fetchPosts = async () => {
+      const throwObject = {};
+      await fetch("http://localhost:3000/spotted/post", {
+        method: "GET",
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then(() => {
+          logout();
+        })
+        .catch((err) => {
+          console.error(err);
+          return throwObject;
+        });
+    };
+
+    const logout = () => {
+      let myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      fetch("http://localhost:3000/auth/logout", {
+        method: "POST",
+        headers: myHeaders,
+        redirect: "follow",
+        credentials: "include",
+      })
+        .then((response) => response.text())
+        .catch((error) => console.log("error", error));
+    };  
+
     const loginHandler = (event: any) => {
         event.preventDefault();
-        var myHeaders = new Headers();
+        let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({
+        let raw = JSON.stringify({
           // @ts-ignore
           email: emailRef.current.value,
           // @ts-ignore
@@ -33,7 +67,7 @@ const Login = () => {
         })
           .then((response) => response.text())
           // @ts-ignore
-          .then(() => remeberPasswordRef.target.checked ? console.log("to itak nie działa") : "", navigate("/"))
+          .then(() => navigate("/"))
           .catch((error) => console.log("error", error));
     };
 

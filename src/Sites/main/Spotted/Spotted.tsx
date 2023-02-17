@@ -40,12 +40,29 @@ const Spotted = () => {
         if (posts[index].isLiked) {
             posts[index].isLiked = false;
             posts[index].likes -= 1;
+            like(posts[index].id);
             setPosts(postsCopy);
+            
         } else {
             posts[index].isLiked = true;
             posts[index].likes += 1;
+            like(posts[index].id);
             setPosts(postsCopy);
         }
+    }
+
+    const like = async (id:Number) => {
+        await fetch(`http://localhost:3000/spotted/post/${id}/like`, {
+          method: "POST",
+          credentials: "include",
+        })
+          .then((res) => res.json())
+          .then(() => {
+            console.log("Polikeowano");
+          })
+          .catch((err) => {
+            console.error(err);
+          });
     }
 
     useEffect(() => {

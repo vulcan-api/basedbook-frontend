@@ -6,7 +6,7 @@ interface LinkProperties {
     label: string, 
     icon: any
     destination?: string, 
-    onClick?: Function
+    onClick?: any
 }
 
 const LinkSection = (props: {elements: LinkProperties[]}) => {
@@ -18,7 +18,6 @@ const LinkSection = (props: {elements: LinkProperties[]}) => {
                 return (
                 <li key={index}>
                     {
-                        // TODO: make it work
                         item.destination ?
 
                         <NavLink 
@@ -32,14 +31,10 @@ const LinkSection = (props: {elements: LinkProperties[]}) => {
 
                         :
                         
-                        // TODO: implement onClick to show searchbox
-                        <span 
-                            className={`${classes.link} ${classes.clickable}`}
-                            onClick={() => item.onClick!}
-                            >
+                        <div className={`${classes.link} ${classes.clickable}`} onClick={item.onClick}>
                             <span className={classes.linkIcon}>{item.icon}</span>
                             <span>{item.label}</span>
-                        </span>
+                        </div>
 
                     }
                 </li>)

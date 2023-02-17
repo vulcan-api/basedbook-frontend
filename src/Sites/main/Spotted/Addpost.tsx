@@ -10,7 +10,6 @@ const Addpost = () => {
     const [dateHourAuto, setDateHourAuto] = useState(true);
     const [postText, setPostText] = useState('');
     const [anonymous, setAnonymous] = useState(false);
-    const [comments, setComments] = useState(false);
     const [postDate, setPostDate] = useState(new Date());
 
     function disableTimeAndDate() {
@@ -27,7 +26,6 @@ const Addpost = () => {
             title: 'not ask',
             text: postText,
             isAnonymous: anonymous,
-            isComments: comments,
             publishAt: postDate
         };
 
@@ -45,7 +43,7 @@ const Addpost = () => {
               .catch((err) => {
                 console.error(err);
                 return throwObject;
-              });
+            });
 
             if (spottedPosts.statusCode === 200 || Array.isArray(spottedPosts)) {navigate("/spotted");}
     }
@@ -62,8 +60,6 @@ const Addpost = () => {
                 <div className={classes.postOptions}>
                     <Checkbox id="anonimowyPost" label="Anonimowy post" value={anonymous}
                               onChange={() => setAnonymous(!anonymous)}/>
-                    <Checkbox id="zezwolNaKom" label="Zezwól na komentarze" value={comments}
-                              onChange={() => setComments(!comments)}/>
                     <Checkbox id="dataIGodzina" label="Obecna data i godzina" onChange={disableTimeAndDate}
                               checked={dateHourAuto}/>
                     <input type="date" name="data" id="data" disabled={dateHourAuto}/>

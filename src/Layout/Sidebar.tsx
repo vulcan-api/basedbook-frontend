@@ -2,14 +2,33 @@ import React, { useState } from 'react';
 import LinkSection from '../Components/LinkSection';
 import * as Icon from 'react-bootstrap-icons';
 import classes from './Sidebar.module.css';
-import {NavLink} from 'react-router-dom';
-import Searchbar from '../Components/Searchbar';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
+    const navigate = useNavigate();
+
     const [ clicked, setClicked ] = useState(true);
+    
     const toggleClick = () => {
         clicked ? setClicked(false) : setClicked(true);
     }
+
+    const logout = () => {
+        console.log("ne maasz mamy");
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        fetch("http://localhost:3000/auth/logout", {
+          method: "POST",
+          headers: myHeaders,
+          redirect: "follow",
+          credentials: "include",
+        })
+          .then((response) => response.text())
+          .then(() => {navigate("/auth/login")})
+          .catch((error) => console.log("error", error));
+    }   
+
     return (
         <>
             <div className={classes.navbar}>
@@ -62,6 +81,11 @@ const Sidebar = () => {
                                 label: 'Ustawienia',
                                 icon: <Icon.Tools/>
                             },
+                            {
+                                label: "Wyloguj się",
+                                icon: <Icon.DoorOpen />,
+                                onClick: logout
+                            }
                         ]}
                     />
                 </div>
