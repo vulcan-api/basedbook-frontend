@@ -10,6 +10,8 @@ import Main from './Sites/main/Main';
 import Homepage from './Sites/main/Homepage/Homepage';
 import Spotted from './Sites/main/Spotted/Spotted';
 import Addpost from './Sites/main/Spotted/Addpost';
+//@ts-ignore
+import { NotificationContainer } from "react-notifications";
 
 const router = createBrowserRouter([
   {
@@ -53,7 +55,8 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-    <RouterProvider router={router}/>
+      <NotificationContainer />
+      <RouterProvider router={router} />
     </>
   );
   

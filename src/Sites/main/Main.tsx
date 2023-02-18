@@ -4,6 +4,7 @@ import Sidebar from "../../Layout/Sidebar";
 import classes from "./Main.module.css";
 import { useNavigate } from "react-router-dom";
 
+
 const Main = () => {
   const navigate = useNavigate();
   useEffect(() => {

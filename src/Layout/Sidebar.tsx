@@ -3,6 +3,8 @@ import LinkSection from '../Components/LinkSection';
 import * as Icon from 'react-bootstrap-icons';
 import classes from './Sidebar.module.css';
 import { NavLink, useNavigate } from 'react-router-dom';
+//@ts-ignore
+import { NotificationManager } from "react-notifications";
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -14,7 +16,6 @@ const Sidebar = () => {
     }
 
     const logout = () => {
-        console.log("ne maasz mamy");
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -25,7 +26,7 @@ const Sidebar = () => {
           credentials: "include",
         })
           .then((response) => response.text())
-          .then(() => {navigate("/auth/login")})
+          .then(() => {NotificationManager.success("Udało się wylogować.", "Wylogowano", 3000);navigate("/auth/login")})
           .catch((error) => console.log("error", error));
     }   
 

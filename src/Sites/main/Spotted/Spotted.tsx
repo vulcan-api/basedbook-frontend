@@ -5,6 +5,8 @@ import * as Icon from 'react-bootstrap-icons';
 import Wrapper from '../../../Layout/Wrapper';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+//@ts-ignore
+import {  NotificationManager } from "react-notifications";
 
 const Spotted = () => {
     const [posts, setPosts] = useState([
@@ -42,12 +44,16 @@ const Spotted = () => {
             posts[index].likes -= 1;
             like(posts[index].id);
             setPosts(postsCopy);
-            
         } else {
             posts[index].isLiked = true;
             posts[index].likes += 1;
             like(posts[index].id);
             setPosts(postsCopy);
+            NotificationManager.success(
+              "Udało się polikeować post.",
+              "Sukces!",
+              3000
+            );
         }
     }
 
@@ -57,9 +63,6 @@ const Spotted = () => {
           credentials: "include",
         })
           .then((res) => res.json())
-          .then(() => {
-            console.log("Polikeowano");
-          })
           .catch((err) => {
             console.error(err);
           });
@@ -71,73 +74,94 @@ const Spotted = () => {
 
     async function getAllPosts() {
         try {
-        fetch('http://localhost:3000/spotted/post', {
-            method: 'GET',
-            credentials: 'include',
+        fetch("http://localhost:3000/spotted/post", {
+          method: "GET",
+          credentials: "include",
         })
-            .then(res => res.json())
-            .then(setPosts);
+          .then((res) => res.json())
+          .then(setPosts);
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     }
 
-
     return (
-        <>
-            {window.location.pathname === '/spotted' && <div className={classes.menu}>
-                <div>
-                    <Icon.List className={isActive ? '' : classes.active}
-                               onClick={() => changeListTypeHandler(100, 1)}/>
-                    <Icon.GridFill className={isActive ? classes.active : ''}
-                                   onClick={() => changeListTypeHandler(40, 0)}/>
-                </div>
-                <Link to="/spotted/add"><Button buttonText="Dodaj post" className='alternate'/></Link>
+      <>
+        {window.location.pathname === "/spotted" && (
+          <div className={classes.menu}>
+            <div>
+              <Icon.List
+                className={isActive ? "" : classes.active}
+                onClick={() => changeListTypeHandler(100, 1)}
+              />
+              <Icon.GridFill
+                className={isActive ? classes.active : ""}
+                onClick={() => changeListTypeHandler(40, 0)}
+              />
             </div>
-            }
-            {window.location.pathname === '/spotted' && <div className={classes.posts}>
-                {posts.map((post) => {
-                    return (
-                        <div key={post.id} style={listType}>
-                            <Wrapper className={classes.post}>
-                                <div className={classes.topData}>
-                                    <div>
-                                        <Icon.PersonFill/>
-                                        {post.isAnonymous ? ('anonim') : post.username}
-                                    </div>
-                                    <>
-                                        <Icon.CalendarDate/>
-                                        {new Date(post.createdAt).toLocaleDateString()}
-                                    </>
+            <Link to="/spotted/add">
+              <Button buttonText="Dodaj post" className="alternate" />
+            </Link>
+          </div>
+        )}
+        {window.location.pathname === "/spotted" && (
+          <div className={classes.posts}>
+            {posts.map((post) => {
+              return (
+                <div key={post.id} style={listType}>
+                  <Wrapper className={classes.post}>
+                    <div className={classes.topData}>
+                      <div>
+                        <Icon.PersonFill />
+                        {post.isAnonymous ? "anonim" : post.username}
+                      </div>
+                      <>
+                        <Icon.CalendarDate />
+                        {new Date(post.createdAt).toLocaleDateString()}
+                      </>
 
-                                    <div>
-                                        <Icon.Clock/>
-                                        {new Date(post.createdAt).getHours() + ':' + new Date(post.createdAt).getMinutes()}
-                                    </div>
-                                    <Icon.FlagFill/>
-                                </div>
-                                <div className={classes.content}>
-                                    {post.text}
-                                </div>
-                                <div className={classes.bottomData}>
-                                    <div onClick={() => {
-                                        likeHandler(post)
-                                    }}>
-                                        {post.isLiked && <Icon.HeartFill style={{color: 'var(--add1-500)'}}/>}
-                                        {!post.isLiked && <Icon.Heart/>}
-                                        <p style={post.isLiked ? {color: 'var(--add1-500)'} : {}}>{post.likes}</p>
-                                    </div>
-                                    {/* <div>
-                                        <Icon.ChatLeftText/>
-                                        {post.comments + ' komentarzy'}
-                                    </div> */}
-                                </div>
-                            </Wrapper>
-                        </div>)
-                })}
-            </div>}
-        </>
-    )
+                      <div>
+                        <Icon.Clock />
+                        {new Date(post.createdAt).getHours() +
+                          ":" +
+                          new Date(post.createdAt).getMinutes()}
+                      </div>
+                      <Icon.FlagFill />
+                    </div>
+                    <div className={classes.content}>{post.text}</div>
+                    <div className={classes.bottomData}>
+                      <div
+                        onClick={() => {
+                          likeHandler(post);
+                        }}
+                      >
+                        {post.isLiked && (
+                          <Icon.HeartFill
+                            style={{ color: "var(--add1-500)" }}
+                          />
+                        )}
+                        {!post.isLiked && <Icon.Heart />}
+                        <p
+                          style={
+                            post.isLiked ? { color: "var(--add1-500)" } : {}
+                          }
+                        >
+                          {post.likes}
+                        </p>
+                      </div>
+                      {/* <div>
+                            <Icon.ChatLeftText/>
+                            {post.comments + ' komentarzy'}
+                        </div> */}
+                    </div>
+                  </Wrapper>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </>
+    );
 }
 
 export default Spotted;

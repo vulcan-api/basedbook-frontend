@@ -5,6 +5,8 @@ import classes from "./Login.module.css";
 import Button from "../../../Components/Button";
 import loginImg from "./Graphics/loginImg.png";
 import { Link, useNavigate } from "react-router-dom";
+//@ts-ignore
+import { NotificationManager } from "react-notifications";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -67,7 +69,11 @@ const Login = () => {
         })
           .then((response) => response.text())
           // @ts-ignore
-          .then(() => navigate("/"))
+          .then(() => {NotificationManager.success(
+            "Udało się zalogować.",
+            "Zalogowano",
+            3000
+          );navigate("/")})
           .catch((error) => console.log("error", error));
     };
 
