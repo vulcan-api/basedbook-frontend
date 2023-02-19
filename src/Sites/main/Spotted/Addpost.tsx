@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./Addpost.module.css";
 import Checkbox from "../../../Components/Checkbox";
 import Button from "../../../Components/Button";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
@@ -10,9 +10,8 @@ import { NotificationManager } from "react-notifications";
 const Addpost = () => {
   const navigate = useNavigate();
   const [dateHourAuto, setDateHourAuto] = useState(true);
-  const [postText, setPostText] = useState("");
-  const [anonymous, setAnonymous] = useState(false);
-  const [postDate, setPostDate] = useState(new Date());
+  const postText:any = useRef();
+  const isAnonymous:any = useRef(false);
 
   function disableTimeAndDate() {
     setDateHourAuto(!dateHourAuto);
@@ -21,14 +20,16 @@ const Addpost = () => {
   async function addPost(event: any) {
     event.preventDefault();
 
+    let publishDate;
+
     if (dateHourAuto) {
-      setPostDate(new Date());
+      publishDate = new Date();
     }
     const post = {
-      title: "not ask",
+      title: "do not ask",
       text: postText,
-      isAnonymous: anonymous,
-      publishAt: postDate,
+      isAnonymous: isAnonymous.current.checked,
+      publishAt: publishDate,
     };
 
     const throwObject = {};
@@ -53,26 +54,26 @@ const Addpost = () => {
     }
   }
 
-  const changeTextHandler = (event: { target: { value: any } }) => {
-    const value = event.target.value;
-    setPostText(value);
-  };
+  const maxLengthHandler = () => {
+    postText.current.value.length >= 300 ? NotificationManager.warning("Wpisano maksymalną ilość znaków.", "Uwaga!", 3000) : ""; 
+  }
+
   return (
     <>
       <h1 className={classes.h1}>Dodaj post</h1>
       <form className={classes.addForm} onSubmit={addPost}>
         <textarea
-          value={postText}
-          onChange={changeTextHandler}
+          onChange={maxLengthHandler}
           id="post_value"
           placeholder="Treść posta"
+          maxLength={300}
+          ref={postText}
         />
         <div className={classes.postOptions}>
           <Checkbox
             id="anonimowyPost"
             label="Anonimowy post"
-            value={anonymous}
-            onChange={() => setAnonymous(!anonymous)}
+            ref={isAnonymous}
           />
           <Checkbox
             id="dataIGodzina"
@@ -80,7 +81,12 @@ const Addpost = () => {
             onChange={disableTimeAndDate}
             checked={dateHourAuto}
           />
-          <input type="date" name="data" id="data" disabled={dateHourAuto} />
+          <input
+            type="date" 
+            name="data" 
+            id="data" 
+            disabled={dateHourAuto} 
+          />
           <input
             type="time"
             name="godzina"

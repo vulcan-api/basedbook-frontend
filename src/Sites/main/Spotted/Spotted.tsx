@@ -6,7 +6,7 @@ import Wrapper from '../../../Layout/Wrapper';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 //@ts-ignore
-import {  NotificationManager } from "react-notifications";
+import { NotificationManager } from "react-notifications";
 
 const Spotted = () => {
     const [posts, setPosts] = useState([
@@ -42,7 +42,7 @@ const Spotted = () => {
         if (posts[index].isLiked) {
             posts[index].isLiked = false;
             posts[index].likes -= 1;
-            like(posts[index].id);
+            unlike(posts[index].id);
             setPosts(postsCopy);
         } else {
             posts[index].isLiked = true;
@@ -50,7 +50,7 @@ const Spotted = () => {
             like(posts[index].id);
             setPosts(postsCopy);
             NotificationManager.success(
-              "Udało się polikeować post.",
+              "Udało się polubić post.",
               "Sukces!",
               3000
             );
@@ -68,13 +68,24 @@ const Spotted = () => {
           });
     }
 
+    const unlike = async (id:Number) => {
+        await fetch(`http://localhost:3000/spotted/post/${id}/unlike`, {
+          method: "POST",
+          credentials: "include",
+        })
+          .then((res) => res.json())
+          .catch((err) => {
+            console.error(err);
+          });
+    }
+
     useEffect(() => {
         getAllPosts();
     }, []);
 
     async function getAllPosts() {
         try {
-        fetch("http://localhost:3000/spotted/post", {
+        fetch("http://localhost:3000/spotted/post?take=20", {
           method: "GET",
           credentials: "include",
         })
@@ -113,12 +124,12 @@ const Spotted = () => {
                     <div className={classes.topData}>
                       <div>
                         <Icon.PersonFill />
-                        {post.isAnonymous ? "anonim" : post.username}
+                        {post.isAnonymous ? "Anonim" : post.username}
                       </div>
-                      <>
+                      <div>
                         <Icon.CalendarDate />
                         {new Date(post.createdAt).toLocaleDateString()}
-                      </>
+                      </div>
 
                       <div>
                         <Icon.Clock />
