@@ -5,6 +5,7 @@ import * as Icon from 'react-bootstrap-icons';
 import Wrapper from '../../../Layout/Wrapper';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import LoadingSpinner from '../../../Components/LoadingSpinner';
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
 
@@ -22,6 +23,7 @@ const Spotted = () => {
             username: "jajco",
         },
     ]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [listType, setListType] = useState({
         width: '40%',
@@ -84,8 +86,9 @@ const Spotted = () => {
     }, []);
 
     async function getAllPosts() {
+      setIsLoading(true);
         try {
-        fetch("http://localhost:3000/spotted/post?take=20", {
+        await fetch("http://localhost:3000/spotted/post?take=20", {
           method: "GET",
           credentials: "include",
         })
@@ -94,11 +97,12 @@ const Spotted = () => {
         } catch (error) {
             console.error(error);
         }
+      setIsLoading(false);
     }
 
     return (
       <>
-        {window.location.pathname === "/spotted" && (
+        {!isLoading && (
           <div className={classes.menu}>
             <div>
               <Icon.List
@@ -115,7 +119,7 @@ const Spotted = () => {
             </Link>
           </div>
         )}
-        {window.location.pathname === "/spotted" && (
+        {!isLoading && (
           <div className={classes.posts}>
             {posts.map((post) => {
               return (
@@ -166,6 +170,7 @@ const Spotted = () => {
             })}
           </div>
         )}
+        {isLoading && <LoadingSpinner />}
       </>
     );
 }

@@ -39,10 +39,6 @@ const router = createBrowserRouter([
         element: <Spotted />
       },
       {
-        path: "spotted/post/:postId",
-        element: <Spotted />
-      },
-      {
         path: "spotted/add",
         element: <Addpost />
       },
