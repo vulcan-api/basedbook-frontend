@@ -11,12 +11,6 @@
     font-size: 28px;
 }
 
-.linkIcon {
-    margin-right: 1rem;
-    display: flex;
-    align-items: center;
-}
-
 .clickable {
     color: var(--add2-500);
 }

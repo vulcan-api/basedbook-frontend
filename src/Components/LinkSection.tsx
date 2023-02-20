@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import { NavLink } from 'react-router-dom';
 import classes from './LinkSection.module.css';
+import LinkBase, {LinkBaseType} from './LinkBase';
 
-interface LinkProperties {
-    label: string, 
-    icon: any
+interface LinkProperties extends LinkBaseType {
     destination?: string, 
-    onClick?: any
+    componentOverride?: ReactElement,
+    onClick?: any,
 }
 
 const LinkSection = (props: {elements: LinkProperties[]}) => {
@@ -15,6 +15,9 @@ const LinkSection = (props: {elements: LinkProperties[]}) => {
         <ul className={classes.linkList}>
         {
             props.elements.map((item, index) => {
+                if(item.componentOverride) {
+                    return item.componentOverride;
+                }
                 return (
                 <li key={index}>
                     {
@@ -25,15 +28,13 @@ const LinkSection = (props: {elements: LinkProperties[]}) => {
                             className={classes.link} 
                             style={({ isActive }) => isActive ? {color: 'var(--add1-500)'} : {color: 'var(--add2-500)'}}
                             >
-                            <span className={classes.linkIcon}>{item.icon}</span>
-                            <span>{item.label}</span>
+                                <LinkBase icon={item.icon} label={item.label} />
                         </NavLink>
 
                         :
                         
                         <div className={`${classes.link} ${classes.clickable}`} onClick={item.onClick}>
-                            <span className={classes.linkIcon}>{item.icon}</span>
-                            <span>{item.label}</span>
+                            <LinkBase icon={item.icon} label={item.label} />
                         </div>
 
                     }

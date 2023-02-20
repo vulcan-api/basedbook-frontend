@@ -5,6 +5,7 @@ import classes from './Sidebar.module.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
+import Searchbar from '../Components/Searchbar';
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -44,7 +45,8 @@ const Sidebar = () => {
                             {
                                 label: 'Szukaj',
                                 icon: <Icon.Search/>,
-                                onClick: toggleClick
+                                // ANYONE, FIX THIS!!!
+                                componentOverride: <Searchbar label={'Szukaj'} icon={<Icon.Search/>}/>,
                             },
                             {
                                 destination: '/spotted',
