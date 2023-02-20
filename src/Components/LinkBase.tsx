@@ -2,8 +2,8 @@ import React, {ReactElement} from "react";
 import classes from './LinkBase.module.css';
 
 export interface LinkBaseType {
-    label: string, 
-    icon: ReactElement 
+    label: string,
+    icon: ReactElement,
 }
 
 const LinkBase = (props: LinkBaseType) => {

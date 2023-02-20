@@ -10,9 +10,9 @@ import {NotificationManager} from "react-notifications";
 
 const Login = () => {
     const navigate = useNavigate();
-    const emailRef = useRef();
-    const passwordRef = useRef();
-    const remeberPasswordRef = useRef();
+    const emailRef: any = useRef();
+    const passwordRef: any = useRef();
+    const remeberPasswordRef: any = useRef();
 
     useEffect(() => {
         fetchPosts();
@@ -54,9 +54,7 @@ const Login = () => {
         myHeaders.append("Content-Type", "application/json");
 
         let raw = JSON.stringify({
-            // @ts-ignore
             email: emailRef.current.value,
-            // @ts-ignore
             password: passwordRef.current.value,
         });
 
@@ -68,16 +66,22 @@ const Login = () => {
             credentials: "include",
         })
             .then((response) => response.text())
-            // @ts-ignore
             .then(() => {
                 NotificationManager.success(
                     "Udało się zalogować.",
                     "Zalogowano",
                     3000
                 );
-                navigate("/")
+                navigate("/");
             })
-            .catch((error) => console.log("error", error));
+            .catch((error) => {
+                console.log("error", error)
+                NotificationManager.error(
+                  "Nie udało się zalogować. Spróbuj ponownie później",
+                  "Nie zalogowano",
+                  3000
+                );
+            });
     };
 
     return (

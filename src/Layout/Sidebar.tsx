@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import LinkSection from '../Components/LinkSection';
 import * as Icon from 'react-bootstrap-icons';
 import classes from './Sidebar.module.css';
@@ -9,12 +9,6 @@ import Searchbar from '../Components/Searchbar';
 
 const Sidebar = () => {
     const navigate = useNavigate();
-
-    const [ clicked, setClicked ] = useState(true);
-    
-    const toggleClick = () => {
-        clicked ? setClicked(false) : setClicked(true);
-    }
 
     const logout = () => {
         let myHeaders = new Headers();
@@ -93,9 +87,7 @@ const Sidebar = () => {
                     />
                 </div>
             </div>
-
         </>
-
     )
 }
 
