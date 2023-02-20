@@ -9,7 +9,7 @@ const Main = () => {
   const navigate = useNavigate();
   useEffect(() => {
     fetchPosts();
-  }, []);
+  });
 
   const fetchPosts = async () => {
     await fetch("http://localhost:3000/spotted/post", {

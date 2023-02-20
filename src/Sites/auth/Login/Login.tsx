@@ -16,7 +16,7 @@ const Login = () => {
 
     useEffect(() => {
         fetchPosts();
-    }, [])
+    })
 
     const fetchPosts = async () => {
         const throwObject = {};

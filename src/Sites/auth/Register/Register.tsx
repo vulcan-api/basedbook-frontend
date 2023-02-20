@@ -4,14 +4,12 @@ import registerImg from './Graphics/registerImg.png';
 import Input from '../../../Components/Input';
 import Checkbox from '../../../Components/Checkbox';
 import Button from '../../../Components/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
-    const navigate = useNavigate();
-
     useEffect(() => {
       fetchPosts();
-    }, []);
+    });
 
     const fetchPosts = async () => {
       const throwObject = {};
