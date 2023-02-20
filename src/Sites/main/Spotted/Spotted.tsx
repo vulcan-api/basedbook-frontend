@@ -130,7 +130,6 @@ const Spotted = () => {
                         <Icon.CalendarDate />
                         {new Date(post.createdAt).toLocaleDateString()}
                       </div>
-
                       <div>
                         <Icon.Clock />
                         {new Date(post.createdAt).getHours() +
@@ -160,10 +159,6 @@ const Spotted = () => {
                           {post.likes}
                         </p>
                       </div>
-                      {/* <div>
-                            <Icon.ChatLeftText/>
-                            {post.comments + ' komentarzy'}
-                        </div> */}
                     </div>
                   </Wrapper>
                 </div>

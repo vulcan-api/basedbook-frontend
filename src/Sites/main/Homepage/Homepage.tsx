@@ -4,6 +4,7 @@ import Wrapper from '../../../Layout/Wrapper';
 
 const Homepage = () => {
     function getUserObject() {
+        try {
         let pairs = document.cookie.split(";");
         const cookies: any = {};
         for (let i = 0; i < pairs.length; i++) {
@@ -11,9 +12,16 @@ const Homepage = () => {
             cookies[(pair[0] + '').trim()] = decodeURIComponent(pair.slice(1).join('='));
         }
         return JSON.parse(cookies['user_info']);
+        } catch (err) {
+            console.error(err);
+            return {};
+        }
     }
+
+    let user: any;
+
     // @ts-ignore
-    const user = getUserObject('user_info');
+    user = getUserObject("user_info");
 
     return (
         <>
