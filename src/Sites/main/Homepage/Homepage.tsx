@@ -3,11 +3,22 @@ import React from 'react';
 import Wrapper from '../../../Layout/Wrapper';
 
 const Homepage = () => {
+    function getUserObject() {
+        let pairs = document.cookie.split(";");
+        const cookies: any = {};
+        for (let i = 0; i < pairs.length; i++) {
+            let pair = pairs[i].split("=");
+            cookies[(pair[0] + '').trim()] = decodeURIComponent(pair.slice(1).join('='));
+        }
+        return JSON.parse(cookies['user_info']);
+    }
+    // @ts-ignore
+    const user = getUserObject('user_info');
 
     return (
         <>
             <div>
-                <h1>Witaj twoja mama 69!</h1>
+                <h1>Witaj {user.name} {user.surname}!</h1>
             </div>
             <Wrapper>
                 <h2>Aktualności</h2>
