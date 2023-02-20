@@ -10,7 +10,7 @@ import {NotificationManager} from "react-notifications";
 const Addpost = () => {
     const navigate = useNavigate();
     const [dateHourAuto, setDateHourAuto] = useState(true);
-    const [postText, setPostext] = useState('');
+    const postText: any = useRef('');
     const isAnonymous: any = useRef(false);
 
     function disableTimeAndDate() {
@@ -27,7 +27,7 @@ const Addpost = () => {
         }
         const post = {
             title: "do not ask",
-            text: postText,
+            text: postText.current.value,
             isAnonymous: isAnonymous.current.checked,
             publishAt: publishDate,
         };
@@ -54,9 +54,9 @@ const Addpost = () => {
         }
     }
 
-    const maxLengthHandler = (event: any) => {
-        postText.length >= 300 ? NotificationManager.warning("Wpisano maksymalną ilość znaków.", "Uwaga!", 3000) : (<></>);
-        setPostext(event.target.value);
+    const maxLengthHandler = () => {
+        postText.current.value.length >= 300 ? NotificationManager.warning("Wpisano maksymalną ilość znaków.", "Uwaga!", 3000) : (
+            <div></div>);
     }
 
     return (
@@ -68,7 +68,7 @@ const Addpost = () => {
             id="post_value"
             placeholder="Treść posta"
             maxLength={300}
-            value={postText}
+            ref={postText}
         />
                 <div className={classes.postOptions}>
                     <Checkbox
