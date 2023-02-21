@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import LinkSection from '../Components/LinkSection';
 import * as Icon from 'react-bootstrap-icons';
 import classes from './Sidebar.module.css';
@@ -8,6 +8,7 @@ import { NotificationManager } from "react-notifications";
 import Searchbar from '../Components/Searchbar';
 
 const Sidebar = () => {
+    const ref = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
 
     const logout = () => {
@@ -27,14 +28,14 @@ const Sidebar = () => {
 
     return (
         <>
-            <div className={classes.navbar}>
+            <div className={classes.navbar} ref={ref}>
                 <div className={classes.mainLogo}>
                     <NavLink to="/">
                         <h1>BasedBook</h1>
                     </NavLink>
                 </div>
                 <div>
-                    <Searchbar label={'Szukaj'} icon={<Icon.Search/>}/>
+                    <Searchbar link={{label: 'Szukaj', icon:<Icon.Search/>}} forwardedRef={ref}/>
                     <LinkSection
                         elements={[
                             {
