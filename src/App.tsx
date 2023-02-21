@@ -6,10 +6,10 @@ import {
 import Login from './Sites/auth/Login/Login';
 import Auth from './Sites/auth/Auth';
 import Register from './Sites/auth/Register/Register';
-import Main from './Sites/main/Main';
-import Homepage from './Sites/main/Homepage/Homepage';
-import Spotted from './Sites/main/Spotted/Spotted';
-import Addpost from './Sites/main/Spotted/Addpost';
+import Main from './Sites/Main';
+import Homepage from './Sites/Homepage/Homepage';
+import Spotted from './Sites/Spotted/Spotted';
+import Addpost from './Sites/Spotted/Addpost';
 //@ts-ignore
 import { NotificationContainer } from "react-notifications";
 

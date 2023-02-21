@@ -1,6 +1,6 @@
 import React from 'react';
 // import classes from './Homepage.module.css';
-import Wrapper from '../../../Layout/Wrapper';
+import Wrapper from '../../Layout/Wrapper';
 
 const Homepage = () => {
     function getUserObject() {

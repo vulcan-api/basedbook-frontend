@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import Sidebar from "../../Layout/Sidebar";
+import Sidebar from "../Layout/Sidebar";
 import classes from "./Main.module.css";
 import { useNavigate } from "react-router-dom";
 

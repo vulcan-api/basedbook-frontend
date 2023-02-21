@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Addpost.module.css";
-import Checkbox from "../../../Components/Checkbox";
-import Button from "../../../Components/Button";
+import Checkbox from "../../Components/Checkbox";
+import Button from "../../Components/Button";
 import {useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
 //@ts-ignore

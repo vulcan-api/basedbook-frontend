@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import classes from "./Spotted.module.css";
-import Button from "../../../Components/Button";
+import Button from "../../Components/Button";
 import * as Icon from "react-bootstrap-icons";
-import Wrapper from "../../../Layout/Wrapper";
+import Wrapper from "../../Layout/Wrapper";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import LoadingSpinner from "../../../Components/LoadingSpinner";
+import LoadingSpinner from "../../Components/LoadingSpinner";
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
 
