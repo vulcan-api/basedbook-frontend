@@ -2,31 +2,26 @@
     box-sizing: border-box;
     position: fixed;
 
-    /* Auto layout */
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 64px 32px;
-    gap: 10px;
+    padding: 4rem 2rem;
+    gap: 1rem;
     background-color: var(--bg-clr);
 
     border-width: 0px 3px 3px 0px;
     border-style: solid;
     border-color: var(--add1-500);
-    /*box-shadow: 4px 4px 32px rgba(0, 0, 0, 0.25);*/
     border-radius: 0px 0px 8px 0px;
 
-    /* Inside auto layout */
-    flex: none;
     order: 4;
     flex-grow: 0;
-    z-index: 10;
+    z-index: 100;
     top: 0;
-
-    /* FIX THIS */
 
     transition-property: top, opacity;
     transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0.23, 1, 0.320, 1);
 }
 
 .disabled {

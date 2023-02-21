@@ -7,6 +7,7 @@ import linkClasses from './LinkSection.module.css';
 const Searchbar = (props: {link: LinkBaseType, forwardedRef: RefObject<HTMLDivElement>}) => {
   const parentRef = props.forwardedRef;
   const ref = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [ isSearching, setIsSearching ] = useState(false);
   const [ parentWidth, setParentWidth ] = useState(0);
@@ -19,6 +20,7 @@ const Searchbar = (props: {link: LinkBaseType, forwardedRef: RefObject<HTMLDivEl
       } else {
         setIsSearching(true);
         setHeight(0);
+        inputRef.current?.focus();
       }
   }
 
@@ -28,8 +30,7 @@ const Searchbar = (props: {link: LinkBaseType, forwardedRef: RefObject<HTMLDivEl
   }
 
   useLayoutEffect(() => {
-    if(parentRef.current != null)
-      setParentWidth(parentRef.current.offsetWidth);
+    parentRef.current && setParentWidth(parentRef.current.offsetWidth);
     setupHeight();
     
   }, []);
@@ -46,7 +47,7 @@ const Searchbar = (props: {link: LinkBaseType, forwardedRef: RefObject<HTMLDivEl
           className={`${classes.searchCont} ${isSearching ? classes.enabled : classes.disabled}`}
           style={{left: parentWidth, top: height}}
         >
-          <Input placeholder={"Szukaj"} />
+          <Input placeholder={"Szukaj"} ref={inputRef} />
         </div>
     </>
   );
