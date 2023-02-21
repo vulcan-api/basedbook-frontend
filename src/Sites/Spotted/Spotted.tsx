@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import LoadingSpinner from "../../Components/LoadingSpinner";
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
+import Modal from "../../Layout/Modal";
 
 const Spotted = () => {
   const [posts, setPosts] = useState([
@@ -24,6 +25,7 @@ const Spotted = () => {
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const [listType, setListType] = useState({
     width: "40%",
@@ -96,8 +98,15 @@ const Spotted = () => {
     setIsLoading(false);
   }
 
+  let reportedPostId;
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
+      {showModal && <Modal postId={reportedPostId} onBgClick={closeModal} />}
       {!isLoading && (
         <div className={classes.menu}>
           <div>
@@ -136,7 +145,9 @@ const Spotted = () => {
                         ":" +
                         new Date(post.createdAt).getMinutes()}
                     </div>
-                    <Icon.FlagFill />
+                    <div onClick={() => {setShowModal(true); reportedPostId = post.id;}}>
+                      <Icon.FlagFill />
+                    </div>
                   </div>
                   <div className={classes.content}>{post.text}</div>
                   <div className={classes.bottomData}>

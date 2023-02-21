@@ -32,8 +32,7 @@ const Searchbar = (props: {link: LinkBaseType, forwardedRef: RefObject<HTMLDivEl
   useLayoutEffect(() => {
     parentRef.current && setParentWidth(parentRef.current.offsetWidth);
     setupHeight();
-    
-  }, []);
+  }, [parentRef]);
   return (
     <>
         <div

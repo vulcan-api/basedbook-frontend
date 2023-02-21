@@ -56,20 +56,20 @@ const Addpost = () => {
 
     const maxLengthHandler = () => {
         postText.current.value.length >= 300 ? NotificationManager.warning("Wpisano maksymalną ilość znaków.", "Uwaga!", 3000) : (
-            <div></div>);
+            <></>);
     }
 
     return (
         <>
             <h1 className={classes.h1}>Dodaj post</h1>
             <form className={classes.addForm} onSubmit={addPost}>
-        <textarea
-            onChange={maxLengthHandler}
-            id="post_value"
-            placeholder="Treść posta"
-            maxLength={300}
-            ref={postText}
-        />
+            <textarea
+                onChange={maxLengthHandler}
+                id="post_value"
+                placeholder="Treść posta"
+                maxLength={300}
+                ref={postText}
+            />
                 <div className={classes.postOptions}>
                     <Checkbox
                         id="anonimowyPost"

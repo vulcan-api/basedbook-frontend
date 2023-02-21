@@ -62,6 +62,10 @@
     gap: 8px;
 }
 
+.topData svg:last-of-type {
+    cursor: pointer;
+}
+
 .bottomData > div > p {
     transition: color .1s linear;
 }
