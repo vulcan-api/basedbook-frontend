@@ -5,6 +5,7 @@ import classes from './Sidebar.module.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
+import Searchbar from '../Components/Searchbar';
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -33,6 +34,7 @@ const Sidebar = () => {
                     </NavLink>
                 </div>
                 <div>
+                    <Searchbar label={'Szukaj'} icon={<Icon.Search/>}/>
                     <LinkSection
                         elements={[
                             {

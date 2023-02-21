@@ -12,6 +12,10 @@
     min-width: fit-content;
 }
 
+ul {
+    margin: 0;
+}
+
 .navbar::after {
     content: '';
     width: 1px;
