@@ -2,6 +2,8 @@ import React, {ReactElement} from 'react';
 import { NavLink } from 'react-router-dom';
 import classes from './LinkSection.module.css';
 import LinkBase, {LinkBaseType} from './LinkBase';
+import Searchbar from '../Components/Searchbar';
+import * as Icon from 'react-bootstrap-icons';
 
 interface LinkProperties extends LinkBaseType {
     destination?: string, 
@@ -13,13 +15,14 @@ const LinkSection = (props: {elements: LinkProperties[]}) => {
     return (
         <>
         <ul className={classes.linkList}>
+            <Searchbar label={'Szukaj'} icon={<Icon.Search/>}/>
         {
             props.elements.map((item, index) => {
                 if(item.componentOverride) {
                     return item.componentOverride;
                 }
                 return (
-                <li key={index}>
+                <li key={index + 1}>
                     {
                         item.destination ?
 

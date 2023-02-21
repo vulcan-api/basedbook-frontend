@@ -13,14 +13,12 @@ const Searchbar = (props: LinkBaseType) => {
 
     return (
       <>
-        <li>
           <div
             className={`${linkClasses.link} ${linkClasses.clickable}`}
             onClick={searchHandler}
           >
             <LinkBase icon={props.icon} label={props.label} />
           </div>
-        </li>
         {isSearching &&
           <div className={classes.searchCont}>
             <Input placeholder={"Szukaj"} />
