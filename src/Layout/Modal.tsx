@@ -10,8 +10,8 @@ const Modal = (props: any) => {
 
     async function submitReportHandler() {
         const report = {
-            postId: props.postId,
-            reason: postText.current.value
+          postId: props.postId,
+          reason: postText.current.value
         };
         console.log(report);
         const throwObject = {};

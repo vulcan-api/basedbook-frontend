@@ -48,7 +48,7 @@ const Login = () => {
             .catch((error) => console.log("error", error));
     };
 
-    const loginHandler = (event: any) => {
+    const loginHandler = async (event: any) => {
         event.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -58,7 +58,7 @@ const Login = () => {
             password: passwordRef.current.value,
         });
 
-        fetch("http://localhost:3000/auth/login", {
+        await fetch("http://localhost:3000/auth/login", {
             method: "POST",
             headers: myHeaders,
             body: raw,
@@ -67,11 +67,6 @@ const Login = () => {
         })
             .then((response) => response.text())
             .then(() => {
-                NotificationManager.success(
-                    "Udało się zalogować.",
-                    "Zalogowano",
-                    3000
-                );
                 navigate("/");
             })
             .catch((error) => {
