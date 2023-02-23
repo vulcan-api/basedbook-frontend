@@ -49,7 +49,7 @@ const Sidebar = () => {
                                 icon: <Icon.ChatFill/>
                             },
                             {
-                                destination: '/olyphiads',
+                                destination: '/olympics',
                                 label: 'Olimpiady',
                                 icon: <Icon.CardChecklist/>
                             },

@@ -17,13 +17,10 @@ const Profile = () => {
                     <p>Bardzo śmieszny opis tej jakże śmiesznej baby.</p>
                 </div>
                 <div className={classes.buttonsArea}>
-                    <Button buttonText="Dodaj do znajomych" className="alternate"/>
+                    <Button buttonText="Dodaj do znajomych" />
                     <Button buttonText="Sociale" className="alternate"/>
                 </div>
             </div>
-        </div>
-        <div>
-
         </div>
     </>);
 }
