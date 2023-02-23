@@ -10,6 +10,7 @@ import Main from './Sites/Main';
 import Homepage from './Sites/Homepage/Homepage';
 import Spotted from './Sites/Spotted/Spotted';
 import Addpost from './Sites/Spotted/Addpost';
+import Profile from './Sites/User/Profile';
 //@ts-ignore
 import { NotificationContainer } from "react-notifications";
 
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "spotted/add",
         element: <Addpost />
+      },
+      {
+        path: "profile",
+        element: <Profile />
       },
     ]
   },

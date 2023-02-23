@@ -1,9 +1,19 @@
 import React from "react";
 import classes from "./Button.module.css";
 
+export const classMgmt = (className: any) => {
+    switch(className) {
+        case "alternate":
+            return classes.alternate;
+            break;
+        default:
+            return classes.default;
+    }
+}
+
 const Button = (props:any) => {
     return (
-        <button type={props.type || "button"} className={props.className === "alternate" ? classes.button + " " + classes.alternate : classes.button + " " + classes.default} onClick={props.onClick}>
+        <button type={props.type || "button"} className={classes.button + ' ' + classMgmt(props.className)} onClick={props.onClick}>
             {props.buttonText || "debiluZapomniałeśWpisać"}
         </button>
     )
