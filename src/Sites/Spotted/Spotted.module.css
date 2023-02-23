@@ -5,13 +5,6 @@
     color: var(--main-300);
     gap: 16px;
     width: fit-content;
-    position: fixed;
-    background-color: var(--bg-clr);
-    padding: 1rem;
-    border: 1px solid var(--main-100);
-    border-radius: 8px;
-    box-shadow: 0px 1px 0px var(--main-100);
-    box-sizing: border-box;
 }
 
 .menu > div {
@@ -41,7 +34,6 @@
 }
 
 .posts {
-    margin-top: 5rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
