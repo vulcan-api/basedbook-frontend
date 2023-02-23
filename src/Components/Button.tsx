@@ -12,7 +12,7 @@ export const classMgmt = (className: any) => {
 
 const Button = (props:any) => {
     return (
-        <button type={props.type || "button"} className={classes.button + ' ' + classMgmt(props.className)} onClick={props.onClick}>
+        <button type={props.type || "button"} className={classes.button + ' ' + classMgmt(props.className)} onClick={props.onClick} disabled={props.disabled}>
             {props.buttonText || "debiluZapomniałeśWpisać"}
         </button>
     )

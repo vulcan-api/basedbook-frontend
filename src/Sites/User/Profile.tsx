@@ -1,10 +1,11 @@
-import React from "react";
-import Wrapper from "../../Layout/Wrapper";
+import React, { useState } from "react";
 import classes from "./Profile.module.css";
 import turtle from "./Graphics/turtle.jpg"
 import Button from "../../Components/Button";
+import { Instagram } from "react-bootstrap-icons";
 
 const Profile = () => {
+    const [isSended, setIsSended] = useState(false);
     return (<>
         <div className={classes.personContainer}>
             <div className={classes.avatar}>
@@ -17,8 +18,8 @@ const Profile = () => {
                     <p>Bardzo śmieszny opis tej jakże śmiesznej baby.</p>
                 </div>
                 <div className={classes.buttonsArea}>
-                    <Button buttonText="Dodaj do znajomych" />
-                    <Button buttonText="Sociale" className="alternate"/>
+                    <Button buttonText="Dodaj do znajomych" disabled={isSended} onClick={()=>{setIsSended(true)}}/>
+                    <Button buttonText={<span style={{display: 'flex', flexDirection: 'row', columnGap: ".3rem"}}>Sociale <Instagram style={{width: '1.2rem', height: '1.2rem', paddingTop: '.3rem'}}/></span>} className="alternate"/>
                 </div>
             </div>
         </div>
