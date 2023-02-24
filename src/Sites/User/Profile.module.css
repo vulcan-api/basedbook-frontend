@@ -1,0 +1,85 @@
+.avatar {
+    --size: 20rem;
+    min-width: var(--size);
+    min-height: var(--size);
+    max-width: var(--size);
+    max-height: var(--size);
+    overflow: hidden;
+    border-radius: 100%;
+    filter: drop-shadow(8px 4px 0px var(--add1-500)) drop-shadow(-8px -4px 0px var(--add2-500));
+    box-sizing: border-box;
+}
+
+.avImage {
+    width: 100%;
+    height: 100%;
+}
+
+.personContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.managementContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-inline: 5rem;
+    width: 100%;
+}
+
+.detailsContainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    color: var(--main-300);
+    font-size: 1.5rem;
+}
+
+.detailsContainer h2 {
+    font-size: 2.5rem;
+}
+
+.detailsContainer p:first-of-type {
+    font-size: 1.75rem;
+    color: var(--main-400);
+}
+
+.ovColor {
+    color: inherit;
+}
+
+.buttonsArea {
+    flex-direction: row; 
+    display: flex;
+    padding-top: 1rem;
+    column-gap: 2rem;
+    border: 0 solid var(--main-100);
+    border-top-width: 2px;
+}
+
+.creations {
+    width: 100%;
+    display: flex;
+    margin-top: 2rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    gap: 1rem;
+    position: relative;
+}
+
+.creations::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: var(--main-100);
+    top: 0;
+    left: 0;
+}
+
+.creations button {
+    width: 50%;
+    padding: 1rem;
+}

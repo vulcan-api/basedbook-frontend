@@ -27,6 +27,14 @@
     box-shadow: 0px 1px 0px rgba(250, 71, 83, 0.6);
 }
 
+.default:disabled {
+    background-color: var(--main-200);
+    color: var(--main-400);
+    cursor: not-allowed;
+    border-color: var(--main-200);
+    box-shadow: 0px 1px 0px var(--main-100);
+}
+
 .button:active,
 .button:focus {
     outline: none;

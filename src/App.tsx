@@ -10,6 +10,7 @@ import Main from './Sites/Main';
 import Homepage from './Sites/Homepage/Homepage';
 import Spotted from './Sites/Spotted/Spotted';
 import Addpost from './Sites/Spotted/Addpost';
+import Profile from './Sites/User/Profile';
 //@ts-ignore
 import {NotificationContainer} from "react-notifications";
 import Project from "./Sites/Project/Project";
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "project/add",
         element: <Addproject/>
+      },
+      {
+        path: "profile",
+        element: <Profile />
       },
     ]
   },

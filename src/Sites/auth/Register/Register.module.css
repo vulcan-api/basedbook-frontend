@@ -30,29 +30,32 @@
     border: 1px solid var(--main-100);
     box-shadow: 0px 1px 96px var(--main-100);
     border-radius: 8px;
+    margin: 32px 0;
 }
 
-.loginForm>img {
+.loginForm > img {
     width: 400px;
 }
 
-.loginForm>p {
+.loginForm > p {
     font-size: 1.75rem;
     color: var(--main-400);
 }
 
-.loginForm>a {
+.loginForm>a, .loginForm span {
     font-size: 1.5rem;
     text-decoration: none;
     color: var(--main-400);
+    cursor: pointer;
 }
 
 .form {
     width: 80%;
 }
 
-.form>input,
-.form>div {
+.form > input,
+.form > div,
+.form > button {
     margin-bottom: 16px;
 }
 
