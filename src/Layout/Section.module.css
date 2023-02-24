@@ -1,0 +1,24 @@
+.section {
+    border: 0 solid var(--main-100);
+    border-bottom-width: 1px;
+    margin-block: 2rem;
+    height: fit-content;
+}
+
+.section > div {
+    margin-bottom: 2rem;
+}
+
+.section > h2 {
+    font-family: 'Zen dots', 'Arial';
+    color: var(--add1-500);
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.section > p {
+    font-size: 24px;
+    color: var(--main-400);
+    font-weight: 500;
+}

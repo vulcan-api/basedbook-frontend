@@ -16,6 +16,7 @@ import {NotificationContainer} from "react-notifications";
 import Project from "./Sites/Project/Project";
 import Addproject from "./Sites/Project/Addproject";
 import ProfileRedirect from './Sites/User/ProfileRedirect';
+import Settings from './Sites/User/Settings';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "spotted/add",
         element: <Addpost />,
+      },
+      {
+        path: "settings",
+        element: <Settings />,
       },
       {
         path: "profile",

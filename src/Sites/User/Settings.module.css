@@ -1,0 +1,18 @@
+@value avatar as orAvatar from "Profile.module.css";
+@value avImage as orImg from "Profile.module.css";
+
+.twoInputs {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.avatar {
+    composes: orAvatar;
+    background-color: white !important;
+    filter: none;
+}
+
+.avImage {
+    composes: orImg;
+}
