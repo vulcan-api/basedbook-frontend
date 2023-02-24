@@ -15,6 +15,7 @@ import Profile from './Sites/User/Profile';
 import {NotificationContainer} from "react-notifications";
 import Project from "./Sites/Project/Project";
 import Addproject from "./Sites/Project/Addproject";
+import ProfileRedirect from './Sites/User/ProfileRedirect';
 
 const router = createBrowserRouter([
   {
@@ -35,40 +36,25 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Homepage/>
+        element: <Homepage />,
       },
       {
         path: "spotted",
-        element: <Spotted/>
+        element: <Spotted />,
       },
       {
         path: "spotted/add",
-        element: <Addpost/>
-      },
-    ]
-  },
-
-  {
-    path: "/",
-    element: <Main/>,
-    children: [
-      {
-        path: "",
-        element: <Homepage/>
-      },
-      {
-        path: "project",
-        element: <Project/>
-      },
-      {
-        path: "project/add",
-        element: <Addproject/>
+        element: <Addpost />,
       },
       {
         path: "profile",
-        element: <Profile />
+        element: <ProfileRedirect />,
       },
-    ]
+      {
+        path: "profile/:userId",
+        element: <Profile />,
+      },
+    ],
   },
 ]);
 

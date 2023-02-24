@@ -6,8 +6,13 @@ import {NavLink, useNavigate} from 'react-router-dom';
 //@ts-ignore
 import {NotificationManager} from "react-notifications";
 import Searchbar from '../Components/Searchbar';
+import getUserObject from '../Lib/getUser';
 
 const Sidebar = () => {
+    let user: any;
+    // @ts-ignore
+    user = getUserObject("user_info");
+
     const ref = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
 
@@ -68,7 +73,7 @@ const Sidebar = () => {
                     <LinkSection
                         elements={[
                             {
-                                destination: '/profile',
+                                destination: `/profile/${user.id}`,
                                 label: 'Profil',
                                 icon: <Icon.PersonCircle/>
                             },

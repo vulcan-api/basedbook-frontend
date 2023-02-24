@@ -5,6 +5,8 @@ export const classMgmt = (className: any) => {
     switch (className) {
       case "alternate":
         return classes.alternate;
+      case "gray":
+        return classes.gray;
       default:
         return classes.default;
     }

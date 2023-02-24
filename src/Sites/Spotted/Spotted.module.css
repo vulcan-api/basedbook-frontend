@@ -63,7 +63,7 @@
     gap: 8px;
 }
 
-.topData svg:last-of-type {
+.topData > div:last-of-type > svg {
     cursor: pointer;
 }
 
