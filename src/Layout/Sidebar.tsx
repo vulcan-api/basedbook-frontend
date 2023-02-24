@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
+import React, {useRef} from 'react';
 import LinkSection from '../Components/LinkSection';
 import * as Icon from 'react-bootstrap-icons';
 import classes from './Sidebar.module.css';
-import { NavLink, useNavigate } from 'react-router-dom';
+import {NavLink, useNavigate} from 'react-router-dom';
 //@ts-ignore
-import { NotificationManager } from "react-notifications";
+import {NotificationManager} from "react-notifications";
 import Searchbar from '../Components/Searchbar';
 
 const Sidebar = () => {
@@ -16,15 +16,18 @@ const Sidebar = () => {
         myHeaders.append("Content-Type", "application/json");
 
         fetch("http://localhost:3000/auth/logout", {
-          method: "POST",
-          headers: myHeaders,
-          redirect: "follow",
-          credentials: "include",
+            method: "POST",
+            headers: myHeaders,
+            redirect: "follow",
+            credentials: "include",
         })
-          .then((response) => response.text())
-          .then(() => {NotificationManager.success("Udało się wylogować.", "Wylogowano", 3000);navigate("/auth/login")})
-          .catch((error) => console.log("error", error));
-    }   
+            .then((response) => response.text())
+            .then(() => {
+                NotificationManager.success("Udało się wylogować.", "Wylogowano", 3000);
+                navigate("/auth/login")
+            })
+            .catch((error) => console.log("error", error));
+    }
 
     return (
         <>
@@ -35,7 +38,7 @@ const Sidebar = () => {
                     </NavLink>
                 </div>
                 <div>
-                    <Searchbar link={{label: 'Szukaj', icon:<Icon.Search/>}} forwardedRef={ref}/>
+                    <Searchbar link={{label: 'Szukaj', icon: <Icon.Search/>}} forwardedRef={ref}/>
                     <LinkSection
                         elements={[
                             {
@@ -49,8 +52,8 @@ const Sidebar = () => {
                                 icon: <Icon.ChatFill/>
                             },
                             {
-                                destination: '/olyphiads',
-                                label: 'Olimpiady',
+                                destination: 'project',
+                                label: 'Projekty',
                                 icon: <Icon.CardChecklist/>
                             },
                             {
@@ -76,7 +79,7 @@ const Sidebar = () => {
                             },
                             {
                                 label: "Wyloguj się",
-                                icon: <Icon.DoorOpen />,
+                                icon: <Icon.DoorOpen/>,
                                 onClick: logout
                             }
                         ]}

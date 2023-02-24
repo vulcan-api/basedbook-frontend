@@ -1,0 +1,106 @@
+.menu {
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    color: var(--main-300);
+    gap: 16px;
+    width: fit-content;
+}
+
+.menu > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu svg {
+    font-size: 36px;
+    cursor: pointer;
+}
+
+.menu svg:first-of-type {
+    font-size: 44px;
+}
+
+.menu > button {
+    font-size: 20px;
+    padding: 8px 16px;
+    border-width: 2px;
+    border-radius: 6px;
+}
+
+.active {
+    color: var(--add1-500);
+}
+
+.posts {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.post {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+h2 {
+    color: #747477;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.topData, .bottomData {
+    display: flex;
+    font-size: 24px;
+    color: var(--main-400);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topData > div,
+.bottomData > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.topData svg:last-of-type {
+    cursor: pointer;
+}
+
+.bottomData > div > p {
+    transition: color .1s linear;
+}
+
+.bottomData > div {
+    cursor: pointer;
+}
+
+.bottomData > div:first-of-type > svg {
+    animation: pulse-black .2s linear;
+}
+
+.content {
+    font-size: 2rem;
+    color: var(--main-400);
+}
+
+@keyframes pulse-black {
+    0% {
+        transform: scale(1);
+    }
+
+    70% {
+        transform: scale(1.3);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
