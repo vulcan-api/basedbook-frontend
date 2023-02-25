@@ -9,6 +9,7 @@ import LoadingSpinner from "../../Components/LoadingSpinner";
 //@ts-ignore
 import {NotificationManager} from "react-notifications";
 import Modal from "../../Layout/Modal";
+import ProjectItem from "./ProjectItem";
 
 const Project = () => {
     const [projects, setProject] = useState([
@@ -57,11 +58,11 @@ const Project = () => {
         setIsLoading(false);
     }
 
-    async function applyToProject(event: any) {
+    async function applyToProject(event: any, id: any) {
         event.preventDefault();
-        console.log(applyProjectId);
+        console.log(id);
         const applyProject = {
-            projectId: applyProjectId,
+            projectId: id,
         }
         const throwObject = {};
         const project = await fetch("http://localhost:3000/project/apply", {
@@ -72,15 +73,13 @@ const Project = () => {
             credentials: "include",
             body: JSON.stringify(applyProject),
         })
-            .then((res) => {
-                return res.json();
-            }).then(console.log)
+            .then((res) => res.json()).then(console.log)
             .catch((err) => {
                 console.error(err);
                 return throwObject;
             });
 
-        // if (project.statusCode === 200 || Array.isArray(project)) {
+        // if (project. === 200 || Array.isArray(project)) {
         //     NotificationManager.success("Udało się zgłosić do projektu.", "Sukces!", 3000);
         // }
     }
@@ -88,7 +87,10 @@ const Project = () => {
     const closeModal = () => {
         setShowModal(false);
     };
-
+    const openModal = (id: any) => {
+        setShowModal(true);
+        setReportedProjectId(id);
+    }
     return (
         <>
             {showModal && <Modal projectId={reportedProjectId} onBgClick={closeModal} onClose={closeModal}/>}
@@ -113,44 +115,8 @@ const Project = () => {
                 <div className={classes.posts}>
                     {projects.map((project) => {
                         return (
-                            <div key={project.id} style={listType}>
-                                <Wrapper className={classes.post}>
-                                    <div className={classes.topData}>
-                                        <div>
-                                            <Icon.PersonFill/>
-                                            {project.username}
-                                        </div>
-                                        <div>
-                                            <Icon.CalendarDate/>
-                                            {new Date(project.createdAt).toLocaleDateString()}
-                                        </div>
-                                        <div>
-                                            <Icon.Clock/>
-                                            {new Date(project.createdAt).getHours() +
-                                                ":" +
-                                                new Date(project.createdAt).getMinutes()}
-                                        </div>
-                                        <div onClick={() => {
-                                            setShowModal(true);
-                                            setReportedProjectId(project.id);
-                                        }}>
-                                            <Icon.FlagFill/>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h2>{project.title}</h2>
-                                    </div>
-                                    <div className={classes.content}>{project.text}</div>
-                                    <div className={classes.bottomData}>
-                                        <div>
-                                            <Button buttonText="Zgłoś się" onClick={(event: any) => {
-                                                applyToProject(event);
-                                                setApplyProjectId(project.id);
-                                            }}/>
-                                        </div>
-                                    </div>
-                                </Wrapper>
-                            </div>
+                            <ProjectItem project={project} listType={listType} openModal={openModal}
+                                         applyToProject={applyToProject}/>
                         );
                     })}
                 </div>
