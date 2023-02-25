@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import classes from "./Profile.module.css";
 import turtle from "./Graphics/turtle.jpg";
 import Button from "../../Components/Button";
@@ -73,7 +73,7 @@ const Profile = () => {
       });
   };
 
-  async function getUserPosts() {
+  const getUserPosts = useCallback(async () => {
     setIsLoading(true);
     try {
       await fetch(`http://localhost:3000/user/${userId}/spottedPosts`, {
@@ -86,11 +86,11 @@ const Profile = () => {
       console.error(error);
     }
     setIsLoading(false);
-  }
+  }, [userId]); 
 
   useEffect(() => {
     getUserPosts();
-  }, []);
+  }, [getUserPosts]);
 
   const showSpottedPostsHandler = (isShowed: Boolean) => {
     setShowSpottedPosts(!isShowed);

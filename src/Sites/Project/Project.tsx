@@ -1,48 +1,42 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import classes from "./Project.module.css";
 import Button from "../../Components/Button";
 import * as Icon from "react-bootstrap-icons";
-import Wrapper from "../../Layout/Wrapper";
-import {useState} from "react";
-import {Link} from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import LoadingSpinner from "../../Components/LoadingSpinner";
-//@ts-ignore
-import {NotificationManager} from "react-notifications";
 import Modal from "../../Layout/Modal";
 import ProjectItem from "./ProjectItem";
 
 const Project = () => {
-    const [projects, setProject] = useState([
-        {
-            id: 1,
-            createdAt: new Date("2023-02-14T18:09:09.433Z"),
-            title: "BusinessAssistant+",
-            text: "Hej! Szukamy ludzi do przepisania naszego projektu w JS/TS",
-            authorId: 2,
-            username: "Seweryn Pajor"
-        },
-    ]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [showModal, setShowModal] = useState(false);
-    const [reportedProjectId, setReportedProjectId] = useState(-100);
-    const [applyProjectId, setApplyProjectId] = useState(-100);
-    const [listType, setListType] = useState({
-        width: "40%",
+  const [projects, setProject] = useState([
+    {
+      id: 1,
+      createdAt: new Date("2023-02-14T18:09:09.433Z"),
+      title: "BusinessAssistant+",
+      text: "Hej! Szukamy ludzi do przepisania naszego projektu w JS/TS",
+      username: "Seweryn Pajor",
+    },
+  ]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [reportedProjectId, setReportedProjectId] = useState(-100);
+  const [listType, setListType] = useState({
+    width: "40%",
+  });
+
+  const [isActive, setIsActive] = useState(true);
+
+  function changeListTypeHandler(length: Number, id: Number) {
+    setIsActive(!id);
+    setListType({
+      width: length + "%",
     });
+  }
 
-    const [isActive, setIsActive] = useState(true);
-
-    function changeListTypeHandler(length: Number, id: Number) {
-        setIsActive(!id);
-        setListType({
-            width: length + "%",
-        });
-    }
-
-
-    useEffect(() => {
-        getAllProjects();
-    }, []);
+  useEffect(() => {
+    getAllProjects();
+  }, []);
 
     async function getAllProjects() {
         setIsLoading(true);
@@ -57,36 +51,32 @@ const Project = () => {
             console.error(error);
         }
         setIsLoading(false);
-
     }
 
     async function applyToProject(event: any, id: any) {
         event.preventDefault();
+        console.log(id);
         const applyProject = {
             projectId: id,
         }
         const throwObject = {};
-        const response = await fetch("http://localhost:3000/project/apply", {
+        const project = await fetch("http://localhost:3000/project/apply", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             credentials: "include",
             body: JSON.stringify(applyProject),
-        });
-
-        if (response.ok) {
-            const project = await response.json();
-            NotificationManager.success("Udało się zgłosić do projektu.", "Sukces!", 3000);
-        } else {
-            const errorMessage = await response.text();
-            NotificationManager.error("Zgłosiłeś się już do tego projektu!.", "Błąd!", 3000);
-        }
+        })
+            .then((res) => res.json()).then(console.log)
+            .catch((err) => {
+                console.error(err);
+                return throwObject;
+            });
     }
 
     const closeModal = () => {
         setShowModal(false);
-        console.log(projects);
     };
     const openModal = (id: any) => {
         setShowModal(true);

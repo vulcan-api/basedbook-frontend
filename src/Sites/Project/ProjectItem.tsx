@@ -2,7 +2,7 @@ import Wrapper from "../../Layout/Wrapper";
 import classes from "./Project.module.css";
 import * as Icon from "react-bootstrap-icons";
 import Button from "../../Components/Button";
-import React, {useState} from "react";
+import React from "react";
 
 
 const ProjectItem = (props: any) => {

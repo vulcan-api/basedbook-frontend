@@ -1,29 +1,20 @@
 import React from "react";
 import classes from "./Addproject.module.css";
-import Checkbox from "../../Components/Checkbox";
 import Button from "../../Components/Button";
-import {useRef, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 //@ts-ignore
-import {NotificationManager} from "react-notifications";
+import { NotificationManager } from "react-notifications";
 import Input from "../../Components/Input";
 import Textarea from "../../Components/Textarea";
 
 const Addproject = () => {
     const navigate = useNavigate();
-    const [dateHourAuto, setDateHourAuto] = useState(true);
     const postText: any = useRef('');
     const projectTitle: any = useRef('');
-    const isAnonymous: any = useRef(false);
-
-    function disableTimeAndDate() {
-        setDateHourAuto(!dateHourAuto);
-    }
 
     async function addProject(event: any) {
         event.preventDefault();
-
-        let publishDate;
 
         const post = {
             title: projectTitle.current.value,
