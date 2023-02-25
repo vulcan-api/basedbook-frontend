@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { Outlet } from "react-router-dom";
-import Sidebar from "../Layout/Sidebar";
-import classes from "./Main.module.css";
+import Sidebar from "./SchoolSidebar";
+import classes from "./School.module.css";
 import { useNavigate } from "react-router-dom";
-import LoadingSpinner from "../Components/LoadingSpinner";
+import LoadingSpinner from "../../Components/LoadingSpinner";
 //@ts-ignore
 import {NotificationManager} from "react-notifications";
 
-const Main = (props: {removeWrapper?: boolean}) => {
+const School = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const Main = (props: {removeWrapper?: boolean}) => {
       {!isLoading &&
       <div className={classes.flexRow}>
         <Sidebar />
-        <div className={props.removeWrapper || classes.wrapper}>
+        <div className={classes.wrapper}>
           <Outlet />
         </div>
       </div>
@@ -55,4 +55,4 @@ const Main = (props: {removeWrapper?: boolean}) => {
   );
 };
 
-export default Main;
+export default School;

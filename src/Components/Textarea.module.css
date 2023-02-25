@@ -1,0 +1,6 @@
+@value input as orInput from "Input.module.css";
+
+.input {
+    composes: orInput;
+    resize: none;
+}
