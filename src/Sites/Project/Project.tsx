@@ -22,7 +22,7 @@ const Project = () => {
     ]);
     const [isLoading, setIsLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
-    const [reportedPostId, setReportedPostId] = useState(-100);
+    const [reportedProjectId, setReportedProjectId] = useState(-100);
     const [listType, setListType] = useState({
         width: "40%",
     });
@@ -63,7 +63,7 @@ const Project = () => {
 
     return (
         <>
-            {showModal && <Modal postId={reportedPostId} onBgClick={closeModal} onClose={closeModal}/>}
+            {showModal && <Modal projectId={reportedProjectId} onBgClick={closeModal} onClose={closeModal}/>}
             {!isLoading && (
                 <div className={classes.menu}>
                     <div>
@@ -104,7 +104,7 @@ const Project = () => {
                                         </div>
                                         <div onClick={() => {
                                             setShowModal(true);
-                                            // setReportedProjectId(project.id);
+                                            setReportedProjectId(project.id);
                                         }}>
                                             <Icon.FlagFill/>
                                         </div>

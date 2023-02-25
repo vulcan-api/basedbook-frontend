@@ -9,13 +9,19 @@ const Modal = (props: any) => {
     const postText: any = useRef("");
 
     async function submitReportHandler() {
-        const report = {
-          postId: props.postId,
-          reason: postText.current.value
-        };
-        console.log(report);
+        let path = '';
         const throwObject = {};
-        await fetch(`http://localhost:3000/spotted/report`, {
+        const report = {
+            postId: props.postId,
+            projectId: props.projectId,
+            reason: postText.current.value
+        };
+        if (report.projectId != null) {
+            path = '/project';
+        } else if (report.postId != null) {
+            path = '/spotted';
+        }
+        await fetch(`http://localhost:3000${path}/report`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -64,7 +70,7 @@ const Modal = (props: any) => {
                     ref={postText}
                     className={classes.textarea}
                 />
-                <Button buttonText="Zgłoś post" onClick={submitReportHandler}/>
+                <Button buttonText="Zgłoś" onClick={submitReportHandler}/>
             </div>
         </>
     );

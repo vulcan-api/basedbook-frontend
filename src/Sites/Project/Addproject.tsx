@@ -11,31 +11,27 @@ const Addproject = () => {
     const navigate = useNavigate();
     const [dateHourAuto, setDateHourAuto] = useState(true);
     const postText: any = useRef('');
+    const projectTitle: any = useRef('');
     const isAnonymous: any = useRef(false);
 
     function disableTimeAndDate() {
         setDateHourAuto(!dateHourAuto);
     }
 
-    async function addPost(event: any) {
+    async function addProject(event: any) {
         event.preventDefault();
 
         let publishDate;
 
-        if (dateHourAuto) {
-            publishDate = new Date();
-        }
         const post = {
-            title: "do not ask",
+            title: projectTitle.current.value,
             text: postText.current.value,
-            isAnonymous: isAnonymous.current.checked,
-            publishAt: publishDate,
         };
 
         const throwObject = {};
         console.log(post);
-        const spottedPosts = await fetch("http://localhost:3000/spotted/post", {
-            method: "PUT",
+        const project = await fetch("http://localhost:3000/project", {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -48,9 +44,9 @@ const Addproject = () => {
                 return throwObject;
             });
 
-        if (spottedPosts.statusCode === 200 || Array.isArray(spottedPosts)) {
+        if (project.statusCode === 200 || Array.isArray(project)) {
             NotificationManager.success("Udało się dodać post.", "Sukces!", 3000);
-            navigate("/spotted");
+            navigate("/project");
         }
     }
 
@@ -61,41 +57,22 @@ const Addproject = () => {
 
     return (
         <>
-            <h1 className={classes.h1}>Dodaj post</h1>
-            <form className={classes.addForm} onSubmit={addPost}>
-            <textarea
-                onChange={maxLengthHandler}
-                id="post_value"
-                placeholder="Treść posta"
-                maxLength={300}
-                ref={postText}
-            />
-                <div className={classes.postOptions}>
-                    <Checkbox
-                        id="anonimowyPost"
-                        label="Anonimowy post"
-                        ref={isAnonymous}
-                    />
-                    <Checkbox
-                        id="dataIGodzina"
-                        label="Obecna data i godzina"
-                        onChange={disableTimeAndDate}
-                        checked={dateHourAuto}
-                    />
-                    <input
-                        type="date"
-                        name="data"
-                        id="data"
-                        disabled={dateHourAuto}
-                    />
-                    <input
-                        type="time"
-                        name="godzina"
-                        id="godzina"
-                        disabled={dateHourAuto}
-                    />
-                    <Button type="submit" buttonText="Dodaj post"/>
-                </div>
+            <h1 className={classes.h1}>Dodaj projekt</h1>
+            <form className={classes.addForm} onSubmit={addProject}>
+                <input
+                    type="text"
+                    id="title_value"
+                    placeholder="Tytuł"
+                    ref={projectTitle}
+                />
+                <textarea
+                    onChange={maxLengthHandler}
+                    id="post_value"
+                    placeholder="Treść"
+                    maxLength={300}
+                    ref={postText}
+                />
+                <Button type="submit" buttonText="Dodaj projekt"/>
             </form>
         </>
     );
