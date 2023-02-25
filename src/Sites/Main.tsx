@@ -42,7 +42,7 @@ const Main = (props: {removeWrapper?: boolean}) => {
 
   return (
     <>
-      {!isLoading &&
+      {!isLoading && 
       <div className={classes.flexRow}>
         <Sidebar />
         <div className={props.removeWrapper || classes.wrapper}>

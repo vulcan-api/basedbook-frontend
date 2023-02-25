@@ -18,6 +18,7 @@ import Addproject from "./Sites/Project/Addproject";
 import ProfileRedirect from './Sites/User/ProfileRedirect';
 import Settings from './Sites/User/Settings';
 import School from './Sites/School/School';
+import Grades from './Sites/School/Grades';
 
 const router = createBrowserRouter([
   {
@@ -76,7 +77,29 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <School />
+        element: <School />,
+        children: [
+          {
+            path: "grades",
+            element: <Grades />
+          },
+          {
+            path: "attendance",
+            element: <Grades />
+          },
+          {
+            path: "exams",
+            element: <Grades />
+          },
+          {
+            path: "lessons",
+            element: <Grades />
+          },
+          {
+            path: "messages",
+            element: <Grades />
+          },
+        ]
       }
     ]
   }
