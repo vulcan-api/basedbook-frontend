@@ -1,6 +1,6 @@
 .checkbox {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 10px;
     border: 3px solid var(--add1-500);
     box-shadow: 0px 2px 0px rgba(250, 71, 83, 0.6);
@@ -12,8 +12,8 @@
 .checkboxFlex {
     display: flex;
     align-items: center;
-    gap: 28px;
-    padding: 12px 0;
+    gap: 1rem;
+    padding: .5rem 0;
 }
 
 .label {

@@ -1,6 +1,4 @@
 .section {
-    border: 0 solid var(--main-100);
-    border-bottom-width: 1px;
     margin-block: 2rem;
     height: fit-content;
 }
@@ -15,6 +13,8 @@
     font-size: 28px;
     font-weight: 600;
     margin-bottom: 16px;
+    border: 0px solid var(--main-100);
+    border-bottom-width: 1px;
 }
 
 .section > p {

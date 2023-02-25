@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./Settings.module.css"
 import Section from "../../Layout/Section";
 import Input from "../../Components/Input";
 import Textarea from "../../Components/Textarea";
 import Button from "../../Components/Button";
 import turtle from "./Graphics/turtle.jpg"
-import { PencilFill } from "react-bootstrap-icons";
+import { BrightnessHighFill, MoonFill, PencilFill } from "react-bootstrap-icons";
+import Checkbox from "../../Components/Checkbox";
 
 const Settings = () => {
+    const [darkTheme, setDarkTheme] = useState(false);
     return (
         <>
             <Section>
@@ -40,6 +42,20 @@ const Settings = () => {
             </Section> 
             <Section>
                 <h2>Preferencje</h2>
+                <div className={classes.inliner}>
+                    <div className={classes.switchContainer}>
+                        <div className={classes.themeSwitch} onClick={()=>{setDarkTheme(!darkTheme)}}>
+                            <div className={`${classes.ballWrapper} ${darkTheme ? classes.right : classes.left}`}>
+                                <BrightnessHighFill className={darkTheme || classes.current} /> 
+                                <MoonFill className={darkTheme && classes.current} />
+                            </div>
+                        </div>
+                        <label htmlFor="" className={classes.label}>
+                            Ciemny motyw
+                        </label>
+                    </div>
+                    <Checkbox label="Weryfikacja dwuetapowa" />
+                </div>
             </Section> 
             <Section>
                 <h2>Dziennik</h2>
