@@ -40,23 +40,8 @@ const Sidebar = () => {
                     <LinkSection
                         elements={[
                             {
-                                destination: '/spotted',
-                                label: 'Spotted',
-                                icon: <Icon.PeopleFill/>
-                            },
-                            {
-                                destination: '/chat',
-                                label: 'Komunikator',
-                                icon: <Icon.ChatFill/>
-                            },
-                            {
-                                destination: 'project',
-                                label: 'Projekty',
-                                icon: <Icon.CardChecklist/>
-                            },
-                            {
-                                destination: '/school',
-                                label: 'Dziennik',
+                                destination: '/school/grades',
+                                label: 'Oceny',
                                 icon: <Icon.JournalBookmarkFill/>
                             },
                         ]}

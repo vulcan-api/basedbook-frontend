@@ -2,7 +2,7 @@
     background-color: var(--bg-clr);
     display: block;
     justify-content: space-between;
-    padding-right: 2em;
+    padding: 2em;
     flex-direction: column;
     height: 100vh;
     box-sizing: border-box;

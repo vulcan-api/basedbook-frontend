@@ -7,7 +7,7 @@ import LoadingSpinner from "../Components/LoadingSpinner";
 //@ts-ignore
 import {NotificationManager} from "react-notifications";
 
-const Main = () => {
+const Main = (props: {removeWrapper?: boolean}) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const Main = () => {
       {!isLoading &&
       <div className={classes.flexRow}>
         <Sidebar />
-        <div className={classes.wrapper}>
+        <div className={props.removeWrapper || classes.wrapper}>
           <Outlet />
         </div>
       </div>

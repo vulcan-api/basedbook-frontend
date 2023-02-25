@@ -17,6 +17,7 @@ import Project from "./Sites/Project/Project";
 import Addproject from "./Sites/Project/Addproject";
 import ProfileRedirect from './Sites/User/ProfileRedirect';
 import Settings from './Sites/User/Settings';
+import School from './Sites/School/School';
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,16 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/school",
+    element: <Main removeWrapper={true}/>,
+    children: [
+      {
+        path: "",
+        element: <School />
+      }
+    ]
+  }
 ]);
 
 
