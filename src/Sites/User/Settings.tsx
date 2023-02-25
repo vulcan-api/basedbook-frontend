@@ -43,18 +43,18 @@ const Settings = () => {
             <Section>
                 <h2>Preferencje</h2>
                 <div className={classes.inliner}>
-                    <div className={classes.switchContainer}>
-                        <div className={classes.themeSwitch} onClick={()=>{setDarkTheme(!darkTheme)}}>
+                    <div className={classes.switchContainer} onClick={()=>{setDarkTheme(!darkTheme)}}>
+                        <div className={classes.themeSwitch}>
                             <div className={`${classes.ballWrapper} ${darkTheme ? classes.right : classes.left}`}>
                                 <BrightnessHighFill className={darkTheme || classes.current} /> 
                                 <MoonFill className={darkTheme && classes.current} />
                             </div>
                         </div>
-                        <label htmlFor="" className={classes.label}>
+                        <label className={classes.label}>
                             Ciemny motyw
                         </label>
                     </div>
-                    <Checkbox label="Weryfikacja dwuetapowa" />
+                    <Checkbox label="Weryfikacja dwuetapowa" id="verifationCheckbox" />
                 </div>
             </Section> 
             <Section>
