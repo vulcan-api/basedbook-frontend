@@ -19,6 +19,7 @@ import ProfileRedirect from './Sites/User/ProfileRedirect';
 import Settings from './Sites/User/Settings';
 import School from './Sites/School/School';
 import Grades from './Sites/School/Grades';
+import RegisterVulcan from './Sites/User/RegisterVulcan';
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "settings",
         element: <Settings />,
+      },
+      {
+        path: "settings/vulcan",
+        element: <RegisterVulcan />,
       },
       {
         path: "profile",

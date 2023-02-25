@@ -7,6 +7,7 @@ import Button from "../../Components/Button";
 import turtle from "./Graphics/turtle.jpg"
 import { BrightnessHighFill, MoonFill, PencilFill, CheckSquareFill } from "react-bootstrap-icons";
 import Checkbox from "../../Components/Checkbox";
+import { Link } from "react-router-dom";
 
 const Settings = () => {
     const [darkTheme, setDarkTheme] = useState(false);
@@ -60,7 +61,7 @@ const Settings = () => {
             <Section>
                 <h2>Dziennik</h2>
                 <div>
-                    <p>Kliknij <a href="" style={{color: "var(--add2-500)"}}>tutaj</a>, aby połączyć swój dziennik Vulcan z aplikacją Basedbook</p>
+                    <p>Kliknij <Link to="vulcan" style={{color: "var(--add2-500)"}}>tutaj</Link>, aby połączyć swój dziennik Vulcan z aplikacją Basedbook</p>
                 </div>
             </Section> 
             <Section>
