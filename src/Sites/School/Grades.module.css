@@ -1,0 +1,9 @@
+@value active from "../Spotted/Spotted.module.css";
+@value menu as orMenu from "../Spotted/Spotted.module.css";
+
+.menu {
+    composes: orMenu;
+    display: flex;
+    gap: 3rem;
+}
+
