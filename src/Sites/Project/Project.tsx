@@ -18,6 +18,7 @@ const Project = () => {
             createdAt: new Date("2023-02-14T18:09:09.433Z"),
             title: "BusinessAssistant+",
             text: "Hej! Szukamy ludzi do przepisania naszego projektu w JS/TS",
+            authorId: 2,
             username: "Seweryn Pajor"
         },
     ]);
@@ -56,36 +57,36 @@ const Project = () => {
             console.error(error);
         }
         setIsLoading(false);
+
     }
 
     async function applyToProject(event: any, id: any) {
         event.preventDefault();
-        console.log(id);
         const applyProject = {
             projectId: id,
         }
         const throwObject = {};
-        const project = await fetch("http://localhost:3000/project/apply", {
+        const response = await fetch("http://localhost:3000/project/apply", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             credentials: "include",
             body: JSON.stringify(applyProject),
-        })
-            .then((res) => res.json()).then(console.log)
-            .catch((err) => {
-                console.error(err);
-                return throwObject;
-            });
+        });
 
-        // if (project. === 200 || Array.isArray(project)) {
-        //     NotificationManager.success("Udało się zgłosić do projektu.", "Sukces!", 3000);
-        // }
+        if (response.ok) {
+            const project = await response.json();
+            NotificationManager.success("Udało się zgłosić do projektu.", "Sukces!", 3000);
+        } else {
+            const errorMessage = await response.text();
+            NotificationManager.error("Zgłosiłeś się już do tego projektu!.", "Błąd!", 3000);
+        }
     }
 
     const closeModal = () => {
         setShowModal(false);
+        console.log(projects);
     };
     const openModal = (id: any) => {
         setShowModal(true);
