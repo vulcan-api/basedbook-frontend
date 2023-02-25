@@ -6,6 +6,8 @@ import {useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
 //@ts-ignore
 import {NotificationManager} from "react-notifications";
+import Input from "../../Components/Input";
+import Textarea from "../../Components/Textarea";
 
 const Addproject = () => {
     const navigate = useNavigate();
@@ -59,19 +61,8 @@ const Addproject = () => {
         <>
             <h1 className={classes.h1}>Dodaj projekt</h1>
             <form className={classes.addForm} onSubmit={addProject}>
-                <input
-                    type="text"
-                    id="title_value"
-                    placeholder="Tytuł"
-                    ref={projectTitle}
-                />
-                <textarea
-                    onChange={maxLengthHandler}
-                    id="post_value"
-                    placeholder="Treść"
-                    maxLength={300}
-                    ref={postText}
-                />
+                <Input id="title_value" placeholder="Tytuł" ref={projectTitle} />
+                <Textarea onChange={maxLengthHandler} id="post_value" placeholder="Treść" maxLength={300} ref={postText}/>
                 <Button type="submit" buttonText="Dodaj projekt"/>
             </form>
         </>

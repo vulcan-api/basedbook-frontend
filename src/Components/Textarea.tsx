@@ -1,10 +1,11 @@
 import React from "react";
-import classes from "./Input.module.css";
+import inputClasses from "./Input.module.css";
+import classes from "./Textarea.module.css";
 
 const Textarea = React.forwardRef((props:any, ref) => {
     return (
         // @ts-ignore
-        <textarea type={props.type || "text"} ref={ref} placeholder={props.placeholder || "debiluZapomniałeśWpisać"} className={props.className === "alternate" ? classes.input + " " + classes.alternate : classes.input + " " + classes.default} />
+        <textarea type={props.type || "text"} ref={ref} onChange={props.onChange} maxLength={props.maxLength} placeholder={props.placeholder || "debiluZapomniałeśWpisać"} className={props.className === "alternate" ? classes.input + " " + inputClasses.alternate : classes.input + " " + inputClasses.default} />
     )
 });
 
