@@ -42,7 +42,27 @@ const Sidebar = () => {
                             {
                                 destination: '/school/grades',
                                 label: 'Oceny',
-                                icon: <Icon.JournalBookmarkFill/>
+                                icon: <Icon.Icon1CircleFill/>
+                            },
+                            {
+                                destination: '/school/attendance',
+                                label: 'Frekwencja',
+                                icon: <Icon.Fingerprint/>
+                            },
+                            {
+                                destination: '/school/exams',
+                                label: 'Sprawdziany',
+                                icon: <Icon.PenFill/>
+                            },
+                            {
+                                destination: '/school/lessons',
+                                label: 'Plan lekcji',
+                                icon: <Icon.Calendar3RangeFill/>
+                            },
+                            {
+                                destination: '/school/messages',
+                                label: 'Wiadomości',
+                                icon: <Icon.ChatLeftFill/>
                             },
                         ]}
                     />

@@ -52,12 +52,7 @@ const Sidebar = () => {
                                 icon: <Icon.PeopleFill/>
                             },
                             {
-                                destination: '/chat',
-                                label: 'Komunikator',
-                                icon: <Icon.ChatFill/>
-                            },
-                            {
-                                destination: 'project',
+                                destination: '/project',
                                 label: 'Projekty',
                                 icon: <Icon.CardChecklist/>
                             },
