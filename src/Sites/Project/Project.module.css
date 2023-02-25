@@ -80,6 +80,7 @@ h2 {
 
 .bottomData > div {
     cursor: pointer;
+    width: 100%;
 }
 
 .bottomData > div:first-of-type > svg {

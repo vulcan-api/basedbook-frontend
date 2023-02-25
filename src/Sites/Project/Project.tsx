@@ -53,27 +53,27 @@ const Project = () => {
         setIsLoading(false);
     }
 
-    async function applyToProject(event: any, id: any) {
-        event.preventDefault();
-        console.log(id);
-        const applyProject = {
-            projectId: id,
-        }
-        const throwObject = {};
-        const project = await fetch("http://localhost:3000/project/apply", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            credentials: "include",
-            body: JSON.stringify(applyProject),
-        })
-            .then((res) => res.json()).then(console.log)
-            .catch((err) => {
-                console.error(err);
-                return throwObject;
-            });
-    }
+    // async function applyToProject(event: any, id: any) {
+    //     event.preventDefault();
+    //     console.log(id);
+    //     const applyProject = {
+    //         projectId: id,
+    //     }
+    //     const throwObject = {};
+    //     const project = await fetch("http://localhost:3000/project/apply", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         credentials: "include",
+    //         body: JSON.stringify(applyProject),
+    //     })
+    //         .then((res) => res.json()).then(console.log)
+    //         .catch((err) => {
+    //             console.error(err);
+    //             return throwObject;
+    //         });
+    // }
 
     const closeModal = () => {
         setShowModal(false);
@@ -106,8 +106,13 @@ const Project = () => {
                 <div className={classes.posts}>
                     {projects.map((project) => {
                         return (
-                            <ProjectItem project={project} listType={listType} openModal={openModal}
-                                         applyToProject={applyToProject}/>
+                          <div key={project.id} style={listType}>
+                            <ProjectItem
+                              project={project}
+                              openModal={openModal}
+                            //   applyToProject={applyToProject}
+                            />
+                          </div>
                         );
                     })}
                 </div>

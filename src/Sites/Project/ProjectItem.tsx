@@ -8,7 +8,7 @@ import React from "react";
 const ProjectItem = (props: any) => {
     const project = props.project;
     return (
-        <div key={project.id} style={props.listType}>
+        <div style={props.listType}>
             <Wrapper className={classes.post}>
                 <div className={classes.topData}>
                     <div>

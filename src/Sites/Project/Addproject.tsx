@@ -44,8 +44,7 @@ const Addproject = () => {
     }
 
     const maxLengthHandler = () => {
-        postText.current.value.length >= 300 ? NotificationManager.warning("Wpisano maksymalną ilość znaków.", "Uwaga!", 3000) : (
-            <></>);
+        postText.current.value.length >= 400 ? NotificationManager.warning("Wpisano maksymalną ilość znaków.", "Uwaga!", 3000) : (<></>);
     }
 
     return (
@@ -53,7 +52,7 @@ const Addproject = () => {
             <h1 className={classes.h1}>Dodaj projekt</h1>
             <form className={classes.addForm} onSubmit={addProject}>
                 <Input id="title_value" placeholder="Tytuł" ref={projectTitle} />
-                <Textarea onChange={maxLengthHandler} id="post_value" placeholder="Treść" maxLength={300} ref={postText}/>
+                <Textarea onChange={maxLengthHandler} placeholder="Treść" maxLength={400} ref={postText}/>
                 <Button type="submit" buttonText="Dodaj projekt"/>
             </form>
         </>
