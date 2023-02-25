@@ -5,7 +5,7 @@ import Input from "../../Components/Input";
 import Textarea from "../../Components/Textarea";
 import Button from "../../Components/Button";
 import turtle from "./Graphics/turtle.jpg"
-import { BrightnessHighFill, MoonFill, PencilFill } from "react-bootstrap-icons";
+import { BrightnessHighFill, MoonFill, PencilFill, CheckSquareFill } from "react-bootstrap-icons";
 import Checkbox from "../../Components/Checkbox";
 
 const Settings = () => {
@@ -59,9 +59,33 @@ const Settings = () => {
             </Section> 
             <Section>
                 <h2>Dziennik</h2>
+                <div>
+                    <p>Kliknij <a href="" style={{color: "var(--add2-500)"}}>tutaj</a>, aby połączyć swój dziennik Vulcan z aplikacją Basedbook</p>
+                </div>
             </Section> 
             <Section>
                 <h2>Konto</h2>
+                <div className={classes.bottomButtons}>
+                    <Button buttonText="Usuń konto" className="alternate"/>
+                    <Button buttonText={
+                <span
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    columnGap: ".3rem",
+                  }}
+                >
+                  Zapisz{" "}
+                  <CheckSquareFill
+                    style={{
+                      width: "1.2rem",
+                      height: "1.2rem",
+                      paddingTop: ".4rem",
+                    }}
+                  />
+                </span>
+}/>
+                </div>
             </Section> 
         </>
     );

@@ -105,3 +105,15 @@
 .right {
     transform: translateX(2rem);
 }
+
+.bottomButtons {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.bottomButtons > * {
+    width: fit-content;    
+    padding-inline: 5rem;
+
+}
