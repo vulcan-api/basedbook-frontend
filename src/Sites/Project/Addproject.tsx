@@ -44,7 +44,7 @@ const Addproject = () => {
                 return throwObject;
             });
 
-        if (project.statusCode === 200 || Array.isArray(project)) {
+        if (project.statusCode === 201 || Array.isArray(project)) {
             NotificationManager.success("Udało się dodać post.", "Sukces!", 3000);
             navigate("/project");
         }

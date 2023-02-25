@@ -23,6 +23,7 @@ const Project = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [reportedProjectId, setReportedProjectId] = useState(-100);
+    const [applyProjectId, setApplyProjectId] = useState(-100);
     const [listType, setListType] = useState({
         width: "40%",
     });
@@ -56,6 +57,33 @@ const Project = () => {
         setIsLoading(false);
     }
 
+    async function applyToProject(event: any) {
+        event.preventDefault();
+        console.log(applyProjectId);
+        const applyProject = {
+            projectId: applyProjectId,
+        }
+        const throwObject = {};
+        const project = await fetch("http://localhost:3000/project/apply", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify(applyProject),
+        })
+            .then((res) => {
+                return res.json();
+            }).then(console.log)
+            .catch((err) => {
+                console.error(err);
+                return throwObject;
+            });
+
+        // if (project.statusCode === 200 || Array.isArray(project)) {
+        //     NotificationManager.success("Udało się zgłosić do projektu.", "Sukces!", 3000);
+        // }
+    }
 
     const closeModal = () => {
         setShowModal(false);
@@ -115,7 +143,10 @@ const Project = () => {
                                     <div className={classes.content}>{project.text}</div>
                                     <div className={classes.bottomData}>
                                         <div>
-                                            <Button type="submit" buttonText="Zgłoś się"/>
+                                            <Button buttonText="Zgłoś się" onClick={(event: any) => {
+                                                applyToProject(event);
+                                                setApplyProjectId(project.id);
+                                            }}/>
                                         </div>
                                     </div>
                                 </Wrapper>
