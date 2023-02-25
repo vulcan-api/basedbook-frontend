@@ -5,6 +5,7 @@ import Input from "../../Components/Input";
 import Textarea from "../../Components/Textarea";
 import Button from "../../Components/Button";
 import turtle from "./Graphics/turtle.jpg"
+import { PencilFill } from "react-bootstrap-icons";
 
 const Settings = () => {
     return (
@@ -12,21 +13,28 @@ const Settings = () => {
             <Section>
                 <h2>Profil</h2>
                 <div className={classes.twoInputs}>
-                    <Input/>
-                    <Button/>
+                    <Input placeholder="Nazwa użytkownika"/>
+                    <Button buttonText="Zmień hasło"/>
                 </div> 
                 <div className={classes.twoInputs}>
-                    <Input/>
-                    <Input/>
+                    <Input placeholder="Link do konta facebook"/>
+                    <Input placeholder="Link do konta instagram"/>
                 </div> 
                 <div className={classes.twoInputs}>
-                    <Input/>
-                    <Input/>
+                    <Input placeholder="Link do kanału na youtube" />
+                    <Input placeholder="Link do strony internetowej"/>
                 </div> 
                 <div className={classes.twoInputs}>
-                    <Textarea />
-                    <div className={classes.avatar}>
-                        <img className={classes.avImage} src={turtle} alt="" />
+                    <div className={classes.inputHolder}>
+                        <Textarea placeholder="Opis profilu" />
+                    </div>
+                    <div className={classes.inputHolder}>
+                        <div className={classes.avatar}>
+                            <span className={`${classes.coverer} ${classes.hidden}`}>
+                                <PencilFill className={classes.covererIcon}  />
+                            </span>
+                            <img className={classes.avImage} src={turtle} alt="" />
+                        </div>
                     </div> 
                 </div> 
             </Section> 
