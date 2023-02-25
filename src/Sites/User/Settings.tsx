@@ -12,63 +12,75 @@ import { Link } from "react-router-dom";
 const Settings = () => {
     const [darkTheme, setDarkTheme] = useState(false);
     return (
-        <>
-            <Section>
-                <h2>Profil</h2>
-                <div className={classes.twoInputs}>
-                    <Input placeholder="Nazwa użytkownika"/>
-                    <Button buttonText="Zmień hasło"/>
-                </div> 
-                <div className={classes.twoInputs}>
-                    <Input placeholder="Link do konta facebook"/>
-                    <Input placeholder="Link do konta instagram"/>
-                </div> 
-                <div className={classes.twoInputs}>
-                    <Input placeholder="Link do kanału na youtube" />
-                    <Input placeholder="Link do strony internetowej"/>
-                </div> 
-                <div className={classes.twoInputs}>
-                    <div className={classes.inputHolder}>
-                        <Textarea placeholder="Opis profilu" />
-                    </div>
-                    <div className={classes.inputHolder}>
-                        <div className={classes.avatar}>
-                            <span className={`${classes.coverer} ${classes.hidden}`}>
-                                <PencilFill className={classes.covererIcon}  />
-                            </span>
-                            <img className={classes.avImage} src={turtle} alt="" />
-                        </div>
-                    </div> 
-                </div> 
-            </Section> 
-            <Section>
-                <h2>Preferencje</h2>
-                <div className={classes.inliner}>
-                    <div className={classes.switchContainer} onClick={()=>{setDarkTheme(!darkTheme)}}>
-                        <div className={classes.themeSwitch}>
-                            <div className={`${classes.ballWrapper} ${darkTheme ? classes.right : classes.left}`}>
-                                <BrightnessHighFill className={darkTheme || classes.current} /> 
-                                <MoonFill className={darkTheme && classes.current} />
-                            </div>
-                        </div>
-                        <label className={classes.label}>
-                            Ciemny motyw
-                        </label>
-                    </div>
-                    <Checkbox label="Weryfikacja dwuetapowa" id="verifationCheckbox" />
+      <>
+        <Section>
+          <h2>Profil</h2>
+          <div className={classes.twoInputs}>
+            <Input placeholder="Nazwa użytkownika" />
+            <Button buttonText="Zmień hasło" />
+          </div>
+          <div className={classes.twoInputs}>
+            <Input placeholder="Link do konta facebook" />
+            <Input placeholder="Link do konta instagram" />
+          </div>
+          <div className={classes.twoInputs}>
+            <Input placeholder="Link do kanału na youtube" />
+            <Input placeholder="Link do strony internetowej" />
+          </div>
+          <div className={classes.twoInputs}>
+            <div className={classes.inputHolder}>
+              <Textarea placeholder="Opis profilu" />
+            </div>
+            <div className={classes.inputHolder}>
+              <div className={classes.avatar}>
+                <span className={`${classes.coverer} ${classes.hidden}`}>
+                  <PencilFill className={classes.covererIcon} />
+                </span>
+                <img className={classes.avImage} src={turtle} alt="" />
+              </div>
+            </div>
+          </div>
+        </Section>
+        <Section>
+          <h2>Preferencje</h2>
+          <div className={classes.inliner}>
+            <div
+              className={classes.switchContainer}
+              onClick={() => {
+                setDarkTheme(!darkTheme);
+              }}
+            >
+              <div className={classes.themeSwitch}>
+                <div
+                  className={`${classes.ballWrapper} ${
+                    darkTheme ? classes.right : classes.left
+                  }`}
+                >
+                  <BrightnessHighFill
+                    className={darkTheme || classes.current}
+                  />
+                  <MoonFill className={darkTheme && classes.current} />
                 </div>
-            </Section> 
-            <Section>
-                <h2>Dziennik</h2>
-                <div>
-                    <p>Kliknij <Link to="vulcan" style={{color: "var(--add2-500)"}}>tutaj</Link>, aby połączyć swój dziennik Vulcan z aplikacją Basedbook</p>
-                </div>
-            </Section> 
-            <Section>
-                <h2>Konto</h2>
-                <div className={classes.bottomButtons}>
-                    <Button buttonText="Usuń konto" className="alternate"/>
-                    <Button buttonText={
+              </div>
+              <label className={classes.label}>Ciemny motyw</label>
+            </div>
+            <Checkbox label="Weryfikacja dwuetapowa" id="verifationCheckbox" />
+          </div>
+        </Section>
+        <Section>
+          <h2>Dziennik</h2>
+          <div>
+            <p>
+                <p>Kliknij <Link to="vulcan" style={{color: "var(--add2-500)"}}>tutaj</Link>, aby połączyć swój dziennik Vulcan z aplikacją Basedbook</p>
+            </p>
+          </div>
+        </Section>
+        <Section>
+          <h2>Konto</h2>
+          <div className={classes.bottomButtons}>
+            <Button buttonText="Usuń konto" className="alternate" />
+            <Button
+              buttonText={
                 <span
                   style={{
                     display: "flex",
@@ -85,10 +97,11 @@ const Settings = () => {
                     }}
                   />
                 </span>
-}/>
-                </div>
-            </Section> 
-        </>
+              }
+            />
+          </div>
+        </Section>
+      </>
     );
 }
 

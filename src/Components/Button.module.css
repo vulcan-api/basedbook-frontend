@@ -12,12 +12,19 @@
     justify-content: center;
     align-items: center;
     color: var(--bg-clr);
+    transition: all .3s;
 }
 
 .default {
     border: 2px solid var(--add1-500);
-    box-shadow: 0px 2px 0px rgba(250, 71, 83, 0.6);
+    box-shadow: 0px 2px 0px var(--add1-400);
     background-color: var(--add1-500);
+    box-shadow: 0 4px 0 0 var(--add1-400);
+}
+
+.default:hover {
+    transform: translateY(3px);
+    box-shadow: none;
 }
 
 .gray {
@@ -25,13 +32,25 @@
     box-shadow: 0px 2px 0px var(--main-200);
     background-color: var(--bg-clr);
     color: var(--main-300);
+    box-shadow: 0 2px 0 0 var(--main-100);
+}
+
+.gray:hover {
+    transform: translateY(3px);
+    box-shadow: none;
 }
 
 .alternate {
     border: 2px solid var(--add1-500);
     background-color: var(--bg-clr);
     color: var(--add1-500);
-    box-shadow: 0px 1px 0px rgba(250, 71, 83, 0.6);
+    box-shadow: 0px 1px 0px var(--add1-300);
+    box-shadow: 0 2px 0 0 var(--add1-400);
+}
+
+.alternate:hover {
+    transform: translateY(3px);
+    box-shadow: none;
 }
 
 .default:disabled {

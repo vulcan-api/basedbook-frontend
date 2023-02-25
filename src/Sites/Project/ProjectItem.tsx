@@ -2,13 +2,13 @@ import Wrapper from "../../Layout/Wrapper";
 import classes from "./Project.module.css";
 import * as Icon from "react-bootstrap-icons";
 import Button from "../../Components/Button";
-import React, {useState} from "react";
+import React from "react";
 
 
 const ProjectItem = (props: any) => {
     const project = props.project;
     return (
-        <div key={project.id} style={props.listType}>
+        <div style={props.listType}>
             <Wrapper className={classes.post}>
                 <div className={classes.topData}>
                     <div>
