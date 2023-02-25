@@ -8,12 +8,9 @@ import LoadingSpinner from "../Components/LoadingSpinner";
 import {NotificationManager} from "react-notifications";
 
 const Main = (props: {removeWrapper?: boolean}) => {
-  const [isLoading, setIsLoading] = useState(false);
-
   const navigate = useNavigate();
 
   const fetchPosts = useCallback(async () => {
-    setIsLoading(true);
     await fetch("http://localhost:3000/spotted/post", {
       method: "GET",
       credentials: "include",
@@ -33,7 +30,6 @@ const Main = (props: {removeWrapper?: boolean}) => {
         );
         return;
       });
-      setIsLoading(false);
   }, [navigate]);
 
   useEffect(() => {
@@ -42,15 +38,12 @@ const Main = (props: {removeWrapper?: boolean}) => {
 
   return (
     <>
-      {!isLoading && 
       <div className={classes.flexRow}>
         <Sidebar />
         <div className={props.removeWrapper || classes.wrapper}>
           <Outlet />
         </div>
       </div>
-      }
-      {isLoading && <LoadingSpinner />}
     </>
   );
 };

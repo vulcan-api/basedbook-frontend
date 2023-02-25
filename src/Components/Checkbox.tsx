@@ -8,8 +8,9 @@ const Checkbox = React.forwardRef((props:any, ref) => {
           // @ts-ignore
           ref={ref}
           id={props.id}
-          type="checkbox"
-          className={classes.checkbox}
+          type={props.radio ? "radio" : "checkbox"}
+          name={props.name}
+          className={props.radio ? classes.radio : classes.checkbox}
           onChange={props.onChange}
           checked={props.checked}
         />
