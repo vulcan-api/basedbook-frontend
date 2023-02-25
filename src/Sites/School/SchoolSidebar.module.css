@@ -29,3 +29,25 @@ ul {
 .mainLogo {
     font-size: .7em;
 }
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 2em;
+    gap: 8px;
+}
+
+.stat {
+    font-family: 'Quicksand';
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1em;
+    line-height: 30px;
+    color: #9BA5C9;
+}
