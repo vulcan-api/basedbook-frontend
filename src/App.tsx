@@ -48,6 +48,14 @@ const router = createBrowserRouter([
         element: <Addpost />,
       },
       {
+        path: "project",
+        element: <Project />,
+      },
+      {
+        path: "project/add",
+        element: <Addproject/>,
+      },
+      {
         path: "settings",
         element: <Settings />,
       },
