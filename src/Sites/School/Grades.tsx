@@ -51,7 +51,7 @@ const Grades = () => {
                     id="secondPeriod"
                     label="Okres 2"
                     onClick={() => changeListTypeHandler(40, 0)}
-                    checked
+                    defaultChecked
                 />
             </div>
             {!isLoading && (

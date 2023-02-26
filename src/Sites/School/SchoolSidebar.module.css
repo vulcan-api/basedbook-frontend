@@ -30,6 +30,10 @@ ul {
     color: #9BA5C9;
 }
 
+.stats p {
+    color: #9BA5C9;
+}
+
 .stat > p {
     font-size: .875em;
 }

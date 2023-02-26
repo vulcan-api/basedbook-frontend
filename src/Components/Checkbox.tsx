@@ -13,6 +13,7 @@ const Checkbox = React.forwardRef((props:any, ref) => {
           className={props.type === "radio" ? classes.radio : classes.checkbox}
           onChange={props.onChange}
           checked={props.checked}
+          defaultChecked={props.defaultChecked}
         />
         <label htmlFor={props.id} className={classes.label}>
           {props.label || "Default Label"}
