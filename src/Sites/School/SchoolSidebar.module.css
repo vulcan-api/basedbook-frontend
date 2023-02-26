@@ -16,16 +16,6 @@ ul {
     margin: 0;
 }
 
-.navbar::after {
-    content: '';
-    width: 1px;
-    height: 100%;
-    background-color: var(--main-100);
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
 .mainLogo {
     font-size: .7em;
 }
@@ -35,19 +25,11 @@ ul {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 2em;
-    gap: 8px;
+    margin-top: 2em;
+    gap: 1rem;
+    color: #9BA5C9;
 }
 
-.stat {
-    font-family: 'Quicksand';
-    flex: none;
-    order: 2;
-    align-self: stretch;
-    flex-grow: 0;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 1em;
-    line-height: 30px;
-    color: #9BA5C9;
+.stat > p {
+    font-size: .875em;
 }

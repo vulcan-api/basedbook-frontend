@@ -15,15 +15,12 @@ const RegisterVulcan = () => {
     async function addPost(event: any) {
         event.preventDefault();
 
-        let publishDate;
-
         const userCredentials = {
             pin: formPin.current?.value,
             token: formToken.current?.value,
             symbol: formSymbol.current?.value
         };
 
-        const throwObject = {};
         const spottedPosts = await fetch("http://localhost:3000/school/register", {
             method: "POST",
             headers: {

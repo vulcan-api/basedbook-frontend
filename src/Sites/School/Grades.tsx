@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import classes from "./Grades.module.css";
 import Checkbox from "../../Components/Checkbox";
 import LoadingSpinner from "../../Components/LoadingSpinner";
-import ProjectItem from "../Project/ProjectItem";
 
 const Grades = () => {
     const [grades, setGrades] = useState<any[]>([]);
@@ -39,7 +38,7 @@ const Grades = () => {
             <div className={classes.menu}>
                 <Checkbox
                     className={isActive ? "" : classes.active}
-                    radio={true}
+                    type="radio"
                     name="periodSwitch"
                     id="firstPeriod"
                     label="Okres 1"
@@ -47,11 +46,12 @@ const Grades = () => {
                 />
                 <Checkbox
                     className={isActive ? classes.active : ""}
-                    radio={true}
+                    type="radio"
                     name="periodSwitch"
                     id="secondPeriod"
                     label="Okres 2"
                     onClick={() => changeListTypeHandler(40, 0)}
+                    checked
                 />
             </div>
             {!isLoading && (

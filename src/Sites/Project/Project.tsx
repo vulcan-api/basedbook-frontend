@@ -61,7 +61,6 @@ const Project = () => {
         const applyProject = {
             projectId: id,
         }
-        const throwObject = {};
         const response = await fetch("http://localhost:3000/project/apply", {
             method: "POST",
             headers: {

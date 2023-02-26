@@ -39,9 +39,12 @@ const Main = (props: {removeWrapper?: boolean}) => {
     <>
       <div className={classes.flexRow}>
         <Sidebar />
-        <div className={props.removeWrapper || classes.wrapper}>
+        {props.removeWrapper && <Outlet />}
+        {!props.removeWrapper && (
+        <div className={classes.wrapper}>
           <Outlet />
         </div>
+        )}
       </div>
     </>
   );

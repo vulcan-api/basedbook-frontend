@@ -1,17 +1,9 @@
 import React, {useEffect, useState} from "react";
-import classes from "./Grades.module.css";
-import Checkbox from "../../Components/Checkbox";
 import LoadingSpinner from "../../Components/LoadingSpinner";
-import ProjectItem from "../Project/ProjectItem";
 
 const Exams = () => {
     const [exams, setExams] = useState<any[]>([]);
-    const [isActive, setIsActive] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
-
-    function changeListTypeHandler(length: Number, id: Number) {
-        setIsActive(!id);
-    }
 
     useEffect(() => {
 

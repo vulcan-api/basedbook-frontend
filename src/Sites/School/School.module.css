@@ -1,11 +1,12 @@
 .flexRow {
     display: flex;
+    width: 100%;
 }
 
 .wrapper {
     padding: 3em 6em;
     width: 100%;
     box-sizing: border-box;
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 100vh;
 }
