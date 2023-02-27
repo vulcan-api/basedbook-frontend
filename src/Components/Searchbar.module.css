@@ -2,11 +2,8 @@
     box-sizing: border-box;
     position: fixed;
 
-    display: flex;
-    flex-direction: column;
     align-items: center;
     padding: 4rem 2rem;
-    gap: 1rem;
     background-color: var(--bg-clr);
 
     border-width: 0px 3px 3px 0px;
@@ -20,8 +17,19 @@
     top: 0;
 
     transition-property: top, opacity;
-    transition-duration: .5s;
-    transition-timing-function: cubic-bezier(0.23, 1, 0.320, 1);
+    transition-duration: .3s;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.inputsContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.inputsContainer > button {
+    width: auto;
+    height: inherit;
 }
 
 .disabled {

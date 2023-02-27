@@ -1,0 +1,24 @@
+@value avImage as orImg from "../Sites/User/Profile.module.css";
+
+.inliner {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+    padding-top: 2rem;
+}
+
+.avatar {
+    width: 2rem;
+    height: 2rem;
+    overflow: hidden;
+    border-radius: 100%;
+}
+
+.avImage {
+    composes: orImg;
+}
+
+.name {
+    font-size: 2rem;
+}
