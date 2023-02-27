@@ -6,6 +6,7 @@ import Button from "../../Components/Button";
 import Input from "../../Components/Input";
 import Section from "../../Layout/Section";
 import classes from "./Settings.module.css"
+import example from "./Graphics/example.png";
 
 const RegisterVulcan = () => {
     const formPin = useRef<HTMLInputElement>(); 
@@ -43,6 +44,7 @@ const RegisterVulcan = () => {
         <>
             <form className={classes.addForm} onSubmit={addPost}>
                 <Section>
+                    <h2>Dodaj swój dziennik</h2>
                     <div className={classes.twoInputs}>
                         <Input placeholder="Token" ref={formToken}/>
                         <Input placeholder="Pin" ref={formPin}/>
@@ -51,6 +53,9 @@ const RegisterVulcan = () => {
                     <div>
                         <Button buttonText="Zapisz" type="submit"/>
                     </div>
+                </Section>
+                <Section>
+                    <img className={classes.example} src={example} alt="" />
                 </Section>
             </form>
         </>
