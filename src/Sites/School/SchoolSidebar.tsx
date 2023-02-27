@@ -99,24 +99,23 @@ const Sidebar = () => {
                     <div className={classes.stat}>
                         Ostatnie oceny:
                         <div className={classes.stat}>
-                            {lastGrades.map((grade) => {
-                                return (
-                                    <p key={grade.id}>
-                                        {grade.column.subject.name}: {grade.value}
-                                    </p>
-                                );
-                            })}
+                            {/*{lastGrades.map((grade) => {*/}
+                            {/*    return (*/}
+                            {/*        <p key={grade.id}>*/}
+                            {/*            {grade.column.subject.name}: {grade.value}*/}
+                            {/*        </p>*/}
+                            {/*    );*/}
+                            {/*})}*/}
                         </div>
                     </div>
                     <p className={classes.stat}>
-                        Średnia ocen:{" " +
-                        grades.reduce((a, b) => {
-                            if (!isNaN(+b.content)) {
-                                return a + +b.content;
-                            } else {
-                                return a;
-                            }
-                        }, 0) / grades.length}
+                        {/*    Średnia ocen:{" " + grades.reduce((a, b) => {*/}
+                        {/*    if (!isNaN(+b.content)) {*/}
+                        {/*        return a + +b.content;*/}
+                        {/*    } else {*/}
+                        {/*        return a;*/}
+                        {/*    }*/}
+                        {/*}, 0) / grades.length}*/}
                     </p>
                     <p className={classes.stat}>
                         Dni do wakacji:
