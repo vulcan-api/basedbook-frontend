@@ -25,11 +25,14 @@ const Grades = () => {
                 credentials: "include",
             })
                 .then((res) => res.json())
-                .then((data) => setGrades(data.grades));
+                .then((data) => {
+                    setGrades((data))
+                });
         } catch (error) {
             console.error(error);
         }
         setIsLoading(false);
+        console.log(grades);
 
     }
 
@@ -56,10 +59,18 @@ const Grades = () => {
             </div>
             {!isLoading && (
                 <div>
-                    {grades.map((grade) => {
+                    {Object.keys(grades).map((subject: any) => {
                         return (
-                            <div key={grade.id}>
-                                {grade.value}
+                            <div key={subject}>
+                                <p>{subject}:
+                                    {grades[subject].map((grade1: any) => {
+                                        return (
+                                            <p>
+                                                {grade1.grade}
+                                            </p>
+                                        )
+                                    })}
+                                </p>
                             </div>
                         );
                     })}
