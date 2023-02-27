@@ -1,6 +1,7 @@
 .searchCont {
     box-sizing: border-box;
     position: fixed;
+    max-height: 100vh;
 
     align-items: center;
     padding: 4rem 2rem;
@@ -19,6 +20,8 @@
     transition-property: top, opacity;
     transition-duration: .3s;
     transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    overflow-y: scroll;
 }
 
 .inputsContainer {
