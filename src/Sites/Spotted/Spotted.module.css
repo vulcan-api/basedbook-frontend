@@ -36,14 +36,15 @@
 .posts {
     display: flex;
     justify-content: space-around;
-    align-items: center;
     flex-wrap: wrap;
 }
 
-.post{
+.post {
     width: 100%;
+    height: 270px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 32px;
 }
 
