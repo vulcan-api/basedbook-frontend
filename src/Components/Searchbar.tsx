@@ -4,8 +4,6 @@ import Input from "../Components/Input";
 import LinkBase, { LinkBaseType } from './LinkBase'
 import classes from './Searchbar.module.css';
 import linkClasses from './LinkSection.module.css';
-import Button from './Button';
-import { Search } from 'react-bootstrap-icons';
 import SearchResult from './SearchResult';
 
 const Searchbar = (props: {link: LinkBaseType, forwardedRef: RefObject<HTMLDivElement>}) => {

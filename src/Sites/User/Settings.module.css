@@ -121,3 +121,7 @@
 .example {
     width: 100%;
 }
+
+.addForm button {
+    width: fit-content;
+}
