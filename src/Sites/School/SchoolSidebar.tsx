@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState, useCallback} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import LinkSection from "../../Components/LinkSection";
 import * as Icon from "react-bootstrap-icons";
 import classes from "./SchoolSidebar.module.css";
@@ -100,12 +100,18 @@ const Sidebar = () => {
                         <p>Ostatnie oceny:</p>
                         {Object.keys(lastGrades).map((subject: any) => {
                             return (
-                                <div key={subject} className={classes.subject}>
-                                    {subject + ": "}
-                                    {lastGrades[subject].map((grade1: any) => {
-                                        return <span key={grade1.id}>{grade1.grade} </span>;
-                                    })}
-                                </div>
+                              <div key={subject} className={classes.subject}>
+                                <p>
+                                  {subject + ": "}
+                                  {lastGrades[subject].map((grade1: any) => {
+                                    return (
+                                      <span key={grade1.id}>
+                                        {grade1.grade}
+                                      </span>
+                                    );
+                                  })}
+                                </p>
+                              </div>
                             );
                         })}
                     </div>

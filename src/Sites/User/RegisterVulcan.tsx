@@ -6,7 +6,9 @@ import Button from "../../Components/Button";
 import Input from "../../Components/Input";
 import Section from "../../Layout/Section";
 import classes from "./Settings.module.css";
-import example from "./Graphics/example.png";
+import example1 from "./Graphics/example1.png";
+import example2 from "./Graphics/example2.png";
+import example3 from "./Graphics/example3.png";
 
 const RegisterVulcan = () => {
   const formPin = useRef<HTMLInputElement>();
@@ -52,13 +54,19 @@ const RegisterVulcan = () => {
             <Input placeholder="Token" ref={formToken} />
             <Input placeholder="Pin" ref={formPin} />
             <Input placeholder="Symbol" ref={formSymbol} />
+            <Button buttonText="Zapisz" type="submit" />
           </div>
           <div>
-            <Button buttonText="Zapisz" type="submit" />
           </div>
         </Section>
         <Section>
-          <img className={classes.example} src={example} alt="" />
+          <h2>Poradnik</h2>
+          <p className={classes.topParagraph}>1. Na początku należy zalogować się do dziennika (jeśli na tym etapie jest problem, człowieku zastanów się co ty robisz) i przejść do sekcji ucznia.</p>
+          <img className={classes.example} src={example1} alt="" />
+          <p>2. Kolejny krok będzie ciężki. Należy przejść do zakładki uczeń i kliknąć dziwny guzik z przerażającym napisem "WYGENERUJ KOD DOSTĘPU". </p>
+          <img className={classes.example} src={example2} alt="" />
+          <p>3. Ostatnim krokiem (niezwykle śmiesznym) będzie skopiowanie (lub przepisanie) tokenu, symbolu i pinu wygenerowanego przez system UOnet+.</p>
+          <img className={classes.example} src={example3} alt="" />
         </Section>
       </form>
     </>
