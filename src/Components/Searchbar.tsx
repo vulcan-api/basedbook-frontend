@@ -41,10 +41,13 @@ const Searchbar = (props: {
     if (ref.current != null) setHeight(ref.current.offsetHeight * -1);
   };
 
+  window.addEventListener("keydown", (ev) => {ev.key === "Escape" && searchHandler();})
+
   useLayoutEffect(() => {
     parentRef.current && setParentWidth(parentRef.current.offsetWidth);
     setupHeight();
   }, [parentRef]);
+
   return (
     <>
       {isSearching && (
@@ -73,8 +76,11 @@ const Searchbar = (props: {
           {users.map((result) => {
             return (
               <SearchResult
+                key={result["id"]}
+                id={result["id"]}
                 name={`${result["name"]} ${result["surname"]} - ${result["username"]}`}
                 image={turtle}
+                onClick={() => {searchHandler()}}
               />
             );
           })}

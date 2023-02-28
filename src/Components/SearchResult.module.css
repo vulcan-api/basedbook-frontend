@@ -6,6 +6,7 @@
     flex-direction: row;
     gap: 1rem;
     padding-top: 2rem;
+    color: var(--add2-500);
 }
 
 .avatar {
