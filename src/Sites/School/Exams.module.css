@@ -1,5 +1,5 @@
 .exam {
-    background: var(--bg-clr);
+    background: rgba(250, 71, 83, 0.6);
     /* border: 2px solid var(--add2-500); */
     /* box-shadow: 0px 2px 0px var(--add2-500); */
     display: flex;
@@ -7,6 +7,15 @@
     flex-direction: column;
     box-sizing: border-box;
     height: 100%;
+}
+
+.quiz {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 100%;
+    background: rgba(155, 165, 201, 0.6);
 }
 
 .exams {
