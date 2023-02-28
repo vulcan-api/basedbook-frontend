@@ -36,7 +36,6 @@
     padding: 1rem 0;
     color: var(--main-300);
     font-size: 1.5rem;
-    border-bottom: 1px solid var(--main-100);
 }
 
 .detailsContainer h2 {
@@ -57,6 +56,7 @@
     display: flex;
     padding-top: 1rem;
     column-gap: 2rem;
+    border-top: 1px solid var(--main-100);
 }
 
 .creations {
@@ -91,6 +91,13 @@
     flex-wrap: wrap;
     gap: 1rem;
     box-sizing: border-box;
+}
+
+.profileContent > p {
+    font-size: 2rem;
+    color: var(--main-400);
+    position: relative;
+    transform: translate(130%, 0);
 }
 
 .postWrapper {

@@ -35,59 +35,67 @@ const Sidebar = () => {
     }
 
     return (
-        <>
-            <div className={classes.navbar} ref={ref}>
-                <div className={classes.mainLogo}>
-                    <NavLink to="/">
-                        <h1>BasedBook</h1>
-                    </NavLink>
-                </div>
-                <div>
-                    <Searchbar link={{label: 'Szukaj', icon: <Icon.Search/>}} forwardedRef={ref}/>
-                    <LinkSection
-                        elements={[
-                            {
-                                destination: '/spotted',
-                                label: 'Spotted',
-                                icon: <Icon.PeopleFill/>
-                            },
-                            {
-                                destination: '/project',
-                                label: 'Projekty',
-                                icon: <Icon.CardChecklist/>
-                            },
-                            {
-                                destination: '/school',
-                                label: 'Dziennik',
-                                icon: <Icon.JournalBookmarkFill/>
-                            },
-                        ]}
-                    />
-                </div>
-                <div>
-                    <LinkSection
-                        elements={[
-                            {
-                                destination: `/profile/${user.id}`,
-                                label: 'Profil',
-                                icon: <Icon.PersonCircle/>
-                            },
-                            {
-                                destination: '/settings',
-                                label: 'Ustawienia',
-                                icon: <Icon.Tools/>
-                            },
-                            {
-                                label: "Wyloguj się",
-                                icon: <Icon.DoorOpen/>,
-                                onClick: logout
-                            }
-                        ]}
-                    />
-                </div>
-            </div>
-        </>
-    )
+      <>
+        <div className={classes.navbar} ref={ref}>
+          <div className={classes.mainLogo}>
+            <NavLink to="/">
+              <h1>BasedBook</h1>
+            </NavLink>
+          </div>
+          <div>
+            <Searchbar
+              link={{ label: "Szukaj", icon: <Icon.Search /> }}
+              forwardedRef={ref}
+            />
+            <LinkSection
+              elements={[
+                {
+                  destination: "/spotted",
+                  label: "Spotted",
+                  icon: <Icon.PeopleFill />,
+                },
+                {
+                  destination: "/project",
+                  label: "Projekty",
+                  icon: <Icon.CardChecklist />,
+                },
+                {
+                  destination: "/chat",
+                  label: "Komunikator",
+                  icon: <Icon.Chat />,
+                },
+                {
+                  destination: "/school",
+                  label: "Dziennik",
+                  icon: <Icon.JournalBookmarkFill />,
+                },
+              ]}
+            />
+          </div>
+          <div>
+            <LinkSection
+              elements={[
+                {
+                  destination: `/profile/${user.id}`,
+                  label: "Profil",
+                  icon: <Icon.PersonCircle />,
+                },
+                {
+                  destination: "/settings",
+                  label: "Ustawienia",
+                  icon: <Icon.Tools />,
+                },
+                {
+                  label: "Wyloguj się",
+                  icon: <Icon.DoorOpen />,
+                  onClick: logout,
+                },
+              ]}
+            />
+          </div>
+        </div>
+      </>
+    );
 }
 
 export default Sidebar;

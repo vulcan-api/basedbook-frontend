@@ -90,9 +90,9 @@ const Sidebar = () => {
                 </div>
                 <div className={classes.stats}>
                     {luckyNumber !== 0 ? (
-                        <div className={classes.stat}>
+                        <p className={classes.stat}>
                             Szczęśliwy numerek: {luckyNumber}
-                        </div>
+                        </p>
                     ) : (
                         <></>
                     )}

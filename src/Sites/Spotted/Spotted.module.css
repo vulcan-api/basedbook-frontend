@@ -64,7 +64,7 @@
     gap: 8px;
 }
 
-.topData > div:last-of-type > svg {
+.report > svg {
     cursor: pointer;
 }
 

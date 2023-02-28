@@ -43,7 +43,7 @@ const Grades = () => {
                             <div key={subject} className={classes.subject}>
                                 {subject + ": "}
                                 {grades[subject].map((grade1: any) => {
-                                    return <span key={grade1.id}>{grade1.grade} </span>;
+                                    return <span key={grade1.id}>{grade1.grade}, </span>;
                                 })}
                             </div>
                         );
