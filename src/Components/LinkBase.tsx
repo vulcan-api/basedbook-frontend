@@ -4,15 +4,18 @@ import classes from './LinkBase.module.css';
 export interface LinkBaseType {
     label: string,
     icon: ReactElement,
+    style?: any,
 }
 
 const LinkBase = (props: LinkBaseType) => {
     return (
-        <>
-            <span className={classes.linkIcon}>{props.icon}</span>
-            <span>{props.label}</span>
-        </>
-    )
+      <>
+        <span className={classes.linkIcon} style={props.style}>
+          {props.icon}
+        </span>
+        <span style={props.style}>{props.label}</span>
+      </>
+    );
 }
 
 export default LinkBase;

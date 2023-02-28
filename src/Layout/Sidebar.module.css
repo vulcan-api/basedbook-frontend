@@ -8,22 +8,12 @@
     box-sizing: border-box;
     font-size: 1.5em;
     overflow-y: hidden;
-    position: relative;
+    border-right: 1px solid var(--main-100);
     min-width: fit-content;
 }
 
 ul {
     margin: 0;
-}
-
-.navbar::after {
-    content: '';
-    width: 1px;
-    height: 100%;
-    background-color: var(--main-100);
-    position: absolute;
-    right: 0;
-    top: 0;
 }
 
 .mainLogo {
