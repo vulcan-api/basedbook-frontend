@@ -4,12 +4,10 @@ import LoadingSpinner from "../../Components/LoadingSpinner";
 // @ts-ignore
 import {NotificationManager} from "react-notifications";
 import {useNavigate} from "react-router-dom";
-import Checkbox from "../../Components/Checkbox";
 
 const Grades = () => {
     const [grades, setGrades] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [isActive, setIsActive] = useState(true);
     const navigate = useNavigate();
 
     const getAllGrades = useCallback(async function () {
@@ -36,31 +34,8 @@ const Grades = () => {
         getAllGrades();
     }, [getAllGrades]);
 
-    function changeListTypeHandler(id: Number) {
-      setIsActive(!id);
-    }
-
     return (
         <>
-              <div className={classes.menu}>
-        <Checkbox
-          className={isActive ? "" : classes.active}
-          type="radio"
-          name="periodSwitch"
-          id="firstPeriod"
-          label="Okres 1"
-          onClick={() => changeListTypeHandler(1)}
-        />
-        <Checkbox
-          className={isActive ? classes.active : ""}
-          type="radio"
-          name="periodSwitch"
-          id="secondPeriod"
-          label="Okres 2"
-          onClick={() => changeListTypeHandler(0)}
-          defaultChecked
-        />
-      </div>
             {!isLoading && (
                 <div>
                     {Object.keys(grades).map((subject: any) => {
