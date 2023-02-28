@@ -22,11 +22,6 @@ const Main = (props: {removeWrapper?: boolean}) => {
       .catch((err) => {
         console.error(err);
         navigate("/auth/login");
-        NotificationManager.error(
-          "Nie udało się zalogować. Sprawdź poprawność danych",
-          "Nie zalogowano",
-          3000
-        );
         return;
       });
   }, [navigate]);
