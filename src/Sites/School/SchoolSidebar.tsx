@@ -100,12 +100,18 @@ const Sidebar = () => {
                         <p>Ostatnie oceny:</p>
                         {Object.keys(lastGrades).map((subject: any) => {
                             return (
-                                <div key={subject}>
-                                    {subject + ": "}
-                                    {lastGrades[subject].map((grade1: any) => {
-                                        return <span key={grade1.id}>{grade1.grade} </span>;
-                                    })}
-                                </div>
+                              <div key={subject} className={classes.subject}>
+                                <p>
+                                  {subject + ": "}
+                                  {lastGrades[subject].map((grade1: any) => {
+                                    return (
+                                      <span key={grade1.id}>
+                                        {grade1.grade}
+                                      </span>
+                                    );
+                                  })}
+                                </p>
+                              </div>
                             );
                         })}
                     </div>

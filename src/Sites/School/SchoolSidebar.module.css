@@ -28,12 +28,21 @@ ul {
     margin-top: 2em;
     gap: 1rem;
     color: #9BA5C9;
+    width: min-content;
 }
 
 .stats p {
     color: #9BA5C9;
 }
 
-.stat > p {
+.stat > div > p {
     font-size: .875em;
+}
+
+.stat > div {
+    margin-top: .75rem;
+}
+
+.stat > p {
+    width: max-content;
 }

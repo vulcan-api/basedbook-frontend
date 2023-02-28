@@ -36,7 +36,6 @@ const Grades = () => {
 
     return (
         <>
-            {/*
               <div className={classes.menu}>
         <Checkbox
           className={isActive ? "" : classes.active}
@@ -56,8 +55,6 @@ const Grades = () => {
           defaultChecked
         />
       </div>
-
-      */}
             {!isLoading && (
                 <div>
                     {Object.keys(grades).map((subject: any) => {
