@@ -4,10 +4,12 @@ import LoadingSpinner from "../../Components/LoadingSpinner";
 // @ts-ignore
 import {NotificationManager} from "react-notifications";
 import {useNavigate} from "react-router-dom";
+import Checkbox from "../../Components/Checkbox";
 
 const Grades = () => {
     const [grades, setGrades] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [isActive, setIsActive] = useState(true);
     const navigate = useNavigate();
 
     const getAllGrades = useCallback(async function () {
@@ -33,6 +35,10 @@ const Grades = () => {
     useEffect(() => {
         getAllGrades();
     }, [getAllGrades]);
+
+    function changeListTypeHandler(id: Number) {
+      setIsActive(!id);
+    }
 
     return (
         <>
