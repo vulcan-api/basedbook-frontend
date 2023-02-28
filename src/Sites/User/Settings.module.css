@@ -126,11 +126,12 @@
     width: fit-content;
 }
 
-p {
+.normalParagraph {
     padding-top: 2rem;
     padding-bottom: .5rem;
 }
 
 .topParagraph {
     padding-top: 0;
+    padding-bottom: .5rem;
 }

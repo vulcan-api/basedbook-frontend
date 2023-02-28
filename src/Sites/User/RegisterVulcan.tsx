@@ -63,9 +63,9 @@ const RegisterVulcan = () => {
           <h2>Poradnik</h2>
           <p className={classes.topParagraph}>1. Na początku należy zalogować się do dziennika (jeśli na tym etapie jest problem, człowieku zastanów się co ty robisz) i przejść do sekcji ucznia.</p>
           <img className={classes.example} src={example1} alt="" />
-          <p>2. Kolejny krok będzie ciężki. Należy przejść do zakładki uczeń i kliknąć dziwny guzik z przerażającym napisem "WYGENERUJ KOD DOSTĘPU". </p>
+          <p className={classes.normalParagraph}>2. Kolejny krok będzie ciężki. Należy przejść do zakładki uczeń i kliknąć dziwny guzik z przerażającym napisem "WYGENERUJ KOD DOSTĘPU". </p>
           <img className={classes.example} src={example2} alt="" />
-          <p>3. Ostatnim krokiem (niezwykle śmiesznym) będzie skopiowanie (lub przepisanie) tokenu, symbolu i pinu wygenerowanego przez system UOnet+.</p>
+          <p className={classes.normalParahraph}>3. Ostatnim krokiem (niezwykle śmiesznym) będzie skopiowanie (lub przepisanie) tokenu, symbolu i pinu wygenerowanego przez system UOnet+.</p>
           <img className={classes.example} src={example3} alt="" />
         </Section>
       </form>
