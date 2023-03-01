@@ -7,7 +7,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../Components/LoadingSpinner";
 //@ts-ignore
-import { NotificationManager } from "react-notifications";
 import Modal from "../../Layout/Modal";
 
 const Spotted = () => {
@@ -53,7 +52,6 @@ const Spotted = () => {
       posts[index].likes += 1;
       like(posts[index].id);
       setPosts(postsCopy);
-      NotificationManager.success("Udało się polubić post.", "Sukces!", 3000);
     }
   }
 

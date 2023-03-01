@@ -60,11 +60,6 @@ const Sidebar = () => {
                   icon: <Icon.CardChecklist />,
                 },
                 {
-                  destination: "/chat",
-                  label: "Komunikator",
-                  icon: <Icon.Chat />,
-                },
-                {
                   destination: "/school",
                   label: "Dziennik",
                   icon: <Icon.JournalBookmarkFill />,

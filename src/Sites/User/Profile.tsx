@@ -54,7 +54,6 @@ const Profile = () => {
       posts[index].likes += 1;
       like(posts[index].id);
       setPosts(postsCopy);
-      NotificationManager.success("Udało się polubić post.", "Sukces!", 3000);
     }
   }
 
