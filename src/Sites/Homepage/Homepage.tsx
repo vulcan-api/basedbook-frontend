@@ -97,7 +97,7 @@ const Homepage = () => {
       </div>
       <Wrapper>
         <h2>Aktualności</h2>
-        <p>Konkurs Historyczny "Age of Violence"</p>
+        <p>\\ Wkrótce //</p>
       </Wrapper>
       <Wrapper>
         <h2>Spotted</h2>

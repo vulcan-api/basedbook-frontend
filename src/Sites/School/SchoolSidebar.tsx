@@ -98,7 +98,9 @@ const Sidebar = () => {
               return (
                 <div key={subject} className={classes.subject}>
                   <p>
-                    {subject + ": "}
+                    {subject.charAt(0).toUpperCase() +
+                      subject.slice(1) +
+                      ": "}
                     {lastGrades[subject].map((grade1: any) => {
                       return <span key={grade1.id}>{grade1.grade}</span>;
                     })}

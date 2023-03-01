@@ -1,4 +1,4 @@
-import React, { useRef, useState, useLayoutEffect, RefObject } from "react";
+import React, { useRef, useState, useEffect, RefObject } from "react";
 import turtle from "../Sites/User/Graphics/turtle.jpg";
 import Input from "../Components/Input";
 import LinkBase, { LinkBaseType } from "./LinkBase";
@@ -41,9 +41,11 @@ const Searchbar = (props: {
     if (ref.current != null) setHeight(ref.current.offsetHeight * -1);
   };
 
-  window.addEventListener("keydown", (ev) => {ev.key === "Escape" && searchHandler();})
+  window.addEventListener("keydown", (ev) => {
+    ev.key === "Escape" && searchHandler();
+  });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     parentRef.current && setParentWidth(parentRef.current.offsetWidth);
     setupHeight();
   }, [parentRef]);
@@ -51,16 +53,17 @@ const Searchbar = (props: {
   return (
     <>
       {isSearching && (
-        <div
-          className={classes.hide}
-          onClick={searchHandler}
-        ></div>
+        <div className={classes.hide} onClick={searchHandler}></div>
       )}
       <div
         className={`${linkClasses.link} ${linkClasses.clickable}`}
         onClick={searchHandler}
       >
-        <LinkBase icon={props.link.icon} label={props.link.label} style={isSearching ? { color: "var(--add1-500)"} : {}}/>
+        <LinkBase
+          icon={props.link.icon}
+          label={props.link.label}
+          style={isSearching ? { color: "var(--add1-500)" } : {}}
+        />
       </div>
       <div
         ref={ref}
@@ -80,7 +83,9 @@ const Searchbar = (props: {
                 id={result["id"]}
                 name={`${result["name"]} ${result["surname"]} - ${result["username"]}`}
                 image={turtle}
-                onClick={() => {searchHandler()}}
+                onClick={() => {
+                  searchHandler();
+                }}
               />
             );
           })}
