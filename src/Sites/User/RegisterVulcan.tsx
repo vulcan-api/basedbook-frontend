@@ -36,11 +36,12 @@ const RegisterVulcan = () => {
       credentials: "include",
       body: JSON.stringify(userCredentials),
     })
-      .then(res => {
-        if(!res.ok) { 
+      .then((res) => {
+        if (!res.ok) {
           setIsSent(false);
-          throw new Error("Missing pie"); 
-          }})
+          throw new Error("Missing pie");
+        }
+      })
       .then(() => {
         NotificationManager.success(
           "Udało się zarejerstrować token.",
@@ -55,40 +56,44 @@ const RegisterVulcan = () => {
           "Błąd!",
           3000
         );
-      })
-
-
+      });
   }
 
   return (
     <>
       {isSent && <LoadingSpinner />}
-      {
-        isSent || (
+      {isSent || (
         <form className={classes.addForm} onSubmit={registerToken}>
           <Section>
             <h2>Dodaj swój dziennik</h2>
             <div className={classes.twoInputs}>
-              <Input placeholder="Token" ref={formToken} />
-              <Input placeholder="Pin" ref={formPin} />
-              <Input placeholder="Symbol" ref={formSymbol} />
+              <Input placeholder="Token" ref={formToken} type="password" />
+              <Input placeholder="Pin" ref={formPin} type="password" />
+              <Input placeholder="Symbol" ref={formSymbol} type="password" />
               <Button buttonText="Zapisz" type="submit" />
             </div>
-            <div>
-            </div>
+            <div></div>
           </Section>
           <Section>
             <h2>Poradnik</h2>
-            <p className={classes.topParagraph}>1. Na początku należy zalogować się do dziennika i przejść do sekcji "uczeń".</p>
+            <p className={classes.topParagraph}>
+              1. Na początku należy zalogować się do dziennika i przejść do
+              sekcji "uczeń".
+            </p>
             <img className={classes.example} src={example1} alt="" />
-            <p className={classes.normalParagraph}>2. Następnie należy przejść do zakładki uczeń i kliknąć przycisk "WYGENERUJ KOD DOSTĘPU". </p>
+            <p className={classes.normalParagraph}>
+              2. Następnie należy przejść do zakładki uczeń i kliknąć przycisk
+              "WYGENERUJ KOD DOSTĘPU".{" "}
+            </p>
             <img className={classes.example} src={example2} alt="" />
-            <p className={classes.normalParahraph}>3. Ostatnim krokiem będzie skopiowanie bądź przepisanie tokenu, symbolu i pinu wygenerowanego przez system UOnet+.</p>
+            <p className={classes.normalParahraph}>
+              3. Ostatnim krokiem będzie skopiowanie bądź przepisanie tokenu,
+              symbolu i pinu wygenerowanego przez system UOnet+.
+            </p>
             <img className={classes.example} src={example3} alt="" />
           </Section>
         </form>
-        )
-      }
+      )}
     </>
   );
 };

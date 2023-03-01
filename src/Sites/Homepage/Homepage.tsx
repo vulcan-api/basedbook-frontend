@@ -106,48 +106,42 @@ const Homepage = () => {
           <div className={classes.posts}>
             {posts.map((post) => {
               return (
-                <div key={post.id} style={{ width: "40%" }}>
-                  <Wrapper className={classes.post}>
-                    <div className={classes.topData}>
-                      <div>
-                        <Icon.PersonFill />
-                        {post.isAnonymous ? "Anonim" : post.username}
-                      </div>
-                      <div>
-                        <Icon.CalendarDate />
-                        {new Date(post.createdAt).toLocaleDateString()}
-                      </div>
-                      <div>
-                        <Icon.Clock />
-                        {new Date(post.createdAt).getHours() +
-                          ":" +
-                          new Date(post.createdAt).getMinutes()}
-                      </div>
+                <Wrapper className={classes.post} style={{ width: "40%" }} key={post.id}>
+                  <div className={classes.topData}>
+                    <div>
+                      <Icon.PersonFill />
+                      {post.isAnonymous ? "Anonim" : post.username}
                     </div>
-                    <div className={classes.content}>{post.text}</div>
-                    <div className={classes.bottomData}>
-                      <div
-                        onClick={() => {
-                          likeHandler(post);
-                        }}
+                    <div>
+                      <Icon.CalendarDate />
+                      {new Date(post.createdAt).toLocaleDateString()}
+                    </div>
+                    <div>
+                      <Icon.Clock />
+                      {new Date(post.createdAt).getHours() +
+                        ":" +
+                        new Date(post.createdAt).getMinutes()}
+                    </div>
+                  </div>
+                  <div className={classes.content}>{post.text}</div>
+                  <div className={classes.bottomData}>
+                    <div
+                      onClick={() => {
+                        likeHandler(post);
+                      }}
+                    >
+                      {post.isLiked && (
+                        <Icon.HeartFill style={{ color: "var(--add1-500)" }} />
+                      )}
+                      {!post.isLiked && <Icon.Heart />}
+                      <p
+                        style={post.isLiked ? { color: "var(--add1-500)" } : {}}
                       >
-                        {post.isLiked && (
-                          <Icon.HeartFill
-                            style={{ color: "var(--add1-500)" }}
-                          />
-                        )}
-                        {!post.isLiked && <Icon.Heart />}
-                        <p
-                          style={
-                            post.isLiked ? { color: "var(--add1-500)" } : {}
-                          }
-                        >
-                          {post.likes}
-                        </p>
-                      </div>
+                        {post.likes}
+                      </p>
                     </div>
-                  </Wrapper>
-                </div>
+                  </div>
+                </Wrapper>
               );
             })}
             <Button
