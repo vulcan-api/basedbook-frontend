@@ -47,6 +47,10 @@
     color: var(--main-400);
 }
 
+.detailsContainer p {
+    width: 100%;
+}
+
 .ovColor {
     color: inherit;
 }

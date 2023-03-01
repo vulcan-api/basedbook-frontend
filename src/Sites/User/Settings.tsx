@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import classes from "./Settings.module.css";
 import Section from "../../Layout/Section";
 import Input from "../../Components/Input";
@@ -62,7 +62,7 @@ const Settings = () => {
       Object.entries(settings).filter(([_, value]) => value !== null)
     );
     const throwObject = {};
-    await fetch(
+    const settingsRequest = await fetch(
       "http://localhost:3000/user/settings/",
       {
         method: "PATCH",
@@ -73,7 +73,7 @@ const Settings = () => {
         body: JSON.stringify(filteredSettings),
       }
     )
-      .then((res) => res.json())
+      .then((res) => res.text())
       .then(() => {
         NotificationManager.success(
           "Udało się zaktualizować ustawienia.",
@@ -141,7 +141,7 @@ const Settings = () => {
             <div className={classes.twoInputs}>
               <Input
                 placeholder="Nazwa użytkownika"
-                value={settings.username || undefined}
+                value={settings.username}
                 onChange={handleUserNameChange}
               />
               <Button buttonText="Zmień hasło" />
@@ -149,24 +149,24 @@ const Settings = () => {
             <div className={classes.twoInputs}>
               <Input
                 placeholder="Link do konta facebook"
-                value={settings.facebook || undefined}
+                value={settings.facebook}
                 onChange={handleFacebookChange}
               />
               <Input
                 placeholder="Link do konta instagram"
-                value={settings.instagram || undefined}
+                value={settings.instagram}
                 onChange={handleInstagramChange}
               />
             </div>
             <div className={classes.twoInputs}>
               <Input
                 placeholder="Link do kanału na youtube"
-                value={settings.youtube || undefined}
+                value={settings.youtube}
                 onChange={handleYTChange}
               />
               <Input
                 placeholder="Link do strony internetowej"
-                value={settings.website || undefined}
+                value={settings.website}
                 onChange={handleWebsiteChange}
               />
             </div>
@@ -174,7 +174,7 @@ const Settings = () => {
               <div className={classes.inputHolder}>
                 <Textarea
                   placeholder="Opis profilu"
-                  value={settings.profileDesc || undefined}
+                  value={settings.profileDesc}
                   onChange={handleDescChange}
                 />
               </div>
@@ -199,11 +199,9 @@ const Settings = () => {
                     }`}
                   >
                     <BrightnessHighFill
-                      className={!darkTheme ? classes.current : null}
+                      className={darkTheme || classes.current}
                     />
-                    <MoonFill
-                      className={darkTheme ? classes.current : null}
-                    />
+                    <MoonFill className={darkTheme && classes.current} />
                   </div>
                 </div>
                 <label className={classes.label}>Ciemny motyw</label>
@@ -218,11 +216,13 @@ const Settings = () => {
             <h2>Dziennik</h2>
             <div>
               <p>
-                Kliknij{" "}
-                <Link to="vulcan" style={{ color: "var(--add2-500)" }}>
-                  tutaj
-                </Link>
-                , aby połączyć swój dziennik Vulcan z aplikacją Basedbook
+                <p>
+                  Kliknij{" "}
+                  <Link to="vulcan" style={{ color: "var(--add2-500)" }}>
+                    tutaj
+                  </Link>
+                  , aby połączyć swój dziennik Vulcan z aplikacją Basedbook
+                </p>
               </p>
             </div>
           </Section>

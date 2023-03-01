@@ -57,7 +57,7 @@ const Project = () => {
 
     async function applyToProject(event: any, id: any) {
         event.preventDefault();
-        console.log(id);
+        localStorage.getItem(id) === "signed" ? localStorage.removeItem(id) : localStorage.setItem(id, "signed");
         const applyProject = {
             projectId: id,
         }

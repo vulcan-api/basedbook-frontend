@@ -19,6 +19,16 @@
   padding: 32px;
   box-sizing: border-box;
   background-color: var(--bg-clr);
+  animation: .2s enteringSlide;
+}
+
+@keyframes enteringSlide {
+  from {
+    transform: translateY(-25px);
+  }
+  to {
+    transform: translateY(0px);
+  }
 }
 
 .modal p {
