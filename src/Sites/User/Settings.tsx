@@ -5,16 +5,17 @@ import Input from "../../Components/Input";
 import Textarea from "../../Components/Textarea";
 import Button from "../../Components/Button";
 import turtle from "./Graphics/turtle.jpg"
+import { getTheme, toggleTheme } from "../../Lib/getUser";
 import {BrightnessHighFill, MoonFill, PencilFill, CheckSquareFill} from "react-bootstrap-icons";
-//import Checkbox from "../../Components/Checkbox";
 import {Link, useNavigate} from "react-router-dom";
 import LoadingSpinner from "../../Components/LoadingSpinner";
 //@ts-ignore
 import {NotificationManager} from "react-notifications";
+import Checkbox from "../../Components/Checkbox";
 
 const Settings = () => {
     const navigate = useNavigate();
-    //const [darkTheme, setDarkTheme] = useState(false);
+    const [darkTheme, setDarkTheme] = useState(getTheme());
     const [isLoading, setIsLoading] = useState(true);
     const [settings, setSettings] = useState({
         "username": "",
@@ -28,8 +29,7 @@ const Settings = () => {
         "profileDesc": "",
         "darkTheme": false
     });
-
-
+    
     async function getSettings() {
         setIsLoading(true);
         try {
@@ -43,6 +43,12 @@ const Settings = () => {
             console.error(error);
         }
         setIsLoading(false);
+    }
+
+    const updateTheme = () => {
+        setDarkTheme(!darkTheme);
+        toggleTheme();
+        return;
     }
 
     async function updateSettings(event: any) {
@@ -151,29 +157,27 @@ const Settings = () => {
                         </div>
                     </div>
                 </Section>
-                    {/*<Section>*/}
-                    {/*    <h2>Preferencje</h2>*/}
-                    {/*    <div className={classes.inliner}>*/}
-                    {/*        <div*/}
-                    {/*            className={classes.switchContainer}*/}
-                    {/*            onClick={() => {*/}
-                    {/*                setDarkTheme(!darkTheme);*/}
-                    {/*            }}*/}
-                    {/*        >*/}
-                    {/*            <div className={classes.themeSwitch}>*/}
-                    {/*                <div*/}
-                    {/*                    className={`${classes.ballWrapper} ${darkTheme ? classes.right : classes.left}`}*/}
-                    {/*                >*/}
-                    {/*                    <BrightnessHighFill*/}
-                    {/*                        className={darkTheme || classes.current}/>*/}
-                    {/*                    <MoonFill className={darkTheme && classes.current}/>*/}
-                    {/*                </div>*/}
-                    {/*            </div>*/}
-                    {/*            <label className={classes.label}>Ciemny motyw</label>*/}
-                    {/*        </div>*/}
-                    {/*        <Checkbox label="Weryfikacja dwuetapowa" id="verifationCheckbox"/>*/}
-                    {/*    </div>*/}
-                    {/*</Section>*/}
+                    <Section>
+                        <h2>Preferencje</h2>
+                        <div className={classes.inliner}>
+                            <div
+                                className={classes.switchContainer}
+                                onClick={updateTheme}
+                            >
+                                <div className={classes.themeSwitch}>
+                                    <div
+                                        className={`${classes.ballWrapper} ${darkTheme ? classes.right : classes.left}`}
+                                    >
+                                        <BrightnessHighFill
+                                            className={darkTheme || classes.current}/>
+                                        <MoonFill className={darkTheme && classes.current}/>
+                                    </div>
+                                </div>
+                                <label className={classes.label}>Ciemny motyw</label>
+                            </div>
+                            <Checkbox label="Weryfikacja dwuetapowa" id="verifationCheckbox"/>
+                        </div>
+                    </Section>
                     <Section>
                         <h2>Dziennik</h2>
                         <div>

@@ -2,7 +2,9 @@
 @import url('https://fonts.googleapis.com/css?family=Zen+Dots');
 
 :root {
-  --bg-clr: #fdfdfd;
+  --light: #fdfdfd;
+  --dark: #1f1f1f;
+  --bg-clr: var(--light-bg);
   --main-500: #17181C;
   --main-400: #17181C80;
   --main-300: #17181C60;
@@ -28,6 +30,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-clr);
+  color: var(--main-500);
 }
 
 code {
@@ -59,7 +62,7 @@ p {
 }
 
 h1, h2 {
-  color: #FA4753;
+  color: var(--add1-500);
   font-family: 'Zen Dots';
   padding: 0;
   margin-block-start: 0;

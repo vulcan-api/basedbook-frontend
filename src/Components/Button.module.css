@@ -11,7 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--bg-clr);
+    color: var(--light);
     transition: all .3s;
 }
 

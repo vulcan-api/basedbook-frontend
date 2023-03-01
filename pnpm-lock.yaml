@@ -4,9 +4,11 @@ specifiers:
   '@testing-library/jest-dom': ^5.16.5
   '@testing-library/react': ^13.4.0
   '@testing-library/user-event': ^13.5.0
+  '@types/js-cookie': ^3.0.3
   '@types/react': ^18.0.28
   '@types/react-dom': ^18.0.10
   cross-env: ^7.0.3
+  js-cookie: ^3.0.1
   localforage: ^1.10.0
   match-sorter: ^6.3.1
   matrix-js-sdk: ^23.2.0
@@ -26,8 +28,10 @@ dependencies:
   '@testing-library/jest-dom': 5.16.5
   '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
   '@testing-library/user-event': 13.5.0_yxlyej73nftwmh2fiao7paxmlm
+  '@types/js-cookie': 3.0.3
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.10
+  js-cookie: 3.0.1
   localforage: 1.10.0
   match-sorter: 6.3.1
   matrix-js-sdk: 23.2.0
@@ -2468,6 +2472,10 @@ packages:
     dependencies:
       expect: 29.4.2
       pretty-format: 29.4.2
+    dev: false
+
+  /@types/js-cookie/3.0.3:
+    resolution: {integrity: sha512-Xe7IImK09HP1sv2M/aI+48a20VX+TdRJucfq4vfRVy6nWN8PYPOEnlMRSgxJAgYQIXJVL8dZ4/ilAM7dWNaOww==}
     dev: false
 
   /@types/json-schema/7.0.11:
@@ -6696,6 +6704,11 @@ packages:
       - supports-color
       - ts-node
       - utf-8-validate
+    dev: false
+
+  /js-cookie/3.0.1:
+    resolution: {integrity: sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==}
+    engines: {node: '>=12'}
     dev: false
 
   /js-sdsl/4.3.0:

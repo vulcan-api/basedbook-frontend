@@ -5,6 +5,7 @@ import classes from "./Main.module.css";
 import { useNavigate } from "react-router-dom";
 //@ts-ignore
 import {NotificationManager} from "react-notifications";
+import { executeTheme } from "../Lib/getUser";
 
 const Main = (props: {removeWrapper?: boolean}) => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const Main = (props: {removeWrapper?: boolean}) => {
         return res;
       })
       .then((res) => res.json())
+      .then(() => executeTheme())
       .catch((err) => {
         console.error(err);
         navigate("/auth/login");
