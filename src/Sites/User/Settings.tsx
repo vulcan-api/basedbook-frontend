@@ -1,12 +1,12 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 import classes from "./Settings.module.css"
 import Section from "../../Layout/Section";
 import Input from "../../Components/Input";
 import Textarea from "../../Components/Textarea";
 import Button from "../../Components/Button";
 import turtle from "./Graphics/turtle.jpg"
-import { getTheme, toggleTheme } from "../../Lib/getUser";
-import {BrightnessHighFill, MoonFill, PencilFill, CheckSquareFill} from "react-bootstrap-icons";
+import { PencilFill, CheckSquareFill} from "react-bootstrap-icons";
+//import Checkbox from "../../Components/Checkbox";
 import {Link, useNavigate} from "react-router-dom";
 import LoadingSpinner from "../../Components/LoadingSpinner";
 //@ts-ignore
@@ -57,7 +57,6 @@ const Settings = () => {
             Object.entries(settings).filter(([_, value]) => value !== null)
         );
         const throwObject = {};
-        console.log(filteredSettings);
         const settingsRequest = await fetch("http://localhost:3000/user/settings/", {
             method: "PATCH",
             headers: {
@@ -66,18 +65,16 @@ const Settings = () => {
             credentials: "include",
             body: JSON.stringify(filteredSettings),
         })
-            .then((res) => res.text()).then(() => {
-                NotificationManager.success("Udało się zaktualizować ustawienia.", "Sukces!", 3000);
-                navigate("/profile");
-            })
+            .then((res) => res.json())
             .catch((err) => {
                 console.error(err);
                 return throwObject;
             });
-        // if (settingsRequest.statusCode === 200 || Array.isArray(settings)) {
-        //     NotificationManager.success("Udało się zaktualizować ustawienia.", "Sukces!", 3000);
-        //     navigate("/profile");
-        // }
+
+        if (settingsRequest.statusCode === 200 || Array.isArray(settings)) {
+            NotificationManager.success("Udało się zaktualizować ustawienia.", "Sukces!", 3000);
+            navigate("/profile");
+        }
     }
 
     const handleUserNameChange = (event: any) => {

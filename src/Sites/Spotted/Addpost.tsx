@@ -33,7 +33,6 @@ const Addpost = () => {
         };
 
         const throwObject = {};
-        console.log(post);
         const spottedPosts = await fetch("http://localhost:3000/spotted/post", {
             method: "PUT",
             headers: {
