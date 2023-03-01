@@ -97,14 +97,12 @@ const Profile = () => {
   useEffect(() => {
     getUserPosts();
   }, [getUserPosts]);
-  useEffect(() => {
-    getPublicInfo();
-  }, []);
+
   const showSpottedPostsHandler = (isShowed: Boolean) => {
     setShowSpottedPosts(!isShowed);
   };
 
-  async function getPublicInfo() {
+  const getPublicInfo = useCallback(async function getPublicInfo() {
     try {
       await fetch(`http://localhost:3000/user/${userId}`, {
         method: "GET",
@@ -115,7 +113,11 @@ const Profile = () => {
     } catch (error) {
       console.error(error);
     }
-  }
+  }, [userId])
+
+    useEffect(() => {
+      getPublicInfo();
+    }, [getPublicInfo]);
 
   const closeModal = () => {
     setShowModal(false);

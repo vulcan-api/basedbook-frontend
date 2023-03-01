@@ -4,7 +4,6 @@ import Sidebar from "../Layout/Sidebar";
 import classes from "./Main.module.css";
 import { useNavigate } from "react-router-dom";
 //@ts-ignore
-import {NotificationManager} from "react-notifications";
 import { executeTheme } from "../Lib/getUser";
 
 const Main = (props: {removeWrapper?: boolean}) => {

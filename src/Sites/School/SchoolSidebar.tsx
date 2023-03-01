@@ -50,7 +50,7 @@ const Sidebar = () => {
     getLuckyNumber();
     getLastGrades();
     getAllGrades();
-  }, []);
+  }, [getAllGrades]);
 
   return (
     <>
@@ -124,7 +124,7 @@ const Sidebar = () => {
                     })
                     .filter(e => !isNaN(e));
                     if (subjectSum.length === 0) return null;
-                    return (subjectSum.reduce((a: number, b: number) => a + b, 0) / Object.keys(grades).length).toFixed(2);
+                    return " " + (subjectSum.reduce((a: number, b: number) => a + b, 0) / Object.keys(grades).length).toFixed(2);
                 })()
             }
           </p>
