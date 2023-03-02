@@ -16,7 +16,6 @@ import { Link, useNavigate } from "react-router-dom";
 import LoadingSpinner from "../../Components/LoadingSpinner";
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
-import Checkbox from "../../Components/Checkbox";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -206,21 +205,22 @@ const Settings = () => {
                 </div>
                 <label className={classes.label}>Ciemny motyw</label>
               </div>
-              <Checkbox
-                label="Weryfikacja dwuetapowa"
-                id="verifationCheckbox"
-              />
+              <div>
+                <Button
+                  buttonText="Dodaj weryfikację dwuetapową"
+                />
+              </div>
             </div>
           </Section>
           <Section>
             <h2>Dziennik</h2>
             <div>
               <p>
-                Kliknij{" "}
-                <Link to="vulcan" style={{ color: "var(--add2-500)" }}>
-                  tutaj
-                </Link>
-                , aby połączyć swój dziennik Vulcan z aplikacją Basedbook
+                  Kliknij{" "}
+                  <Link to="vulcan" style={{ color: "var(--add2-500)" }}>
+                    tutaj
+                  </Link>
+                  , aby połączyć swój dziennik Vulcan z aplikacją Basedbook
               </p>
             </div>
           </Section>
