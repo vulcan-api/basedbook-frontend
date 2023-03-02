@@ -21,94 +21,95 @@ import School from './Sites/School/School';
 import Grades from './Sites/School/Grades';
 import RegisterVulcan from './Sites/User/RegisterVulcan';
 import Exams from "./Sites/School/Exams";
+import ComingSoon from './Layout/ComingSoon';
 
 const router = createBrowserRouter([
-    {
-        path: "/auth",
-        element: <Auth/>,
-    },
-    {
-        path: "/auth/login",
-        element: <Login/>
-    },
-    {
-        path: "/auth/signup",
-        element: <Register/>
-    },
-    {
-        path: "/",
-        element: <Main/>,
+  {
+    path: "/auth",
+    element: <Auth />,
+  },
+  {
+    path: "/auth/login",
+    element: <Login />,
+  },
+  {
+    path: "/auth/signup",
+    element: <Register />,
+  },
+  {
+    path: "/",
+    element: <Main />,
+    children: [
+      {
+        path: "",
+        element: <Homepage />,
+      },
+      {
+        path: "spotted",
+        element: <Spotted />,
+      },
+      {
+        path: "spotted/add",
+        element: <Addpost />,
+      },
+      {
+        path: "project",
+        element: <Project />,
+      },
+      {
+        path: "project/add",
+        element: <Addproject />,
+      },
+      {
+        path: "settings",
+        element: <Settings />,
+      },
+      {
+        path: "settings/vulcan",
+        element: <RegisterVulcan />,
+      },
+      {
+        path: "profile",
+        element: <ProfileRedirect />,
+      },
+      {
+        path: "profile/:userId",
+        element: <Profile />,
+      },
+    ],
+  },
+  {
+    path: "/school",
+    element: <Main removeWrapper={true} />,
+    children: [
+      {
+        path: "",
+        element: <School />,
         children: [
-            {
-                path: "",
-                element: <Homepage/>,
-            },
-            {
-                path: "spotted",
-                element: <Spotted/>,
-            },
-            {
-                path: "spotted/add",
-                element: <Addpost/>,
-            },
-            {
-                path: "project",
-                element: <Project/>,
-            },
-            {
-                path: "project/add",
-                element: <Addproject/>,
-            },
-            {
-                path: "settings",
-                element: <Settings/>,
-            },
-            {
-                path: "settings/vulcan",
-                element: <RegisterVulcan/>,
-            },
-            {
-                path: "profile",
-                element: <ProfileRedirect/>,
-            },
-            {
-                path: "profile/:userId",
-                element: <Profile/>,
-            },
+          {
+            path: "grades",
+            element: <Grades />,
+          },
+          {
+            path: "attendance",
+            element: <ComingSoon />,
+          },
+          {
+            path: "exams",
+            element: <Exams />,
+          },
+          {
+            path: "lessons",
+            element: <ComingSoon />,
+          },
+          {
+            path: "messages",
+            element: <ComingSoon />,
+          },
         ],
-    },
-    {
-        path: "/school",
-        element: <Main removeWrapper={true}/>,
-        children: [
-            {
-                path: "",
-                element: <School/>,
-                children: [
-                    {
-                        path: "grades",
-                        element: <Grades/>
-                    },
-                    {
-                        path: "attendance",
-                        element: <Grades/>
-                    },
-                    {
-                        path: "exams",
-                        element: <Exams/>
-                    },
-                    {
-                        path: "lessons",
-                        element: <Grades/>
-                    },
-                    {
-                        path: "messages",
-                        element: <Grades/>
-                    },
-                ]
-            }
-        ]
-    }
+      },
+    ],
+  },
 ]);
 
 

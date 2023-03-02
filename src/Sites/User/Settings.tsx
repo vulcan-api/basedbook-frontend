@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./Settings.module.css";
 import Section from "../../Layout/Section";
 import Input from "../../Components/Input";
@@ -141,7 +141,7 @@ const Settings = () => {
             <div className={classes.twoInputs}>
               <Input
                 placeholder="Nazwa użytkownika"
-                value={settings.username}
+                value={settings.username || undefined}
                 onChange={handleUserNameChange}
               />
               <Button buttonText="Zmień hasło" />
@@ -149,24 +149,24 @@ const Settings = () => {
             <div className={classes.twoInputs}>
               <Input
                 placeholder="Link do konta facebook"
-                value={settings.facebook}
+                value={settings.facebook || undefined}
                 onChange={handleFacebookChange}
               />
               <Input
                 placeholder="Link do konta instagram"
-                value={settings.instagram}
+                value={settings.instagram || undefined}
                 onChange={handleInstagramChange}
               />
             </div>
             <div className={classes.twoInputs}>
               <Input
                 placeholder="Link do kanału na youtube"
-                value={settings.youtube}
+                value={settings.youtube || undefined}
                 onChange={handleYTChange}
               />
               <Input
                 placeholder="Link do strony internetowej"
-                value={settings.website}
+                value={settings.website || undefined}
                 onChange={handleWebsiteChange}
               />
             </div>
@@ -174,7 +174,7 @@ const Settings = () => {
               <div className={classes.inputHolder}>
                 <Textarea
                   placeholder="Opis profilu"
-                  value={settings.profileDesc}
+                  value={settings.profileDesc || undefined}
                   onChange={handleDescChange}
                 />
               </div>
@@ -199,9 +199,9 @@ const Settings = () => {
                     }`}
                   >
                     <BrightnessHighFill
-                      className={darkTheme || classes.current}
+                      className={!darkTheme ? classes.current : ""}
                     />
-                    <MoonFill className={darkTheme && classes.current} />
+                    <MoonFill className={darkTheme ? classes.current : ""} />
                   </div>
                 </div>
                 <label className={classes.label}>Ciemny motyw</label>
@@ -216,13 +216,11 @@ const Settings = () => {
             <h2>Dziennik</h2>
             <div>
               <p>
-                <p>
-                  Kliknij{" "}
-                  <Link to="vulcan" style={{ color: "var(--add2-500)" }}>
-                    tutaj
-                  </Link>
-                  , aby połączyć swój dziennik Vulcan z aplikacją Basedbook
-                </p>
+                Kliknij{" "}
+                <Link to="vulcan" style={{ color: "var(--add2-500)" }}>
+                  tutaj
+                </Link>
+                , aby połączyć swój dziennik Vulcan z aplikacją Basedbook
               </p>
             </div>
           </Section>
