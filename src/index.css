@@ -44,6 +44,10 @@ body {
   color: var(--main-500);
 }
 
+* {
+  transition: background-color 200ms linear;
+}
+
 p {
   color: var(--main-500)
 }

@@ -22,8 +22,13 @@ import Grades from './Sites/School/Grades';
 import RegisterVulcan from './Sites/User/RegisterVulcan';
 import Exams from "./Sites/School/Exams";
 import ComingSoon from './Layout/ComingSoon';
+import ErrorElement from './Layout/ErrorElement';
 
 const router = createBrowserRouter([
+  {
+    path: "*",
+    element: <ErrorElement />,
+  },
   {
     path: "/auth",
     element: <Auth />,

@@ -1,0 +1,26 @@
+.mainCont {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+}
+
+.mainCont h2 {
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    font-size: 2rem;
+}
+
+.mainCont a {
+    width: 30%;
+}
+
+.mainCont svg {
+    color: var(--add1-500);
+    width: 20%;
+    height: 20%;
+}
