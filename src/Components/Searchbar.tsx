@@ -38,7 +38,8 @@ const Searchbar = (props: {
   };
 
   const setupHeight = () => {
-    if (ref.current != null) setHeight(ref.current.offsetHeight * -1);
+    if (parentRef.current) setParentWidth(parentRef.current.offsetWidth);
+    if (ref.current) setHeight(ref.current.offsetHeight * -1);
   };
 
   window.addEventListener("keydown", (ev) => {
@@ -46,7 +47,6 @@ const Searchbar = (props: {
   });
 
   useEffect(() => {
-    parentRef.current && setParentWidth(parentRef.current.offsetWidth);
     setupHeight();
   }, [parentRef]);
 

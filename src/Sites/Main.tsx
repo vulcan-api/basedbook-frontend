@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { executeTheme } from "../Lib/getUser";
 
 const Main = (props: {removeWrapper?: boolean}) => {
+  executeTheme()
   const navigate = useNavigate();
-
   const fetchPosts = useCallback(async () => {
     await fetch("http://localhost:3000/spotted/post", {
       method: "GET",
@@ -19,7 +19,6 @@ const Main = (props: {removeWrapper?: boolean}) => {
         return res;
       })
       .then((res) => res.json())
-      .then(() => executeTheme())
       .catch((err) => {
         console.error(err);
         navigate("/auth/login");
