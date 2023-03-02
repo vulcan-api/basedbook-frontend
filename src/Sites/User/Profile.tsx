@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import classes from "./Profile.module.css";
-import turtle from "./Graphics/turtle.jpg";
+import defaultAvatar from "./Graphics/default.png";
 import Button from "../../Components/Button";
 import { Instagram } from "react-bootstrap-icons";
 import * as Icon from "react-bootstrap-icons";
@@ -128,7 +128,7 @@ const Profile = () => {
       {isLoading && <LoadingSpinner />}
       <div className={classes.personContainer}>
         <div className={classes.avatar}>
-          <img className={classes.avImage} src={turtle} alt="" />
+          <img className={classes.avImage} src={defaultAvatar} alt="" />
         </div>
         <div className={classes.managementContainer}>
           <div className={classes.detailsContainer}>

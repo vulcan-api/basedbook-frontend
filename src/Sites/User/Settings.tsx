@@ -4,7 +4,7 @@ import Section from "../../Layout/Section";
 import Input from "../../Components/Input";
 import Textarea from "../../Components/Textarea";
 import Button from "../../Components/Button";
-import turtle from "./Graphics/turtle.jpg";
+import defaultAvatar from "./Graphics/default.png";
 import { getTheme, toggleTheme } from "../../Lib/getUser";
 import {
   BrightnessHighFill,
@@ -182,7 +182,7 @@ const Settings = () => {
                   <span className={`${classes.coverer} ${classes.hidden}`}>
                     <PencilFill className={classes.covererIcon} />
                   </span>
-                  <img className={classes.avImage} src={turtle} alt="" />
+                  <img className={classes.avImage} src={defaultAvatar} alt="" />
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, RefObject } from "react";
-import turtle from "../Sites/User/Graphics/turtle.jpg";
+import defaultAvatar from "../Sites/User/Graphics/default.png";
 import Input from "../Components/Input";
 import LinkBase, { LinkBaseType } from "./LinkBase";
 import classes from "./Searchbar.module.css";
@@ -82,7 +82,7 @@ const Searchbar = (props: {
                 key={result["id"]}
                 id={result["id"]}
                 name={`${result["name"]} ${result["surname"]} - ${result["username"]}`}
-                image={turtle}
+                image={defaultAvatar}
                 onClick={() => {
                   searchHandler();
                 }}
