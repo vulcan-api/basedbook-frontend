@@ -35,18 +35,10 @@ const ProjectItem = (props: any) => {
         <h2>{project.title}</h2>
         <p className={classes.content}>{project.text}</p>
         <Button
-          buttonText={
-            localStorage.getItem(project.id) === "signed"
-              ? "Wypisz się"
-              : "Zapisz się"
-          }
+          buttonText="Zgłoś się"
           onClick={(event: any) => {
             props.applyToProject(event, project.id);
-            window.location.reload();
           }}
-          className={
-            localStorage.getItem(project.id) === "signed" ? "alternate" : " "
-          }
         />
       </Wrapper>
     </div>
