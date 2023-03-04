@@ -19,6 +19,13 @@ React and TypeScript are ones of them and we use them.
 ## BasedBook ties your local communities together
 BasedBook lets you share your ideas and projects with other people in your school, village, town or city.
 
+# Screenshots
+![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/homepage.png)
+![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/profile.png)
+![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/projects.png)
+![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/settings.png)
+![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/spotted.png)
+
 # Some commands:
 ### Installing dependencies
 ``` pnpm install ```
