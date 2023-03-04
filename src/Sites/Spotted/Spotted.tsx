@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../Components/LoadingSpinner";
 //@ts-ignore
-import Modal from "../../Layout/Modal";
+import Modal from "../../Layout/ModalComponents/Modal";
 
 const Spotted = () => {
   const [posts, setPosts] = useState([
@@ -107,6 +107,7 @@ const Spotted = () => {
           postId={reportedPostId}
           onBgClick={closeModal}
           onClose={closeModal}
+          modalContent="report"
         />
       )}
       {!isLoading && (

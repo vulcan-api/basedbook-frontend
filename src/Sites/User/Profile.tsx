@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 import { NotificationManager } from "react-notifications";
 import LoadingSpinner from "../../Components/LoadingSpinner";
 import Wrapper from "../../Layout/Wrapper";
-import Modal from "../../Layout/Modal";
+import Modal from "../../Layout/ModalComponents/Modal";
 
 const Profile = () => {
   const [isSended, setIsSended] = useState(false);

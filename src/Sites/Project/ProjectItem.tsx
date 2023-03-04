@@ -26,7 +26,7 @@ const ProjectItem = (props: any) => {
           </div>
           <div
             onClick={() => {
-              props.openModal(project.id);
+              props.openModal(project.id, "report");
             }}
           >
             <Icon.FlagFill />
@@ -34,12 +34,19 @@ const ProjectItem = (props: any) => {
         </div>
         <h2>{project.title}</h2>
         <p className={classes.content}>{project.text}</p>
-        <Button
-          buttonText="Zgłoś się"
-          onClick={(event: any) => {
-            props.applyToProject(event, project.id);
-          }}
-        />
+        <div className={classes.bottomData}>
+          <Button
+            buttonText="Zgłoś się"
+            onClick={(event: any) => {
+              props.applyToProject(event, project.id);
+            }}
+          />
+          <Icon.PersonFillCheck
+            onClick={() => {
+              props.openModal(project.id, "projectAppliedUsers");
+            }}
+          />
+        </div>
       </Wrapper>
     </div>
   );
