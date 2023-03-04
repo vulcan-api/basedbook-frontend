@@ -45,7 +45,7 @@ export function getTheme(): boolean {
 export function toggleTheme() {
   const user = getUserObject();
 
-  if(user.theme === true) {
+  if(user.theme) {
     user.theme = false;
     setLight();
   }
