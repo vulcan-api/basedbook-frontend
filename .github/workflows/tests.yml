@@ -9,7 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      CI: ""
     strategy:
       matrix:
         node-version: [18.x]
