@@ -20,6 +20,7 @@ React and TypeScript are ones of them and we use them.
 BasedBook lets you share your ideas and projects with other people in your school, village, town or city.
 
 # Screenshots
+Don't understand any of the labels in screenshots below? Don't worry, we are going to add some translations.
 ![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/homepage.png)
 ![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/profile.png)
 ![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/projects.png)
