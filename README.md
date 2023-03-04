@@ -8,6 +8,14 @@
 
 Beautiful client of beautiful protocol.
 
+# Screenshots
+Don't understand any of the labels in screenshots below? Don't worry, we are going to add some translations.
+![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/homepage.png)
+![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/profile.png)
+![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/projects.png)
+![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/settings.png)
+![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/spotted.png)
+
 # Why BasedBook?
 ## Modular design
 Our social platform is designed to be modular. Backend API is separated from frontend, which means if you don't like our UI, you can always write your own frontend in your favourite framework.
@@ -18,14 +26,6 @@ React and TypeScript are ones of them and we use them.
 
 ## BasedBook ties your local communities together
 BasedBook lets you share your ideas and projects with other people in your school, village, town or city.
-
-# Screenshots
-Don't understand any of the labels in screenshots below? Don't worry, we are going to add some translations.
-![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/homepage.png)
-![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/profile.png)
-![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/projects.png)
-![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/settings.png)
-![](https://github.com/Nasz-Elektryk/basedbook-frontend/blob/main/docs/spotted.png)
 
 # Some commands:
 ### Installing dependencies
