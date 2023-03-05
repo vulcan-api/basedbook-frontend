@@ -12,7 +12,7 @@ const ProjectItem = (props: any) => {
         <div className={classes.topData}>
           <div>
             <Icon.PersonFill />
-            {project.username}
+            {project.author.username}
           </div>
           <div>
             <Icon.CalendarDate />
@@ -36,10 +36,11 @@ const ProjectItem = (props: any) => {
         <p className={classes.content}>{project.text}</p>
         <div className={classes.bottomData}>
           <Button
-            buttonText="Zgłoś się"
+            buttonText={project.hasAlreadyApplied ? "Wypisz się" : "Zapisz się"}
             onClick={(event: any) => {
               props.applyToProject(event, project.id);
             }}
+            className={project.hasAlreadyApplied ? "alternate" : ""}
           />
           <Icon.PersonFillCheck
             onClick={() => {

@@ -11,13 +11,18 @@ import ProjectItem from "./ProjectItem";
 import { NotificationManager } from "react-notifications";
 
 const Project = () => {
-  const [projects, setProject] = useState([
+  const [projects, setProjects] = useState([
     {
       id: 1,
       createdAt: new Date("2023-02-14T18:09:09.433Z"),
       title: "BusinessAssistant+",
       text: "Hej! Szukamy ludzi do przepisania naszego projektu w JS/TS",
-      username: "Seweryn Pajor",
+      author: {
+        name: String,
+        surname: String,
+        username: String,
+      },
+      hasAlreadyApplied: true,
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
@@ -49,15 +54,28 @@ const Project = () => {
         credentials: "include",
       })
         .then((res) => res.json())
-        .then(setProject);
+        .then(setProjects);
     } catch (error) {
       console.error(error);
     }
     setIsLoading(false);
   }
 
-  async function applyToProject(event: any, id: any) {
-    event.preventDefault();
+  const applyToProjectHandler = (post:any) => {
+    let projectsCopy = [...projects];
+    let index = projectsCopy.indexOf(post);
+    if (projects[index].hasAlreadyApplied) {
+      projects[index].hasAlreadyApplied = false;
+      applyToProject(projects[index].id);
+      setProjects(projectsCopy);
+    } else {
+      projects[index].hasAlreadyApplied = true;
+      applyToProject(projects[index].id);
+      setProjects(projectsCopy);
+    }
+  }
+
+  async function applyToProject(id: any) {
     const applyProject = {
       projectId: id,
     };
@@ -127,7 +145,7 @@ const Project = () => {
                 <ProjectItem
                   project={project}
                   openModal={openModal}
-                  applyToProject={applyToProject}
+                  applyToProject={() => applyToProjectHandler(project)}
                 />
               </div>
             );
