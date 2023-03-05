@@ -1,3 +1,5 @@
+@value avImage as orImg from "../../Sites/User/Profile.module.css";
+
 .background {
   position: fixed;
   z-index: 10;
@@ -19,7 +21,8 @@
   padding: 32px;
   box-sizing: border-box;
   background-color: var(--bg-clr);
-  animation: .2s enteringSlide;
+  animation: 0.2s enteringSlide;
+  max-height: 80vh;
 }
 
 @keyframes enteringSlide {
@@ -32,17 +35,17 @@
 }
 
 .modal p {
-    font-size: 32px;
-    color: var(--add1-500);
-    margin-bottom: 32px;
+  font-size: 32px;
+  color: var(--add1-500);
+  margin-bottom: 32px;
 }
 
-.modal p:first-of-type {
-    color: var(--main-300);
-    position: fixed;
-    top: 48px;
-    left: 72vw;
-    cursor: pointer;
+.modal > p:first-of-type {
+  color: var(--main-300);
+  position: fixed;
+  top: 48px;
+  left: 72vw;
+  cursor: pointer;
 }
 
 .textarea {
@@ -66,5 +69,36 @@
 
 .textarea:active,
 .textarea:focus {
-    outline: none;
+  outline: none;
+}
+
+.modal ul {
+  list-style-type: none;
+  list-style-position: inside;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding-inline-start: 0;
+}
+
+.modal li > a {
+  font-size: 2rem;
+  color: var(--main-400);
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--main-100);
+}
+
+.avatar {
+  width: 2rem;
+  height: 2rem;
+  overflow: hidden;
+  border-radius: 100%;
+}
+
+.avImage {
+  composes: orImg;
 }
