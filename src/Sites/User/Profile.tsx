@@ -197,6 +197,7 @@ const Profile = () => {
             postId={reportedPostId}
             onBgClick={closeModal}
             onClose={closeModal}
+            modalContent="report"
           />
         )}
         {!showSpottedPosts && posts.length < 1 ? (

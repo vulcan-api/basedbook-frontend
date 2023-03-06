@@ -6,11 +6,7 @@ import ProjectAppliedUsersModal from "./ProjectAppliedUsersModal";
 import LoadingSpinner from "../../Components/LoadingSpinner";
 
 const Modal = (props: any) => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  const showSpinner = () => {
-    isLoading ? setIsLoading(false) : setIsLoading(true);
-  }
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <>
@@ -31,7 +27,7 @@ const Modal = (props: any) => {
           <ProjectAppliedUsersModal
             postId={props.postId}
             projectId={props.projectId}
-            showSpinner={showSpinner}
+            showSpinner={setIsLoading}
           />
         )}
       </div>

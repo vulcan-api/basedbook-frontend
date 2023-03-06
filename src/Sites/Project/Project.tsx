@@ -94,11 +94,7 @@ const Project = () => {
         3000
       );
     } else {
-      NotificationManager.error(
-        "Zgłosiłeś się już do tego projektu!.",
-        "Błąd!",
-        3000
-      );
+      NotificationManager.error("Wystąpił błąd!", "Błąd!", 3000);
     }
   }
   async function leaveProject(id: any) {
@@ -113,15 +109,9 @@ const Project = () => {
       credentials: "include",
       body: JSON.stringify(leaveProjectObject),
     });
-    if (response.ok) {
-      NotificationManager.success(
-        "Udało się opuscic projekt.",
-        "Sukces!",
-        3000
-      );
-    } else {
+    if (!response.ok) {
       NotificationManager.error(
-        "Wystąpił błąd!.",
+        "Wystąpił błąd!",
         "Błąd!",
         3000
       );
