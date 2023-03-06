@@ -66,7 +66,7 @@ const Project = () => {
     let index = projectsCopy.indexOf(post);
     if (projects[index].hasAlreadyApplied) {
       projects[index].hasAlreadyApplied = false;
-      applyToProject(projects[index].id);
+      leaveProject(projects[index].id);
       setProjects(projectsCopy);
     } else {
       projects[index].hasAlreadyApplied = true;
@@ -96,6 +96,32 @@ const Project = () => {
     } else {
       NotificationManager.error(
         "Zgłosiłeś się już do tego projektu!.",
+        "Błąd!",
+        3000
+      );
+    }
+  }
+  async function leaveProject(id: any) {
+    const leaveProjectObject = {
+      projectId: id,
+    };
+    const response = await fetch("http://localhost:3000/project/leave", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(leaveProjectObject),
+    });
+    if (response.ok) {
+      NotificationManager.success(
+        "Udało się opuscic projekt.",
+        "Sukces!",
+        3000
+      );
+    } else {
+      NotificationManager.error(
+        "Wystąpił błąd!.",
         "Błąd!",
         3000
       );
