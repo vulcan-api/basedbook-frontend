@@ -48,7 +48,7 @@ const Searchbar = (props: {
 
   useEffect(() => {
     setupHeight();
-  }, [parentRef]);
+  });
 
   return (
     <>
