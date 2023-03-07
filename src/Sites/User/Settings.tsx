@@ -61,7 +61,7 @@ const Settings = () => {
       Object.entries(settings).filter(([_, value]) => value !== null)
     );
     const throwObject = {};
-    const settingsRequest = await fetch(
+    fetch(
       "http://localhost:3000/user/settings/",
       {
         method: "PATCH",

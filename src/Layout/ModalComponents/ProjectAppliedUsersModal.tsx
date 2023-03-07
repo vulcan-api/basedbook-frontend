@@ -40,7 +40,7 @@ const ProjectAppliedUsersModal = (props: any) => {
 
   useEffect(() => {
     getUsers();
-  }, []);
+  });
 
   return (
     <ul>
