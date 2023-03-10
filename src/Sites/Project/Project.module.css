@@ -57,7 +57,15 @@
     font-size: 2rem;
 }
 
-.topData, .bottomData {
+.topData > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    color: var(--main-400);
+}
+
+.topData, .bottomData, .topData p {
     display: flex;
     font-size: 24px;
     color: var(--main-400);
@@ -66,7 +74,12 @@
     align-items: center;
 }
 
+.topData {
+    gap: 2rem;
+}
+
 .topData > div {
+    font-size: 1.5rem;
     display: flex;
     align-items: center;
     gap: 8px;

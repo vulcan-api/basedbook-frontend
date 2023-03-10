@@ -30,7 +30,7 @@ const Project = () => {
   const [modalContent, setModalContent] = useState("");
   const [reportedProjectId, setReportedProjectId] = useState(-100);
   const [listType, setListType] = useState({
-    width: "40%",
+    width: "45%",
   });
 
   const [isActive, setIsActive] = useState(true);
@@ -145,7 +145,7 @@ const Project = () => {
             />
             <Icon.GridFill
               className={isActive ? classes.active : ""}
-              onClick={() => changeListTypeHandler(40, 0)}
+              onClick={() => changeListTypeHandler(45, 0)}
             />
           </div>
           <Link to="/project/add">

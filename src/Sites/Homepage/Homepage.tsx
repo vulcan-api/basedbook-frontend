@@ -8,6 +8,7 @@ import { NotificationManager } from "react-notifications";
 import classes from "../Spotted/Spotted.module.css";
 import { useNavigate } from "react-router-dom";
 import Button from "../../Components/Button";
+import { Link } from "react-router-dom";
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -16,7 +17,10 @@ const Homepage = () => {
     {
       id: 69,
       createdAt: new Date("2023-02-06T19:21:38.727Z"),
-      authorId: 1,
+      author: {
+        id: 4,
+        username: "",
+      },
       title: "Lekcja z symfony u stopiarza",
       text: "Chciałem się pochwalić że prowadziłem lekcje u stopiarza",
       isAnonymous: false,
@@ -32,7 +36,7 @@ const Homepage = () => {
   async function getPosts() {
     setIsLoading(true);
     try {
-      await fetch("http://localhost:3000/spotted/post?take=4", {
+      await fetch("http://localhost:3000/spotted/post?postTake=4", {
         method: "GET",
         credentials: "include",
       })
@@ -106,21 +110,43 @@ const Homepage = () => {
           <div className={classes.posts}>
             {posts.map((post) => {
               return (
-                <Wrapper className={classes.post} style={{ width: "40%" }} key={post.id}>
+                <Wrapper
+                  className={classes.post}
+                  style={{ width: "45%" }}
+                  key={post.id}
+                >
                   <div className={classes.topData}>
-                    <div>
-                      <Icon.PersonFill />
-                      {post.isAnonymous ? "Anonim" : post.username}
-                    </div>
+                    {post.isAnonymous ? (
+                      <div>
+                        <Icon.PersonFill />
+                        <p>
+                          {post.isAnonymous ? "Anonim" : post.author.username}
+                        </p>
+                      </div>
+                    ) : (
+                      <div>
+                        <Link
+                          to={`/profile/${
+                            post.isAnonymous ? 0 : post.author.id
+                          }`}
+                        >
+                          <Icon.PersonFill />
+                          <p>
+                            {post.isAnonymous ? "Anonim" : post.author.username}
+                          </p>
+                        </Link>
+                      </div>
+                    )}
                     <div>
                       <Icon.CalendarDate />
                       {new Date(post.createdAt).toLocaleDateString()}
                     </div>
                     <div>
                       <Icon.Clock />
-                      {new Date(post.createdAt).getHours() +
-                        ":" +
-                        new Date(post.createdAt).getMinutes()}
+                      {new Date(post.createdAt).getUTCHours() + ":"}
+                      {new Date(post.createdAt).getUTCMinutes() < 10
+                        ? "0" + new Date(post.createdAt).getUTCMinutes()
+                        : new Date(post.createdAt).getUTCMinutes()}
                     </div>
                   </div>
                   <div className={classes.content}>{post.text}</div>

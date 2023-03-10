@@ -3,6 +3,7 @@ import classes from "./Project.module.css";
 import * as Icon from "react-bootstrap-icons";
 import Button from "../../Components/Button";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ProjectItem = (props: any) => {
   const project = props.project;
@@ -10,10 +11,14 @@ const ProjectItem = (props: any) => {
     <div style={props.listType}>
       <Wrapper className={classes.post}>
         <div className={classes.topData}>
-          <div>
-            <Icon.PersonFill />
-            {project.author.username}
-          </div>
+          {project.author ? (
+            <Link to={`/profile/${project.author.id}`}>
+              <Icon.PersonFill />
+              <p>{project.author.username}</p>
+            </Link>
+          ) : (
+            ""
+          )}
           <div>
             <Icon.CalendarDate />
             {new Date(project.createdAt).toLocaleDateString()}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import classes from "./Spotted.module.css";
 import Button from "../../Components/Button";
 import * as Icon from "react-bootstrap-icons";
@@ -14,7 +14,10 @@ const Spotted = () => {
     {
       id: 69,
       createdAt: new Date("2023-02-06T19:21:38.727Z"),
-      authorId: 1,
+      author: {
+        id: 4,
+        username: "",
+      },
       title: "Lekcja z symfony u stopiarza",
       text: "Chciałem się pochwalić że prowadziłem lekcje u stopiarza",
       isAnonymous: false,
@@ -23,11 +26,12 @@ const Spotted = () => {
       username: "jajco",
     },
   ]);
+  const [spottedPostsCount, setSpottedPostsCount] = useState(20);
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [reportedPostId, setReportedPostId] = useState(-100);
   const [listType, setListType] = useState({
-    width: "40%",
+    width: "45%",
   });
 
   const [isActive, setIsActive] = useState(true);
@@ -77,27 +81,34 @@ const Spotted = () => {
       });
   };
 
-  useEffect(() => {
-    getAllPosts();
-  }, []);
-
-  async function getAllPosts() {
+  const getAllPosts = useCallback(async () => {
     setIsLoading(true);
     try {
-      await fetch("http://localhost:3000/spotted/post?take=20", {
-        method: "GET",
-        credentials: "include",
-      })
+      await fetch(
+        `http://localhost:3000/spotted/post?postTake=${spottedPostsCount}`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      )
         .then((res) => res.json())
         .then(setPosts);
     } catch (error) {
       console.error(error);
     }
     setIsLoading(false);
-  }
+  }, [spottedPostsCount]);
+
+  useEffect(() => {
+    getAllPosts();
+  }, [getAllPosts]);
 
   const closeModal = () => {
     setShowModal(false);
+  };
+
+  const downloadMorePosts = () => {
+    setSpottedPostsCount(spottedPostsCount + 10);
   };
 
   return (
@@ -119,7 +130,7 @@ const Spotted = () => {
             />
             <Icon.GridFill
               className={isActive ? classes.active : ""}
-              onClick={() => changeListTypeHandler(40, 0)}
+              onClick={() => changeListTypeHandler(45, 0)}
             />
           </div>
           <Link to="/spotted/add">
@@ -127,26 +138,41 @@ const Spotted = () => {
           </Link>
         </div>
       )}
-      {!isLoading && (
+      {!isLoading && 
+      <>
         <div className={classes.posts}>
           {posts.map((post) => {
             return (
               <div key={post.id} style={listType}>
                 <Wrapper className={classes.post}>
                   <div className={classes.topData}>
-                    <div>
-                      <Icon.PersonFill />
-                      {post.isAnonymous ? "Anonim" : post.username}
-                    </div>
+                    {post.isAnonymous ? (
+                      <div>
+                        <Icon.PersonFill />
+                        <p>
+                          {post.isAnonymous ? "Anonim" : post.author.username}
+                        </p>
+                      </div>
+                    ) : (
+                      <div>
+                        <Link to={`/profile/${post.author.id}`}>
+                          <Icon.PersonFill />
+                          <p>
+                            {post.isAnonymous ? "Anonim" : post.author.username}
+                          </p>
+                        </Link>
+                      </div>
+                    )}
                     <div>
                       <Icon.CalendarDate />
                       {new Date(post.createdAt).toLocaleDateString()}
                     </div>
                     <div>
                       <Icon.Clock />
-                      {new Date(post.createdAt).getHours() +
-                        ":" +
-                        new Date(post.createdAt).getMinutes()}
+                      {new Date(post.createdAt).getUTCHours() + ":"}
+                      {new Date(post.createdAt).getUTCMinutes() < 10
+                        ? "0" + new Date(post.createdAt).getUTCMinutes()
+                        : new Date(post.createdAt).getUTCMinutes()}
                     </div>
                     <div
                       onClick={() => {
@@ -181,7 +207,11 @@ const Spotted = () => {
             );
           })}
         </div>
-      )}
+        <div className={classes.loadMoreButton}>
+            <Button buttonText="Więcej postów" onClick={downloadMorePosts} />
+          </div>
+      </>
+      }
       {isLoading && <LoadingSpinner />}
     </>
   );
