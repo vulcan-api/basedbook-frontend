@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import classes from "./Modal.module.css";
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
@@ -6,6 +6,10 @@ import Button from "../../Components/Button";
 
 const ReportModal = (props: any) => {
   const postText: any = useRef("");
+
+  useEffect(() => {
+    props.showSpinner(false);
+  }, [props])
 
   async function submitReportHandler() {
     let path = "";

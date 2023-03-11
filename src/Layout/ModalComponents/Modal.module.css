@@ -89,6 +89,9 @@
   gap: 2rem;
   align-items: center;
   padding-bottom: 0.5rem;
+}
+
+.modal li:not(:last-of-type) > a {
   border-bottom: 1px solid var(--main-100);
 }
 

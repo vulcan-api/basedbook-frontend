@@ -14,6 +14,8 @@ const LoadingSpinner = (props:any) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          boxSizing: "border-box",
+          padding: "2rem",
         }}
         visible={true}
       />
