@@ -11,12 +11,12 @@ const ProjectItem = (props: any) => {
     <div style={props.listType}>
       <Wrapper className={classes.post}>
         <div className={classes.topData}>
-          {project.author && 
-            <Link to={`/profile/${project.author.id}`} >
+          {project.author && (
+            <Link to={`/profile/${project.author.id}`}>
               <Icon.PersonFill />
               <p>{project.author.username}</p>
             </Link>
-          }
+          )}
           <div>
             <Icon.CalendarDate />
             {new Date(project.createdAt).toLocaleDateString()}
@@ -32,7 +32,26 @@ const ProjectItem = (props: any) => {
               props.openModal(project.id, "report");
             }}
           >
-            <Icon.FlagFill />
+            {!project.isOwned && (
+              <Icon.FlagFill
+                onClick={() => {
+                  props.setShowModal(true);
+                  props.setModalProjectId(project.id);
+                  props.setModalContent("report");
+                }}
+                className={classes.report}
+              />
+            )}
+            {project.isOwned && (
+              <Icon.TrashFill
+                onClick={() => {
+                 props.setShowModal(true);
+                 props.setModalProjectId(project.id);
+                 props.setModalContent("delete");;
+                }}
+                className={classes.report}
+              />
+            )}
           </div>
         </div>
         <h2>{project.title}</h2>

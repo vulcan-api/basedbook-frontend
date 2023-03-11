@@ -77,6 +77,14 @@
   align-items: center;
 }
 
+.bottomDataDisabled {
+  display: flex;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .topData {
   gap: 2rem;
 }
@@ -92,7 +100,8 @@
   cursor: pointer;
 }
 
-.bottomData {
+.bottomData,
+.bottomDataDisabled {
   gap: 1rem;
 }
 
@@ -100,6 +109,16 @@
   cursor: pointer;
   width: 2rem;
   color: var(--add1-500);
+}
+
+.bottomDataDisabled > svg {
+  cursor: not-allowed;
+  width: 2rem;
+  color: var(--main-300);
+}
+
+.bottomDataDisabled > button {
+  cursor: not-allowed;
 }
 
 .content {

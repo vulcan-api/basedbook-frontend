@@ -39,31 +39,42 @@ const ProjectAppliedUsersModal = (props: {
             "Błąd!",
             3000
           );
-        }).finally(() => {props.showSpinner(false); setShowUsers(true);});
+        })
+        .finally(() => {
+          props.showSpinner(false);
+          setShowUsers(true);
+        });
     }
     getUsers();
   }, [props]);
 
   return (
-    <ul>
+    <>
       {participants.length < 1 ? (
         <p>Brak zapisanych użytkowników !</p>
       ) : (
         <p>Zapisani użytkownicy: </p>
       )}
-      {showUsers && participants.map((participant: any, index: any) => {
-        return (
-          <li key={index}>
-            <Link to={`/profile/${participant.user.id}`}>
-              <div className={classes.avatar}>
-                <img className={classes.avImage} src={defaultAvatar} alt="" />
-              </div>
-              {participant.user.name} {participant.user.surname}
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
+      <ul>
+        {showUsers &&
+          participants.map((participant: any, index: any) => {
+            return (
+              <li key={index}>
+                <Link to={`/profile/${participant.user.id}`}>
+                  <div className={classes.avatar}>
+                    <img
+                      className={classes.avImage}
+                      src={defaultAvatar}
+                      alt=""
+                    />
+                  </div>
+                  {participant.user.username}
+                </Link>
+              </li>
+            );
+          })}
+      </ul>
+    </>
   );
 };
 export default ProjectAppliedUsersModal;

@@ -64,7 +64,13 @@
     color: var(--main-400);
 }
 
-.topData > div,
+.topData > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.topData,
 .topData p,
 .bottomData > div {
     display: flex;
@@ -73,8 +79,9 @@
     color: var(--main-400);
 }
 
-.report > svg {
+.report {
     cursor: pointer;
+    color: var(--main-400);
 }
 
 .bottomData > div > p {

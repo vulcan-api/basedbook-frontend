@@ -13,23 +13,25 @@ const Spotted = () => {
   const [posts, setPosts] = useState([
     {
       id: 69,
-      createdAt: new Date("2023-02-06T19:21:38.727Z"),
+      createdAt: new Date(""),
       author: {
         id: 4,
         username: "",
       },
-      title: "Lekcja z symfony u stopiarza",
-      text: "Chciałem się pochwalić że prowadziłem lekcje u stopiarza",
+      title: "",
+      text: "",
       isAnonymous: false,
       isLiked: false,
       likes: 69,
-      username: "jajco",
+      username: "",
+      isOwned: true,
     },
   ]);
   const [spottedPostsCount, setSpottedPostsCount] = useState(20);
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [reportedPostId, setReportedPostId] = useState(-100);
+  const [modalContent, setModalContent] = useState("report");
+  const [modalPostId, setModalPostId] = useState(-100);
   const [listType, setListType] = useState({
     width: "45%",
   });
@@ -115,10 +117,10 @@ const Spotted = () => {
     <>
       {showModal && (
         <Modal
-          postId={reportedPostId}
+          postId={modalPostId}
           onBgClick={closeModal}
           onClose={closeModal}
-          modalContent="report"
+          modalContent={modalContent}
         />
       )}
       {!isLoading && (
@@ -138,80 +140,97 @@ const Spotted = () => {
           </Link>
         </div>
       )}
-      {!isLoading && 
-      <>
-        <div className={classes.posts}>
-          {posts.map((post) => {
-            return (
-              <div key={post.id} style={listType}>
-                <Wrapper className={classes.post}>
-                  <div className={classes.topData}>
-                    {post.isAnonymous ? (
-                      <div>
-                        <Icon.PersonFill />
-                        <p>
-                          {post.isAnonymous ? "Anonim" : post.author.username}
-                        </p>
-                      </div>
-                    ) : (
-                      <div>
-                        <Link to={`/profile/${post.author.id}`}>
+      {!isLoading && (
+        <>
+          <div className={classes.posts}>
+            {posts.map((post) => {
+              return (
+                <div key={post.id} style={listType}>
+                  <Wrapper className={classes.post}>
+                    <div className={classes.topData}>
+                      {post.isAnonymous ? (
+                        <div>
                           <Icon.PersonFill />
                           <p>
                             {post.isAnonymous ? "Anonim" : post.author.username}
                           </p>
-                        </Link>
-                      </div>
-                    )}
-                    <div>
-                      <Icon.CalendarDate />
-                      {new Date(post.createdAt).toLocaleDateString()}
-                    </div>
-                    <div>
-                      <Icon.Clock />
-                      {new Date(post.createdAt).getUTCHours() + ":"}
-                      {new Date(post.createdAt).getUTCMinutes() < 10
-                        ? "0" + new Date(post.createdAt).getUTCMinutes()
-                        : new Date(post.createdAt).getUTCMinutes()}
-                    </div>
-                    <div
-                      onClick={() => {
-                        setShowModal(true);
-                        setReportedPostId(post.id);
-                      }}
-                      className={classes.report}
-                    >
-                      <Icon.FlagFill />
-                    </div>
-                  </div>
-                  <div className={classes.content}>{post.text}</div>
-                  <div className={classes.bottomData}>
-                    <div
-                      onClick={() => {
-                        likeHandler(post);
-                      }}
-                    >
-                      {post.isLiked && (
-                        <Icon.HeartFill style={{ color: "var(--add1-500)" }} />
+                        </div>
+                      ) : (
+                        <div>
+                          <Link to={`/profile/${post.author.id}`}>
+                            <Icon.PersonFill />
+                            <p>
+                              {post.isAnonymous
+                                ? "Anonim"
+                                : post.author.username}
+                            </p>
+                          </Link>
+                        </div>
                       )}
-                      {!post.isLiked && <Icon.Heart />}
-                      <p
-                        style={post.isLiked ? { color: "var(--add1-500)" } : {}}
-                      >
-                        {post.likes}
-                      </p>
+                      <div>
+                        <Icon.CalendarDate />
+                        {new Date(post.createdAt).toLocaleDateString()}
+                      </div>
+                      <div>
+                        <Icon.Clock />
+                        {new Date(post.createdAt).getUTCHours() + ":"}
+                        {new Date(post.createdAt).getUTCMinutes() < 10
+                          ? "0" + new Date(post.createdAt).getUTCMinutes()
+                          : new Date(post.createdAt).getUTCMinutes()}
+                      </div>
+                      {!post.isOwned && (
+                        <Icon.FlagFill
+                          onClick={() => {
+                            setShowModal(true);
+                            setModalPostId(post.id);
+                            setModalContent("report");
+                          }}
+                          className={classes.report}
+                        />
+                      )}
+                      {post.isOwned && (
+                        <Icon.TrashFill
+                          onClick={() => {
+                            setShowModal(true);
+                            setModalPostId(post.id);
+                            setModalContent("delete");
+                          }}
+                          className={classes.report}
+                        />
+                      )}
                     </div>
-                  </div>
-                </Wrapper>
-              </div>
-            );
-          })}
-        </div>
-        <div className={classes.loadMoreButton}>
+                    <div className={classes.content}>{post.text}</div>
+                    <div className={classes.bottomData}>
+                      <div
+                        onClick={() => {
+                          likeHandler(post);
+                        }}
+                      >
+                        {post.isLiked && (
+                          <Icon.HeartFill
+                            style={{ color: "var(--add1-500)" }}
+                          />
+                        )}
+                        {!post.isLiked && <Icon.Heart />}
+                        <p
+                          style={
+                            post.isLiked ? { color: "var(--add1-500)" } : {}
+                          }
+                        >
+                          {post.likes}
+                        </p>
+                      </div>
+                    </div>
+                  </Wrapper>
+                </div>
+              );
+            })}
+          </div>
+          <div className={classes.loadMoreButton}>
             <Button buttonText="Więcej postów" onClick={downloadMorePosts} />
           </div>
-      </>
-      }
+        </>
+      )}
       {isLoading && <LoadingSpinner />}
     </>
   );

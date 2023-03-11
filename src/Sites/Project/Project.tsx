@@ -29,7 +29,7 @@ const Project = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
-  const [reportedProjectId, setReportedProjectId] = useState(-100);
+  const [modalProjectId, setModalProjectId] = useState(-100);
   const [listType, setListType] = useState({
     width: "45%",
   });
@@ -125,13 +125,13 @@ const Project = () => {
   const openModal = (id: any, modalContent:any) => {
     setModalContent(modalContent);
     setShowModal(true);
-    setReportedProjectId(id);
+    setModalProjectId(id);
   };
   return (
     <>
       {showModal && (
         <Modal
-          projectId={reportedProjectId}
+          projectId={modalProjectId}
           onBgClick={closeModal}
           onClose={closeModal}
           modalContent={modalContent}

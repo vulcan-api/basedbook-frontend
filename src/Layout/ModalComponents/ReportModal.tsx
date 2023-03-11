@@ -19,9 +19,9 @@ const ReportModal = (props: any) => {
       projectId: props.projectId,
       reason: postText.current.value,
     };
-    if (report.projectId != null) {
+    if (report.projectId !== null) {
       path = "/project";
-    } else if (report.postId != null) {
+    } else if (report.postId !== null) {
       path = "/spotted";
     }
     await fetch(`http://localhost:3000${path}/report`, {

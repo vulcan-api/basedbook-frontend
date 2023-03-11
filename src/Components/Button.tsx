@@ -7,6 +7,8 @@ export const classMgmt = (className: any) => {
         return classes.alternate;
       case "gray":
         return classes.gray;
+      case "gray disabled":
+        return classes.grayDisabled;
       default:
         return classes.default;
     }

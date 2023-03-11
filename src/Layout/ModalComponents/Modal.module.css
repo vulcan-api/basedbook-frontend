@@ -34,16 +34,23 @@
   }
 }
 
-.modal p {
-  font-size: 32px;
+.modal > p:nth-of-type(2) {
+  font-size: 2rem;
   color: var(--add1-500);
-  margin-bottom: 32px;
+  margin-bottom: 2rem;
 }
 
-.modal > p:first-of-type {
+.warning {
+  color: var(--main-400);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.closeModal {
   color: var(--main-300);
+  font-size: 2rem;
   position: fixed;
-  top: 48px;
+  top: 3rem;
   left: 72vw;
   cursor: pointer;
 }
