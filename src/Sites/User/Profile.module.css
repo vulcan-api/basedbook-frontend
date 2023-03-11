@@ -100,8 +100,10 @@
 .profileContent > p {
     font-size: 2rem;
     color: var(--main-400);
-    position: relative;
-    transform: translate(130%, 0);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .postWrapper {

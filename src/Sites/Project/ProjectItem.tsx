@@ -11,14 +11,12 @@ const ProjectItem = (props: any) => {
     <div style={props.listType}>
       <Wrapper className={classes.post}>
         <div className={classes.topData}>
-          {project.author ? (
-            <Link to={`/profile/${project.author.id}`}>
+          {project.author && 
+            <Link to={`/profile/${project.author.id}`} >
               <Icon.PersonFill />
               <p>{project.author.username}</p>
             </Link>
-          ) : (
-            ""
-          )}
+          }
           <div>
             <Icon.CalendarDate />
             {new Date(project.createdAt).toLocaleDateString()}

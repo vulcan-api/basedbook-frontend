@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, RefObject } from "react";
+import React, { useRef, useState, useEffect, RefObject, useCallback } from "react";
 import defaultAvatar from "../Sites/User/Graphics/default.png";
 import Input from "../Components/Input";
 import LinkBase, { LinkBaseType } from "./LinkBase";
@@ -19,6 +19,15 @@ const Searchbar = (props: {
   const [height, setHeight] = useState(0);
   const [users, setUsers] = useState([]);
 
+  const setupHeight = useCallback(() => {
+    if (parentRef.current) setParentWidth(parentRef.current.offsetWidth);
+    if (ref.current) setHeight(ref.current.offsetHeight * -1);
+  }, [parentRef]);
+
+  useEffect(() => {
+    setupHeight();
+  }, [setupHeight]);
+
   const searchHandler = () => {
     if (isSearching) {
       setIsSearching(false);
@@ -37,17 +46,8 @@ const Searchbar = (props: {
       .then((json) => setUsers(json));
   };
 
-  const setupHeight = () => {
-    if (parentRef.current) setParentWidth(parentRef.current.offsetWidth);
-    if (ref.current) setHeight(ref.current.offsetHeight * -1);
-  };
-
   window.addEventListener("keydown", (ev) => {
     ev.key === "Escape" && searchHandler();
-  });
-
-  useEffect(() => {
-    setupHeight();
   });
 
   return (

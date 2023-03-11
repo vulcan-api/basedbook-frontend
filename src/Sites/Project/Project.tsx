@@ -18,9 +18,10 @@ const Project = () => {
       title: "BusinessAssistant+",
       text: "Hej! Szukamy ludzi do przepisania naszego projektu w JS/TS",
       author: {
-        name: String,
-        surname: String,
-        username: String,
+        id: -100,
+        name: '',
+        surname: '',
+        username: '',
       },
       hasAlreadyApplied: true,
     },

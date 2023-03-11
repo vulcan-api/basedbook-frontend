@@ -293,7 +293,7 @@ const Profile = () => {
       <div className={classes.profileContent}>
         {showSpottedPosts &&
           (posts.length < 1 ? (
-            <p>Brak postów użytkownika</p>
+            <p>Brak projektów użytkownika.</p>
           ) : (
             projects.map((project) => {
               return (
@@ -314,7 +314,7 @@ const Profile = () => {
           ))}
         {!showSpottedPosts &&
           (projects.length < 1 ? (
-            <p>Brak postów użytkownika</p>
+            <p>Brak postów użytkownika.</p>
           ) : (
             posts.map((post) => {
               return (
