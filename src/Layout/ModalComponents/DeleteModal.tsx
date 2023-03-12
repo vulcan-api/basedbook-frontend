@@ -135,9 +135,10 @@ const DeleteModal = (props: any) => {
                       </div>
                       <div>
                         <Icon.Clock />
-                        {new Date(project.createdAt).getHours() +
-                          ":" +
-                          new Date(project.createdAt).getMinutes()}
+                        {new Date(project.createdAt).getHours() + ":"}
+                        {new Date(project.createdAt).getMinutes() < 10
+                          ? "0" + new Date(project.createdAt).getMinutes()
+                          : new Date(project.createdAt).getMinutes()}
                       </div>
                     </div>
                     <h2>{project.title}</h2>
@@ -192,10 +193,10 @@ const DeleteModal = (props: any) => {
                       </div>
                       <div>
                         <Icon.Clock />
-                        {new Date(post.createdAt).getUTCHours() + ":"}
-                        {new Date(post.createdAt).getUTCMinutes() < 10
-                          ? "0" + new Date(post.createdAt).getUTCMinutes()
-                          : new Date(post.createdAt).getUTCMinutes()}
+                        {new Date(post.createdAt).getHours() + ":"}
+                        {new Date(post.createdAt).getMinutes() < 10
+                          ? "0" + new Date(post.createdAt).getMinutes()
+                          : new Date(post.createdAt).getMinutes()}
                       </div>
                     </div>
                     <div className={PostClasses.content}>{post.text}</div>

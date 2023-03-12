@@ -335,10 +335,10 @@ const Profile = () => {
                       </div>
                       <div>
                         <Icon.Clock />
-                        {new Date(post.createdAt).getUTCHours() + ":"}
-                        {new Date(post.createdAt).getUTCMinutes() < 10
-                          ? "0" + new Date(post.createdAt).getUTCMinutes()
-                          : new Date(post.createdAt).getUTCMinutes()}
+                        {new Date(post.createdAt).getHours() + ":"}
+                        {new Date(post.createdAt).getMinutes() < 10
+                          ? "0" + new Date(post.createdAt).getMinutes()
+                          : new Date(post.createdAt).getMinutes()}
                       </div>
                       {post.author.id === loggedUser.id ? (
                         <Icon.TrashFill

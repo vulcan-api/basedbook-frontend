@@ -25,12 +25,13 @@ const ProjectItem = (props: any) => {
           </div>
           <div>
             <Icon.Clock />
-            {new Date(project.createdAt).getHours() +
-              ":" +
-              new Date(project.createdAt).getMinutes()}
+            {new Date(project.createdAt).getHours() + ":"}
+            {new Date(project.createdAt).getMinutes() < 10
+              ? "0" + new Date(project.createdAt).getMinutes()
+              : new Date(project.createdAt).getMinutes()}
           </div>
           <div>
-            {!loggedUser.id === project.author.id ? (
+            {loggedUser.id !== project.author.id ? (
               <Icon.FlagFill
                 onClick={() => {
                   props.setShowModal(true);
@@ -63,7 +64,9 @@ const ProjectItem = (props: any) => {
           />
           <Icon.PersonFillCheck
             onClick={() => {
-              props.openModal(project.id, "projectAppliedUsers");
+              props.setShowModal(true);
+              props.setModalProjectId(project.id);
+              props.setModalContent("projectAppliedUsers");
             }}
           />
         </div>
