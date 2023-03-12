@@ -122,11 +122,7 @@ const Project = () => {
   const closeModal = () => {
     setShowModal(false);
   };
-  const openModal = (id: any, modalContent:any) => {
-    setModalContent(modalContent);
-    setShowModal(true);
-    setModalProjectId(id);
-  };
+
   return (
     <>
       {showModal && (
@@ -161,7 +157,9 @@ const Project = () => {
               <div key={project.id} style={listType}>
                 <ProjectItem
                   project={project}
-                  openModal={openModal}
+                  setShowModal={setShowModal}
+                  setModalProjectId={setModalProjectId}
+                  setModalContent={setModalContent}
                   applyToProject={() => applyToProjectHandler(project)}
                 />
               </div>

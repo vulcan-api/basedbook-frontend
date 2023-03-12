@@ -11,20 +11,26 @@ import LoadingSpinner from "../../Components/LoadingSpinner";
 import Wrapper from "../../Layout/Wrapper";
 import Modal from "../../Layout/ModalComponents/Modal";
 import ProjectItem from "../Project/ProjectItem";
+import getUserObject from "../../Lib/getUser";
 
 const Profile = () => {
   const [isSended, setIsSended] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showSpottedPosts, setShowSpottedPosts] = useState(false);
   const [modalContent, setModalContent] = useState("");
-  const [reportedProjectId, setReportedProjectId] = useState(-100);
-  const [reportedPostId, setReportedPostId] = useState(-100);
+  const [projectId, setProjectId] = useState(-100);
+  const [postId, setPostId] = useState(-100);
   const [isLoading, setIsLoading] = useState(false);
   const [posts, setPosts] = useState([
     {
       id: 69,
       createdAt: new Date("2023-02-06T19:21:38.727Z"),
-      authorId: 1,
+      author: {
+        name: String,
+        surname: String,
+        username: String,
+        id: 0,
+      },
       title: "Lekcja z symfony u stopiarza",
       text: "Chciałem się pochwalić że prowadziłem lekcje u stopiarza",
       isAnonymous: false,
@@ -56,6 +62,8 @@ const Profile = () => {
     profileDesc: "",
     email: "",
   });
+
+  const loggedUser = getUserObject();
 
   const { userId } = useParams();
 
@@ -132,32 +140,30 @@ const Profile = () => {
     getUserProjects();
   }, [getUserPosts, getUserProjects]);
 
-  const getPublicInfo = useCallback(async function getPublicInfo() {
-    try {
-      await fetch(`http://localhost:3000/user/${userId}`, {
-        method: "GET",
-        credentials: "include",
-      })
-        .then((res) => res.json())
-        .then(setUser);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [userId])
+  const getPublicInfo = useCallback(
+    async function getPublicInfo() {
+      try {
+        await fetch(`http://localhost:3000/user/${userId}`, {
+          method: "GET",
+          credentials: "include",
+        })
+          .then((res) => res.json())
+          .then(setUser);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [userId]
+  );
 
-    useEffect(() => {
-      getPublicInfo();
-    }, [getPublicInfo]);
+  useEffect(() => {
+    getPublicInfo();
+  }, [getPublicInfo]);
 
   const closeModal = () => {
     setShowModal(false);
-    setReportedPostId(-100);
-    setReportedProjectId(-100);
-  };
-  const openModal = (id: any, modalContent: any) => {
-    setModalContent(modalContent);
-    setShowModal(true);
-    setReportedProjectId(id);
+    setPostId(-100);
+    setProjectId(-100);
   };
 
   const applyToProjectHandler = (post: any) => {
@@ -217,8 +223,8 @@ const Profile = () => {
     <>
       {showModal && (
         <Modal
-          projectId={reportedProjectId}
-          postId={reportedPostId}
+          projectId={projectId}
+          postId={postId}
           onBgClick={closeModal}
           onClose={closeModal}
           modalContent={modalContent}
@@ -292,7 +298,7 @@ const Profile = () => {
       </div>
       <div className={classes.profileContent}>
         {showSpottedPosts &&
-          (posts.length < 1 ? (
+          (projects.length < 1 ? (
             <p>Brak projektów użytkownika.</p>
           ) : (
             projects.map((project) => {
@@ -305,15 +311,17 @@ const Profile = () => {
                 >
                   <ProjectItem
                     project={project}
-                    openModal={openModal}
-                    applyToProject={() => applyToProjectHandler(project.id)}
+                    setShowModal={setShowModal}
+                    setModalProjectId={setProjectId}
+                    setModalContent={setModalContent}
+                    applyToProject={() => applyToProjectHandler(project)}
                   />
                 </div>
               );
             })
           ))}
         {!showSpottedPosts &&
-          (projects.length < 1 ? (
+          (posts.length < 1 ? (
             <p>Brak postów użytkownika.</p>
           ) : (
             posts.map((post) => {
@@ -321,10 +329,6 @@ const Profile = () => {
                 <div key={post.id} className={classes.postWrapper}>
                   <Wrapper className={classes.post}>
                     <div className={classes.topData}>
-                      <div>
-                        <Icon.PersonFill />
-                        {post.isAnonymous ? "Anonim" : post.username}
-                      </div>
                       <div>
                         <Icon.CalendarDate />
                         {new Date(post.createdAt).toLocaleDateString()}
@@ -336,14 +340,25 @@ const Profile = () => {
                           ? "0" + new Date(post.createdAt).getUTCMinutes()
                           : new Date(post.createdAt).getUTCMinutes()}
                       </div>
-                      <div
-                        onClick={() => {
-                          setShowModal(true);
-                          setReportedPostId(post.id);
-                        }}
-                      >
-                        <Icon.FlagFill />
-                      </div>
+                      {post.author.id === loggedUser.id ? (
+                        <Icon.TrashFill
+                          onClick={() => {
+                            setShowModal(true);
+                            setPostId(post.id);
+                            setModalContent("delete");
+                          }}
+                          className={classes.report}
+                        />
+                      ) : (
+                        <Icon.FlagFill
+                          onClick={() => {
+                            setShowModal(true);
+                            setPostId(post.id);
+                            setModalContent("report");
+                          }}
+                          className={classes.report}
+                        />
+                      )}
                     </div>
                     <div className={classes.content}>{post.text}</div>
                     <div className={classes.bottomData}>
@@ -360,7 +375,7 @@ const Profile = () => {
                         {!post.isLiked && <Icon.Heart />}
                         <p
                           style={
-                            post.isLiked ? { color: "var(--add1-500)" } : {}
+                            post.isLiked ? { color: "var(--add1-500)" } : { color: "var(--main-400)"}
                           }
                         >
                           {post.likes}

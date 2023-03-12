@@ -9,6 +9,7 @@ const ProjectAppliedUsersModal = (props: {
   postId: Number;
   projectId: Number;
   showSpinner: Function;
+  onClose: Function;
 }) => {
   const [showUsers, setShowUsers] = useState(false);
   const [participants, setParticipants] = useState([
@@ -60,7 +61,7 @@ const ProjectAppliedUsersModal = (props: {
           participants.map((participant: any, index: any) => {
             return (
               <li key={index}>
-                <Link to={`/profile/${participant.user.id}`}>
+                <Link to={`/profile/${participant.user.id}`} onClick={() => props.onClose()}>
                   <div className={classes.avatar}>
                     <img
                       className={classes.avImage}

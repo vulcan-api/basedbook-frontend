@@ -66,7 +66,7 @@ const DeleteModal = (props: any) => {
           setShowContent(true);
         });
     };
-    props.projectId !== undefined ? getRemovableProject() : getRemovablePost();
+    props.projectId !== -100 ? getRemovableProject() : getRemovablePost();
   }, [props]);
 
   const deleteProject = async (id: any) => {
@@ -102,7 +102,7 @@ const DeleteModal = (props: any) => {
     });
     if (response.ok) {
       NotificationManager.success(
-        "Udało się zgłosić do projektu.",
+        "Udało się usunąć post.",
         "Sukces!",
         3000
       );
@@ -115,9 +115,9 @@ const DeleteModal = (props: any) => {
 
   return (
     <>
-      <p>Usuń {props.projectId !== undefined ? "projekt" : "post"}</p>
+      <p>Usuń {props.projectId !== -100 ? "projekt" : "post"}</p>
       {showContent &&
-        (props.projectId !== undefined
+        (props.projectId !== -100
           ? removableContent.map((project, index) => {
               return (
                 <div key={index}>

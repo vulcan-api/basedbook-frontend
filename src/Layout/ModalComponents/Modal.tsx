@@ -41,6 +41,7 @@ const Modal = (props: any) => {
               postId={props.postId}
               projectId={props.projectId}
               showSpinner={showSpinner}
+              onClose={props.onClose}
             />
           )}
           {props.modalContent === "delete" && (

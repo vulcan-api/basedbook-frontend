@@ -22,7 +22,6 @@ const Addproject = () => {
         };
 
         const throwObject = {};
-        console.log(post);
         const project = await fetch("http://localhost:3000/project", {
             method: "POST",
             headers: {

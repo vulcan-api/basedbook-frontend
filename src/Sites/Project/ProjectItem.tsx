@@ -4,8 +4,10 @@ import * as Icon from "react-bootstrap-icons";
 import Button from "../../Components/Button";
 import React from "react";
 import { Link } from "react-router-dom";
+import getUserObject from "../../Lib/getUser";
 
 const ProjectItem = (props: any) => {
+  const loggedUser = getUserObject();
   const project = props.project;
   return (
     <div style={props.listType}>
@@ -27,12 +29,8 @@ const ProjectItem = (props: any) => {
               ":" +
               new Date(project.createdAt).getMinutes()}
           </div>
-          <div
-            onClick={() => {
-              props.openModal(project.id, "report");
-            }}
-          >
-            {!project.isOwned && (
+          <div>
+            {!loggedUser.id === project.author.id ? (
               <Icon.FlagFill
                 onClick={() => {
                   props.setShowModal(true);
@@ -41,13 +39,12 @@ const ProjectItem = (props: any) => {
                 }}
                 className={classes.report}
               />
-            )}
-            {project.isOwned && (
+            ) : (
               <Icon.TrashFill
                 onClick={() => {
-                 props.setShowModal(true);
-                 props.setModalProjectId(project.id);
-                 props.setModalContent("delete");;
+                  props.setShowModal(true);
+                  props.setModalProjectId(project.id);
+                  props.setModalContent("delete");
                 }}
                 className={classes.report}
               />
