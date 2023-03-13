@@ -322,7 +322,7 @@ const Profile = () => {
           ))}
         {!showSpottedPosts &&
           (posts.length < 1 ? (
-            <p>Brak postów użytkownika.</p>
+            <p className={classes.textCenter}>Brak postów użytkownika.</p>
           ) : (
             posts.map((post) => {
               return (

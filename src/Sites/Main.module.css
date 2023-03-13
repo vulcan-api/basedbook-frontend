@@ -9,3 +9,9 @@
     overflow-y: auto;
     height: 100vh;
 }
+
+@media screen and (max-width: 600px) {
+    .wrapper {
+        padding: 1rem 1rem;
+    } 
+}
