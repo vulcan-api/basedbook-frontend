@@ -1,10 +1,7 @@
 # BasedBook frontend
-![](https://img.shields.io/github/languages/top/Muj-Elektryk/basedbook-frontend)
-![](https://img.shields.io/tokei/lines/github/Muj-Elektryk/basedbook-frontend)
-![](https://img.shields.io/github/license/Muj-Elektryk/basedbook-frontend)
-![](https://img.shields.io/github/package-json/v/Muj-Elektryk/basedbook-frontend)
-![](https://img.shields.io/github/commit-activity/w/Muj-Elektryk/basedbook-frontend)
-![](https://img.shields.io/github/stars/Muj-Elektryk/basedbook-frontend?style=social)
+![](https://img.shields.io/github/actions/workflow/status/nasz-elektryk/basedbook-frontend/tests.yml?logo=github-actions&logoColor=white&style=for-the-badge)
+![](https://img.shields.io/github/license/nasz-elektryk/basedbook-frontend?logo=gnu&style=for-the-badge)
+![](https://img.shields.io/github/package-json/v/nasz-elektryk/basedbook-frontend?color=yellow&logo=pnpm&logoColor=white&style=for-the-badge)
 
 Beautiful client of beautiful protocol.
 
