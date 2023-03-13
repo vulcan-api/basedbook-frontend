@@ -6,6 +6,7 @@ import DeleteModal from "./DeleteModal";
 import classes from "./Modal.module.css";
 import ProjectAppliedUsersModal from "./ProjectAppliedUsersModal";
 import LoadingSpinner from "../../Components/LoadingSpinner";
+import FollowersModal from "./FollorwersModal";
 
 const Modal = (props: any) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -48,6 +49,13 @@ const Modal = (props: any) => {
             <DeleteModal
               postId={props.postId}
               projectId={props.projectId}
+              onClose={props.onClose}
+              showSpinner={showSpinner}
+            />
+          )}
+          {props.modalContent === "followers" && (
+            <FollowersModal
+              userId={props.userId}
               onClose={props.onClose}
               showSpinner={showSpinner}
             />

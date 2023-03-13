@@ -14,7 +14,6 @@ import ProjectItem from "../Project/ProjectItem";
 import getUserObject from "../../Lib/getUser";
 
 const Profile = () => {
-  const [isSended, setIsSended] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showSpottedPosts, setShowSpottedPosts] = useState(false);
   const [modalContent, setModalContent] = useState("");
@@ -61,6 +60,9 @@ const Profile = () => {
     class_name: "",
     profileDesc: "",
     email: "",
+    Followers: 0,
+    Following: 0,
+    isAlreadyFollowed: true,
   });
 
   const loggedUser = getUserObject();
@@ -219,6 +221,57 @@ const Profile = () => {
     }
   }
 
+  const followUser = async () => {
+    const response = await fetch("http://localhost:3000/user/follows", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        userId: userId,
+      }),
+    });
+    if (!response.ok) {
+      NotificationManager.error("Wystąpił błąd!", "Błąd!", 3000);
+    } else {
+      NotificationManager.success("Wystąpił sukces!", "Sukces!", 3000);
+    }
+  }; 
+
+  const unFollowUser = async () => {
+    const response = await fetch("http://localhost:3000/user/follows", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        userId: userId,
+      }),
+    });
+    if (!response.ok) {
+      NotificationManager.error("Wystąpił błąd!", "Błąd!", 3000);
+    } else {
+      NotificationManager.success("Wystąpił sukces!", "Sukces!", 3000);
+    }
+  }; 
+
+  const followHandler = () => {
+    let userCopy = JSON.parse(JSON.stringify(user));
+    if (user.isAlreadyFollowed) {
+      userCopy.Followers -= 1;
+      userCopy.isAlreadyFollowed = false;
+      unFollowUser();
+      setUser(userCopy);
+    } else {
+      userCopy.Followers += 1;
+      userCopy.isAlreadyFollowed = true;
+      followUser();
+      setUser(userCopy);
+    }
+  };
+
   return (
     <>
       {showModal && (
@@ -228,6 +281,7 @@ const Profile = () => {
           onBgClick={closeModal}
           onClose={closeModal}
           modalContent={modalContent}
+          userId={userId}
         />
       )}
       {isLoading && <LoadingSpinner />}
@@ -248,18 +302,22 @@ const Profile = () => {
             <p>{user.profileDesc}</p>
           </div>
           <div className={classes.buttonsArea}>
-            <Button
-              buttonText="Dodaj do znajomych"
-              disabled={isSended}
+            <p
               onClick={() => {
-                setIsSended(true);
-                NotificationManager.success(
-                  "Udało się zaprosić użytkownika do znajomych.",
-                  "Sukces!",
-                  3000
-                );
+                setShowModal(true);
+                setModalContent("followers");
               }}
-            />
+            >
+              Obserwujący: {user.Followers}
+            </p>
+            <p>Obserwuje: {user.Following}</p>
+            {loggedUser.id !== +userId! && (
+              <Button
+                className={user.isAlreadyFollowed ? "alternate" : ""}
+                buttonText={user.isAlreadyFollowed ? "Obserwujesz" : "Obserwuj"}
+                onClick={followHandler}
+              />
+            )}
             <Button
               buttonText={
                 <span
@@ -375,7 +433,9 @@ const Profile = () => {
                         {!post.isLiked && <Icon.Heart />}
                         <p
                           style={
-                            post.isLiked ? { color: "var(--add1-500)" } : { color: "var(--main-400)"}
+                            post.isLiked
+                              ? { color: "var(--add1-500)" }
+                              : { color: "var(--main-400)" }
                           }
                         >
                           {post.likes}
