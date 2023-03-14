@@ -7,6 +7,7 @@ import classes from "./Modal.module.css";
 import ProjectAppliedUsersModal from "./ProjectAppliedUsersModal";
 import LoadingSpinner from "../../Components/LoadingSpinner";
 import FollowersModal from "./FollorwersModal";
+import FollowingModal from "./FollowingModal";
 
 const Modal = (props: any) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -55,6 +56,13 @@ const Modal = (props: any) => {
           )}
           {props.modalContent === "followers" && (
             <FollowersModal
+              userId={props.userId}
+              onClose={props.onClose}
+              showSpinner={showSpinner}
+            />
+          )}
+          {props.modalContent === "following" && (
+            <FollowingModal
               userId={props.userId}
               onClose={props.onClose}
               showSpinner={showSpinner}

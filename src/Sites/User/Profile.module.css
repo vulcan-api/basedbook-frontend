@@ -80,6 +80,7 @@
 
 .detailsContainer p {
     width: 100%;
+    word-break: break-all;
 }
 
 .ovColor {
@@ -96,6 +97,9 @@
 
 .buttonsArea > p {
     text-align: center;
+}
+
+.activeFollowing {
     cursor: pointer;
 }
 

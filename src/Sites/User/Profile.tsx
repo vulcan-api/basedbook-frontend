@@ -144,13 +144,14 @@ const Profile = () => {
 
   const getPublicInfo = useCallback(
     async function getPublicInfo() {
+      setIsLoading(true);
       try {
         await fetch(`http://localhost:3000/user/${userId}`, {
           method: "GET",
           credentials: "include",
         })
           .then((res) => res.json())
-          .then(setUser);
+          .then(setUser).finally(() => setIsLoading(false));
       } catch (error) {
         console.error(error);
       }
@@ -302,15 +303,32 @@ const Profile = () => {
             <p>{user.profileDesc}</p>
           </div>
           <div className={classes.buttonsArea}>
-            <p
-              onClick={() => {
-                setShowModal(true);
-                setModalContent("followers");
-              }}
-            >
-              Obserwujący: {user.Followers}
-            </p>
-            <p>Obserwuje: {user.Following}</p>
+            {user.Followers < 1 ? (
+              <p>Obserwujący: 0</p>
+            ) : (
+              <p
+                onClick={() => {
+                  setShowModal(true);
+                  setModalContent("followers");
+                }}
+                className={classes.activeFollowing}
+              >
+                Obserwujący: {user.Followers}
+              </p>
+            )}
+            {user.Following < 1 ? (
+              <p>Obserwuje: 0</p>
+            ) : (
+              <p
+                onClick={() => {
+                  setShowModal(true);
+                  setModalContent("following");
+                }}
+                className={classes.activeFollowing}
+              >
+                Obserwuje: {user.Following}
+              </p>
+            )}
             {loggedUser.id !== +userId! && (
               <Button
                 className={user.isAlreadyFollowed ? "alternate" : ""}
