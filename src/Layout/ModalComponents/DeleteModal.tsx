@@ -70,13 +70,9 @@ const DeleteModal = (props: any) => {
   }, [props]);
 
   const deleteProject = async (projectId: number) => {
-    const deleteProjectObject = {
-      id: projectId,
-    };
-    const response = await fetch(`http://localhost:3000/project`, {
+    const response = await fetch(`http://localhost:3000/project/${projectId}`, {
       method: "DELETE",
       credentials: "include",
-      body: JSON.stringify(deleteProjectObject),
     });
     if (response.ok) {
       NotificationManager.success("Udało się usunąć projekt.", "Sukces!", 3000);
@@ -88,15 +84,13 @@ const DeleteModal = (props: any) => {
   };
 
   const deletePost = async (postId: number) => {
-    const deletePostObject = {
-      id: postId,
-    };
-    console.log(JSON.stringify(deletePostObject));
-    const response = await fetch(`http://localhost:3000/spotted/post`, {
-      method: "DELETE",
-      credentials: "include",
-      body: JSON.stringify(deletePostObject),
-    });
+    const response = await fetch(
+      `http://localhost:3000/spotted/post/${postId}`,
+      {
+        method: "DELETE",
+        credentials: "include",
+      }
+    );
     if (response.ok) {
       NotificationManager.success(
         "Udało się usunąć post.",
