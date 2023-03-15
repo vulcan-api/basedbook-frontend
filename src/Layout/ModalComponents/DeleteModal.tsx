@@ -69,21 +69,17 @@ const DeleteModal = (props: any) => {
     props.projectId !== -100 ? getRemovableProject() : getRemovablePost();
   }, [props]);
 
-  const deleteProject = async (id: any) => {
-    const deleteProject = {
-      projectId: id,
+  const deleteProject = async (projectId: number) => {
+    const deleteProjectObject = {
+      id: projectId,
     };
     const response = await fetch(`http://localhost:3000/project`, {
       method: "DELETE",
       credentials: "include",
-      body: JSON.stringify(deleteProject),
+      body: JSON.stringify(deleteProjectObject),
     });
     if (response.ok) {
-      NotificationManager.success(
-        "Udało się usunąć projekt.",
-        "Sukces!",
-        3000
-      );
+      NotificationManager.success("Udało się usunąć projekt.", "Sukces!", 3000);
       window.location.reload();
     } else {
       NotificationManager.error("Wystąpił błąd!", "Błąd!", 3000);
@@ -91,14 +87,15 @@ const DeleteModal = (props: any) => {
     }
   };
 
-  const deletePost = async (id: any) => {
-    const deleteProject = {
-      projectId: id,
+  const deletePost = async (postId: number) => {
+    const deletePostObject = {
+      id: postId,
     };
+    console.log(JSON.stringify(deletePostObject));
     const response = await fetch(`http://localhost:3000/spotted/post`, {
       method: "DELETE",
       credentials: "include",
-      body: JSON.stringify(deleteProject),
+      body: JSON.stringify(deletePostObject),
     });
     if (response.ok) {
       NotificationManager.success(
