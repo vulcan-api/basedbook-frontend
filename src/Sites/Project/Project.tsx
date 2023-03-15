@@ -30,22 +30,11 @@ const Project = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const [modalProjectId, setModalProjectId] = useState(-100);
-  const [listType, setListType] = useState({
-    width: "45%",
-  });
-
   const [isActive, setIsActive] = useState(true);
 
-  function changeListTypeHandler(length: Number, id: Number) {
-    setIsActive(!id);
-    setListType({
-      width: length + "%",
-    });
+  function changeListType(active?: boolean) {
+    active !== undefined ? setIsActive(active) : setIsActive(!isActive);
   }
-
-  useEffect(() => {
-    getAllProjects();
-  }, []);
 
   async function getAllProjects() {
     setIsLoading(true);
@@ -123,6 +112,10 @@ const Project = () => {
     setShowModal(false);
   };
 
+  useEffect(() => {
+    getAllProjects();
+  },[]);
+
   return (
     <>
       {showModal && (
@@ -133,28 +126,26 @@ const Project = () => {
           modalContent={modalContent}
         />
       )}
-      {!isLoading && (
-        <div className={classes.menu}>
-          <div>
-            <Icon.List
-              className={isActive ? "" : classes.active}
-              onClick={() => changeListTypeHandler(100, 1)}
-            />
-            <Icon.GridFill
-              className={isActive ? classes.active : ""}
-              onClick={() => changeListTypeHandler(45, 0)}
-            />
-          </div>
-          <Link to="/project/add">
-            <Button buttonText="Dodaj projekt" className="alternate" />
-          </Link>
+      <div className={classes.menu}>
+        <div className={classes.managementIcons}>
+          <Icon.List
+            className={isActive ? "" : classes.active}
+            onClick={() => changeListType()}
+          />
+          <Icon.GridFill
+            className={isActive ? classes.active : ""}
+            onClick={() => changeListType()}
+          />
         </div>
-      )}
+        <Link to="/project/add">
+          <Button buttonText="Dodaj projekt" className="alternate" />
+        </Link>
+      </div>
       {!isLoading && (
         <div className={classes.posts}>
           {projects.map((project) => {
             return (
-              <div key={project.id} style={listType}>
+              <div key={project.id} className={isActive ? classes.narrowContainer : classes.wideContainer}>
                 <ProjectItem
                   project={project}
                   setShowModal={setShowModal}

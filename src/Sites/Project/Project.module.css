@@ -1,3 +1,20 @@
+@media screen and (max-width: 900px){
+  .managementIcons {
+    display: none !important;
+  } 
+  .narrowContainer {
+    width: 100% !important;
+  }
+}
+
+.narrowContainer {
+  width: 45%;
+}
+
+.wideContainer {
+  width: 100%;
+}
+
 .menu {
   font-size: 32px;
   display: flex;
@@ -66,6 +83,10 @@
   color: var(--main-400);
 }
 
+.topData {
+  flex-wrap: wrap;
+}
+
 .topData,
 .bottomData,
 .topData p {
@@ -86,7 +107,7 @@
 }
 
 .topData {
-  gap: 2rem;
+  gap: .5rem;
 }
 
 .topData > div {

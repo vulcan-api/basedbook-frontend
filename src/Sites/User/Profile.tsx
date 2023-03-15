@@ -381,9 +381,7 @@ const Profile = () => {
               return (
                 <div
                   key={project.id}
-                  style={{
-                    width: "49%",
-                  }}
+                  className={classes.postWrapper}
                 >
                   <ProjectItem
                     project={project}

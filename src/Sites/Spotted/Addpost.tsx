@@ -6,6 +6,7 @@ import {useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
 //@ts-ignore
 import {NotificationManager} from "react-notifications";
+import Textarea from "../../Components/Textarea";
 
 const Addpost = () => {
     const navigate = useNavigate();
@@ -62,7 +63,7 @@ const Addpost = () => {
         <>
             <h1 className={classes.h1}>Dodaj post</h1>
             <form className={classes.addForm} onSubmit={addPost}>
-            <textarea
+            <Textarea
                 onChange={maxLengthHandler}
                 id="post_value"
                 placeholder="Treść posta"
