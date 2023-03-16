@@ -1,12 +1,14 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import LinkSection from '../Components/LinkSection';
 import * as Icon from 'react-bootstrap-icons';
 import classes from './Sidebar.module.css';
+import linkClasses from '../Components/LinkSection.module.css'
 import {NavLink, useNavigate} from 'react-router-dom';
 //@ts-ignore
 import {NotificationManager} from "react-notifications";
 import Searchbar from '../Components/Searchbar';
 import getUserObject from '../Lib/getUser';
+import LinkBase from '../Components/LinkBase';
 
 const Sidebar = () => {
     let user: any;
@@ -14,6 +16,8 @@ const Sidebar = () => {
     user = getUserObject("user_info");
 
     const ref = useRef<HTMLDivElement>(null);
+    const [isShown, setIsShown] = useState(false);
+    const [isSearching, setIsSearching] = useState(false);
     const navigate = useNavigate();
 
     const logout = () => {
@@ -34,8 +38,20 @@ const Sidebar = () => {
             .catch((error) => console.log("error", error));
     }
 
+    window.addEventListener("keydown", (ev) => {
+      ev.key === "Escape" && searchHandler();
+    });
+
+    const searchHandler = () => {
+        setIsSearching(!isSearching);
+    };
+
     return (
       <>
+        {isSearching && (
+          <div className={classes.hide} onClick={searchHandler}></div>
+        )}
+        <Searchbar sidebarWidth={ref.current?.offsetWidth} isSearching={isSearching}/>
         <div className={classes.navbar} ref={ref}>
           <div className={classes.mainLogo}>
             <NavLink to="/">
@@ -43,37 +59,53 @@ const Sidebar = () => {
             </NavLink>
           </div>
           <div>
-            <Searchbar
-              link={{ label: "Szukaj", icon: <Icon.Search /> }}
-              forwardedRef={ref}
-            />
-            <LinkSection
-              elements={[
-                {
-                  destination: "/spotted",
-                  label: "Spotted",
-                  icon: <Icon.PeopleFill />,
-                },
-                {
-                  destination: "/project",
-                  label: "Projekty",
-                  icon: <Icon.CardChecklist />,
-                },
-                {
-                  destination: "/chat",
-                  label: "Komunikator",
-                  icon: <Icon.Chat />,
-                },
-                {
-                  destination: "/school",
-                  label: "Dziennik",
-                  icon: <Icon.JournalBookmarkFill />,
-                },
-              ]}
-            />
+            <div
+              className={`${linkClasses.link} ${linkClasses.clickable} ${isShown ? classes.show : classes.hidden}`}
+              onClick={searchHandler}
+            >
+              <LinkBase
+                icon={<Icon.Search/>}
+                label="Szukaj"
+                style={isSearching ? { color: "var(--add1-500)" } : {}}
+              />
+            </div>
+            <div>
+              <LinkSection
+                className={classes.mainIcons} 
+                elements={[
+                  {
+                    destination: "/spotted",
+                    label: "Spotted",
+                    icon: <Icon.PeopleFill />,
+                  },
+                  {
+                    destination: "/project",
+                    label: "Projekty",
+                    icon: <Icon.CardChecklist />,
+                  },
+                  {
+                    destination: "/chat",
+                    label: "Komunikator",
+                    icon: <Icon.Chat />,
+                  },
+                  {
+                    destination: "/school",
+                    label: "Dziennik",
+                    icon: <Icon.JournalBookmarkFill />,
+                  },
+                  {
+                    label: "",
+                    mobileOnly: true,
+                    icon: <Icon.List/>,
+                    onClick: () => {setIsShown(!isShown)},
+                  }
+                ]}
+              />
+            </div>
           </div>
           <div>
             <LinkSection
+              className={isShown ? classes.show : classes.hidden}
               elements={[
                 {
                   destination: `/profile/${user.id}`,

@@ -12,10 +12,55 @@
     min-width: fit-content;
 }
 
+
 @media screen and (max-width: 1300px) {
     .navbar {
+        position: fixed;
+        z-index: 100;
+        width: 100vw;
+        padding: 0;
+        height: fit-content !important;
+        bottom: 0;
+        flex-direction: column-reverse;
+        transition: opacity 0.3s linear 2s; 
+    }
+    .mainLogo {
+        display: none;
+    }
+    .mainIcons {
+        flex-direction: row;
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+    }
+    .mainIcons label {
         display: none !important;
-    } 
+    }
+    .mainIcons svg {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    .mainIcons {
+        margin: 0 !important;
+    }
+    .mainIcons li {
+        width: 100%;
+    }
+    .mainIcons a, .mainIcons div {
+        display: flex;
+        justify-content: center;
+    }
+    .mainIcons span {
+        margin: 0;
+    }
+    .show {
+        padding-inline: 1rem;
+        opacity: 1;
+    }
+    .hidden {
+        display: none;
+        opacity: 0;
+    }
 }
 
 ul {
@@ -24,4 +69,13 @@ ul {
 
 .mainLogo {
     font-size: .7em;
+}
+
+.hide {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
 }

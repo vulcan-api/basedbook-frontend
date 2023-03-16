@@ -24,6 +24,12 @@
     overflow-y: auto;
 }
 
+@media screen and (max-width: 900px) {
+    .searchCont {
+        left: 0 !important;
+    }
+}
+
 .inputsContainer {
     display: flex;
     flex-direction: row;
@@ -42,13 +48,4 @@
 .enabled {
     opacity: 1;
     top: 0;
-}
-
-.hide {
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 10;
 }

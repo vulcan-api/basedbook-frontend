@@ -16,6 +16,21 @@
 }
 
 .clickable:hover {
-    cursor: pointer;
+    cursor: pointer !important;
     user-select: none;
+}
+
+.clickable label {
+    cursor: pointer !important;
+}
+
+.linkList label {
+    cursor: pointer !important;
+}
+
+
+@media screen and (min-width: 901px) {
+    .mobile {
+        display: none;
+    }
 }

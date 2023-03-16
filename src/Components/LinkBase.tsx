@@ -13,7 +13,7 @@ const LinkBase = (props: LinkBaseType) => {
         <span className={classes.linkIcon} style={props.style}>
           {props.icon}
         </span>
-        <span style={props.style}>{props.label}</span>
+        <label style={props.style}>{props.label}</label>
       </>
     );
 }
