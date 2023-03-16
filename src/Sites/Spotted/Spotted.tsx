@@ -129,8 +129,8 @@ const Spotted = () => {
             onClick={() => changeListType()}
           />
         </div>
-        <Link to="/project/add">
-          <Button buttonText="Dodaj projekt" className="alternate" />
+        <Link to="/spotted/add">
+          <Button buttonText="Dodaj post" className="alternate" />
         </Link>
       </div>
       {!isLoading && (

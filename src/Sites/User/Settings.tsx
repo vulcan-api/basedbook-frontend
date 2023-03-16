@@ -42,7 +42,7 @@ const Settings = () => {
         credentials: "include",
       })
         .then(res => res.json())
-        .then(json => JSON.parse(JSON.stringify(json).replace(/\:null/gi, "\:\"\"")))
+        .then(json => JSON.parse(JSON.stringify(json).replace(/null/gi, "\"\"")))
         .then(data => setSettings(data))
     } catch (error) {
       console.error(error);
