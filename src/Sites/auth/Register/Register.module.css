@@ -1,3 +1,15 @@
+@media screen and (max-width: 900px) {
+    .img {
+        display: none !important;
+    }
+    .formSide {
+        width: 100% !important;
+    }
+    .loginForm {
+        width: 100% !important;
+    }
+}
+
 .img {
     width: 50%;
     background-image: url('./Graphics/bgregister.png');
@@ -28,7 +40,7 @@
     width: 60%;
     height: auto;
     border: 1px solid var(--main-100);
-    box-shadow: 0px 1px 96px var(--main-100);
+    box-shadow: 0px 1px 96px var(--black-100);
     border-radius: 8px;
     margin: 32px 0;
 }

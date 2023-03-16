@@ -1,3 +1,15 @@
+@media screen and (max-width: 900px) {
+    .img {
+        display: none !important;
+    }
+    .formSide {
+        width: 100% !important;
+    }
+    .loginForm {
+        width: 100% !important;
+    }
+}
+
 .img {
     width: 50%;
     background-image: url('./Graphics/bglogin.png');
