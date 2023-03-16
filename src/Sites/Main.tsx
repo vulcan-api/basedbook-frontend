@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { executeTheme } from "../Lib/getUser";
 
 const Main = (props: {removeWrapper?: boolean}) => {
-  executeTheme()
   const navigate = useNavigate();
   const fetchPosts = useCallback(async () => {
     await fetch("http://localhost:3000/spotted/post", {
@@ -27,6 +26,7 @@ const Main = (props: {removeWrapper?: boolean}) => {
   }, [navigate]);
 
   useEffect(() => {
+    executeTheme();
     fetchPosts();
   }, [fetchPosts]);
 

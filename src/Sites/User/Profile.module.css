@@ -81,9 +81,8 @@
     color: var(--main-400);
 }
 
-.detailsContainer p {
-    width: 100%;
-    word-break: normal;
+.detailsContainer {
+    line-break: anywhere;
 }
 
 .ovColor {

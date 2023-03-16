@@ -22,15 +22,15 @@ const Settings = () => {
   const [darkTheme, setDarkTheme] = useState(getTheme());
   const [isLoading, setIsLoading] = useState(true);
   const [settings, setSettings] = useState({
-    username: "",
-    email: "",
-    name: "",
-    surname: "",
-    facebook: null,
-    instagram: null,
-    youtube: null,
-    website: null,
-    profileDesc: "",
+    username: "Nazwa użytkownika",
+    email: "Email",
+    name: "Imię",
+    surname: "Nazwisko",
+    facebook: "Facebook",
+    instagram: "Instagram",
+    youtube: "Youtube",
+    website: "Strona",
+    profileDesc: "Opis profilu",
     darkTheme: false,
   });
 
@@ -41,8 +41,9 @@ const Settings = () => {
         method: "GET",
         credentials: "include",
       })
-        .then((res) => res.json())
-        .then((data) => setSettings(data));
+        .then(res => res.json())
+        .then(json => JSON.parse(JSON.stringify(json).replace(/\:null/gi, "\:\"\"")))
+        .then(data => setSettings(data))
     } catch (error) {
       console.error(error);
     }
@@ -140,32 +141,32 @@ const Settings = () => {
             <div className={classes.twoInputs}>
               <Input
                 placeholder="Nazwa użytkownika"
-                value={settings.username || undefined}
+                value={settings.username}
                 onChange={handleUserNameChange}
               />
               <Button buttonText="Zmień hasło" />
             </div>
             <div className={classes.twoInputs}>
               <Input
-                placeholder="Link do konta facebook"
-                value={settings.facebook || undefined}
+                placeholder="Nazwa użytkownika na facebooku"
+                value={settings.facebook}
                 onChange={handleFacebookChange}
               />
               <Input
-                placeholder="Link do konta instagram"
-                value={settings.instagram || undefined}
+                placeholder="Nazwa użytkownika na instagramie"
+                value={settings.instagram}
                 onChange={handleInstagramChange}
               />
             </div>
             <div className={classes.twoInputs}>
               <Input
-                placeholder="Link do kanału na youtube"
-                value={settings.youtube || undefined}
+                placeholder="Nazwa kanału na youtubeie"
+                value={settings.youtube}
                 onChange={handleYTChange}
               />
               <Input
                 placeholder="Link do strony internetowej"
-                value={settings.website || undefined}
+                value={settings.website}
                 onChange={handleWebsiteChange}
               />
             </div>
@@ -173,7 +174,7 @@ const Settings = () => {
               <div className={classes.inputHolder}>
                 <Textarea
                   placeholder="Opis profilu"
-                  value={settings.profileDesc || undefined}
+                  value={settings.profileDesc}
                   onChange={handleDescChange}
                 />
               </div>
