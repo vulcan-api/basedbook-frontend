@@ -2,13 +2,11 @@ import React, {useRef, useState} from 'react';
 import LinkSection from '../Components/LinkSection';
 import * as Icon from 'react-bootstrap-icons';
 import classes from './Sidebar.module.css';
-import linkClasses from '../Components/LinkSection.module.css'
 import {NavLink, useNavigate} from 'react-router-dom';
 //@ts-ignore
 import {NotificationManager} from "react-notifications";
 import Searchbar from '../Components/Searchbar';
 import getUserObject from '../Lib/getUser';
-import LinkBase from '../Components/LinkBase';
 
 const Sidebar = () => {
     let user: any;
