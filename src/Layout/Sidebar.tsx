@@ -46,9 +46,7 @@ const Sidebar = () => {
 
     return (
       <>
-        {isSearching && (
-          <div className={classes.hide} onClick={searchHandler}></div>
-        )}
+        <div className={isSearching ? classes.hide : classes.disable} onClick={searchHandler}></div>
         <Searchbar sidebarWidth={ref.current?.offsetWidth} isSearching={isSearching}/>
         <div className={classes.navbar} ref={ref}>
           <div className={classes.mainLogo}>
@@ -111,16 +109,18 @@ const Sidebar = () => {
                   destination: `/profile/${user.id}`,
                   label: "Profil",
                   icon: <Icon.PersonCircle />,
+                  onClick: () => {setIsShown(false)}
                 },
                 {
                   destination: "/settings",
                   label: "Ustawienia",
                   icon: <Icon.Tools />,
+                  onClick: () => {setIsShown(false)}
                 },
                 {
                   label: "Wyloguj się",
                   icon: <Icon.DoorOpen />,
-                  onClick: logout,
+                  onClick: () => {logout(); setIsShown(false)},
                 },
               ]}
             />

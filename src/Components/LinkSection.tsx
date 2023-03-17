@@ -25,6 +25,7 @@ const LinkSection = (props: {className?: string, elements: LinkProperties[]}) =>
                             to={item.destination} 
                             className={`${classes.link}`} 
                             style={({ isActive }) => isActive ? {color: 'var(--add1-500)'} : {color: 'var(--add2-500)'}}
+                            onClick={item.onClick}
                             >
                                 <LinkBase icon={item.icon} label={item.label} />
                         </NavLink>

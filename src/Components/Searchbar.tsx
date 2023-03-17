@@ -50,7 +50,7 @@ const Searchbar = (props: {
           <Input placeholder={"Szukaj"} ref={inputRef} onChange={fetchUsers} />
         </div>
         <div>
-          {users.map((result) => {
+          {Array.isArray(users) && users.map((result) => {
             return (
               <SearchResult
                 key={result["id"]}
