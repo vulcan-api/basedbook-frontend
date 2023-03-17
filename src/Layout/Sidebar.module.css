@@ -13,16 +13,19 @@
 }
 
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 900px) {
     .navbar {
+        max-height: 100vh;
         position: fixed;
+        display: flex;
         z-index: 100;
         width: 100vw;
         padding: 0;
         height: fit-content !important;
         bottom: 0;
         flex-direction: column-reverse;
-        transition: opacity 0.3s linear 2s; 
+        border-top: 1px solid var(--main-100);
+        overflow-y: auto;
     }
     .mainLogo {
         display: none;
@@ -32,6 +35,7 @@
         display: flex;
         justify-content: space-around;
         width: 100%;
+        border-top: 1px solid var(--main-100);
     }
     .mainIcons label {
         display: none !important;
@@ -54,12 +58,10 @@
         margin: 0;
     }
     .show {
-        padding-inline: 1rem;
-        opacity: 1;
+        padding-inline: 1rem !important;
     }
     .hidden {
         display: none;
-        opacity: 0;
     }
 }
 

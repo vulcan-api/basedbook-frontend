@@ -27,6 +27,9 @@
 @media screen and (max-width: 900px) {
     .searchCont {
         left: 0 !important;
+        width: 100%;
+        border-width: 0px 0px 3px 0px;
+        border-radius: 0;
     }
 }
 

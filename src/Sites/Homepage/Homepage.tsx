@@ -111,7 +111,7 @@ const Homepage = () => {
             {posts.map((post) => {
               return (
                 <Wrapper
-                  className={classes.post}
+                  className={`${classes.post} ${classes.narrowContainer}`}
                   style={{ width: "45%" }}
                   key={post.id}
                 >

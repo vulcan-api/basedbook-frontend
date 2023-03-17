@@ -59,20 +59,22 @@ const Sidebar = () => {
             </NavLink>
           </div>
           <div>
-            <div
-              className={`${linkClasses.link} ${linkClasses.clickable} ${isShown ? classes.show : classes.hidden}`}
-              onClick={searchHandler}
-            >
-              <LinkBase
-                icon={<Icon.Search/>}
-                label="Szukaj"
-                style={isSearching ? { color: "var(--add1-500)" } : {}}
-              />
-            </div>
             <div>
               <LinkSection
                 className={classes.mainIcons} 
                 elements={[
+                  {
+                    destination: "/",
+                    label: "",
+                    mobileOnly: true,
+                    icon: <Icon.HouseFill />,
+                  },
+                  {
+                    icon: <Icon.Search />,
+                    label: "Szukaj",
+                    colored: isSearching,
+                    onClick: searchHandler
+                  },
                   {
                     destination: "/spotted",
                     label: "Spotted",

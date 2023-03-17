@@ -28,6 +28,9 @@
     cursor: pointer !important;
 }
 
+.selected {
+    color: var(--add1-500) !important;
+}
 
 @media screen and (min-width: 901px) {
     .mobile {

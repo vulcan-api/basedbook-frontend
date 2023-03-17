@@ -6,7 +6,8 @@ import LinkBase, {LinkBaseType} from './LinkBase';
 interface LinkProperties extends LinkBaseType {
     destination?: string, 
     onClick?: any,
-    mobileOnly?: boolean
+    mobileOnly?: boolean,
+    colored?: boolean,
 }
 
 const LinkSection = (props: {className?: string, elements: LinkProperties[]}) => {
@@ -30,7 +31,7 @@ const LinkSection = (props: {className?: string, elements: LinkProperties[]}) =>
 
                         :
                         
-                        <div className={`${classes.link} ${classes.clickable}`} onClick={item.onClick}>
+                        <div className={`${classes.link} ${classes.clickable} ${item.colored ? classes.selected : ""}`} onClick={item.onClick}>
                             <LinkBase icon={item.icon} label={item.label} />
                         </div>
 
