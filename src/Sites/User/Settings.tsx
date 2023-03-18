@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import classes from "./Settings.module.css";
 import Section from "../../Layout/Section";
 import Input from "../../Components/Input";
 import Textarea from "../../Components/Textarea";
 import Button from "../../Components/Button";
 import defaultAvatar from "./Graphics/default.png";
-import { getTheme, toggleTheme } from "../../Lib/getUser";
+import getUserObject, { getTheme, toggleTheme } from "../../Lib/getUser";
 import {
   BrightnessHighFill,
   MoonFill,
@@ -22,6 +22,7 @@ const Settings = () => {
   const [darkTheme, setDarkTheme] = useState(getTheme());
   const [isLoading, setIsLoading] = useState(true);
   const [settings, setSettings] = useState({
+    avatar: Blob,
     username: "Nazwa użytkownika",
     email: "Email",
     name: "Imię",
@@ -33,6 +34,7 @@ const Settings = () => {
     profileDesc: "Opis profilu",
     darkTheme: false,
   });
+
 
   async function getSettings() {
     setIsLoading(true);
@@ -86,10 +88,6 @@ const Settings = () => {
         console.error(err);
         return throwObject;
       });
-    // if (settingsRequest.statusCode === 200 || Array.isArray(settings)) {
-    //     NotificationManager.success("Udało się zaktualizować ustawienia.", "Sukces!", 3000);
-    //     navigate("/profile");
-    // }
   }
 
   const handleUserNameChange = (event: any) => {
@@ -128,6 +126,14 @@ const Settings = () => {
       profileDesc: event.target.value,
     });
   };
+
+  const handleAvatarChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if(event.target.files)
+    setSettings({
+      ...settings,
+      avatar: event.target.files[0],
+    });
+  }
 
   useEffect(() => {
     getSettings();
@@ -179,13 +185,14 @@ const Settings = () => {
                 />
               </div>
               <div className={classes.inputHolder}>
-                <div className={classes.avatar}>
+                <label htmlFor="avatarUploader" className={classes.avatar}>
                   <span className={`${classes.coverer} ${classes.hidden}`}>
                     <PencilFill className={classes.covererIcon} />
                   </span>
                   <img className={classes.avImage} src={defaultAvatar} alt="" />
-                </div>
+                </label>
               </div>
+              <input type="file" id="avatarUploader" className={classes.invisible} onChange={handleAvatarChange}/>
             </div>
           </Section>
           <Section>

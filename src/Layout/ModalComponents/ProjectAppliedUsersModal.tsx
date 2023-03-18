@@ -52,7 +52,7 @@ const ProjectAppliedUsersModal = (props: {
   return (
     <>
       {participants.length < 1 ? (
-        <p>Brak zapisanych użytkowników !</p>
+        <p>Brak zapisanych użytkowników!</p>
       ) : (
         <p>Zapisani użytkownicy: </p>
       )}

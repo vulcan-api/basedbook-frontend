@@ -1,8 +1,16 @@
 @value avImage as orImg from "../../Sites/User/Profile.module.css";
 
+@media screen and (max-width: 900px) {
+  .modal {
+    width: 90vw !important;
+    max-height: 90vh !important;
+    left: 5vw !important;
+  }
+}
+
 .background {
   position: fixed;
-  z-index: 10;
+  z-index: 110;
   background-color: var(--black-400);
   width: 100vw;
   height: 100vh;
@@ -16,11 +24,12 @@
   border-radius: 4px;
   top: 32px;
   left: 25%;
-  z-index: 11;
+  z-index: 150;
   padding: 32px;
   box-sizing: border-box;
   background-color: var(--bg-clr);
   animation: 0.2s enteringSlide;
+  overflow-y: auto;
   max-height: 80vh;
 }
 
@@ -48,9 +57,9 @@
 .closeModal {
   color: var(--main-300);
   font-size: 2rem;
-  position: fixed;
-  top: 3rem;
-  left: 72vw;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
   cursor: pointer;
 }
 

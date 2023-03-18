@@ -8,7 +8,7 @@ const ErrorElement = () => {
   return (
     <div className={classes.mainCont}>
       <ShieldExclamation />
-      <h2>Nie odnaleziono adresu !</h2>
+      <h2>Nie odnaleziono adresu!</h2>
       <Link to="/">
         <Button buttonText="Powrót do strony głównej" />
       </Link>
