@@ -30,8 +30,8 @@
 .gray {
     border: 2px solid var(--black-200);
     box-shadow: 0px 2px 0px var(--black-200);
-    background-color: var(--bg-clr);
-    color: var(--main-300);
+    background-color: var(--add2-200);
+    color: var(--main-400);
     box-shadow: 0 2px 0 0 var(--black-100);
 }
 
@@ -43,8 +43,8 @@
 .grayDisabled {
     border: 2px solid var(--black-200);
     box-shadow: 0px 2px 0px var(--black-200);
-    background-color: var(--bg-clr);
-    color: var(--main-300);
+    background-color: var(--add2-200);
+    color: var(--main-200);
     box-shadow: 0 2px 0 0 var(--black-100);
 }
 

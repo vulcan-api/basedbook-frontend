@@ -10,6 +10,7 @@
     overflow-y: hidden;
     border-right: 1px solid var(--main-100);
     min-width: fit-content;
+    z-index: 50;
 }
 
 .disable {

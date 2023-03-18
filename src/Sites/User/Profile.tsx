@@ -337,6 +337,10 @@ const Profile = () => {
               />
             )}
             <Button
+                onClick={() => {
+                  setShowModal(true);
+                  setModalContent("socials");
+                }}
               buttonText={
                 <span
                   style={{

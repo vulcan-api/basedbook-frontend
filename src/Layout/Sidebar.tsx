@@ -47,7 +47,7 @@ const Sidebar = () => {
     return (
       <>
         <div className={isSearching ? classes.hide : classes.disable} onClick={searchHandler}></div>
-        <Searchbar sidebarWidth={ref.current?.offsetWidth} isSearching={isSearching}/>
+        <Searchbar sidebarWidth={ref.current?.offsetWidth} isSearching={isSearching} onResClick={searchHandler}/>
         <div className={classes.navbar} ref={ref}>
           <div className={classes.mainLogo}>
             <NavLink to="/">
