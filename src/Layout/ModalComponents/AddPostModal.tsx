@@ -1,5 +1,5 @@
-import React from "react";
-import classes from "./Addpost.module.css";
+import React, { useEffect } from "react";
+import classes from "./AddPostModal.module.css";
 import Checkbox from "../../Components/Checkbox";
 import Button from "../../Components/Button";
 import {useRef, useState} from "react";
@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 import {NotificationManager} from "react-notifications";
 import Textarea from "../../Components/Textarea";
 
-const Addpost = () => {
+const AddPostModal = (props: {onClose: Function, showSpinner: Function}) => {
     const navigate = useNavigate();
     const [dateHourAuto, setDateHourAuto] = useState(true);
     const postText: any = useRef('');
@@ -34,7 +34,7 @@ const Addpost = () => {
         };
 
         const throwObject = {};
-        const spottedPosts = await fetch("http://localhost:3000/spotted/post", {
+        await fetch("http://localhost:3000/spotted/post", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -42,16 +42,16 @@ const Addpost = () => {
             credentials: "include",
             body: JSON.stringify(post),
         })
-            .then((res) => res.json())
+            .then(() => {
+                NotificationManager.success("Udało się dodać post.", "Sukces!", 3000);
+                navigate("/spotted");
+            })
+            .finally(() => props.onClose())
             .catch((err) => {
                 console.error(err);
                 return throwObject;
             });
 
-        if (spottedPosts.statusCode === 200 || Array.isArray(spottedPosts)) {
-            NotificationManager.success("Udało się dodać post.", "Sukces!", 3000);
-            navigate("/spotted");
-        }
     }
 
     const maxLengthHandler = () => {
@@ -59,9 +59,12 @@ const Addpost = () => {
             <></>);
     }
 
+    useEffect(
+        () => props.showSpinner(false)
+    , [props]);
     return (
         <>
-            <h1 className={classes.h1}>Dodaj post</h1>
+            <p>Dodaj post</p>
             <form className={classes.addForm} onSubmit={addPost}>
             <Textarea
                 onChange={maxLengthHandler}
@@ -94,11 +97,11 @@ const Addpost = () => {
                         id="godzina"
                         disabled={dateHourAuto}
                     />
-                    <Button type="submit" buttonText="Dodaj post"/>
+                    <Button type="submit" buttonText="Dodaj post" />
                 </div>
             </form>
         </>
     );
 };
 
-export default Addpost;
+export default AddPostModal;

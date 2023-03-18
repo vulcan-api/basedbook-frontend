@@ -3,7 +3,6 @@ import classes from "./Project.module.css";
 import Button from "../../Components/Button";
 import * as Icon from "react-bootstrap-icons";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import LoadingSpinner from "../../Components/LoadingSpinner";
 import Modal from "../../Layout/ModalComponents/Modal";
 import ProjectItem from "./ProjectItem";
@@ -110,6 +109,7 @@ const Project = () => {
 
   const closeModal = () => {
     setShowModal(false);
+    getAllProjects();
   };
 
   useEffect(() => {
@@ -137,9 +137,7 @@ const Project = () => {
             onClick={() => changeListType()}
           />
         </div>
-        <Link to="/project/add">
-          <Button buttonText="Dodaj projekt" className="alternate" />
-        </Link>
+          <Button buttonText="Dodaj projekt" className="alternate" onClick={() => {setShowModal(true); setModalContent("addproject"); }}/>
       </div>
       {!isLoading && (
         <div className={classes.posts}>

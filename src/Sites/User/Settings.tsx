@@ -5,7 +5,7 @@ import Input from "../../Components/Input";
 import Textarea from "../../Components/Textarea";
 import Button from "../../Components/Button";
 import defaultAvatar from "./Graphics/default.png";
-import getUserObject, { getTheme, toggleTheme } from "../../Lib/getUser";
+import { getTheme, toggleTheme } from "../../Lib/getUser";
 import {
   BrightnessHighFill,
   MoonFill,
@@ -22,16 +22,16 @@ const Settings = () => {
   const [darkTheme, setDarkTheme] = useState(getTheme());
   const [isLoading, setIsLoading] = useState(true);
   const [settings, setSettings] = useState({
-    avatar: Blob,
-    username: "Nazwa użytkownika",
-    email: "Email",
-    name: "Imię",
-    surname: "Nazwisko",
-    facebook: "Facebook",
-    instagram: "Instagram",
-    youtube: "Youtube",
-    website: "Strona",
-    profileDesc: "Opis profilu",
+    avatar: new File([new Blob()], "avatar"),
+    username: "",
+    email: "",
+    name: "",
+    surname: "",
+    facebook: "",
+    instagram: "",
+    youtube: "",
+    website: "",
+    profileDesc: "",
     darkTheme: false,
   });
 
@@ -60,9 +60,7 @@ const Settings = () => {
 
   async function updateSettings(event: any) {
     event.preventDefault();
-    const filteredSettings = Object.fromEntries(
-      Object.entries(settings).filter(([_, value]) => value !== null)
-    );
+    const filteredSettings = Object.fromEntries(Object.entries(settings).filter(([_, v]) => v !== ""));
     const throwObject = {};
     fetch(
       "http://localhost:3000/user/settings/",
@@ -76,6 +74,7 @@ const Settings = () => {
       }
     )
       .then((res) => res.text())
+      .then(() => setIsLoading(true))
       .then(() => {
         NotificationManager.success(
           "Udało się zaktualizować ustawienia.",
@@ -131,7 +130,7 @@ const Settings = () => {
     if(event.target.files)
     setSettings({
       ...settings,
-      avatar: event.target.files[0],
+      avatar: new File([event.target.files[0]], "avatar", {type: 'image/jpg'}),
     });
   }
 

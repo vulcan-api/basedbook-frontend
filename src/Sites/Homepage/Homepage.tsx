@@ -170,13 +170,15 @@ const Homepage = () => {
                 </Wrapper>
               );
             })}
-            <Button
-              buttonText="Więcej postów"
-              style={{ width: "40%" }}
-              onClick={() => navigate("/spotted")}
-            />
           </div>
         )}
+        <div className={classes.loadMoreButton}>
+          <Button
+            buttonText="Więcej postów"
+            style={{ width: "40%" }}
+            onClick={() => navigate("/spotted")}
+          />
+        </div>
       </Wrapper>
     </>
   );

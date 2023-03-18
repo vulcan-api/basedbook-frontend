@@ -32,7 +32,6 @@ const Spotted = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState("report");
   const [modalPostId, setModalPostId] = useState(-100);
-
   const [isActive, setIsActive] = useState(true);
 
   function changeListType(active?: boolean) {
@@ -101,6 +100,7 @@ const Spotted = () => {
 
   const closeModal = () => {
     setShowModal(false);
+    getAllPosts();
   };
 
   const downloadMorePosts = () => {
@@ -111,14 +111,13 @@ const Spotted = () => {
     <>
       {showModal && (
         <Modal
-          projectId={-100}
           postId={modalPostId}
           onBgClick={closeModal}
           onClose={closeModal}
           modalContent={modalContent}
         />
       )}
-      <div className={classes.menu}>
+      <div className={classes.menu} >
         <div className={classes.managementIcons}>
           <Icon.List
             className={isActive ? "" : classes.active}
@@ -129,9 +128,12 @@ const Spotted = () => {
             onClick={() => changeListType()}
           />
         </div>
-        <Link to="/spotted/add">
-          <Button buttonText="Dodaj post" className="alternate" />
-        </Link>
+        <Button buttonText="Dodaj post" className="alternate" 
+                          onClick={() => {
+                            setShowModal(true);
+                            setModalContent("addpost");
+                          }}
+/>
       </div>
       {!isLoading && (
         <>
@@ -143,7 +145,6 @@ const Spotted = () => {
                     <div className={classes.topData}>
                       {post.isAnonymous ? (
                         <div>
-                          <Icon.PersonFill />
                           <p>
                             {post.isAnonymous ? "Anonim" : post.author.username}
                           </p>

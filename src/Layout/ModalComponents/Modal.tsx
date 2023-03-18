@@ -9,6 +9,8 @@ import LoadingSpinner from "../../Components/LoadingSpinner";
 import FollowersModal from "./FollorwersModal";
 import FollowingModal from "./FollowingModal";
 import SocialsModal from "./SocialsModal";
+import AddPostModal from "./AddPostModal";
+import AddProjectModal from "./AddProjectModal";
 
 const Modal = (props: any) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -72,6 +74,18 @@ const Modal = (props: any) => {
           {props.modalContent === "socials" && (
             <SocialsModal
               userId={props.userId}
+              onClose={props.onClose}
+              showSpinner={showSpinner}
+            />
+          )}
+          {props.modalContent === "addpost" && (
+            <AddPostModal
+              onClose={props.onClose}
+              showSpinner={showSpinner}
+            />
+          )}
+          {props.modalContent === "addproject" && (
+            <AddProjectModal
               onClose={props.onClose}
               showSpinner={showSpinner}
             />

@@ -3,6 +3,7 @@ import classes from "./Modal.module.css";
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
 import Button from "../../Components/Button";
+import Textarea from "../../Components/Textarea";
 
 const ReportModal = (props: any) => {
   const postText: any = useRef("");
@@ -63,14 +64,15 @@ const ReportModal = (props: any) => {
   return (
     <>
       <p>Zgłoś post</p>
-      <textarea
-        onChange={maxLengthHandler}
-        id="post_value"
-        placeholder="Treść zgłoszenia"
-        maxLength={300}
-        ref={postText}
-        className={classes.textarea}
-      />
+      <div className={classes.textarea}>
+        <Textarea
+          onChange={maxLengthHandler}
+          id="post_value"
+          placeholder="Treść zgłoszenia"
+          maxLength={300}
+          ref={postText}
+        />
+      </div>
       <Button buttonText="Zgłoś" onClick={submitReportHandler} />
     </>
   );

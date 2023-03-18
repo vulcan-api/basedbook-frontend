@@ -15,12 +15,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5%;
+    gap: 1rem;
 }
 
-.addForm > textarea, .addForm > input, .addForm > button{
-    width: 45%;
-}
 
 .addForm > textarea {
     display: flex;
@@ -37,7 +34,7 @@
     color: var(--main-400);
     position: relative;
     resize: vertical;
-    height: 50%;
+    min-height: 12rem;
 }
 
 

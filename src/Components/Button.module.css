@@ -28,10 +28,10 @@
 }
 
 .gray {
-    border: 2px solid var(--black-200);
+    border: 2px solid var(--light-200);
     box-shadow: 0px 2px 0px var(--black-200);
     background-color: var(--add2-200);
-    color: var(--main-400);
+    color: var(--main-500);
     box-shadow: 0 2px 0 0 var(--black-100);
 }
 
@@ -41,10 +41,10 @@
 }
 
 .grayDisabled {
-    border: 2px solid var(--black-200);
+    border: 2px solid var(--light-200);
     box-shadow: 0px 2px 0px var(--black-200);
     background-color: var(--add2-200);
-    color: var(--main-200);
+    color: var(--main-300);
     box-shadow: 0 2px 0 0 var(--black-100);
 }
 
