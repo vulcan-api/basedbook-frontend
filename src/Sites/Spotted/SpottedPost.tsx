@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Wrapper from "../../Layout/Wrapper";
-import classes from "./Spotted.module.css";
+import classes from "./SpottedPost.module.css";
 import * as Icon from "react-bootstrap-icons";
 import Modal from "../../Layout/ModalComponents/Modal";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../Components/LoadingSpinner";
+import CommentList from "./CommentList";
 
 const SpottedPost = () => {
   const [post, setPost] = useState({
@@ -22,6 +23,25 @@ const SpottedPost = () => {
     likes: 69,
     username: "",
     isOwned: true,
+    comments: [
+      {
+        id: 1,
+        text: "wew",
+        postId: 8,
+        parentId: null,
+        authorId: 7,
+        replies: {
+          2: {
+            id: 2,
+            text: "yes",
+            postId: 8,
+            parentId: 1,
+            authorId: 7,
+            replies: null,
+          },
+        },
+      },
+    ],
   });
   const [isError, setIsError] = useState<boolean>(false);
   const [error, setError] = useState<string>();
@@ -51,7 +71,7 @@ const SpottedPost = () => {
       .catch((err) => {
         console.error(err);
       });
-      setIsLoading(false);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -112,69 +132,83 @@ const SpottedPost = () => {
         />
       )}
       {!isLoading && !isError && (
-        <Wrapper className={classes.post}>
-          <div className={classes.topData}>
-            {post.isAnonymous ? (
-              <div>
-                <p>{post.isAnonymous ? "Anonim" : post.author.username}</p>
+        <div className={classes.main}>
+          <div>
+            <Link to="/spotted" className={classes.back}>
+              <Icon.ArrowLeft />
+              Powrót
+            </Link>
+            <Wrapper className={classes.post}>
+              <div className={classes.topData}>
+                {post.isAnonymous ? (
+                  <div>
+                    <p>{post.isAnonymous ? "Anonim" : post.author.username}</p>
+                  </div>
+                ) : (
+                  <div>
+                    <Link to={`/profile/${post.author.id}`}>
+                      <Icon.PersonFill />
+                      <p>
+                        {post.isAnonymous ? "Anonim" : post.author.username}
+                      </p>
+                    </Link>
+                  </div>
+                )}
+                <div>
+                  <Icon.CalendarDate />
+                  {new Date(post.createdAt).toLocaleDateString()}
+                </div>
+                <div>
+                  <Icon.Clock />
+                  {new Date(post.createdAt).getHours() + ":"}
+                  {new Date(post.createdAt).getMinutes() < 10
+                    ? "0" + new Date(post.createdAt).getMinutes()
+                    : new Date(post.createdAt).getMinutes()}
+                </div>
+                {!post.isOwned && (
+                  <Icon.FlagFill
+                    onClick={() => {
+                      setShowModal(true);
+                      setModalPostId(post.id);
+                      setModalContent("report");
+                    }}
+                    className={classes.report}
+                  />
+                )}
+                {post.isOwned && (
+                  <Icon.TrashFill
+                    onClick={() => {
+                      setShowModal(true);
+                      setModalPostId(post.id);
+                      setModalContent("delete");
+                    }}
+                    className={classes.report}
+                  />
+                )}
               </div>
-            ) : (
-              <div>
-                <Link to={`/profile/${post.author.id}`}>
-                  <Icon.PersonFill />
-                  <p>{post.isAnonymous ? "Anonim" : post.author.username}</p>
-                </Link>
+              <div className={classes.content}>{post.text}</div>
+              <div className={classes.bottomData}>
+                <div
+                  onClick={() => {
+                    likeHandler(post);
+                  }}
+                >
+                  {post.isLiked && (
+                    <Icon.HeartFill style={{ color: "var(--add1-500)" }} />
+                  )}
+                  {!post.isLiked && <Icon.Heart />}
+                  <p style={post.isLiked ? { color: "var(--add1-500)" } : {}}>
+                    {post.likes}
+                  </p>
+                </div>
               </div>
-            )}
-            <div>
-              <Icon.CalendarDate />
-              {new Date(post.createdAt).toLocaleDateString()}
-            </div>
-            <div>
-              <Icon.Clock />
-              {new Date(post.createdAt).getHours() + ":"}
-              {new Date(post.createdAt).getMinutes() < 10
-                ? "0" + new Date(post.createdAt).getMinutes()
-                : new Date(post.createdAt).getMinutes()}
-            </div>
-            {!post.isOwned && (
-              <Icon.FlagFill
-                onClick={() => {
-                  setShowModal(true);
-                  setModalPostId(post.id);
-                  setModalContent("report");
-                }}
-                className={classes.report}
-              />
-            )}
-            {post.isOwned && (
-              <Icon.TrashFill
-                onClick={() => {
-                  setShowModal(true);
-                  setModalPostId(post.id);
-                  setModalContent("delete");
-                }}
-                className={classes.report}
-              />
-            )}
+            </Wrapper>
           </div>
-          <div className={classes.content}>{post.text}</div>
-          <div className={classes.bottomData}>
-            <div
-              onClick={() => {
-                likeHandler(post);
-              }}
-            >
-              {post.isLiked && (
-                <Icon.HeartFill style={{ color: "var(--add1-500)" }} />
-              )}
-              {!post.isLiked && <Icon.Heart />}
-              <p style={post.isLiked ? { color: "var(--add1-500)" } : {}}>
-                {post.likes}
-              </p>
-            </div>
-          </div>
-        </Wrapper>
+          <Wrapper className={classes.comments}>
+            <h2>Komentarze</h2>
+            <CommentList comments={post.comments} />
+          </Wrapper>
+        </div>
       )}
     </>
   );

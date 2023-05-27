@@ -25,6 +25,7 @@ const Spotted = () => {
       likes: 69,
       username: "",
       isOwned: true,
+      comments: 2,
     },
   ]);
   const [spottedPostsCount, setSpottedPostsCount] = useState(20);
@@ -141,6 +142,9 @@ const Spotted = () => {
         <>
           <div className={classes.posts}>
             {posts.map((post) => {
+              let comments:any;
+              post.comments < 1 ? comments = "Komentarze" : post.comments === 1 ? comments = `1 Komentarz` : comments = `${post.comments} Komentarze`;
+              
               return (
                 <div
                   key={post.id}
@@ -225,7 +229,7 @@ const Spotted = () => {
                         </div>
                         <Link to={`/spotted/${post.id}`} className={classes.comments}>
                           <Icon.ChatLeftTextFill />
-                          <p style={{color: "var(--main-400)"}}>Komentarze</p>
+                          <p style={{color: "var(--main-400)"}}>{comments}</p>
                         </Link>
                       </div>
                     </Wrapper>
