@@ -15,12 +15,10 @@ import {NotificationContainer} from "react-notifications";
 import Project from "./Sites/Project/Project";
 import ProfileRedirect from './Sites/User/ProfileRedirect';
 import Settings from './Sites/User/Settings';
-import School from './Sites/School/School';
-import Grades from './Sites/School/Grades';
 import RegisterVulcan from './Sites/User/RegisterVulcan';
-import Exams from "./Sites/School/Exams";
 import ComingSoon from './Layout/ComingSoon';
 import ErrorElement from './Layout/ErrorElement';
+import SpottedPost from './Sites/Spotted/SpottedPost';
 
 const router = createBrowserRouter([
   {
@@ -52,6 +50,10 @@ const router = createBrowserRouter([
         element: <Spotted />,
       },
       {
+        path: "spotted/:postId",
+        element: <SpottedPost />,
+      },
+      {
         path: "project",
         element: <Project />,
       },
@@ -74,38 +76,6 @@ const router = createBrowserRouter([
       {
         path: "chat",
         element: <ComingSoon />,
-      },
-    ],
-  },
-  {
-    path: "/school",
-    element: <Main removeWrapper={true} />,
-    children: [
-      {
-        path: "",
-        element: <School />,
-        children: [
-          {
-            path: "grades",
-            element: <Grades />,
-          },
-          {
-            path: "attendance",
-            element: <ComingSoon />,
-          },
-          {
-            path: "exams",
-            element: <Exams />,
-          },
-          {
-            path: "lessons",
-            element: <ComingSoon />,
-          },
-          {
-            path: "messages",
-            element: <ComingSoon />,
-          },
-        ],
       },
     ],
   },

@@ -87,11 +87,6 @@ const Sidebar = () => {
                     icon: <Icon.Chat />,
                   },
                   {
-                    destination: "/school",
-                    label: "Dziennik",
-                    icon: <Icon.JournalBookmarkFill />,
-                  },
-                  {
                     label: "",
                     mobileOnly: true,
                     icon: <Icon.List/>,

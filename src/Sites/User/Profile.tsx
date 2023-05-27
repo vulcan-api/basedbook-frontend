@@ -373,7 +373,7 @@ const Profile = () => {
         <Button
           buttonText="Projekty"
           className={!showSpottedPosts ? "gray" : ""}
-          onClick={() => setShowSpottedPosts(true)}
+          onClick={() => console.log(projects)}
         />
       </div>
       <div className={classes.profileContent}>
@@ -445,12 +445,11 @@ const Profile = () => {
                           likeHandler(post);
                         }}
                       >
-                        {post.isLiked && (
+                        {post.isLiked ? (
                           <Icon.HeartFill
                             style={{ color: "var(--add1-500)" }}
                           />
-                        )}
-                        {!post.isLiked && <Icon.Heart />}
+                        ) : <Icon.Heart />}
                         <p
                           style={
                             post.isLiked

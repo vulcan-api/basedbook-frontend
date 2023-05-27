@@ -1,7 +1,7 @@
-@media screen and (max-width: 900px){
+@media screen and (max-width: 900px) {
   .managementIcons {
     display: none !important;
-  } 
+  }
   .narrowContainer {
     width: 100% !important;
   }
@@ -98,16 +98,8 @@
   align-items: center;
 }
 
-.bottomDataDisabled {
-  display: flex;
-  font-size: 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .topData {
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
 .topData > div {
@@ -121,8 +113,7 @@
   cursor: pointer;
 }
 
-.bottomData,
-.bottomDataDisabled {
+.bottomData {
   gap: 1rem;
 }
 
@@ -132,16 +123,6 @@
   color: var(--add1-500);
 }
 
-.bottomDataDisabled > svg {
-  cursor: not-allowed;
-  width: 2rem;
-  color: var(--main-300);
-}
-
-.bottomDataDisabled > button {
-  cursor: not-allowed;
-}
-
 .content {
   font-size: 2rem;
   color: var(--main-400);
@@ -149,16 +130,13 @@
   padding-bottom: 1rem;
 }
 
-@keyframes pulse-black {
-  0% {
-    transform: scale(1);
-  }
 
-  70% {
-    transform: scale(1.3);
-  }
-
-  100% {
-    transform: scale(1);
-  }
+.noProjects {
+  font-family: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--add1-500);
 }

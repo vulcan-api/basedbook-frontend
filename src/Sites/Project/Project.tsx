@@ -137,13 +137,28 @@ const Project = () => {
             onClick={() => changeListType()}
           />
         </div>
-          <Button buttonText="Dodaj projekt" className="alternate" onClick={() => {setShowModal(true); setModalContent("addproject"); }}/>
+        <Button
+          buttonText="Dodaj projekt"
+          className="alternate"
+          onClick={() => {
+            setShowModal(true);
+            setModalContent("addproject");
+          }}
+        />
       </div>
       {!isLoading && (
         <div className={classes.posts}>
+          {projects.length === 0 && (
+            <p className={classes.noProjects}>Brak projektów!</p>
+          )}
           {projects.map((project) => {
             return (
-              <div key={project.id} className={isActive ? classes.narrowContainer : classes.wideContainer}>
+              <div
+                key={project.id}
+                className={
+                  isActive ? classes.narrowContainer : classes.wideContainer
+                }
+              >
                 <ProjectItem
                   project={project}
                   setShowModal={setShowModal}
