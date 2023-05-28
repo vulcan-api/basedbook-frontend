@@ -227,7 +227,7 @@ const Spotted = () => {
                             {post.likes}
                           </p>
                         </div>
-                        <Link to={`/spotted/${post.id}`} className={classes.comments}>
+                        <Link to={`/spotted/post/${post.id}`} className={classes.comments}>
                           <Icon.ChatLeftTextFill />
                           <p style={{color: "var(--main-400)"}}>{comments}</p>
                         </Link>

@@ -29,14 +29,20 @@ const SpottedPost = () => {
         text: "wew",
         postId: 8,
         parentId: null,
-        authorId: 7,
+        user: {
+          id: 7,
+          username: "test",
+        },
         replies: {
           2: {
             id: 2,
             text: "yes",
             postId: 8,
             parentId: 1,
-            authorId: 7,
+            user: {
+              id: 7,
+              username: "test",
+            },
             replies: null,
           },
         },
