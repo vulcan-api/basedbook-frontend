@@ -11,26 +11,43 @@
   flex-direction: column;
   border: 1px solid var(--main-100);
   padding: 1rem;
+  gap: .5rem;
   border-radius: 8px;
 }
 
 .author {
   display: flex;
   align-items: center;
-  margin-bottom: 0.5rem;
   gap: 0.5rem;
   font-size: 1.25rem;
   color: var(--main-400);
 }
 
 .replyTo {
-    margin-left: .5rem;
-    margin-bottom: .5rem;
-    margin-top: .5rem;
+    margin: .5rem;
+    margin-right: 0;
 }
 
 .main > p {
     font-size: 1.5rem;
     color: var(--main-400);
     font-weight: 500;
+}
+
+.reply {
+  font-size: 1rem !important;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.centered {
+  width: 100%;
+  text-align: center;
+}
+
+.comments {
+  overflow-y: auto;
+  height: 80%;
+  padding: 1rem;
+  padding-left: 0;
 }

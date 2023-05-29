@@ -1,139 +1,190 @@
 .main {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    gap: 32px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 32px;
 }
 
 .main > * {
-    width: 50% !important;
-    height: 100%;
+  width: 50% !important;
+  height: 100%;
 }
 
 .main > div:first-of-type {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
 }
 
 .main > div:last-of-type {
-    height: 100%;
-    padding: 1.5rem;
+  height: 100%;
+  padding: 1.5rem;
 }
 
 .post {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 32px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
 }
 
-.topData, .bottomData {
-    display: flex;
-    font-size: 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.topData,
+.bottomData {
+  display: flex;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .topData {
-    flex-wrap: wrap;
-    font-size: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 1.5rem;
 }
 
 .topData > div:first-of-type > a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: .5rem;
-    color: var(--main-400);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--main-400);
 }
 
 .topData > div {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .topData,
 .topData p,
 .bottomData > div,
 .bottomData > a {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--main-400);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--main-400);
 }
 
 .report {
-    cursor: pointer;
-    color: var(--main-400);
+  cursor: pointer;
+  color: var(--main-400);
 }
 
 .bottomData > div > p {
-    transition: color .1s linear;
-    color: var(--main-400);
+  transition: color 0.1s linear;
+  color: var(--main-400);
 }
 
 .bottomData > div {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .bottomData > div:first-of-type > svg {
-    animation: pulse-black .2s linear;
+  animation: pulse-black 0.2s linear;
 }
 
 .content {
-    font-size: 2.125rem;
-    color: var(--main-400);
+  font-size: 2.125rem;
+  color: var(--main-400);
 }
 
 .loadMoreButton {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .loadMoreButton > button {
-    width: 30%;
-} 
+  width: 30%;
+}
 
 @media screen and (max-width: 900px) {
-    .loadMoreButton > button {
-        width: 100%;
-    } 
+  .loadMoreButton > button {
+    width: 100%;
+  }
 }
 
 @keyframes pulse-black {
-    0% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
+  }
 
-    70% {
-        transform: scale(1.3);
-    }
+  70% {
+    transform: scale(1.3);
+  }
 
-    100% {
-        transform: scale(1);
-    }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .back {
-    cursor: pointer;
-    color: var(--main-400);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 1.5rem;
-    transition: gap 200ms linear;
-    position: absolute;
-    top: 0;
-    left: 0;
+  cursor: pointer;
+  color: var(--main-400);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.5rem;
+  transition: gap 200ms linear;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .back:hover {
-    gap: 1.5rem;
+  gap: 1.5rem;
+}
+
+.comments {
+  position: relative;
+  overflow: hidden;
+}
+
+.addComment {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  left: 0;
+  font-size: 1.5rem;
+  background-color: var(--bg-clr);
+  border-top: 1px solid var(--main-100);
+}
+
+.addComment > svg {
+  cursor: pointer;
+  color: var(--add1-500);
+  transition: all 100ms linear;
+}
+
+.addComment > svg:hover {
+  transform: scale(1.1);
+}
+
+.addCommentInput {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.addCommentInput > p {
+  font-size: 1rem;
+  color: var(--bg-clr);
+  padding: .25rem;
+  padding-bottom: 0;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+  background-color: var(--add1-500);
+  -webkit-box-shadow: 0 2rem 0 0 var(--add1-500);
+  -moz-box-shadow: 0 1rem 0 0 var(--add1-500);
+  box-shadow: 0 1rem 0 0 var(--add1-500);
 }

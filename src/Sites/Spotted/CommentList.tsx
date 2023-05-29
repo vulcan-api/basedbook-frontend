@@ -15,25 +15,31 @@ interface Comment {
   replies: { [key: number]: Comment } | null;
 }
 
-interface Props {
-  comments?: Comment[];
-}
-
-const CommentList: React.FC<Props> = ({ comments }) => {
-  if (!comments) return <p>Brak komentarzy</p>;
+const CommentList = (props:any) => {
+  if (!props.comments) return <p className={classes.centered}>Brak komentarzy</p>;
 
   const renderComment = (comment: Comment) => (
     <div key={comment.id} className={classes.comment}>
       <div className={classes.main}>
         <div className={classes.author}>
           <Icon.PersonCircle />
-          <Link to={`/profile/${comment.user.id}`} style={{color: "var(--main-400)"}}>{comment.user.username}</Link>
+          <Link
+            to={`/profile/${comment.user.id}`}
+            style={{ color: "var(--main-400)" }}
+          >
+            {comment.user.username}
+          </Link>
         </div>
         <p>{comment.text}</p>
+        <p className={classes.reply} onClick={() => props.replyHandler(comment)}>
+          Odpowiedz
+        </p>
       </div>
-      {comment.replies && <p style={{color: "var(--main-400)"}} className={classes.replyTo}>
-        Odpowiedź na {comment.text} :
-      </p>}
+      {comment.replies && (
+        <p style={{ color: "var(--main-400)" }} className={classes.replyTo}>
+          Odpowiedzi na {comment.text} :
+        </p>
+      )}
       {comment.replies && (
         <div style={{ marginLeft: "2rem" }}>
           {Object.values(comment.replies).map((reply) => renderComment(reply))}
@@ -42,7 +48,7 @@ const CommentList: React.FC<Props> = ({ comments }) => {
     </div>
   );
 
-  return <div>{comments.map((comment) => renderComment(comment))}</div>;
+  return <div className={classes.comments}>{props.comments.map((comment: any) => renderComment(comment))}</div>;
 };
 
 export default CommentList;

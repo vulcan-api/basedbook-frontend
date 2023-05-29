@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Wrapper from "../../Layout/Wrapper";
 import classes from "./SpottedPost.module.css";
 import * as Icon from "react-bootstrap-icons";
@@ -7,6 +7,7 @@ import Modal from "../../Layout/ModalComponents/Modal";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../Components/LoadingSpinner";
 import CommentList from "./CommentList";
+import Input from "../../Components/Input";
 
 const SpottedPost = () => {
   const [post, setPost] = useState({
@@ -55,7 +56,9 @@ const SpottedPost = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState("report");
   const [modalPostId, setModalPostId] = useState(-100);
+  const [reply, setReply] = useState<any>("");
   const { postId = 1 } = useParams();
+  const addCommentRef = useRef<HTMLInputElement>(null);
 
   const fetchPost = async (id: any) => {
     setIsLoading(true);
@@ -123,6 +126,40 @@ const SpottedPost = () => {
 
   const closeModal = () => {
     setShowModal(false);
+  };
+
+  const replyHandler = (comment: any) => {
+    setReply(comment);
+  };
+
+  const addCommentHandler = async () => {
+    let body:any = {
+      text: addCommentRef.current?.value,
+    };
+
+    if (reply) {
+      body = {
+        ...body,
+        commentId: reply.id,
+      };
+    }
+
+    await fetch(`http://localhost:3000/spotted/post/comment/${postId}`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        addCommentRef.current!.value = "";
+        fetchPost(postId);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
@@ -212,7 +249,19 @@ const SpottedPost = () => {
           </div>
           <Wrapper className={classes.comments}>
             <h2>Komentarze</h2>
-            <CommentList comments={post.comments} />
+            <CommentList comments={post.comments} replyHandler={replyHandler} />
+            <div className={classes.addComment}>
+              <div className={classes.addCommentInput}>
+                {reply && <p onClick={() => setReply(null)}>Odpowiedz na: {reply.text}</p>}
+                <Input
+                  type="text"
+                  ref={addCommentRef}
+                  onChange={() => console.log(addCommentRef.current?.value)}
+                  placeholder="Komentarz"
+                />
+              </div>
+              <Icon.ArrowRightCircleFill onClick={addCommentHandler} />
+            </div>
           </Wrapper>
         </div>
       )}
