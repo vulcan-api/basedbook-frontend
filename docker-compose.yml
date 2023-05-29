@@ -1,0 +1,15 @@
+# This docker-compose file is only for development purposes
+
+# TODO: add backend
+services: 
+  frontend:
+    image: ghcr.io/nasz-elektryk/basedbook-frontend
+    build: .
+    network_mode: host
+    ports:
+      - "5000:5000"
+    expose:
+      - "5000"
+    volumes:
+      - .:/app
+      - /app/node_modules
