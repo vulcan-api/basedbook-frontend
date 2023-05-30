@@ -7,9 +7,15 @@ services:
     build: .
     network_mode: host
     ports:
-      - "5000:5000"
-    expose:
-      - "5000"
+      - "3000:5000"
     volumes:
       - .:/app
       - /app/node_modules
+  backend:
+    image: ghcr.io/nasz-elektryk/basedbook-backend
+    network_mode: host
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    command: pnpm start:dev
