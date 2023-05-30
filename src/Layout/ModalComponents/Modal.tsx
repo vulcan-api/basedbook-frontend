@@ -6,7 +6,7 @@ import DeleteModal from "./DeleteModal";
 import classes from "./Modal.module.css";
 import ProjectAppliedUsersModal from "./ProjectAppliedUsersModal";
 import LoadingSpinner from "../../Components/LoadingSpinner";
-import FollowersModal from "./FollorwersModal";
+import FollowersModal from "./FollowersModal";
 import FollowingModal from "./FollowingModal";
 import SocialsModal from "./SocialsModal";
 import AddPostModal from "./AddPostModal";
