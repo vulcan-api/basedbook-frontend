@@ -12,7 +12,7 @@ import {
   PencilFill,
   CheckSquareFill,
 } from "react-bootstrap-icons";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../../Components/LoadingSpinner";
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
@@ -219,7 +219,7 @@ const Settings = () => {
               </div>
             </div>
           </Section>
-          <Section>
+          {/* <Section>
             <h2>Dziennik</h2>
             <div>
               <p>
@@ -230,7 +230,7 @@ const Settings = () => {
                   , aby połączyć swój dziennik Vulcan z aplikacją Basedbook
               </p>
             </div>
-          </Section>
+          </Section> */}
           <Section>
             <h2>Konto</h2>
             <div className={classes.bottomButtons}>
