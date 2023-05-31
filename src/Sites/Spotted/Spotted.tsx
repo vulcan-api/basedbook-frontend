@@ -143,7 +143,23 @@ const Spotted = () => {
           <div className={classes.posts}>
             {posts.map((post) => {
               let comments:any;
-              post.comments < 1 ? comments = "Komentarze" : post.comments === 1 ? comments = `1 Komentarz` : comments = `${post.comments} Komentarze`;
+              switch (post.comments) {
+                case 0:
+                  comments = "Brak komentarzy";
+                  break;
+                case 1:
+                  comments = "1 komentarz";
+                  break;
+                default:
+                  if (post.comments.toString().slice(-1) === "1") {
+                    comments = `${post.comments} komentarzy`;
+                  } else if (+post.comments.toString().slice(-1) < 5) {
+                    comments = `${post.comments} komentarze`;
+                  } else {
+                    comments = `${post.comments} komentarzy`;
+                  }
+                  break;
+              }
               
               return (
                 <div

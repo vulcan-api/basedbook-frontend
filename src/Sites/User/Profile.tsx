@@ -12,6 +12,7 @@ import Wrapper from "../../Layout/Wrapper";
 import Modal from "../../Layout/ModalComponents/Modal";
 import ProjectItem from "../Project/ProjectItem";
 import getUserObject from "../../Lib/getUser";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false);
@@ -36,6 +37,7 @@ const Profile = () => {
       isLiked: false,
       likes: 69,
       username: "jajco",
+      comments: 2,
     },
   ]);
   const [projects, setProjects] = useState([
@@ -151,7 +153,8 @@ const Profile = () => {
           credentials: "include",
         })
           .then((res) => res.json())
-          .then(setUser).finally(() => setIsLoading(false));
+          .then(setUser)
+          .finally(() => setIsLoading(false));
       } catch (error) {
         console.error(error);
       }
@@ -238,7 +241,7 @@ const Profile = () => {
     } else {
       NotificationManager.success("Wystąpił sukces!", "Sukces!", 3000);
     }
-  }; 
+  };
 
   const unFollowUser = async () => {
     const response = await fetch("http://localhost:3000/user/follows", {
@@ -256,7 +259,7 @@ const Profile = () => {
     } else {
       NotificationManager.success("Wystąpił sukces!", "Sukces!", 3000);
     }
-  }; 
+  };
 
   const followHandler = () => {
     let userCopy = JSON.parse(JSON.stringify(user));
@@ -337,10 +340,10 @@ const Profile = () => {
               />
             )}
             <Button
-                onClick={() => {
-                  setShowModal(true);
-                  setModalContent("socials");
-                }}
+              onClick={() => {
+                setShowModal(true);
+                setModalContent("socials");
+              }}
               buttonText={
                 <span
                   style={{
@@ -383,10 +386,7 @@ const Profile = () => {
           ) : (
             projects.map((project) => {
               return (
-                <div
-                  key={project.id}
-                  className={classes.postWrapper}
-                >
+                <div key={project.id} className={classes.postWrapper}>
                   <ProjectItem
                     project={project}
                     setShowModal={setShowModal}
@@ -403,6 +403,25 @@ const Profile = () => {
             <p className={classes.textCenter}>Brak postów użytkownika.</p>
           ) : (
             posts.map((post) => {
+              let comments: any;
+              switch (post.comments) {
+                case 0:
+                  comments = "Brak komentarzy";
+                  break;
+                case 1:
+                  comments = "1 komentarz";
+                  break;
+                default:
+                  if (post.comments.toString().slice(-1) === "1") {
+                    comments = `${post.comments} komentarzy`;
+                  } else if (+post.comments.toString().slice(-1) < 5) {
+                    comments = `${post.comments} komentarze`;
+                  } else {
+                    comments = `${post.comments} komentarzy`;
+                  }
+                  break;
+              }
+
               return (
                 <div key={post.id} className={classes.postWrapper}>
                   <Wrapper className={classes.post}>
@@ -449,7 +468,9 @@ const Profile = () => {
                           <Icon.HeartFill
                             style={{ color: "var(--add1-500)" }}
                           />
-                        ) : <Icon.Heart />}
+                        ) : (
+                          <Icon.Heart />
+                        )}
                         <p
                           style={
                             post.isLiked
@@ -460,6 +481,13 @@ const Profile = () => {
                           {post.likes}
                         </p>
                       </div>
+                      <Link
+                        to={`/spotted/post/${post.id}`}
+                        className={classes.comments}
+                      >
+                        <Icon.ChatLeftTextFill />
+                        <p style={{ color: "var(--main-400)" }}>{comments}</p>
+                      </Link>
                     </div>
                   </Wrapper>
                 </div>

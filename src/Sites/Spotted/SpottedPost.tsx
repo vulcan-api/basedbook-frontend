@@ -30,6 +30,7 @@ const SpottedPost = () => {
         text: "wew",
         postId: 8,
         parentId: null,
+        isOwned: true,
         user: {
           id: 7,
           username: "test",
@@ -44,6 +45,7 @@ const SpottedPost = () => {
               id: 7,
               username: "test",
             },
+            isOwned: true,
             replies: null,
           },
         },
@@ -153,7 +155,7 @@ const SpottedPost = () => {
       body: JSON.stringify(body),
     })
       .then((res) => res.json())
-      .then((res) => {
+      .then(() => {
         addCommentRef.current!.value = "";
         fetchPost(postId);
       })
@@ -249,14 +251,13 @@ const SpottedPost = () => {
           </div>
           <Wrapper className={classes.comments}>
             <h2>Komentarze</h2>
-            <CommentList comments={post.comments} replyHandler={replyHandler} />
+            <CommentList comments={post.comments} isPostOwned={post.isOwned} replyHandler={replyHandler} />
             <div className={classes.addComment}>
               <div className={classes.addCommentInput}>
-                {reply && <p onClick={() => setReply(null)}>Odpowiedz na: {reply.text}</p>}
+                {reply && <p onClick={() => setReply(null)}>Odpowiedz na: {reply.text} <Icon.XCircleFill /></p>}
                 <Input
                   type="text"
                   ref={addCommentRef}
-                  onChange={() => console.log(addCommentRef.current?.value)}
                   placeholder="Komentarz"
                 />
               </div>

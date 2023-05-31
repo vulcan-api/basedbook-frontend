@@ -27,6 +27,7 @@ const Homepage = () => {
       isLiked: false,
       likes: 69,
       username: "jajco",
+      comments: 2,
     },
   ]);
   let user: any;
@@ -109,6 +110,25 @@ const Homepage = () => {
         {!isLoading && (
           <div className={classes.posts}>
             {posts.map((post) => {
+              let comments: any;
+              switch (post.comments) {
+                case 0:
+                  comments = "Brak komentarzy";
+                  break;
+                case 1:
+                  comments = "1 komentarz";
+                  break;
+                default:
+                  if (post.comments.toString().slice(-1) === "1") {
+                    comments = `${post.comments} komentarzy`;
+                  } else if (+post.comments.toString().slice(-1) < 5) {
+                    comments = `${post.comments} komentarze`;
+                  } else {
+                    comments = `${post.comments} komentarzy`;
+                  } 
+                  break;
+              }
+              
               return (
                 <Wrapper
                   className={`${classes.post} ${classes.narrowContainer}`}
@@ -166,6 +186,13 @@ const Homepage = () => {
                         {post.likes}
                       </p>
                     </div>
+                    <Link
+                      to={`/spotted/post/${post.id}`}
+                      className={classes.comments}
+                    >
+                      <Icon.ChatLeftTextFill />
+                      <p style={{ color: "var(--main-400)" }}>{comments}</p>
+                    </Link>
                   </div>
                 </Wrapper>
               );
