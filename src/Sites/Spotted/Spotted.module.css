@@ -65,6 +65,10 @@
     gap: 32px;
 }
 
+.post svg {
+    color: var(--add1-500);
+}
+
 .topData, .bottomData {
     display: flex;
     font-size: 24px;

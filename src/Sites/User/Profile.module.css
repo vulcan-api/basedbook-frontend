@@ -157,10 +157,14 @@
     width: 49%;
 }
 
-.post{
+.post {
     display: flex;
     flex-direction: column;
     gap: 32px;
+}
+
+.post svg {
+    color: var(--add1-500);
 }
 
 .topData, .bottomData {
