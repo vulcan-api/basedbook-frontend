@@ -12,13 +12,11 @@ import {
   PencilFill,
   CheckSquareFill,
 } from "react-bootstrap-icons";
-import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../../Components/LoadingSpinner";
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
 
 const Settings = () => {
-  const navigate = useNavigate();
   const [darkTheme, setDarkTheme] = useState(getTheme());
   const [isLoading, setIsLoading] = useState(true);
   const [settings, setSettings] = useState({
@@ -59,11 +57,12 @@ const Settings = () => {
   };
 
   async function updateSettings(event: any) {
+    setIsLoading(true);
     event.preventDefault();
     const filteredSettings = Object.fromEntries(Object.entries(settings).filter(([_, v]) => v !== ""));
     const throwObject = {};
     fetch(
-      "http://localhost:3000/user/settings/",
+      "http://localhost:3000/uer/settings/",
       {
         method: "PATCH",
         headers: {
@@ -74,18 +73,23 @@ const Settings = () => {
       }
     )
       .then((res) => res.text())
-      .then(() => setIsLoading(true))
       .then(() => {
         NotificationManager.success(
           "Udało się zaktualizować ustawienia.",
           "Sukces!",
           3000
         );
-        navigate("/profile");
       })
       .catch((err) => {
         console.error(err);
+        NotificationManager.error(
+          "Nie udało się zaktualizować ustawień.",
+          "Błąd!",
+          3000
+        );
         return throwObject;
+      }).finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -149,7 +153,7 @@ const Settings = () => {
                 value={settings.username}
                 onChange={handleUserNameChange}
               />
-              <Button buttonText="Zmień hasło" />
+              <Button buttonText="Zmień hasło" destination="/auth/reset" />
             </div>
             <div className={classes.twoInputs}>
               <Input
@@ -191,7 +195,12 @@ const Settings = () => {
                   <img className={classes.avImage} src={defaultAvatar} alt="" />
                 </label>
               </div>
-              <input type="file" id="avatarUploader" className={classes.invisible} onChange={handleAvatarChange}/>
+              <input
+                type="file"
+                id="avatarUploader"
+                className={classes.invisible}
+                onChange={handleAvatarChange}
+              />
             </div>
           </Section>
           <Section>
@@ -213,9 +222,7 @@ const Settings = () => {
                 <label className={classes.label}>Ciemny motyw</label>
               </div>
               <div>
-                <Button
-                  buttonText="Dodaj weryfikację dwuetapową"
-                />
+                <Button buttonText="Dodaj weryfikację dwuetapową" />
               </div>
             </div>
           </Section>

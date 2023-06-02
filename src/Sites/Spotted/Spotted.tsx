@@ -9,7 +9,7 @@ import LoadingSpinner from "../../Components/LoadingSpinner";
 //@ts-ignore
 import Modal from "../../Layout/ModalComponents/Modal";
 
-const Spotted = () => {
+const Spotted = (props: any) => {
   const [posts, setPosts] = useState([
     {
       id: 69,
@@ -29,6 +29,7 @@ const Spotted = () => {
     },
   ]);
   const [spottedPostsCount, setSpottedPostsCount] = useState(20);
+  const [showMorePostsButton, setShowMorePostsButton] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState("report");
@@ -92,8 +93,11 @@ const Spotted = () => {
     } catch (error) {
       console.error(error);
     }
+    posts.length < 1 || posts.length < spottedPostsCount
+      ? setShowMorePostsButton(false)
+      : setShowMorePostsButton(true);
     setIsLoading(false);
-  }, [spottedPostsCount]);
+  }, [spottedPostsCount, posts.length]);
 
   useEffect(() => {
     getAllPosts();
@@ -118,7 +122,7 @@ const Spotted = () => {
           modalContent={modalContent}
         />
       )}
-      <div className={classes.menu}>
+      {(!props.hideNav || false) && <div className={classes.menu}>
         <div className={classes.managementIcons}>
           <Icon.List
             className={isActive ? "" : classes.active}
@@ -137,12 +141,12 @@ const Spotted = () => {
             setModalContent("addpost");
           }}
         />
-      </div>
+      </div>}
       {!isLoading && (
         <>
           <div className={classes.posts}>
             {posts.map((post) => {
-              let comments:any;
+              let comments: any;
               switch (post.comments) {
                 case 0:
                   comments = "Brak komentarzy";
@@ -160,7 +164,7 @@ const Spotted = () => {
                   }
                   break;
               }
-              
+
               return (
                 <div
                   key={post.id}
@@ -168,94 +172,96 @@ const Spotted = () => {
                     isActive ? classes.narrowContainer : classes.wideContainer
                   }
                 >
-                    <Wrapper className={classes.post}>
-                      <div className={classes.topData}>
-                        {post.isAnonymous ? (
-                          <div>
-                            <p>
-                              {post.isAnonymous
-                                ? "Anonim"
-                                : post.author.username}
-                            </p>
-                          </div>
-                        ) : (
-                          <div>
-                            <Link to={`/profile/${post.author.id}`}>
-                              <Icon.PersonFill />
-                              <p>
-                                {post.isAnonymous
-                                  ? "Anonim"
-                                  : post.author.username}
-                              </p>
-                            </Link>
-                          </div>
-                        )}
+                  <Wrapper className={classes.post}>
+                    <div className={classes.topData}>
+                      {post.isAnonymous ? (
                         <div>
-                          <Icon.CalendarDate />
-                          {new Date(post.createdAt).toLocaleDateString()}
+                          <Icon.QuestionCircle />
+                          <p>Anonim</p>
                         </div>
+                      ) : (
                         <div>
-                          <Icon.Clock />
-                          {new Date(post.createdAt).getHours() + ":"}
-                          {new Date(post.createdAt).getMinutes() < 10
-                            ? "0" + new Date(post.createdAt).getMinutes()
-                            : new Date(post.createdAt).getMinutes()}
+                          <Link to={`/profile/${post.author.id}`}>
+                            <Icon.PersonFill />
+                            <p>{post.author.username}</p>
+                          </Link>
                         </div>
-                        {!post.isOwned && (
-                          <Icon.FlagFill
-                            onClick={() => {
-                              setShowModal(true);
-                              setModalPostId(post.id);
-                              setModalContent("report");
-                            }}
-                            className={classes.report}
-                          />
-                        )}
-                        {post.isOwned && (
-                          <Icon.TrashFill
-                            onClick={() => {
-                              setShowModal(true);
-                              setModalPostId(post.id);
-                              setModalContent("delete");
-                            }}
-                            className={classes.report}
-                          />
-                        )}
+                      )}
+                      <div>
+                        <Icon.CalendarDate />
+                        {new Date(post.createdAt).toLocaleDateString()}
                       </div>
-                      <div className={classes.content}>{post.text}</div>
-                      <div className={classes.bottomData}>
-                        <div
+                      <div>
+                        <Icon.Clock />
+                        {new Date(post.createdAt).getHours() + ":"}
+                        {new Date(post.createdAt).getMinutes() < 10
+                          ? "0" + new Date(post.createdAt).getMinutes()
+                          : new Date(post.createdAt).getMinutes()}
+                      </div>
+                      {!post.isOwned && (
+                        <Icon.FlagFill
                           onClick={() => {
-                            likeHandler(post);
+                            setShowModal(true);
+                            setModalPostId(post.id);
+                            setModalContent("report");
                           }}
+                          className={classes.report}
+                        />
+                      )}
+                      {post.isOwned && (
+                        <Icon.TrashFill
+                          onClick={() => {
+                            setShowModal(true);
+                            setModalPostId(post.id);
+                            setModalContent("delete");
+                          }}
+                          className={classes.report}
+                        />
+                      )}
+                    </div>
+                    <div className={classes.content}>{post.text}</div>
+                    <div className={classes.bottomData}>
+                      <div
+                        onClick={() => {
+                          likeHandler(post);
+                        }}
+                      >
+                        {post.isLiked && (
+                          <Icon.HeartFill
+                            style={{ color: "var(--add1-500)" }}
+                          />
+                        )}
+                        {!post.isLiked && <Icon.Heart />}
+                        <p
+                          style={
+                            post.isLiked ? { color: "var(--add1-500)" } : {}
+                          }
                         >
-                          {post.isLiked && (
-                            <Icon.HeartFill
-                              style={{ color: "var(--add1-500)" }}
-                            />
-                          )}
-                          {!post.isLiked && <Icon.Heart />}
-                          <p
-                            style={
-                              post.isLiked ? { color: "var(--add1-500)" } : {}
-                            }
-                          >
-                            {post.likes}
-                          </p>
-                        </div>
-                        <Link to={`/spotted/post/${post.id}`} className={classes.comments}>
-                          <Icon.ChatLeftTextFill />
-                          <p style={{color: "var(--main-400)"}}>{comments}</p>
-                        </Link>
+                          {post.likes}
+                        </p>
                       </div>
-                    </Wrapper>
+                      <Link
+                        to={`/spotted/post/${post.id}`}
+                        className={classes.comments}
+                      >
+                        <Icon.ChatLeftTextFill />
+                        <p style={{ color: "var(--main-400)" }}>{comments}</p>
+                      </Link>
+                    </div>
+                  </Wrapper>
                 </div>
               );
             })}
           </div>
-          <div className={classes.loadMoreButton}>
-            <Button buttonText="Więcej postów" onClick={downloadMorePosts} />
-          </div>
+          {showMorePostsButton && (
+            <div className={classes.loadMoreButton}>
+              <Button
+                buttonText="Więcej postów"
+                className="alternate"
+                onClick={downloadMorePosts}
+              />
+            </div>
+          )}
         </>
       )}
       {isLoading && <LoadingSpinner />}

@@ -135,6 +135,10 @@ const SpottedPost = () => {
   };
 
   const addCommentHandler = async () => {
+    setReply(null);
+    
+    if (!addCommentRef.current?.value) return;
+
     let body:any = {
       text: addCommentRef.current?.value,
     };

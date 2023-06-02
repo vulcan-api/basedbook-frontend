@@ -15,10 +15,11 @@ import {NotificationContainer} from "react-notifications";
 import Project from "./Sites/Project/Project";
 import ProfileRedirect from './Sites/User/ProfileRedirect';
 import Settings from './Sites/User/Settings';
-import RegisterVulcan from './Sites/User/RegisterVulcan';
 import ComingSoon from './Layout/ComingSoon';
 import ErrorElement from './Layout/ErrorElement';
 import SpottedPost from './Sites/Spotted/SpottedPost';
+import ResetPassword from './Sites/auth/ResetPassword/ResetPassword';
+import ResetPasswordLobby from './Sites/auth/ResetPassword/ResetPasswordLobby';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,14 @@ const router = createBrowserRouter([
   {
     path: "/auth/signup",
     element: <Register />,
+  },
+  {
+    path: "/auth/reset/:hash",
+    element: <ResetPassword />,
+  },
+  {
+    path: "/auth/reset",
+    element: <ResetPasswordLobby />,
   },
   {
     path: "/",
@@ -60,10 +69,6 @@ const router = createBrowserRouter([
       {
         path: "settings",
         element: <Settings />,
-      },
-      {
-        path: "settings/vulcan",
-        element: <RegisterVulcan />,
       },
       {
         path: "profile",
