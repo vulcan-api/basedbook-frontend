@@ -65,8 +65,15 @@ const Login = () => {
             redirect: "follow",
             credentials: "include",
         })
-            .then((response) => response.text())
-            .then(() => {
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.statusCode === 403) {
+                    NotificationManager.error(
+                        "Błędny login lub hasło",
+                        "Nie zalogowano",
+                        3000
+                    );
+                }
                 navigate("/");
             })
             .catch((error) => {
