@@ -29,7 +29,7 @@ const Button = (props: any) => {
   };
 
   const sharedProps = {
-    className: classes.button + " " + classMgmt(props.className),
+    className: classes.button + " " + classMgmt(props.className) + " " + (props.additionalClass || ""),
     children: (
       <>
         {props.icon}

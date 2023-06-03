@@ -15,9 +15,11 @@ import {
 import LoadingSpinner from "../../Components/LoadingSpinner";
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
+import Modal from "../../Layout/ModalComponents/Modal";
 
 const Settings = () => {
   const [darkTheme, setDarkTheme] = useState(getTheme());
+  const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [settings, setSettings] = useState({
     avatar: new File([new Blob()], "avatar"),
@@ -145,6 +147,13 @@ const Settings = () => {
     <>
       {!isLoading && (
         <>
+          {showModal && (
+            <Modal
+              onClose={() => setShowModal(false)}
+              modalContent="removeaccount"
+              onBgClick={() => setShowModal(false)}
+            />
+          )}
           <Section>
             <h2>Profil</h2>
             <div className={classes.twoInputs}>
@@ -226,22 +235,14 @@ const Settings = () => {
               </div>
             </div>
           </Section>
-          {/* <Section>
-            <h2>Dziennik</h2>
-            <div>
-              <p>
-                  Kliknij{" "}
-                  <Link to="vulcan" style={{ color: "var(--add2-500)" }}>
-                    tutaj
-                  </Link>
-                  , aby połączyć swój dziennik Vulcan z aplikacją Basedbook
-              </p>
-            </div>
-          </Section> */}
           <Section>
             <h2>Konto</h2>
             <div className={classes.bottomButtons}>
-              <Button buttonText="Usuń konto" className="alternate" />
+              <Button
+                buttonText="Usuń konto"
+                className="alternate"
+                onClick={() => setShowModal(true)}
+              />
               <Button
                 buttonText={
                   <span

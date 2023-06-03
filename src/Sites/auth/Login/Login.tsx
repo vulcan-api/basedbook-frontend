@@ -73,8 +73,9 @@ const Login = () => {
                         "Nie zalogowano",
                         3000
                     );
+                } else {
+                    navigate("/");
                 }
-                navigate("/");
             })
             .catch((error) => {
                 console.log("error", error)

@@ -11,13 +11,14 @@ import FollowingModal from "./FollowingModal";
 import SocialsModal from "./SocialsModal";
 import AddPostModal from "./AddPostModal";
 import AddProjectModal from "./AddProjectModal";
+import RemoveAccountModal from "./RemoveAccountModal";
 
 const Modal = (props: any) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const showSpinner = (value: any) => {
     setIsLoading(value);
-  }
+  };
 
   const modal = document.getElementById("modal")!;
   const backdrop = document.getElementById("backdrop")!;
@@ -79,13 +80,16 @@ const Modal = (props: any) => {
             />
           )}
           {props.modalContent === "addpost" && (
-            <AddPostModal
+            <AddPostModal onClose={props.onClose} showSpinner={showSpinner} />
+          )}
+          {props.modalContent === "addproject" && (
+            <AddProjectModal
               onClose={props.onClose}
               showSpinner={showSpinner}
             />
           )}
-          {props.modalContent === "addproject" && (
-            <AddProjectModal
+          {props.modalContent === "removeaccount" && (
+            <RemoveAccountModal
               onClose={props.onClose}
               showSpinner={showSpinner}
             />
