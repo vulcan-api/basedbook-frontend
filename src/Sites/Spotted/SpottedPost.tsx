@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import LoadingSpinner from "../../Components/LoadingSpinner";
 import CommentList from "./CommentList";
 import Input from "../../Components/Input";
+//@ts-ignore
+import { NotificationManager } from "react-notifications";
 
 const SpottedPost = () => {
   const [post, setPost] = useState({
@@ -167,7 +169,25 @@ const SpottedPost = () => {
         console.error(err);
       });
   };
-
+  const deleteComment = async (commentId: number) => {
+    const response = await fetch(
+        `http://localhost:3000/spotted/post/comment/${commentId}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+    );
+    if (response.ok) {
+      NotificationManager.success(
+          "Udało się usunąć komentarz.",
+          "Sukces!",
+          3000
+      );
+      await fetchPost(postId);
+    } else {
+      NotificationManager.error("Wystąpił błąd!", "Błąd!", 3000);
+    }
+  };
   return (
     <>
       {isLoading && <LoadingSpinner />}
@@ -255,7 +275,7 @@ const SpottedPost = () => {
           </div>
           <Wrapper className={classes.comments}>
             <h2>Komentarze</h2>
-            <CommentList comments={post.comments} isPostOwned={post.isOwned} replyHandler={replyHandler} />
+            <CommentList comments={post.comments} isPostOwned={post.isOwned} replyHandler={replyHandler} deleteHandler={deleteComment} />
             <div className={classes.addComment}>
               <div className={classes.addCommentInput}>
                 {reply && <p onClick={() => setReply(null)}>Odpowiedz na: {reply.text} <Icon.XCircleFill /></p>}

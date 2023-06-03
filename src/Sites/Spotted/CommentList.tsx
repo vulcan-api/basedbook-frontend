@@ -3,6 +3,7 @@ import classes from "./CommentList.module.css";
 import * as Icon from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 
+
 interface Comment {
   id: number;
   text: string;
@@ -16,11 +17,10 @@ interface Comment {
   replies: { [key: number]: Comment } | null;
 }
 
-const deleteComment = (commentId: number) => {
-  console.log("deleting comment", commentId);
-};
 
 const CommentList = (props: any) => {
+
+
   if (!props.comments)
     return <p className={classes.centered}>Brak komentarzy</p>;
 
@@ -38,7 +38,7 @@ const CommentList = (props: any) => {
             </Link>
           </div>
           {(comment.isOwned || props.isPostOwned) && (
-            <Icon.Trash onClick={() => deleteComment(comment.id)} />
+            <Icon.Trash onClick={() => props.deleteHandler(comment.id)} style={{cursor: 'pointer'}}/>
           )}
         </div>
         <p>{comment.text}</p>
