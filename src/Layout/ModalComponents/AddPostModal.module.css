@@ -5,7 +5,10 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+}
+
+.addForm button {
+    width: 40%;
 }
 
 .addForm > textarea {

@@ -64,7 +64,7 @@ const Settings = () => {
     const filteredSettings = Object.fromEntries(Object.entries(settings).filter(([_, v]) => v !== ""));
     const throwObject = {};
     fetch(
-      "http://localhost:3000/uer/settings/",
+      "http://localhost:3000/user/settings/",
       {
         method: "PATCH",
         headers: {

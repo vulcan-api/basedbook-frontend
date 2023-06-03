@@ -1,0 +1,24 @@
+.socialElem {
+    color: var(--txt-clr);
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem !important;
+    transition: .2s color;
+    width: fit-content;
+}
+
+.socialElem:hover {
+    color: var(--add1-500);
+}
+
+.icon {
+    width: 2rem;
+    height: 2rem;
+    align-items: center;
+    color: var(--add1-500);
+}
+
+.name {
+    align-items: center;
+}

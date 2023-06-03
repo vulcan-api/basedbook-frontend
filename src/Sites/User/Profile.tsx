@@ -12,14 +12,14 @@ import Wrapper from "../../Layout/Wrapper";
 import Modal from "../../Layout/ModalComponents/Modal";
 import ProjectItem from "../Project/ProjectItem";
 import getUserObject from "../../Lib/getUser";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false);
   const [showSpottedPosts, setShowSpottedPosts] = useState(false);
   const [modalContent, setModalContent] = useState("");
-  const [projectId, setProjectId] = useState(-100);
-  const [postId, setPostId] = useState(-100);
+  const [projectId, setProjectId] = useState<any>(null);
+  const [postId, setPostId] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [posts, setPosts] = useState([
     {
@@ -71,6 +71,8 @@ const Profile = () => {
 
   const { userId } = useParams();
 
+  const navigate = useNavigate();
+
   function likeHandler(post: any) {
     let postsCopy = [...posts];
     let index = postsCopy.indexOf(post);
@@ -109,6 +111,30 @@ const Profile = () => {
       });
   };
 
+  const getPublicInfo = useCallback(
+    async function getPublicInfo() {
+      setIsLoading(true);
+      try {
+        await fetch(`http://localhost:3000/user/${userId}`, {
+          method: "GET",
+          credentials: "include",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.statusCode >= 400) {
+              navigate("/404");
+            } else {
+              setUser(data);
+            }
+          })
+          .finally(() => setIsLoading(false));
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [userId, navigate]
+  );
+
   const getUserPosts = useCallback(async () => {
     setIsLoading(true);
     try {
@@ -140,36 +166,15 @@ const Profile = () => {
   }, [userId]);
 
   useEffect(() => {
+    getPublicInfo();
     getUserPosts();
     getUserProjects();
-  }, [getUserPosts, getUserProjects]);
-
-  const getPublicInfo = useCallback(
-    async function getPublicInfo() {
-      setIsLoading(true);
-      try {
-        await fetch(`http://localhost:3000/user/${userId}`, {
-          method: "GET",
-          credentials: "include",
-        })
-          .then((res) => res.json())
-          .then(setUser)
-          .finally(() => setIsLoading(false));
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    [userId]
-  );
-
-  useEffect(() => {
-    getPublicInfo();
-  }, [getPublicInfo]);
+  }, [getUserPosts, getUserProjects, getPublicInfo]);
 
   const closeModal = () => {
     setShowModal(false);
-    setPostId(-100);
-    setProjectId(-100);
+    setPostId(null);
+    setProjectId(null);
   };
 
   const applyToProjectHandler = (post: any) => {
@@ -341,8 +346,8 @@ const Profile = () => {
             )}
             <Button
               onClick={() => {
-                setShowModal(true);
                 setModalContent("socials");
+                setShowModal(true);
               }}
               buttonText={
                 <span

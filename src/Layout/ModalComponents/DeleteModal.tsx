@@ -66,7 +66,7 @@ const DeleteModal = (props: any) => {
           setShowContent(true);
         });
     };
-    props.projectId !== -100 ? getRemovableProject() : getRemovablePost();
+    props.projectId === null ? getRemovablePost() : getRemovableProject();
   }, [props]);
 
   const deleteProject = async (projectId: number) => {
@@ -106,9 +106,9 @@ const DeleteModal = (props: any) => {
 
   return (
     <>
-      <p>Usuń {props.projectId !== -100 ? "projekt" : "post"}</p>
+      <p>Usuń {props.projectId !== null ? "projekt" : "post"}</p>
       {showContent &&
-        (props.projectId !== -100
+        (props.projectId !== null
           ? removableContent.map((project, index) => {
               return (
                 <div key={index}>
@@ -134,10 +134,14 @@ const DeleteModal = (props: any) => {
                     </div>
                     <h2>{project.title}</h2>
                     <p className={ProjectClasses.content}>{project.text}</p>
-                    <div className={ProjectClasses.bottomDataDisabled}>
+                    <div className={ProjectClasses.bottomData}>
                       <Button
-                        buttonText="Zapisz się"
-                        className="gray disabled"
+                        buttonText={
+                          project.hasAlreadyApplied
+                            ? "Wypisz się"
+                            : "Zapisz się"
+                        }
+                        className={project.hasAlreadyApplied ? "alternate" : ""}
                       />
                       <Icon.PersonFillCheck />
                     </div>

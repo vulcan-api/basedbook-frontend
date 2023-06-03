@@ -52,8 +52,8 @@ const Modal = (props: any) => {
           )}
           {props.modalContent === "delete" && (
             <DeleteModal
-              postId={props.postId}
-              projectId={props.projectId}
+              postId={props.postId || null}
+              projectId={props.projectId || null}
               onClose={props.onClose}
               showSpinner={showSpinner}
             />
