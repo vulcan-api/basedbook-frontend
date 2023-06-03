@@ -67,7 +67,7 @@ const Login = () => {
         })
             .then((response) => response.json())
             .then((data) => {
-                if (data.statusCode === 403) {
+                if (data.statusCode >= 400) {
                     NotificationManager.error(
                         "Błędny login lub hasło",
                         "Nie zalogowano",
