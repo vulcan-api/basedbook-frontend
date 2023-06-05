@@ -1,10 +1,30 @@
 import React, { useState, useEffect } from "react";
 import classes from "./ChatSidebar.module.css";
 //@ts-ignore
-import {NotificationManager} from "react-notifications";
+import { NotificationManager } from "react-notifications";
+import getUserObject from "../../../Lib/getUser";
 
 const ChatSidebar = () => {
-  const [conversations, setConversations] = useState<any>([]);
+  const [conversations, setConversations] = useState<
+    typeof conversationInterface
+  >([]);
+
+  let user = getUserObject();
+
+  const conversationInterface = [
+    {
+      id: Number,
+      lastMessage: {
+        content: String,
+        id: Number,
+        sendTime: Date,
+        sender: {
+          username: String,
+        },
+      },
+      name: String,
+    },
+  ];
 
   const fetchChat = () => {
     fetch("http://localhost:3000/chat/conversations", {
@@ -23,7 +43,7 @@ const ChatSidebar = () => {
           setConversations(data);
         }
       });
-    };
+  };
 
   useEffect(() => {
     fetchChat();
@@ -35,26 +55,52 @@ const ChatSidebar = () => {
         <div className={classes.top}>
           <h2>Chat</h2>
           <div className={classes.conversations}>
-            {conversations.map((conversation: any) => (
-              <div className={classes.conversation}>
-                <div className={classes.avatar}>
-                  <img
-                    src={
-                      conversation.avatar ||
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO-7dlhEBOaxEyaiVVF_T-PY4ylyLjRmJTyCiajDft&s"
-                    }
-                    alt="avatar"
-                  />
+            {conversations.map((conversation: any) => {
+              const lastMessageDate = new Date(
+                conversation.lastMessage.sendTime
+              );
+
+              let lastMessageTime: String;
+
+              if (
+                lastMessageDate.getDate() === new Date().getDate() &&
+                lastMessageDate.getMonth() === new Date().getMonth() &&
+                lastMessageDate.getFullYear() === new Date().getFullYear()
+              ) {
+                lastMessageTime =
+                  lastMessageDate.getHours() +
+                  ":" +
+                  lastMessageDate.getMinutes();
+              } else {
+                lastMessageTime =
+                  lastMessageDate.getDate() + "/" + lastMessageDate.getMonth();
+              }
+
+              return (
+                <div className={classes.conversation} key={conversation.id}>
+                  <div className={classes.avatar}>
+                    <img
+                      src={
+                        conversation.avatar ||
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO-7dlhEBOaxEyaiVVF_T-PY4ylyLjRmJTyCiajDft&s"
+                      }
+                      alt="avatar"
+                    />
+                  </div>
+                  <div className={classes.info}>
+                    <h3>{conversation.name}</h3>
+                    <div>
+                      <p>
+                        {user.username ===
+                          conversation.lastMessage.sender.username && "Ty: "}
+                        {conversation.lastMessage.content}
+                      </p>
+                      <p>{lastMessageTime}</p>
+                    </div>
+                  </div>
                 </div>
-                <div className={classes.info}>
-                  <h3>{conversation.conversation.name}</h3>
-                  <p>
-                    {conversation.conversation.lastMessage ||
-                      "Sample last message"}
-                  </p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
