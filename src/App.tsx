@@ -15,11 +15,11 @@ import {NotificationContainer} from "react-notifications";
 import Project from "./Sites/Project/Project";
 import ProfileRedirect from './Sites/User/ProfileRedirect';
 import Settings from './Sites/User/Settings';
-import ComingSoon from './Layout/ComingSoon';
 import ErrorElement from './Layout/ErrorElement';
 import SpottedPost from './Sites/Spotted/SpottedPost';
 import ResetPassword from './Sites/auth/ResetPassword/ResetPassword';
 import ResetPasswordLobby from './Sites/auth/ResetPassword/ResetPasswordLobby';
+import Chat from './Sites/Chat/Chat';
 import Verify from "./Sites/auth/Verify/Verify";
 
 const router = createBrowserRouter([
@@ -83,9 +83,15 @@ const router = createBrowserRouter([
         path: "profile/:userId",
         element: <Profile />,
       },
+    ],
+  },
+  {
+    path: "/",
+    element: <Main removeWrapper={true} />,
+    children: [
       {
         path: "chat",
-        element: <ComingSoon />,
+        element: <Chat />,
       },
     ],
   },

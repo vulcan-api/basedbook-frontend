@@ -1,0 +1,50 @@
+.main {
+    height: 100vh;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-right: 1px solid var(--main-100);
+    padding: 2rem;
+    background-color: var(--bg-clr);
+    overflow-y: hidden;
+    box-sizing: border-box;
+    z-index: 50;
+    position: relative;
+    min-width: 15%;
+}
+
+.top > h2 {
+    text-align: center;
+}
+
+.conversations {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 1rem 0;
+}
+
+.conversation {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.conversation h3 {
+    margin-block: 0;
+}
