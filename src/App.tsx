@@ -20,6 +20,7 @@ import ErrorElement from './Layout/ErrorElement';
 import SpottedPost from './Sites/Spotted/SpottedPost';
 import ResetPassword from './Sites/auth/ResetPassword/ResetPassword';
 import ResetPasswordLobby from './Sites/auth/ResetPassword/ResetPasswordLobby';
+import Verify from "./Sites/auth/Verify/Verify";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/auth/signup",
     element: <Register />,
+  },
+  {
+    path: "/auth/verify/:tempId",
+    element: <Verify />,
   },
   {
     path: "/auth/reset/:hash",

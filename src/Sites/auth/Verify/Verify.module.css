@@ -1,0 +1,19 @@
+.main {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.main > p {
+    font-size: 2rem;
+    color: var(--add1-500);
+    text-align: center;
+}
+
+.main button {
+    width: fit-content;
+}
