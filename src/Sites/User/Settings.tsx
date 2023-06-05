@@ -21,8 +21,9 @@ const Settings = () => {
   const [darkTheme, setDarkTheme] = useState(getTheme());
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [avatar, setAvatar] = useState('');
   const [settings, setSettings] = useState({
-    avatar: new File([new Blob()], "avatar"),
+    avatar: new Blob(),
     username: "",
     email: "",
     name: "",
@@ -32,7 +33,6 @@ const Settings = () => {
     youtube: "",
     website: "",
     profileDesc: "",
-    darkTheme: false,
   });
 
 
@@ -61,36 +61,31 @@ const Settings = () => {
   async function updateSettings(event: any) {
     setIsLoading(true);
     event.preventDefault();
-    const filteredSettings = Object.fromEntries(Object.entries(settings).filter(([_, v]) => v !== ""));
-    const throwObject = {};
+    const formData = new FormData();
+    for (const name in settings)
+      formData.append(name, settings[name as keyof typeof settings]);
     fetch(
       "http://localhost:3000/user/settings/",
       {
         method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
         credentials: "include",
-        body: JSON.stringify(filteredSettings),
+        body: formData
       }
     )
-      .then((res) => res.text())
-      .then(() => {
+      .then((res) => {
+        res.ok ?
         NotificationManager.success(
           "Udało się zaktualizować ustawienia.",
           "Sukces!",
           3000
-        );
-      })
-      .catch((err) => {
-        console.error(err);
+        ) :
         NotificationManager.error(
           "Nie udało się zaktualizować ustawień.",
           "Błąd!",
           3000
         );
-        return throwObject;
-      }).finally(() => {
+      })
+      .finally(() => {
         setIsLoading(false);
       });
   }
@@ -133,11 +128,13 @@ const Settings = () => {
   };
 
   const handleAvatarChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if(event.target.files)
-    setSettings({
-      ...settings,
-      avatar: new File([event.target.files[0]], "avatar", {type: 'image/jpg'}),
-    });
+    if (event.target.files && event.target.files[0]) {
+      setAvatar(URL.createObjectURL(event.target.files[0]));
+      setSettings({
+        ...settings,
+        avatar: event.target.files[0],
+      });
+    }
   }
 
   useEffect(() => {
@@ -201,7 +198,7 @@ const Settings = () => {
                   <span className={`${classes.coverer} ${classes.hidden}`}>
                     <PencilFill className={classes.covererIcon} />
                   </span>
-                  <img className={classes.avImage} src={defaultAvatar} alt="" />
+                    <img className={classes.avImage} src={avatar ? avatar : defaultAvatar} alt="" />
                 </label>
               </div>
               <input
