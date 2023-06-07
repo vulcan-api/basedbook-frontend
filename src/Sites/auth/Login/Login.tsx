@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState} from "react";
+import React, {useRef, useState} from "react";
 import Input from "../../../Components/Input";
 import Checkbox from "../../../Components/Checkbox";
 import classes from "./Login.module.css";
@@ -68,6 +68,7 @@ const Login = () => {
                     onBgClick={closeModal}
                     onClose={closeModal}
                     modalContent="totp"
+                    email={emailRef.current.value}
                 />
             )}
         <div className={classes.loginFlex}>

@@ -45,7 +45,7 @@ const Modal = (props: any) => {
             />
           )}
           {props.modalContent === "totp" && (
-              <TotpModal onClose={props.onClose} showSpinner={showSpinner} />
+              <TotpModal onClose={props.onClose} showSpinner={showSpinner} email={props.email} />
             )}
           {props.modalContent === "enable2FA" && (
               <Enable2FAModal onClose={props.onClose} showSpinner={showSpinner} />

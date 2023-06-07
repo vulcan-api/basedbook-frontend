@@ -150,10 +150,6 @@ const Settings = () => {
             });
         }
     }
-    const close2FAModal = () => {
-        console.log('close')
-        setShow2FAModal(false);
-    };
     useEffect(() => {
         getSettings();
         checkIf2FAEnabled();

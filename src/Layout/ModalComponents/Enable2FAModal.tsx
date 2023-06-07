@@ -3,25 +3,24 @@ import {useEffect, useState} from "react";
 
 const Enable2FAModal = (props: { onClose: Function, showSpinner: Function }) => {
     const [qrValue, setQRValue] = useState<string>("");
-    const getQRValue = async () => {
-        await fetch(`${process.env.REACT_APP_REQUEST_URL}/auth/totp/code`, {
-            method: "GET",
-            credentials: "include",
-        })
-            .then((res) => res.json())
-            .then((res) => {
-                setQRValue(res.url);
-            })
-            .catch((err) => {
-                console.error(err);
-            })
-            .finally(() => {
-                props.showSpinner(false);
-            });
-    };
     useEffect(() => {
+        const getQRValue = async () => {
+            try {
+                const response = await fetch(`${process.env.REACT_APP_REQUEST_URL}/auth/totp/code`, {
+                    method: "GET",
+                    credentials: "include",
+                });
+                const data = await response.json();
+                setQRValue(data.url);
+            } catch (error) {
+                console.error(error);
+            } finally {
+                props.showSpinner(false);
+            }
+        };
         getQRValue();
-    }, []);
+    }, [props]);
+
     return (
         <>
             {qrValue &&
