@@ -12,6 +12,8 @@ import SocialsModal from "./SocialsModal";
 import AddPostModal from "./AddPostModal";
 import AddProjectModal from "./AddProjectModal";
 import RemoveAccountModal from "./RemoveAccountModal";
+import TotpModal from "./TotpModal";
+import Enable2FAModal from "./Enable2FAModal";
 
 const Modal = (props: any) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,6 +43,12 @@ const Modal = (props: any) => {
               onClose={props.onClose}
               showSpinner={showSpinner}
             />
+          )}
+          {props.modalContent === "totp" && (
+              <TotpModal onClose={props.onClose} showSpinner={showSpinner} />
+            )}
+          {props.modalContent === "enable2FA" && (
+              <Enable2FAModal onClose={props.onClose} showSpinner={showSpinner} />
           )}
           {props.modalContent === "projectAppliedUsers" && (
             <ProjectAppliedUsersModal

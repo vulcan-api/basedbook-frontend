@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from "react";
+import React, {useRef, useEffect, useState} from "react";
 import Input from "../../../Components/Input";
 import Checkbox from "../../../Components/Checkbox";
 import classes from "./Login.module.css";
@@ -7,47 +7,19 @@ import loginImg from "./Graphics/loginImg.png";
 import {Link, useNavigate} from "react-router-dom";
 //@ts-ignore
 import {NotificationManager} from "react-notifications";
+import Modal from "../../../Layout/ModalComponents/Modal";
 
 const Login = () => {
     const navigate = useNavigate();
     const emailRef: any = useRef();
     const passwordRef: any = useRef();
     const remeberPasswordRef: any = useRef();
+    const [showModal, setShowModal] = useState(false);
 
-    useEffect(() => {
-        fetchPosts();
-    })
 
-    const fetchPosts = async () => {
-        const throwObject = {};
-        await fetch("http://localhost:3000/spotted/post", {
-            method: "GET",
-            credentials: "include",
-        })
-            .then((res) => res.json())
-            .then(() => {
-                logout();
-            })
-            .catch((err) => {
-                console.error(err);
-                return throwObject;
-            });
+    const closeModal = () => {
+        setShowModal(false);
     };
-
-    const logout = () => {
-        let myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        fetch("http://localhost:3000/auth/logout", {
-            method: "POST",
-            headers: myHeaders,
-            redirect: "follow",
-            credentials: "include",
-        })
-            .then((response) => response.text())
-            .catch((error) => console.log("error", error));
-    };
-
     const loginHandler = async (event: any) => {
         event.preventDefault();
         let myHeaders = new Headers();
@@ -73,6 +45,8 @@ const Login = () => {
                         "Nie zalogowano",
                         3000
                     );
+                } else if (data.has2FAEnabled) {
+                    setShowModal(true);
                 } else {
                     navigate("/");
                 }
@@ -88,6 +62,14 @@ const Login = () => {
     };
 
     return (
+        <>
+            {showModal && (
+                <Modal
+                    onBgClick={closeModal}
+                    onClose={closeModal}
+                    modalContent="totp"
+                />
+            )}
         <div className={classes.loginFlex}>
             <div className={classes.img}></div>
             <div className={classes.formSide}>
@@ -109,6 +91,8 @@ const Login = () => {
                 </div>
             </div>
         </div>
+        </>
+
     );
 };
 
