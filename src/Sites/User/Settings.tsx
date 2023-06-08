@@ -36,6 +36,7 @@ const Settings = () => {
     });
     const [show2FAModal, setShow2FAModal] = useState(false);
     const [is2FAEnabled, setIs2FAEnabled] = useState(false);
+
     async function getSettings() {
         setIsLoading(true);
         try {
@@ -57,6 +58,7 @@ const Settings = () => {
         toggleTheme();
         return;
     };
+
     async function checkIf2FAEnabled() {
         await fetch("http://localhost:3000/auth/totp/is-enabled", {
             method: "GET",
@@ -64,9 +66,24 @@ const Settings = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-               if (data.is2faEnabled === true) {
-                   setIs2FAEnabled(true);
-               }
+                if (data.is2faEnabled === true) {
+                    setIs2FAEnabled(true);
+                }
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    }
+    async function disable2FA() {
+        await fetch("http://localhost:3000/auth/totp/remove", {
+            method: "PATCH",
+            credentials: "include",
+        })
+            .then((response) => {
+                console.log(response);
+                if (response.status === 204) {
+                    setIs2FAEnabled(false);
+                }
             })
             .catch((err) => {
                 console.error(err);
@@ -166,7 +183,7 @@ const Settings = () => {
                         />
                     )}
                     {show2FAModal &&
-                        <Modal modalContent="enable2FA"    onClose={() => setShow2FAModal(false)}
+                        <Modal modalContent="enable2FA" onClose={() => setShow2FAModal(false)}
                                onBgClick={() => setShow2FAModal(false)}/>
                     }
                     <Section>
@@ -246,9 +263,10 @@ const Settings = () => {
                                 <label className={classes.label}>Ciemny motyw</label>
                             </div>
                             <div>
-                                {!is2FAEnabled &&
-                                <Button buttonText="Dodaj weryfikację dwuetapową"
-                                        onClick={() => setShow2FAModal(true)}/>
+                                {is2FAEnabled ?
+                                    <Button buttonText="Usuń weryfikację dwuetapową" onClick={disable2FA}/> :
+                                    <Button buttonText="Dodaj weryfikację dwuetapową"
+                                            onClick={() => setShow2FAModal(true)}/>
                                 }
                             </div>
                         </div>
