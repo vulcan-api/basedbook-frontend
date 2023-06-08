@@ -1,0 +1,96 @@
+.main {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--main-100);
+  gap: 1.5rem;
+  font-size: 2rem;
+}
+
+.header img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  aspect-ratio: 1/1;
+}
+
+.bottom {
+  padding: 1rem 2rem;
+  border-top: 1px solid var(--main-100);
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  gap: 1rem;
+  color: var(--add1-500);
+}
+
+.bottom svg {
+  cursor: pointer;
+  transition: all 100ms linear;
+}
+
+.bottom svg:hover {
+  transform: scale(1.1);
+}
+
+.chat {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  justify-content: flex-end;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.message {
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.senderUsername {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-block: 0;
+}
+
+.message img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  aspect-ratio: 1/1;
+}
+
+.controls {
+  display: none;
+  margin-left: auto;
+  align-items: center;
+  gap: .5rem;
+}
+
+.controls svg {
+  cursor: pointer;
+}
+
+.message:hover .controls {
+  display: flex;
+}
+
+.edited {
+  font-size: 0.625rem;
+  color: var(--add2-500);
+}
