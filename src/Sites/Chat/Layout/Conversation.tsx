@@ -1,174 +1,246 @@
-import React, {useState, useEffect, useCallback, useRef} from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 //@ts-ignore
-import {NotificationManager} from "react-notifications";
+import { NotificationManager } from "react-notifications";
 import LoadingSpinner from "../../../Components/LoadingSpinner";
 import classes from "./Conversation.module.css";
 import Input from "../../../Components/Input";
 import * as Icon from "react-bootstrap-icons";
 
 const Conversation = (props: {
-    conversationId: number;
-    formatDate: Function;
+  conversationId: number;
+  formatDate: Function;
 }) => {
-    const [chat, setChat] = useState<ChatInterface>({
-        id: 1,
-        name: "test",
-        messages: [
-            {
-                id: "1",
-                content: "test",
-                sendTime: "2023-06-05T16:47:56.098Z",
-                isEdited: false,
-                sender: {
-                    id: 26,
-                    username: "12314323541231",
-                },
-                isOwned: true,
-            },
-        ],
-        isAdmin: true,
-    });
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-    const chatRef = useRef<any>("");
-
-    interface Message {
-        id: string;
-        content: string;
-        sendTime: string;
-        isEdited: boolean;
+  const [chat, setChat] = useState<ChatInterface>({
+    id: 1,
+    name: "",
+    messages: [
+      {
+        id: "1",
+        content: "",
+        sendTime: "2023-06-05T16:47:56.098Z",
+        isEdited: false,
         sender: {
-            id: number;
-            username: string;
-        };
-        isOwned: boolean;
-    }
+          id: 26,
+          username: "",
+        },
+        isOwned: true,
+      },
+    ],
+    isAdmin: true,
+  });
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const chatRef = useRef<any>("");
+  const [edit, setEdit] = useState<any>(false);
 
-    interface ChatInterface {
-        id: number;
-        name: string;
-        avatar?: string;
-        messages: Message[];
-        isAdmin: boolean;
-    }
-
-    const fetchConversation = useCallback(() => {
-        fetch(`http://localhost:3000/chat/messages/${props.conversationId}`, {
-            method: "GET",
-            credentials: "include",
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.statusCode >= 400) {
-                    NotificationManager.error(
-                        "Błąd przy pobieraniu konwersacji!",
-                        "Błąd",
-                        3000
-                    );
-                } else {
-                    setChat(data);
-                }
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
-    }, [props]);
-
-    useEffect(() => {
-        fetchConversation();
-    }, [fetchConversation]);
-
-    const sendHandler = async () => {
-        let body = {
-            content: chatRef.current.value,
-            conversation: props.conversationId,
-        };
-        if (chatRef.current.value.length > 0) {
-            const response = await fetch(`http://localhost:3000/chat/send`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-                body: JSON.stringify(body),
-            });
-            if (response.status === 201) {
-                fetchConversation();
-            } else {
-                NotificationManager.error(
-                    "Błąd przy wysyłaniu wiadomości!",
-                    "Błąd",
-                    3000
-                );
-            }
-        }
+  interface Message {
+    id: string;
+    content: string;
+    sendTime: string;
+    isEdited: boolean;
+    sender: {
+      id: number;
+      username: string;
     };
+    isOwned: boolean;
+  }
 
-    return (
-        <>
-            {isLoading ? (
-                <LoadingSpinner/>
-            ) : (
-                <div className={classes.main}>
-                    <div className={classes.header}>
-                        <img
-                            src={
-                                chat.avatar ||
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO-7dlhEBOaxEyaiVVF_T-PY4ylyLjRmJTyCiajDft&s"
-                            }
-                            alt="avatar"
-                        />
-                        <p>{chat.name}</p>
-                    </div>
-                    <div className={classes.chat}>
-                        {chat.messages.map((message: any) => {
-                            let messageTime = props.formatDate(message.sendTime, true);
-                            return (
-                                <div
-                                    key={message.id}
-                                    className={
-                                        message.sender.id === 0
-                                            ? classes.adminMessage
-                                            : classes.message
-                                    }
-                                >
-                                    {message.sender.id !== 0 && (
-                                        <img
-                                            src={
-                                                chat.avatar ||
-                                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO-7dlhEBOaxEyaiVVF_T-PY4ylyLjRmJTyCiajDft&s"
-                                            }
-                                            alt="avatar"
-                                        />
-                                    )}
-                                    <div className={classes.content}>
-                                        {message.sender.id !== 0 && (
-                                            <p className={classes.senderUsername}>
-                                                {message.sender.username}
-                                            </p>
-                                        )}
-                                        <p>{message.content}</p>
-                                        {message.isEdited && (
-                                            <p className={classes.edited}>(Edytowano)</p>
-                                        )}
-                                    </div>
-                                    <div className={classes.controls}>
-                                        <Icon.PencilFill/>
-                                        {message.isOwned && <Icon.TrashFill/>}
-                                        <Icon.ReplyFill/>
-                                        <p>{messageTime}</p>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                    <div className={classes.bottom}>
-                        <Input ref={chatRef} placeholder="Wiadomość"/>
-                        <Icon.ArrowRightCircleFill onClick={sendHandler}/>
-                    </div>
-                </div>
-            )}
-        </>
+  interface ChatInterface {
+    id: number;
+    name: string;
+    avatar?: string;
+    messages: Message[];
+    isAdmin: boolean;
+  }
+
+  const fetchConversation = useCallback(() => {
+    //TODO: Add pagination
+    fetch(`http://localhost:3000/chat/messages/${props.conversationId}?take=100000`, {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.statusCode >= 400) {
+          NotificationManager.error(
+            "Błąd przy pobieraniu konwersacji!",
+            "Błąd",
+            3000
+          );
+        } else {
+          setChat(data);
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [props]);
+
+  const sendManagement = () => {
+    if (edit) {
+      editHandler();
+    } else {
+      sendHandler();
+    }
+  }
+
+  useEffect(() => {
+    fetchConversation();
+  }, [fetchConversation]);
+
+  const editHandler = async () => {
+    let body = {
+      content: chatRef.current.value,
+    };
+    if (chatRef.current.value.length > 0) {
+      const response = await fetch(`http://localhost:3000/chat/edit/${edit.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(body),
+      });
+      if (response.status < 400) {
+        fetchConversation();
+        chatRef.current.value = "";
+        setEdit(null);
+      } else {
+        NotificationManager.error(
+          "Błąd przy edytowaniu wiadomości!",
+          "Błąd",
+          3000
+        );
+      }
+    }
+  };
+
+  const sendHandler = async () => {
+    let body = {
+      content: chatRef.current.value,
+      conversation: props.conversationId,
+    };
+    if (chatRef.current.value.length > 0) {
+      const response = await fetch(`http://localhost:3000/chat/send`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(body),
+      });
+      if (response.status === 201) {
+        fetchConversation();
+        chatRef.current.value = "";
+      } else {
+        NotificationManager.error(
+          "Błąd przy wysyłaniu wiadomości!",
+          "Błąd",
+          3000
+        );
+      }
+    }
+  };
+
+  const deleteHandler = async (id: number) => {
+    const response = await fetch(
+      `http://localhost:3000/chat/delete/${id}`,
+      {
+        method: "DELETE",
+        credentials: "include",
+      }
     );
+    if (response.ok) {
+      NotificationManager.success(
+        "Udało się usunąć wiadomość.",
+        "Sukces!",
+        3000
+      );
+      fetchConversation();
+    } else {
+      NotificationManager.error("Wystąpił błąd!", "Błąd!", 3000);
+    }
+  };
+
+  return (
+    <>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <div className={classes.main}>
+          <div className={classes.header}>
+            <img
+              src={
+                chat.avatar ||
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO-7dlhEBOaxEyaiVVF_T-PY4ylyLjRmJTyCiajDft&s"
+              }
+              alt="avatar"
+            />
+            <p>{chat.name}</p>
+          </div>
+          <div className={classes.chat}>
+            {chat.messages.reverse().map((message: any) => {
+              let messageTime = props.formatDate(message.sendTime, true);
+              return (
+                <div
+                  key={message.id}
+                  className={
+                    message.sender.id === 0
+                      ? classes.adminMessage
+                      : classes.message
+                  }
+                >
+                  {message.sender.id !== 0 && (
+                    <img
+                      src={
+                        chat.avatar ||
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO-7dlhEBOaxEyaiVVF_T-PY4ylyLjRmJTyCiajDft&s"
+                      }
+                      alt="avatar"
+                    />
+                  )}
+                  <div className={classes.content}>
+                    {message.sender.id !== 0 && (
+                      <p className={classes.senderUsername}>
+                        {message.sender.username}
+                      </p>
+                    )}
+                    <p>{message.content}</p>
+                    {message.isEdited && (
+                      <p className={classes.edited}>(Edytowano)</p>
+                    )}
+                  </div>
+                  <div className={classes.controls}>
+                    {message.isOwned && (
+                      <>
+                        <Icon.PencilFill
+                          onClick={() => {
+                            setEdit({ text: message.content, id: message.id });
+                          }}
+                        />
+                        <Icon.TrashFill onClick={() => deleteHandler(message.id)} />
+                      </>
+                    )}
+                    <p>{messageTime}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className={classes.bottom}>
+            <div className={classes.inputContainer}>
+              {edit && (
+                <p onClick={() => setEdit(null)}>
+                  Odpowiedz na: {edit.text} <Icon.XCircleFill />
+                </p>
+              )}
+              <Input ref={chatRef} placeholder="Wiadomość" />
+            </div>
+            <Icon.ArrowRightCircleFill onClick={sendManagement} />
+          </div>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default Conversation;
