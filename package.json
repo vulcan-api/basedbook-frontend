@@ -50,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "@types/webpack-env": "^1.18.1",
     "cross-env": "^7.0.3",
     "typescript-plugin-css-modules": "^4.1.1"
   }

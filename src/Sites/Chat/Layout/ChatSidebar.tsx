@@ -5,11 +5,6 @@ import { NotificationManager } from "react-notifications";
 import getUserObject from "../../../Lib/getUser";
 import LoadingSpinner from "../../../Components/LoadingSpinner";
 import * as Icon from "react-bootstrap-icons";
-import avatar1 from "../../../Images/ChatIcons/1.png";
-import avatar2 from "../../../Images/ChatIcons/2.png";
-import avatar3 from "../../../Images/ChatIcons/3.png";
-import avatar4 from "../../../Images/ChatIcons/4.png";
-import avatar5 from "../../../Images/ChatIcons/5.png";
 
 const ChatSidebar = (props: {
   chooseConversation: Function;
@@ -71,18 +66,20 @@ const ChatSidebar = (props: {
   const openModalHandler = () => {
     props.setShowModal(true);
     props.setModalContent("createchat");
-  }
+  };
 
-  // function importAll(r) {
-  //   let images: any = {};
-  //   r.keys().forEach((item: any, index: Number) => {
-  //     images[item.replace("./", "")] = r(item);
-  //   });
-  //   return images;
-  // }
-  // const images = importAll(
-  //   require.context("../assets", false, /\.(png|jpe?g|svg)$/)
-  // );
+  function importAll(r: any) {
+    let images: any = {};
+    r.keys().forEach((item: any, index: Number) => {
+      images[item.replace("./", "")] = r(item);
+    });
+    return images;
+  }
+  let images = importAll(
+    require.context("../ChatIcons/", false, /\.(png|jpe?g|svg)$/)
+  );
+
+  images = Object.values(images);
 
   return (
     <>
@@ -100,17 +97,20 @@ const ChatSidebar = (props: {
                   );
                 }
 
-                let avatar = `avatar${conversation.avatarId}`
-
                 return (
                   <div
                     className={classes.conversation}
                     key={conversation.id}
                     onClick={() => props.chooseConversation(conversation.id)}
                   >
-                    <div className={classes.avatar}>
-                      <img src={avatar} alt="avatar" />
-                    </div>
+                    <div
+                      className={classes.avatar}
+                      style={{
+                        background: `transparent url("${
+                          images[conversation.avatarId - 1]
+                        }")  no-repeat center center/contain`,
+                      }}
+                    ></div>
                     <div className={classes.info}>
                       <h3>{conversation.name}</h3>
                       {conversation.lastMessage && (

@@ -70,6 +70,9 @@ dependencies:
     version: 2.1.4
 
 devDependencies:
+  '@types/webpack-env':
+    specifier: ^1.18.1
+    version: 1.18.1
   cross-env:
     specifier: ^7.0.3
     version: 7.0.3
@@ -2591,6 +2594,10 @@ packages:
   /@types/trusted-types@2.0.2:
     resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
     dev: false
+
+  /@types/webpack-env@1.18.1:
+    resolution: {integrity: sha512-D0HJET2/UY6k9L6y3f5BL+IDxZmPkYmPT4+qBrRdmRLYRuV0qNKizMgTvYxXZYn+36zjPeoDZAEYBCM6XB+gww==}
+    dev: true
 
   /@types/ws@8.5.4:
     resolution: {integrity: sha512-zdQDHKUgcX/zBc4GrwsE/7dVdAD8JR4EuiAXiiUhhfyIJXXb2+PrGshFyeXWQPMmmZ2XxgaqclgpIC7eTXc1mg==}
