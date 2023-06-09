@@ -188,6 +188,12 @@ const SpottedPost = () => {
       NotificationManager.error("Wystąpił błąd!", "Błąd!", 3000);
     }
   };
+  const handleKeyDown = (event: any) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      addCommentHandler();
+    }
+  };
   return (
     <>
       {isLoading && <LoadingSpinner />}
@@ -283,6 +289,7 @@ const SpottedPost = () => {
                   type="text"
                   ref={addCommentRef}
                   placeholder="Komentarz"
+                  onKeyDown={handleKeyDown}
                 />
               </div>
               <Icon.ArrowRightCircleFill onClick={addCommentHandler} />
