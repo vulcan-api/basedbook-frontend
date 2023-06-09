@@ -4,8 +4,19 @@ import classes from "./ChatSidebar.module.css";
 import { NotificationManager } from "react-notifications";
 import getUserObject from "../../../Lib/getUser";
 import LoadingSpinner from "../../../Components/LoadingSpinner";
+import * as Icon from "react-bootstrap-icons";
+import avatar1 from "../../../Images/ChatIcons/1.png";
+import avatar2 from "../../../Images/ChatIcons/2.png";
+import avatar3 from "../../../Images/ChatIcons/3.png";
+import avatar4 from "../../../Images/ChatIcons/4.png";
+import avatar5 from "../../../Images/ChatIcons/5.png";
 
-const ChatSidebar = (props: { chooseConversation: Function, formatDate: Function }) => {
+const ChatSidebar = (props: {
+  chooseConversation: Function;
+  formatDate: Function;
+  setShowModal: Function;
+  setModalContent: Function;
+}) => {
   const [conversations, setConversations] = useState<
     typeof conversationInterface
   >([]);
@@ -25,6 +36,7 @@ const ChatSidebar = (props: { chooseConversation: Function, formatDate: Function
         },
       },
       name: String,
+      avatarId: Number,
     },
   ];
 
@@ -43,19 +55,34 @@ const ChatSidebar = (props: { chooseConversation: Function, formatDate: Function
           );
         } else {
           setConversations(data);
-          props.chooseConversation(data[0].id)
         }
       })
       .finally(() => {
         setIsLoading(false);
       });
-  }, [props]);
+  }, []);
 
   useEffect(() => {
     fetchChat();
   }, [fetchChat]);
 
   let lastMessageTime: String;
+
+  const openModalHandler = () => {
+    props.setShowModal(true);
+    props.setModalContent("createchat");
+  }
+
+  // function importAll(r) {
+  //   let images: any = {};
+  //   r.keys().forEach((item: any, index: Number) => {
+  //     images[item.replace("./", "")] = r(item);
+  //   });
+  //   return images;
+  // }
+  // const images = importAll(
+  //   require.context("../assets", false, /\.(png|jpe?g|svg)$/)
+  // );
 
   return (
     <>
@@ -66,7 +93,14 @@ const ChatSidebar = (props: { chooseConversation: Function, formatDate: Function
           <div className={classes.conversations}>
             {conversations.length > 0 &&
               conversations.map((conversation: any) => {
-                lastMessageTime = props.formatDate(conversation.lastMessage.sendTime, false);
+                if (conversation.lastMessage) {
+                  lastMessageTime = props.formatDate(
+                    conversation.lastMessage.sendTime,
+                    false
+                  );
+                }
+
+                let avatar = `avatar${conversation.avatarId}`
 
                 return (
                   <div
@@ -75,29 +109,30 @@ const ChatSidebar = (props: { chooseConversation: Function, formatDate: Function
                     onClick={() => props.chooseConversation(conversation.id)}
                   >
                     <div className={classes.avatar}>
-                      <img
-                        src={
-                          conversation.avatar ||
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO-7dlhEBOaxEyaiVVF_T-PY4ylyLjRmJTyCiajDft&s"
-                        }
-                        alt="avatar"
-                      />
+                      <img src={avatar} alt="avatar" />
                     </div>
                     <div className={classes.info}>
                       <h3>{conversation.name}</h3>
-                      <div>
-                        <p>
-                          {user.username ===
-                            conversation.lastMessage.sender.username && "Ty: "}
-                          {conversation.lastMessage.content}
-                        </p>
-                        <p>{lastMessageTime}</p>
-                      </div>
+                      {conversation.lastMessage && (
+                        <div>
+                          <p>
+                            {user.username ===
+                              conversation.lastMessage.sender.username &&
+                              "Ty: "}
+                            {conversation.lastMessage.content}
+                          </p>
+                          <p>{lastMessageTime}</p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
               })}
           </div>
+        </div>
+        <div className={classes.bottom} onClick={openModalHandler}>
+          <Icon.PlusCircleFill />
+          <p>Utwórz chat</p>
         </div>
       </div>
     </>

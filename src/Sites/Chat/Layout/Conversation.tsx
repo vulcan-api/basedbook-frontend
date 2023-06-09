@@ -9,6 +9,8 @@ import * as Icon from "react-bootstrap-icons";
 const Conversation = (props: {
   conversationId: number;
   formatDate: Function;
+  setShowModal: Function;
+  setModalContent: Function;
 }) => {
   const [chat, setChat] = useState<ChatInterface>({
     id: 1,
@@ -54,10 +56,13 @@ const Conversation = (props: {
 
   const fetchConversation = useCallback(() => {
     //TODO: Add pagination
-    fetch(`http://localhost:3000/chat/messages/${props.conversationId}?take=100000`, {
-      method: "GET",
-      credentials: "include",
-    })
+    fetch(
+      `http://localhost:3000/chat/messages/${props.conversationId}?take=100000`,
+      {
+        method: "GET",
+        credentials: "include",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.statusCode >= 400) {
@@ -81,7 +86,7 @@ const Conversation = (props: {
     } else {
       sendHandler();
     }
-  }
+  };
 
   useEffect(() => {
     fetchConversation();
@@ -92,14 +97,17 @@ const Conversation = (props: {
       content: chatRef.current.value,
     };
     if (chatRef.current.value.length > 0) {
-      const response = await fetch(`http://localhost:3000/chat/edit/${edit.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(body),
-      });
+      const response = await fetch(
+        `http://localhost:3000/chat/edit/${edit.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(body),
+        }
+      );
       if (response.status < 400) {
         fetchConversation();
         chatRef.current.value = "";
@@ -142,13 +150,10 @@ const Conversation = (props: {
   };
 
   const deleteHandler = async (id: number) => {
-    const response = await fetch(
-      `http://localhost:3000/chat/delete/${id}`,
-      {
-        method: "DELETE",
-        credentials: "include",
-      }
-    );
+    const response = await fetch(`http://localhost:3000/chat/delete/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
     if (response.ok) {
       NotificationManager.success(
         "Udało się usunąć wiadomość.",
@@ -163,7 +168,7 @@ const Conversation = (props: {
 
   return (
     <>
-      {isLoading ? (
+      {props.conversationId ? isLoading ? (
         <LoadingSpinner />
       ) : (
         <div className={classes.main}>
@@ -217,7 +222,9 @@ const Conversation = (props: {
                             setEdit({ text: message.content, id: message.id });
                           }}
                         />
-                        <Icon.TrashFill onClick={() => deleteHandler(message.id)} />
+                        <Icon.TrashFill
+                          onClick={() => deleteHandler(message.id)}
+                        />
                       </>
                     )}
                     <p>{messageTime}</p>
@@ -238,7 +245,7 @@ const Conversation = (props: {
             <Icon.ArrowRightCircleFill onClick={sendManagement} />
           </div>
         </div>
-      )}
+      ) : <p>Wybierz konwersację z listy lub stwórz nową</p>}
     </>
   );
 };

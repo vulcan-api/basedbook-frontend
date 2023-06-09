@@ -14,6 +14,7 @@ import AddProjectModal from "./AddProjectModal";
 import RemoveAccountModal from "./RemoveAccountModal";
 import TotpModal from "./TotpModal";
 import Enable2FAModal from "./Enable2FAModal";
+import CreateChatModal from "./CreateChatModal";
 
 const Modal = (props: any) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -45,10 +46,14 @@ const Modal = (props: any) => {
             />
           )}
           {props.modalContent === "totp" && (
-              <TotpModal onClose={props.onClose} showSpinner={showSpinner} email={props.email} />
-            )}
+            <TotpModal
+              onClose={props.onClose}
+              showSpinner={showSpinner}
+              email={props.email}
+            />
+          )}
           {props.modalContent === "enable2FA" && (
-              <Enable2FAModal onClose={props.onClose} showSpinner={showSpinner} />
+            <Enable2FAModal onClose={props.onClose} showSpinner={showSpinner} />
           )}
           {props.modalContent === "projectAppliedUsers" && (
             <ProjectAppliedUsersModal
@@ -98,6 +103,12 @@ const Modal = (props: any) => {
           )}
           {props.modalContent === "removeaccount" && (
             <RemoveAccountModal
+              onClose={props.onClose}
+              showSpinner={showSpinner}
+            />
+          )}
+          {props.modalContent === "createchat" && (
+            <CreateChatModal
               onClose={props.onClose}
               showSpinner={showSpinner}
             />

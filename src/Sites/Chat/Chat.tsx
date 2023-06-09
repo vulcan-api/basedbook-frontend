@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import ChatSidebar from "./Layout/ChatSidebar";
 import Conversation from "./Layout/Conversation";
+import Modal from "../../Layout/ModalComponents/Modal";
 
 const Chat = () => {
-  const [conversationId, setConversationId] = useState<number>(-1);
+  const [conversationId, setConversationId] = useState<number>(0);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [modalContent, setModalContent] = useState<string>("");
 
   const formatDate = (date: Date, hour: Boolean) => {
     const messageDate = new Date(date);
@@ -51,13 +54,32 @@ const Chat = () => {
     }
   };
 
+  const closeModalHelper = () => {
+    setShowModal(false);
+    setModalContent("");
+  };
+
   return (
     <>
+      {showModal && (
+        <Modal
+          modalContent={modalContent}
+          onClose={closeModalHelper}
+          onBgClick={closeModalHelper}
+        />
+      )}
       <ChatSidebar
         chooseConversation={setConversationId}
         formatDate={formatDate}
+        setShowModal={setShowModal}
+        setModalContent={setModalContent}
       />
-      <Conversation conversationId={conversationId} formatDate={formatDate} />
+      <Conversation
+        conversationId={conversationId}
+        formatDate={formatDate}
+        setShowModal={setShowModal}
+        setModalContent={setModalContent}
+      />
     </>
   );
 };
