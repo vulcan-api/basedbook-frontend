@@ -6,14 +6,17 @@ import classes from "./Conversation.module.css";
 import Input from "../../../Components/Input";
 import * as Icon from "react-bootstrap-icons";
 
-const Conversation = (props: {
+interface ConversationProps {
   conversationId: number;
   formatDate: Function;
   setShowModal: Function;
   setModalContent: Function;
   trigger: number;
   setTrigger: Function;
-}) => {
+  setAdditionalModalData: Function;
+}
+
+const Conversation = (props: ConversationProps) => {
   const [chat, setChat] = useState<ChatInterface>({
     id: 1,
     name: "",
@@ -52,7 +55,6 @@ const Conversation = (props: {
   interface ChatInterface {
     id: number;
     name: string;
-    avatar?: string;
     messages: Message[];
     isAdmin: boolean;
     avatarId: number;
@@ -170,7 +172,7 @@ const Conversation = (props: {
       NotificationManager.error("Wystąpił błąd!", "Błąd!", 3000);
     }
   };
-  
+
   function importAll(r: any) {
     let images: any = {};
     r.keys().forEach((item: any, index: Number) => {
@@ -183,7 +185,7 @@ const Conversation = (props: {
     importAll(require.context("../ChatIcons/", false, /\.(png|jpe?g|svg)$/))
   );
   const handleKeyDown = (event: any) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       event.preventDefault();
       if (edit) {
         editHandler();
@@ -210,7 +212,17 @@ const Conversation = (props: {
               <p>{chat.name}</p>
               <div className={classes.headerNav}>
                 <Icon.PersonPlusFill />
-                <Icon.PencilFill />
+                <Icon.PencilFill
+                  onClick={() => {
+                    props.setShowModal(true);
+                    props.setModalContent("editchat");
+                    props.setAdditionalModalData({
+                      id: chat.id,
+                      name: chat.name,
+                      avatarId: chat.avatarId,
+                    });
+                  }}
+                />
                 <Icon.TrashFill />
               </div>
             </div>
@@ -229,7 +241,6 @@ const Conversation = (props: {
                     {message.sender.id !== 0 && (
                       <img
                         src={
-                          chat.avatar ||
                           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO-7dlhEBOaxEyaiVVF_T-PY4ylyLjRmJTyCiajDft&s"
                         }
                         alt="avatar"
@@ -275,7 +286,11 @@ const Conversation = (props: {
                     Edytuj: {edit.text} <Icon.XCircleFill />
                   </p>
                 )}
-                <Input ref={chatRef} placeholder="Wiadomość"               onKeyDown={handleKeyDown}/>
+                <Input
+                  ref={chatRef}
+                  placeholder="Wiadomość"
+                  onKeyDown={handleKeyDown}
+                />
               </div>
               <Icon.ArrowRightCircleFill onClick={sendManagement} />
             </div>

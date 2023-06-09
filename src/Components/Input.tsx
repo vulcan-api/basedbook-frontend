@@ -6,11 +6,14 @@ const Input = React.forwardRef((props: any, ref: any) => {
     // @ts-ignore
     <input
       type={props.type || "text"}
+      defaultValue={props.defaultValue}
       value={props.value}
       ref={ref}
       onChange={props.onChange}
       placeholder={props.placeholder || "debiluZapomniałeśWpisać"}
-      className={`${classes.input} ${props.className === "alternate" ? classes.alternate : classes.default} ${props.additionalClass || ""}`}
+      className={`${classes.input} ${
+        props.className === "alternate" ? classes.alternate : classes.default
+      } ${props.additionalClass || ""}`}
       onKeyDown={props.onKeyDown}
     />
   );

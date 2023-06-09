@@ -15,6 +15,7 @@ import RemoveAccountModal from "./SettingsModals/RemoveAccountModal";
 import TotpModal from "./SettingsModals/TotpModal";
 import Enable2FAModal from "./SettingsModals/Enable2FAModal";
 import CreateChatModal from "./ChatModals/CreateChatModal";
+import EditChatModal from "./ChatModals/EditChatModal";
 
 const Modal = (props: any) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -111,6 +112,13 @@ const Modal = (props: any) => {
             <CreateChatModal
               onClose={props.onClose}
               showSpinner={showSpinner}
+            />
+          )}
+          {props.modalContent === "editchat" && (
+            <EditChatModal
+              onClose={props.onClose}
+              showSpinner={showSpinner}
+              additionalData={props.additionalModalData}
             />
           )}
           {isLoading && <LoadingSpinner height="100%" />}

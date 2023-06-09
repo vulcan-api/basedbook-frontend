@@ -8,6 +8,7 @@ const Chat = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<string>("");
   const [trigger, setTrigger] = useState<number>(0);
+  const [additionalModalData, setAdditionalModalData] = useState<any>({});
 
   const formatDate = (date: Date, hour: Boolean) => {
     const messageDate = new Date(date);
@@ -68,6 +69,7 @@ const Chat = () => {
           modalContent={modalContent}
           onClose={closeModalHelper}
           onBgClick={closeModalHelper}
+          additionalModalData={additionalModalData}
         />
       )}
       <ChatSidebar
@@ -84,6 +86,7 @@ const Chat = () => {
         setModalContent={setModalContent}
         trigger={trigger}
         setTrigger={setTrigger}
+        setAdditionalModalData={setAdditionalModalData}
       />
     </>
   );
