@@ -4,6 +4,8 @@ import {useRef} from "react";
 import {useNavigate} from "react-router-dom";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
+//@ts-ignore
+import {NotificationManager} from "react-notifications";
 
 const TotpModal = (props: { onClose: Function, showSpinner: Function, email: String }) => {
     const navigate = useNavigate();
@@ -21,8 +23,19 @@ const TotpModal = (props: { onClose: Function, showSpinner: Function, email: Str
         }).then((res) => res.json()).then(data => {
             if (data.token) {
                 navigate('/');
+            } else {
+                NotificationManager.error(
+                    "Błędny kod",
+                    "Nie zalogowano",
+                    3000
+                );
             }
         }).catch((err) => {
+            NotificationManager.error(
+                "Wystąpił błąd. Spróbuj ponownie później",
+                "Nie zalogowano",
+                3000
+            );
             console.error(err);
         });
     }
