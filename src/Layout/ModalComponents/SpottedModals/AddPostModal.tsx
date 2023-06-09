@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import classes from "./AddPostModal.module.css";
-import Checkbox from "../../Components/Checkbox";
-import Button from "../../Components/Button";
+import Checkbox from "../../../Components/Checkbox";
+import Button from "../../../Components/Button";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
-import Textarea from "../../Components/Textarea";
+import Textarea from "../../../Components/Textarea";
 
 const AddPostModal = (props: { onClose: Function; showSpinner: Function }) => {
   const navigate = useNavigate();

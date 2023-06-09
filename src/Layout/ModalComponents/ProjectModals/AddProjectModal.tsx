@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import classes from "./AddProjectModal.module.css";
-import Button from "../../Components/Button";
+import Button from "../../../Components/Button";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
-import Input from "../../Components/Input";
-import Textarea from "../../Components/Textarea";
+import Input from "../../../Components/Input";
+import Textarea from "../../../Components/Textarea";
 
 const AddProjectModal = (props: {onClose: Function, showSpinner: Function}) => {
     const navigate = useNavigate();

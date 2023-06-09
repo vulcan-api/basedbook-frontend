@@ -76,6 +76,7 @@ const ChatSidebar = (props: {
     });
     return images;
   }
+  
   const images = Object.values(importAll(
     require.context("../ChatIcons/", false, /\.(png|jpe?g|svg)$/)
   ));

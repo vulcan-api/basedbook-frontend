@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Wrapper from "../Wrapper";
+import Wrapper from "../../Wrapper";
 import { Link } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
-import ProjectClasses from "../../Sites/Project/Project.module.css";
-import PostClasses from "../../Sites/Spotted/Spotted.module.css";
-import classes from "./Modal.module.css";
-import Button from "../../Components/Button";
+import ProjectClasses from "../../../Sites/Project/Project.module.css";
+import PostClasses from "../../../Sites/Spotted/Spotted.module.css";
+import classes from "../Modal.module.css";
+import Button from "../../../Components/Button";
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
 

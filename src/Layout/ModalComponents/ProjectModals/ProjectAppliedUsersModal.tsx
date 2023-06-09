@@ -1,36 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
-import classes from "./Modal.module.css";
-import defaultAvatar from "../../Sites/User/Graphics/default.png";
-import { Link } from "react-router-dom";
+import classes from "../Modal.module.css";
+import defaultAvatar from "../../../Sites/User/Graphics/default.png";
 
-const FollowingModal = (props: {
-  userId: Number;
+const ProjectAppliedUsersModal = (props: {
+  postId: Number;
+  projectId: Number;
   showSpinner: Function;
   onClose: Function;
 }) => {
   const [showUsers, setShowUsers] = useState(false);
-  const [following, setFollowing] = useState([
-      {
-        following: {
-          id: 1,
-          username: "123",
-        },
+  const [participants, setParticipants] = useState([
+    {
+      user: {
+        id: Number,
+        name: String,
+        surname: String,
       },
-    ]);
+    },
+  ]);
 
   useEffect(() => {
     async function getUsers() {
       await fetch(
-        `http://localhost:3000/user/follows/following/${props.userId}`,
+        `http://localhost:3000/project/${props.projectId}/participants`,
         {
           method: "GET",
           credentials: "include",
         }
       )
         .then((res) => res.json())
-        .then(setFollowing)
+        .then(setParticipants)
         .catch((err) => {
           console.error(err);
           NotificationManager.error(
@@ -49,16 +51,17 @@ const FollowingModal = (props: {
 
   return (
     <>
-      <p>Obserwuje: </p>
+      {participants.length < 1 ? (
+        <p>Brak zapisanych użytkowników!</p>
+      ) : (
+        <p>Zapisani użytkownicy: </p>
+      )}
       <ul>
         {showUsers &&
-          following.map((user: any, index: any) => {
+          participants.map((participant: any, index: any) => {
             return (
               <li key={index}>
-                <Link
-                  to={`/profile/${user.following.id}`}
-                  onClick={() => props.onClose()}
-                >
+                <Link to={`/profile/${participant.user.id}`} onClick={() => props.onClose()}>
                   <div className={classes.avatar}>
                     <img
                       className={classes.avImage}
@@ -66,7 +69,7 @@ const FollowingModal = (props: {
                       alt=""
                     />
                   </div>
-                  {user.following.username}
+                  {participant.user.username}
                 </Link>
               </li>
             );
@@ -75,5 +78,4 @@ const FollowingModal = (props: {
     </>
   );
 };
-
-export default FollowingModal;
+export default ProjectAppliedUsersModal;

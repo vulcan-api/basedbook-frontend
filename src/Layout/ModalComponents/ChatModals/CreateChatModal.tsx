@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import classes from "./CreateChatModal.module.css"
-import Input from "../../Components/Input";
-import Button from "../../Components/Button";
+import Input from "../../../Components/Input";
+import Button from "../../../Components/Button";
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
 

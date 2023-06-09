@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
-import classes from "./Modal.module.css";
-import defaultAvatar from "../../Sites/User/Graphics/default.png";
+import classes from "../Modal.module.css";
+import defaultAvatar from "../../../Sites/User/Graphics/default.png";
 import { Link } from "react-router-dom";
 
 const FollowersModal = (props: {

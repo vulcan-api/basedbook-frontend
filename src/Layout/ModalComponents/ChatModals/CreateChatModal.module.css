@@ -13,11 +13,8 @@
 .radio > input {
   width: 100px;
   height: 100px;
-  background: url("../../Sites/Chat/ChatIcons/1.jpg");
   -webkit-appearance: none;
   appearance: none;
-  background-position: center;
-  background-size: contain;
   border-radius: 50%;
   border: 4px solid var(--add2-500);
   cursor: pointer;
@@ -30,26 +27,26 @@
 }
 
 .radio > input:nth-of-type(1) {
-  background: transparent url("../../Sites/Chat/ChatIcons/1.jpg") no-repeat
+  background: transparent url("../../../Sites/Chat/ChatIcons/1.jpg") no-repeat
     center center/contain;
 }
 
 .radio > input:nth-of-type(2) {
-  background: transparent url("../../Sites/Chat/ChatIcons/2.jpg") no-repeat
+  background: transparent url("../../../Sites/Chat/ChatIcons/2.jpg") no-repeat
     center center/contain;
 }
 
 .radio > input:nth-of-type(3) {
-  background: transparent url("../../Sites/Chat/ChatIcons/3.jpg") no-repeat
+  background: transparent url("../../../Sites/Chat/ChatIcons/3.jpg") no-repeat
     center center/contain;
 }
 
 .radio > input:nth-of-type(4) {
-  background: transparent url("../../Sites/Chat/ChatIcons/4.jpg") no-repeat
+  background: transparent url("../../../Sites/Chat/ChatIcons/4.jpg") no-repeat
     center center/contain;
 }
 
 .radio > input:nth-of-type(5) {
-  background: transparent url("../../Sites/Chat/ChatIcons/5.jpg") no-repeat
+  background: transparent url("../../../Sites/Chat/ChatIcons/5.jpg") no-repeat
     center center/contain;
 }

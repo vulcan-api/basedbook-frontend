@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from "react";
-import classes from "./Modal.module.css";
+import classes from "../Modal.module.css";
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
-import Button from "../../Components/Button";
-import Textarea from "../../Components/Textarea";
+import Button from "../../../Components/Button";
+import Textarea from "../../../Components/Textarea";
 
 const ReportModal = (props: any) => {
   const postText: any = useRef("");

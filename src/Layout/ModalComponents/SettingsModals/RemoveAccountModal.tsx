@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import getUserObject from "../../Lib/getUser";
-import Input from "../../Components/Input";
+import getUserObject from "../../../Lib/getUser";
+import Input from "../../../Components/Input";
 import classes from "./RemoveAccountModal.module.css";
-import Button from "../../Components/Button";
+import Button from "../../../Components/Button";
 //@ts-ignore
 import { NotificationManager } from "react-notifications";
 
@@ -69,7 +69,8 @@ const RemoveAccountModal = (props: any) => {
   return (
     <>
       <p>Usuń konto {user.username}</p>
-      <p className={classes.p}>W tym celu podaj hasło</p>
+      <p className={classes.p}>Tej decyzji nie można cofnąć!</p>
+      <p className={classes.p}>Aby usunąć konto, wpisz swoje hasło</p>
       <div className={classes.flex}>
         <Input
           additionalClass={classes.input}

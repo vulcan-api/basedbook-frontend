@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { X } from "react-bootstrap-icons";
-import ReportModal from "./ReportModal";
-import DeleteModal from "./DeleteModal";
+import ReportModal from "./SpottedAndProjectsModals/ReportModal";
+import DeleteModal from "./SpottedAndProjectsModals/DeleteModal";
 import classes from "./Modal.module.css";
-import ProjectAppliedUsersModal from "./ProjectAppliedUsersModal";
+import ProjectAppliedUsersModal from "./ProjectModals/ProjectAppliedUsersModal";
 import LoadingSpinner from "../../Components/LoadingSpinner";
-import FollowersModal from "./FollowersModal";
-import FollowingModal from "./FollowingModal";
-import SocialsModal from "./SocialsModal";
-import AddPostModal from "./AddPostModal";
-import AddProjectModal from "./AddProjectModal";
-import RemoveAccountModal from "./RemoveAccountModal";
-import TotpModal from "./TotpModal";
-import Enable2FAModal from "./Enable2FAModal";
-import CreateChatModal from "./CreateChatModal";
+import FollowersModal from "./UserProfileModals/FollowersModal";
+import FollowingModal from "./UserProfileModals/FollowingModal";
+import SocialsModal from "./UserProfileModals/SocialsModal";
+import AddPostModal from "./SpottedModals/AddPostModal";
+import AddProjectModal from "./ProjectModals/AddProjectModal";
+import RemoveAccountModal from "./SettingsModals/RemoveAccountModal";
+import TotpModal from "./SettingsModals/TotpModal";
+import Enable2FAModal from "./SettingsModals/Enable2FAModal";
+import CreateChatModal from "./ChatModals/CreateChatModal";
 
 const Modal = (props: any) => {
   const [isLoading, setIsLoading] = useState(true);

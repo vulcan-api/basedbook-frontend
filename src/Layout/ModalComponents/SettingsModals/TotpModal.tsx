@@ -1,9 +1,9 @@
 import React, {useEffect} from "react";
-import classes from "./AddProjectModal.module.css";
+import classes from "../ProjectModals/AddProjectModal.module.css";
 import {useRef} from "react";
 import {useNavigate} from "react-router-dom";
-import Input from "../../Components/Input";
-import Button from "../../Components/Button";
+import Input from "../../../Components/Input";
+import Button from "../../../Components/Button";
 //@ts-ignore
 import {NotificationManager} from "react-notifications";
 
