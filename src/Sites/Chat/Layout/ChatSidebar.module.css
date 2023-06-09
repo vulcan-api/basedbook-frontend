@@ -73,3 +73,12 @@
   font-size: 1.25rem;
   cursor: pointer;
 }
+
+.bottom * {
+  color: var(--add2-500);
+  transition: all 100ms linear;
+}
+
+.bottom:hover * {
+  color: var(--add1-500);
+}

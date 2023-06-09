@@ -14,12 +14,12 @@
   box-sizing: border-box;
   border-bottom: 1px solid var(--main-100);
   gap: 1.5rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .header img {
-  width: 50px;
-  height: 50px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   overflow: hidden;
   aspect-ratio: 1/1;
@@ -72,8 +72,8 @@
 }
 
 .message img {
-  width: 50px;
-  height: 50px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   overflow: hidden;
   aspect-ratio: 1/1;
@@ -88,6 +88,11 @@
 
 .controls svg {
   cursor: pointer;
+  transition: 200ms all linear;
+}
+
+.controls svg:hover {
+  color: var(--add1-500);
 }
 
 .message:hover .controls {
@@ -119,4 +124,34 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.noChatParagraph {
+  font-size: 1.5rem;
+  color: var(--add2-500);
+  margin: auto;
+}
+
+.headerNav {
+  margin-left: auto;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  font-size: 1.25rem;
+  color: var(--main-400);
+}
+
+.headerNav svg {
+  cursor: pointer;
+  transition: all 100ms linear;
+}
+
+.headerNav svg:hover {
+  color: var(--add1-500);
+}
+
+.header > div:first-of-type {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
 }

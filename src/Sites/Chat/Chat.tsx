@@ -7,6 +7,7 @@ const Chat = () => {
   const [conversationId, setConversationId] = useState<number>(0);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<string>("");
+  const [trigger, setTrigger] = useState<number>(0);
 
   const formatDate = (date: Date, hour: Boolean) => {
     const messageDate = new Date(date);
@@ -57,6 +58,7 @@ const Chat = () => {
   const closeModalHelper = () => {
     setShowModal(false);
     setModalContent("");
+    setTrigger(trigger + 1);
   };
 
   return (
@@ -73,12 +75,15 @@ const Chat = () => {
         formatDate={formatDate}
         setShowModal={setShowModal}
         setModalContent={setModalContent}
+        trigger={trigger}
       />
       <Conversation
         conversationId={conversationId}
         formatDate={formatDate}
         setShowModal={setShowModal}
         setModalContent={setModalContent}
+        trigger={trigger}
+        setTrigger={setTrigger}
       />
     </>
   );

@@ -11,6 +11,8 @@ const Conversation = (props: {
   formatDate: Function;
   setShowModal: Function;
   setModalContent: Function;
+  trigger: number;
+  setTrigger: Function;
 }) => {
   const [chat, setChat] = useState<ChatInterface>({
     id: 1,
@@ -29,6 +31,7 @@ const Conversation = (props: {
       },
     ],
     isAdmin: true,
+    avatarId: 1,
   });
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const chatRef = useRef<any>("");
@@ -52,6 +55,7 @@ const Conversation = (props: {
     avatar?: string;
     messages: Message[];
     isAdmin: boolean;
+    avatarId: number;
   }
 
   const fetchConversation = useCallback(() => {
@@ -86,11 +90,12 @@ const Conversation = (props: {
     } else {
       sendHandler();
     }
+    props.setTrigger(props.trigger + 1);
   };
 
   useEffect(() => {
     fetchConversation();
-  }, [fetchConversation]);
+  }, [fetchConversation, props.trigger]);
 
   const editHandler = async () => {
     let body = {
@@ -165,87 +170,113 @@ const Conversation = (props: {
       NotificationManager.error("Wystąpił błąd!", "Błąd!", 3000);
     }
   };
+  
+  function importAll(r: any) {
+    let images: any = {};
+    r.keys().forEach((item: any, index: Number) => {
+      images[item.replace("./", "")] = r(item);
+    });
+    return images;
+  }
+
+  const images = Object.values(
+    importAll(require.context("../ChatIcons/", false, /\.(png|jpe?g|svg)$/))
+  );
 
   return (
     <>
-      {props.conversationId ? isLoading ? (
-        <LoadingSpinner />
-      ) : (
-        <div className={classes.main}>
-          <div className={classes.header}>
-            <img
-              src={
-                chat.avatar ||
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO-7dlhEBOaxEyaiVVF_T-PY4ylyLjRmJTyCiajDft&s"
-              }
-              alt="avatar"
-            />
-            <p>{chat.name}</p>
-          </div>
-          <div className={classes.chat}>
-            {chat.messages.reverse().map((message: any) => {
-              let messageTime = props.formatDate(message.sendTime, true);
-              return (
-                <div
-                  key={message.id}
-                  className={
-                    message.sender.id === 0
-                      ? classes.adminMessage
-                      : classes.message
-                  }
-                >
-                  {message.sender.id !== 0 && (
-                    <img
-                      src={
-                        chat.avatar ||
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO-7dlhEBOaxEyaiVVF_T-PY4ylyLjRmJTyCiajDft&s"
-                      }
-                      alt="avatar"
-                    />
-                  )}
-                  <div className={classes.content}>
-                    {message.sender.id !== 0 && (
-                      <p className={classes.senderUsername}>
-                        {message.sender.username}
-                      </p>
-                    )}
-                    <p>{message.content}</p>
-                    {message.isEdited && (
-                      <p className={classes.edited}>(Edytowano)</p>
-                    )}
-                  </div>
-                  <div className={classes.controls}>
-                    {message.isOwned && (
-                      <>
-                        <Icon.PencilFill
-                          onClick={() => {
-                            setEdit({ text: message.content, id: message.id });
-                          }}
-                        />
-                        <Icon.TrashFill
-                          onClick={() => deleteHandler(message.id)}
-                        />
-                      </>
-                    )}
-                    <p>{messageTime}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className={classes.bottom}>
-            <div className={classes.inputContainer}>
-              {edit && (
-                <p onClick={() => setEdit(null)}>
-                  Odpowiedz na: {edit.text} <Icon.XCircleFill />
-                </p>
-              )}
-              <Input ref={chatRef} placeholder="Wiadomość" />
+      {props.conversationId ? (
+        isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <div className={classes.main}>
+            <div className={classes.header}>
+              <div
+                style={{
+                  background: `transparent url("${
+                    images[chat.avatarId - 1]
+                  }")  no-repeat center center/contain`,
+                }}
+              ></div>
+              <p>{chat.name}</p>
+              <div className={classes.headerNav}>
+                <Icon.PersonPlusFill />
+                <Icon.PencilFill />
+                <Icon.TrashFill />
+              </div>
             </div>
-            <Icon.ArrowRightCircleFill onClick={sendManagement} />
+            <div className={classes.chat}>
+              {chat.messages.reverse().map((message: any) => {
+                let messageTime = props.formatDate(message.sendTime, true);
+                return (
+                  <div
+                    key={message.id}
+                    className={
+                      message.sender.id === 0
+                        ? classes.adminMessage
+                        : classes.message
+                    }
+                  >
+                    {message.sender.id !== 0 && (
+                      <img
+                        src={
+                          chat.avatar ||
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO-7dlhEBOaxEyaiVVF_T-PY4ylyLjRmJTyCiajDft&s"
+                        }
+                        alt="avatar"
+                      />
+                    )}
+                    <div className={classes.content}>
+                      {message.sender.id !== 0 && (
+                        <p className={classes.senderUsername}>
+                          {message.sender.username}
+                        </p>
+                      )}
+                      <p>{message.content}</p>
+                      {message.isEdited && (
+                        <p className={classes.edited}>(Edytowano)</p>
+                      )}
+                    </div>
+                    <div className={classes.controls}>
+                      {message.isOwned && (
+                        <>
+                          <Icon.PencilFill
+                            onClick={() => {
+                              setEdit({
+                                text: message.content,
+                                id: message.id,
+                              });
+                            }}
+                          />
+                          <Icon.TrashFill
+                            onClick={() => deleteHandler(message.id)}
+                          />
+                        </>
+                      )}
+                      <p>{messageTime}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className={classes.bottom}>
+              <div className={classes.inputContainer}>
+                {edit && (
+                  <p onClick={() => setEdit(null)}>
+                    Edytuj: {edit.text} <Icon.XCircleFill />
+                  </p>
+                )}
+                <Input ref={chatRef} placeholder="Wiadomość" />
+              </div>
+              <Icon.ArrowRightCircleFill onClick={sendManagement} />
+            </div>
           </div>
-        </div>
-      ) : <p>Wybierz konwersację z listy lub stwórz nową</p>}
+        )
+      ) : (
+        <p className={classes.noChatParagraph}>
+          Wybierz konwersację z listy lub stwórz nową
+        </p>
+      )}
     </>
   );
 };

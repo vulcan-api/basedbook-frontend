@@ -11,6 +11,7 @@ const ChatSidebar = (props: {
   formatDate: Function;
   setShowModal: Function;
   setModalContent: Function;
+  trigger: number;
 }) => {
   const [conversations, setConversations] = useState<
     typeof conversationInterface
@@ -59,7 +60,7 @@ const ChatSidebar = (props: {
 
   useEffect(() => {
     fetchChat();
-  }, [fetchChat]);
+  }, [fetchChat, props.trigger]);
 
   let lastMessageTime: String;
 
@@ -75,11 +76,9 @@ const ChatSidebar = (props: {
     });
     return images;
   }
-  let images = importAll(
+  const images = Object.values(importAll(
     require.context("../ChatIcons/", false, /\.(png|jpe?g|svg)$/)
-  );
-
-  images = Object.values(images);
+  ));
 
   return (
     <>
