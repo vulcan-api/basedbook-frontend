@@ -23,10 +23,27 @@ const Enable2FAModal = (props: { onClose: Function, showSpinner: Function }) => 
 
     return (
         <>
-            {qrValue &&
+        <p>
+            <ol>
+                <li>
+                    Pobierz i zainstaluj aplikację 2FA (taką jak np. Google Authenticator) na swoim urządzeniu mobilnym. Możesz znaleźć ją w sklepie aplikacji dostępnym na Twoim urządzeniu (np. App Store dla iOS lub Google Play dla Androida).
+                </li>
+                <li>
+                    Zeskanuj kod QR za pomocą aplikacji Authenticator.
+                </li>
+                <li>Jeśli skanowanie zakończyło się sukcesem, aplikacja Authenticator powinna dodać konto i wygenerować unikalny sześciocyfrowy kod czasowy.</li>
+                <li>
+                    Wpisz ten kod w pole poniżej i kliknij przycisk "Zweryfikuj".
+                </li>
+            </ol>
+        </p>
+            <div style={{textAlign: "center"}}>
+            {qrValue && (
                 <QRCode value={qrValue} />
+                    )
             }
-        </>
+            </div>
+           </>
     );
 };
 

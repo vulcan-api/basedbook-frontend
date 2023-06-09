@@ -182,7 +182,16 @@ const Conversation = (props: {
   const images = Object.values(
     importAll(require.context("../ChatIcons/", false, /\.(png|jpe?g|svg)$/))
   );
-
+  const handleKeyDown = (event: any) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      if (edit) {
+        editHandler();
+      } else {
+        sendHandler();
+      }
+    }
+  };
   return (
     <>
       {props.conversationId ? (
@@ -266,7 +275,7 @@ const Conversation = (props: {
                     Edytuj: {edit.text} <Icon.XCircleFill />
                   </p>
                 )}
-                <Input ref={chatRef} placeholder="Wiadomość" />
+                <Input ref={chatRef} placeholder="Wiadomość"               onKeyDown={handleKeyDown}/>
               </div>
               <Icon.ArrowRightCircleFill onClick={sendManagement} />
             </div>
