@@ -80,7 +80,9 @@ const Login = () => {
                     <form onSubmit={loginHandler} className={classes.form}>
                         <Input placeholder="E-Mail" ref={emailRef}/>
                         <Input type="password" placeholder="Hasło" ref={passwordRef}/>
-                        <p>Nie pamiętasz hasła?</p>
+                        <p onClick={() => navigate("/auth/reset")}>
+                          Nie pamiętasz hasła?
+                        </p>
                         <Checkbox
                             ref={remeberPasswordRef}
                             id="passwordRemember"

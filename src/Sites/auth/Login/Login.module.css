@@ -73,4 +73,5 @@
     font-size: 24px;
     margin-top: 8px;
     color: var(--main-400);
+    cursor: pointer;
 }
