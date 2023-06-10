@@ -16,6 +16,9 @@ import TotpModal from "./SettingsModals/TotpModal";
 import Enable2FAModal from "./SettingsModals/Enable2FAModal";
 import CreateChatModal from "./ChatModals/CreateChatModal";
 import EditChatModal from "./ChatModals/EditChatModal";
+import AddUserModal from "./ChatModals/AddUserModal";
+import UserManagementModal from "./ChatModals/UsersManagementModal";
+import InvitationsModal from "./ChatModals/InvitationsModal";
 
 const Modal = (props: any) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -116,6 +119,27 @@ const Modal = (props: any) => {
           )}
           {props.modalContent === "editchat" && (
             <EditChatModal
+              onClose={props.onClose}
+              showSpinner={showSpinner}
+              additionalData={props.additionalModalData}
+            />
+          )}
+          {props.modalContent === "addusertochat" && (
+            <AddUserModal
+              onClose={props.onClose}
+              showSpinner={showSpinner}
+              additionalData={props.additionalModalData}
+            />
+          )}
+          {props.modalContent === "usermanagement" && (
+            <UserManagementModal
+              onClose={props.onClose}
+              showSpinner={showSpinner}
+              additionalData={props.additionalModalData}
+            />
+          )}
+          {props.modalContent === "invitations" && (
+            <InvitationsModal
               onClose={props.onClose}
               showSpinner={showSpinner}
               additionalData={props.additionalModalData}

@@ -76,10 +76,10 @@ const ChatSidebar = (props: {
     });
     return images;
   }
-  
-  const images = Object.values(importAll(
-    require.context("../ChatIcons/", false, /\.(png|jpe?g|svg)$/)
-  ));
+
+  const images = Object.values(
+    importAll(require.context("../ChatIcons/", false, /\.(png|jpe?g|svg)$/))
+  );
 
   return (
     <>
@@ -130,9 +130,17 @@ const ChatSidebar = (props: {
               })}
           </div>
         </div>
-        <div className={classes.bottom} onClick={openModalHandler}>
-          <Icon.PlusCircleFill />
-          <p>Utwórz chat</p>
+        <div className={classes.bottom}>
+          <Icon.EnvelopeFill
+            onClick={() => {
+              props.setShowModal(true);
+              props.setModalContent("invitations");
+            }}
+          />
+          <div onClick={openModalHandler}>
+            <Icon.PlusCircleFill />
+            <p>Utwórz chat</p>
+          </div>
         </div>
       </div>
     </>

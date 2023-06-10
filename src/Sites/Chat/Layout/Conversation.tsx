@@ -211,7 +211,26 @@ const Conversation = (props: ConversationProps) => {
               ></div>
               <p>{chat.name}</p>
               <div className={classes.headerNav}>
-                <Icon.PersonPlusFill />
+                <Icon.PersonFill
+                  onClick={() => {
+                    props.setShowModal(true);
+                    props.setModalContent("usermanagement");
+                    props.setAdditionalModalData({
+                      id: chat.id,
+                      name: chat.name,
+                    });
+                  }}
+                />
+                <Icon.PersonPlusFill
+                  onClick={() => {
+                    props.setShowModal(true);
+                    props.setModalContent("addusertochat");
+                    props.setAdditionalModalData({
+                      id: chat.id,
+                      name: chat.name,
+                    });
+                  }}
+                />
                 <Icon.PencilFill
                   onClick={() => {
                     props.setShowModal(true);
@@ -246,7 +265,7 @@ const Conversation = (props: ConversationProps) => {
                         alt="avatar"
                       />
                     )}
-                    <div className={classes.content}>
+                    <div>
                       {message.sender.id !== 0 && (
                         <p className={classes.senderUsername}>
                           {message.sender.username}

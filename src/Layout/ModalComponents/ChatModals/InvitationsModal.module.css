@@ -1,0 +1,30 @@
+.invitation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+}
+
+.invitation > div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.invitation > div > * {
+    cursor: pointer;
+}
+
+.invitation > div > svg:first-of-type {
+    color: rgb(49, 185, 49);
+}
+
+.invitation > div > svg:last-of-type {
+    color: var(--add1-500);
+}
+
+.p {
+    font-size: 1.5rem;
+    color: var(--add1-500);
+}
