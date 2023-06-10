@@ -1,8 +1,15 @@
 import QRCode from "react-qr-code";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
+import Input from "../../../Components/Input";
+import Button from "../../../Components/Button";
+import classes from "./Enable2FAModal.module.css";
+//@ts-ignore
+import {NotificationManager} from "react-notifications";
 
 const Enable2FAModal = (props: { onClose: Function, showSpinner: Function }) => {
     const [qrValue, setQRValue] = useState<string>("");
+    const [secret, setSecret] = useState<string>("");
+    const codeRef: any = useRef();
     useEffect(() => {
         const getQRValue = async () => {
             try {
@@ -11,6 +18,7 @@ const Enable2FAModal = (props: { onClose: Function, showSpinner: Function }) => 
                     credentials: "include",
                 });
                 const data = await response.json();
+                setSecret(data.url.toString().split("=")[1]);
                 setQRValue(data.url);
             } catch (error) {
                 console.error(error);
@@ -20,6 +28,37 @@ const Enable2FAModal = (props: { onClose: Function, showSpinner: Function }) => 
         };
         getQRValue();
     }, [props]);
+    const verifyCodeHandler = async () => {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_REQUEST_URL}/auth/totp/confirm`, {
+                method: "PATCH",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    code: codeRef.current.value,
+                    secret: secret,
+                }),
+            });
+            if (response.status === 204) {
+                NotificationManager.success(
+                    "Pomyślnie zweryfikowano kod",
+                    "Zweryfikowano kod",
+                    3000
+                );
+                props.onClose();
+            } else if (response.status >= 400) {
+                NotificationManager.error(
+                    "Wystąpił błąd. Spróbuj ponownie później",
+                    "Nie udało się zweryfikować kodu",
+                    3000
+                );
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <>
@@ -42,6 +81,10 @@ const Enable2FAModal = (props: { onClose: Function, showSpinner: Function }) => 
                 <QRCode value={qrValue} />
                     )
             }
+            </div>
+            <div className={classes.actions}>
+                <Input type="text" placeholder="Kod z aplikacji" ref={codeRef} />
+                <Button onClick={verifyCodeHandler} style={{marginTop: 20}} buttonText="Zweryfikuj" />
             </div>
            </>
     );

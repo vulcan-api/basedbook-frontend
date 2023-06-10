@@ -1,0 +1,10 @@
+.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    flex-direction: column
+}
+.confirmButton {
+    margin-top: 20px;
+}
