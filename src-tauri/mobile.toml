@@ -1,0 +1,5 @@
+[app]
+name = "basedbook-frontend"
+stylized-name = "BasedBook"
+domain = "naszelektryk.github.io"
+template-pack = "wry"
