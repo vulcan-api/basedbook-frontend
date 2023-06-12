@@ -5,6 +5,7 @@ import LoadingSpinner from "../../../Components/LoadingSpinner";
 import classes from "./Conversation.module.css";
 import Input from "../../../Components/Input";
 import * as Icon from "react-bootstrap-icons";
+import io from 'socket.io-client';
 
 interface ConversationProps {
   conversationId: number;
@@ -59,6 +60,16 @@ const Conversation = (props: ConversationProps) => {
     isAdmin: boolean;
     avatarId: number;
   }
+  const [socket] = useState(io(`http://localhost:3001/`, {
+    transports: ['websocket'],
+    transportOptions: {
+      websocket: {
+        extraHeaders: {
+          Cookie: document.cookie,
+        }
+      }
+    }
+  }));
 
   const fetchConversation = useCallback(() => {
     //TODO: Add pagination
@@ -97,7 +108,15 @@ const Conversation = (props: ConversationProps) => {
 
   useEffect(() => {
     fetchConversation();
-  }, [fetchConversation, props.trigger]);
+    socket.emit('join', {
+      conversationId: props.conversationId,
+    });
+    socket.on('receiveMessage', () => {
+      fetchConversation();
+      chatRef.current.value = '';
+      props.setTrigger(props.trigger + 1);
+    });
+  }, [fetchConversation, props, socket]);
 
   const editHandler = async () => {
     let body = {
@@ -135,24 +154,7 @@ const Conversation = (props: ConversationProps) => {
       conversation: props.conversationId,
     };
     if (chatRef.current.value.length > 0) {
-      const response = await fetch(`http://localhost:3000/chat/send`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(body),
-      });
-      if (response.status === 201) {
-        fetchConversation();
-        chatRef.current.value = "";
-      } else {
-        NotificationManager.error(
-          "Błąd przy wysyłaniu wiadomości!",
-          "Błąd",
-          3000
-        );
-      }
+      socket.emit('sendMessage', body);
     }
   };
 
@@ -175,7 +177,7 @@ const Conversation = (props: ConversationProps) => {
 
   function importAll(r: any) {
     let images: any = {};
-    r.keys().forEach((item: any, index: Number) => {
+    r.keys().forEach((item: any) => {
       images[item.replace("./", "")] = r(item);
     });
     return images;
