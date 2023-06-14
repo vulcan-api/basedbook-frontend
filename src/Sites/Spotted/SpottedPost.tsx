@@ -151,7 +151,14 @@ const SpottedPost = () => {
         commentId: reply.id,
       };
     }
-
+    if (body.text.length > 200) {
+      NotificationManager.error(
+          "Wpisz tytul krotszy niż 200 znakow",
+          "Błąd przy dodawaniu komentarza",
+          3000
+      );
+      return;
+    }
     await fetch(`http://localhost:3000/spotted/post/comment/${postId}`, {
       method: "POST",
       credentials: "include",

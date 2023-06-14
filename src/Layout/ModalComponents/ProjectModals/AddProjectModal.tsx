@@ -20,6 +20,14 @@ const AddProjectModal = (props: {onClose: Function, showSpinner: Function}) => {
             title: projectTitle.current.value,
             text: postText.current.value,
         };
+        if (post.title.length > 60) {
+            NotificationManager.error(
+                "Wpisz tytul krotszy niż 60 znakow",
+                "Błąd przy dodawaniu projektu",
+                3000
+            );
+            return;
+        }
 
         const throwObject = {};
         fetch("http://localhost:3000/project", {
