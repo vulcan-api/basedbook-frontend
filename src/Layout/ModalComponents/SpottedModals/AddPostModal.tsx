@@ -18,7 +18,7 @@ const AddPostModal = (props: { onClose: Function; showSpinner: Function }) => {
 
     const post = {
       title: "do not ask",
-      text: postText.current.value,
+      text: postText.current.value.trim(),
       isAnonymous: isAnonymous.current.checked,
       publishAt: new Date(),
     };

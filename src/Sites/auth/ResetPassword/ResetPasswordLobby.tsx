@@ -11,6 +11,7 @@ const ResetPasswordLobby = () => {
   const emailRef = useRef<any>();
 
   const sendEmailHandler = async (email: string) => {
+    email = email.trim();
     let regex =
       /^[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*@([a-zA-Z0-9_-]+)(\.[a-zA-Z0-9_-]+)*(\.[a-zA-Z]{2,4})$/i;
 

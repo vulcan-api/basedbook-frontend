@@ -39,7 +39,7 @@ const EditChatModal = (props: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: nameRef.current?.value,
+        name: nameRef.current?.value.trim(),
         avatarId: avatarValue,
       }),
     })

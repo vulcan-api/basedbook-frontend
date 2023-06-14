@@ -18,7 +18,7 @@ const ReportModal = (props: any) => {
     const report = {
       postId: props.postId,
       projectId: props.projectId,
-      reason: postText.current.value,
+      reason: postText.current.value.trim(),
     };
     if (report.projectId != null) {
       path = "/project";

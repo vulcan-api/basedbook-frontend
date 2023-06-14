@@ -100,11 +100,11 @@ const Register = () => {
     myHeaders.append("Content-Type", "application/json");
 
     let raw = JSON.stringify({
-      email: emailRef.current.value,
+      email: emailRef.current.value.trim(),
       password: passwordRef.current.value,
-      username: usernameRef.current.value,
-      name: nameRef.current.value,
-      surname: surnameRef.current.value,
+      username: usernameRef.current.value.trim(),
+      name: nameRef.current.value.trim(),
+      surname: surnameRef.current.value.trim(),
     });
 
     fetch("http://localhost:3000/auth/register", {
@@ -114,7 +114,11 @@ const Register = () => {
       redirect: "follow",
       credentials: "include",
     })
-      .then((response) => response.text())
+      .then((response) => {
+        if (!response.ok)
+          throw new Error('An error happended during registration!');
+        return response.text();
+      })
       .then(() => {
         NotificationManager.success(
           "Udało się zarejestrować. Nie zapomnij potwierdzić rejestracji poprzez email!",

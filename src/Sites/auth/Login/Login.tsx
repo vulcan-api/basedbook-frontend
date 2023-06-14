@@ -26,7 +26,7 @@ const Login = () => {
         myHeaders.append("Content-Type", "application/json");
 
         let raw = JSON.stringify({
-            email: emailRef.current.value,
+            email: emailRef.current.value.trim(),
             password: passwordRef.current.value,
         });
 
@@ -68,7 +68,7 @@ const Login = () => {
                     onBgClick={closeModal}
                     onClose={closeModal}
                     modalContent="totp"
-                    email={emailRef.current.value}
+                    email={emailRef.current.value.trim()}
                 />
             )}
         <div className={classes.loginFlex}>

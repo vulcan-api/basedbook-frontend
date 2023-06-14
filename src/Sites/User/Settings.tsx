@@ -124,37 +124,37 @@ const Settings = () => {
     const handleUserNameChange = (event: any) => {
         setSettings({
             ...settings,
-            username: event.target.value,
+            username: event.target.value.trim(),
         });
     };
     const handleFacebookChange = (event: any) => {
         setSettings({
             ...settings,
-            facebook: event.target.value,
+            facebook: event.target.value.trim(),
         });
     };
     const handleInstagramChange = (event: any) => {
         setSettings({
             ...settings,
-            instagram: event.target.value,
+            instagram: event.target.value.trim(),
         });
     };
     const handleYTChange = (event: any) => {
         setSettings({
             ...settings,
-            youtube: event.target.value,
+            youtube: event.target.value.trim(),
         });
     };
     const handleWebsiteChange = (event: any) => {
         setSettings({
             ...settings,
-            website: event.target.value,
+            website: event.target.value.trim(),
         });
     };
     const handleDescChange = (event: any) => {
         setSettings({
             ...settings,
-            profileDesc: event.target.value,
+            profileDesc: event.target.value.trim(),
         });
     };
 

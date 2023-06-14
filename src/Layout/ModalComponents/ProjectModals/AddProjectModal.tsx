@@ -17,8 +17,8 @@ const AddProjectModal = (props: {onClose: Function, showSpinner: Function}) => {
         event.preventDefault();
 
         const post = {
-            title: projectTitle.current.value,
-            text: postText.current.value,
+            title: projectTitle.current.value.trim(),
+            text: postText.current.value.trim(),
         };
         if (post.title.length > 60) {
             NotificationManager.error(
