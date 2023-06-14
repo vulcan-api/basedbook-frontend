@@ -60,7 +60,7 @@ const Conversation = (props: ConversationProps) => {
     isAdmin: boolean;
     avatarId: number;
   }
-  const [socket] = useState(io(`http://localhost:3001/`, {
+  const [socket] = useState(io(`http://localhost:3000/socket`, {
     transports: ['websocket'],
     transportOptions: {
       websocket: {
