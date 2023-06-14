@@ -14,7 +14,7 @@ jobs:
     runs-on: self-hosted
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [20.x]
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
@@ -23,5 +23,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
     - run: pnpm i
+    - name: Create .env
+      run: echo "${{ secrets.ENV_PRODUCTION }}" > .env.production
     - run: pnpm build
 #    - run: pm2 restart basedbook-frontend
