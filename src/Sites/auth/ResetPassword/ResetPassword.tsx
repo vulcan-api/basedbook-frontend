@@ -49,7 +49,7 @@ const ResetPassword = () => {
       newPassword: passwordRef.current.value,
     };
 
-    fetch(`http://localhost:3000/auth/reset/${hash}`, {
+    fetch(`${process.env.REACT_APP_REQUEST_URL}/auth/reset/${hash}`, {
       method: "PATCH",
       credentials: "include",
       headers: {

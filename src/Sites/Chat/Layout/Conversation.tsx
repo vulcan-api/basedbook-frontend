@@ -74,7 +74,7 @@ const Conversation = (props: ConversationProps) => {
   const fetchConversation = useCallback(() => {
     //TODO: Add pagination
     fetch(
-      `http://localhost:3000/chat/messages/${props.conversationId}?take=100000`,
+      `${process.env.REACT_APP_REQUEST_URL}/chat/messages/${props.conversationId}?take=100000`,
       {
         method: "GET",
         credentials: "include",
@@ -124,7 +124,7 @@ const Conversation = (props: ConversationProps) => {
     };
     if (chatRef.current.value.length > 0) {
       const response = await fetch(
-        `http://localhost:3000/chat/edit/${edit.id}`,
+        `${process.env.REACT_APP_REQUEST_URL}/chat/edit/${edit.id}`,
         {
           method: "PUT",
           headers: {
@@ -159,7 +159,7 @@ const Conversation = (props: ConversationProps) => {
   };
 
   const deleteHandler = async (id: number) => {
-    const response = await fetch(`http://localhost:3000/chat/delete/${id}`, {
+    const response = await fetch(`${process.env.REACT_APP_REQUEST_URL}/chat/delete/${id}`, {
       method: "DELETE",
       credentials: "include",
     });

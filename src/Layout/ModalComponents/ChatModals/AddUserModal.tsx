@@ -22,7 +22,7 @@ const AddUserModal = (props: {
 
   const fetchUsers = async () => {
     const val = inputRef.current?.value;
-    await fetch(`http://localhost:3000/user/?name=${val}`, {
+    await fetch(`${process.env.REACT_APP_REQUEST_URL}/user/?name=${val}`, {
       method: "GET",
       credentials: "include",
     })
@@ -36,7 +36,7 @@ const AddUserModal = (props: {
       userId: id,
     };
     const response = await fetch(
-      `http://localhost:3000/chat/conversation/add`,
+      `${process.env.REACT_APP_REQUEST_URL}/chat/conversation/add`,
       {
         method: "POST",
         credentials: "include",

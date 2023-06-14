@@ -32,7 +32,7 @@ const EditChatModal = (props: {
       return;
     }
 
-    await fetch(`http://localhost:3000/chat/update/${props.additionalData.id}`, {
+    await fetch(`${process.env.REACT_APP_REQUEST_URL}/chat/update/${props.additionalData.id}`, {
       method: "PUT",
       credentials: "include",
       headers: {

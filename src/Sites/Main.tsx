@@ -9,7 +9,7 @@ import { executeTheme } from "../Lib/getUser";
 const Main = (props: {removeWrapper?: boolean}) => {
   const navigate = useNavigate();
   const fetchPosts = useCallback(async () => {
-    await fetch("http://localhost:3000/spotted/post", {
+    await fetch(`${process.env.REACT_APP_REQUEST_URL}/spotted/post`, {
       method: "GET",
       credentials: "include",
     })

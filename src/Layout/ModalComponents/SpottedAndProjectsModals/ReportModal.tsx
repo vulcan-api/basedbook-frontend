@@ -25,7 +25,7 @@ const ReportModal = (props: any) => {
     } else if (report.postId != null) {
       path = "/spotted";
     }
-    await fetch(`http://localhost:3000${path}/report`, {
+    await fetch(`${process.env.REACT_APP_REQUEST_URL}${path}/report`, {
       method: "POST",
       credentials: "include",
       headers: {

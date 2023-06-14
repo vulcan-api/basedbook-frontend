@@ -13,7 +13,7 @@ const InvitationsModal = (props: {
 
   const acceptInvitation = async (conversationId: number) => {
     const response = await fetch(
-        `http://localhost:3000/chat/invitations/${conversationId}/accept`,
+        `${process.env.REACT_APP_REQUEST_URL}/chat/invitations/${conversationId}/accept`,
         {
             method: "GET",
             credentials: "include",
@@ -31,7 +31,7 @@ const InvitationsModal = (props: {
 
     const declineInvitation = async (conversationId: number) => {
         const response = await fetch(
-            `http://localhost:3000/chat/invitations/${conversationId}/decline`,
+            `${process.env.REACT_APP_REQUEST_URL}/chat/invitations/${conversationId}/decline`,
             {
                 method: "DELETE",
                 credentials: "include",
@@ -48,7 +48,7 @@ const InvitationsModal = (props: {
         }
 
   const getInvitations = async () => {
-    const response = await fetch(`http://localhost:3000/chat/invitations`, {
+    const response = await fetch(`${process.env.REACT_APP_REQUEST_URL}/chat/invitations`, {
       method: "GET",
       credentials: "include",
     });

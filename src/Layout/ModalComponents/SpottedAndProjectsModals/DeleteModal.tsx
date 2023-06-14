@@ -34,7 +34,7 @@ const DeleteModal = (props: any) => {
 
   useEffect(() => {
     const getRemovablePost = async () => {
-      await fetch(`http://localhost:3000/spotted/post/${props.postId}`, {
+      await fetch(`${process.env.REACT_APP_REQUEST_URL}/spotted/post/${props.postId}`, {
         method: "GET",
         credentials: "include",
       })
@@ -50,7 +50,7 @@ const DeleteModal = (props: any) => {
     };
 
     const getRemovableProject = async () => {
-      await fetch(`http://localhost:3000/project/${props.projectId}`, {
+      await fetch(`${process.env.REACT_APP_REQUEST_URL}/project/${props.projectId}`, {
         method: "GET",
         credentials: "include",
       })
@@ -70,7 +70,7 @@ const DeleteModal = (props: any) => {
   }, [props]);
 
   const deleteProject = async (projectId: number) => {
-    const response = await fetch(`http://localhost:3000/project/${projectId}`, {
+    const response = await fetch(`${process.env.REACT_APP_REQUEST_URL}/project/${projectId}`, {
       method: "DELETE",
       credentials: "include",
     });
@@ -85,7 +85,7 @@ const DeleteModal = (props: any) => {
 
   const deletePost = async (postId: number) => {
     const response = await fetch(
-      `http://localhost:3000/spotted/post/${postId}`,
+      `${process.env.REACT_APP_REQUEST_URL}/spotted/post/${postId}`,
       {
         method: "DELETE",
         credentials: "include",

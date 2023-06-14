@@ -33,7 +33,7 @@ const Searchbar = (props: {
 
   const fetchUsers = async () => {
     const val = inputRef.current?.value;
-    await fetch(`http://localhost:3000/user/?name=${val}`, {
+    await fetch(`${process.env.REACT_APP_REQUEST_URL}/user/?name=${val}`, {
       method: "GET",
       credentials: "include",
     })

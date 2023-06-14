@@ -24,7 +24,7 @@ const Register = () => {
 
   const fetchPosts = async () => {
     const throwObject = {};
-    await fetch("http://localhost:3000/spotted/post", {
+    await fetch(`${process.env.REACT_APP_REQUEST_URL}/spotted/post`, {
       method: "GET",
       credentials: "include",
     })
@@ -42,7 +42,7 @@ const Register = () => {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    fetch("http://localhost:3000/auth/logout", {
+    fetch(`${process.env.REACT_APP_REQUEST_URL}/auth/logout`, {
       method: "POST",
       headers: myHeaders,
       redirect: "follow",
@@ -107,7 +107,7 @@ const Register = () => {
       surname: surnameRef.current.value.trim(),
     });
 
-    fetch("http://localhost:3000/auth/register", {
+    fetch(`${process.env.REACT_APP_REQUEST_URL}/auth/register`, {
       method: "POST",
       headers: myHeaders,
       body: raw,

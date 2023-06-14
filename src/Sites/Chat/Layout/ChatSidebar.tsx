@@ -37,7 +37,7 @@ const ChatSidebar = (props: {
   ];
 
   const fetchChat = useCallback(() => {
-    fetch("http://localhost:3000/chat/conversations", {
+    fetch(`${process.env.REACT_APP_REQUEST_URL}/chat/conversations`, {
       method: "GET",
       credentials: "include",
     })

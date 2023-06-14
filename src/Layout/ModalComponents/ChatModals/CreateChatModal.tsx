@@ -31,7 +31,7 @@ const CreateChatModal = (props: {
       return;
     }
 
-    await fetch("http://localhost:3000/chat/conversation/create", {
+    await fetch(`${process.env.REACT_APP_REQUEST_URL}/chat/conversation/create`, {
         method: "POST",
         credentials: "include",
         headers: {

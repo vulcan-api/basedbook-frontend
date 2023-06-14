@@ -23,7 +23,7 @@ const FollowingModal = (props: {
   useEffect(() => {
     async function getUsers() {
       await fetch(
-        `http://localhost:3000/user/follows/following/${props.userId}`,
+        `${process.env.REACT_APP_REQUEST_URL}/user/follows/following/${props.userId}`,
         {
           method: "GET",
           credentials: "include",

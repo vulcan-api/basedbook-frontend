@@ -25,7 +25,7 @@ const ProjectAppliedUsersModal = (props: {
   useEffect(() => {
     async function getUsers() {
       await fetch(
-        `http://localhost:3000/project/${props.projectId}/participants`,
+        `${process.env.REACT_APP_REQUEST_URL}/project/${props.projectId}/participants`,
         {
           method: "GET",
           credentials: "include",

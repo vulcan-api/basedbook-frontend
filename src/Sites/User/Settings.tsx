@@ -40,7 +40,7 @@ const Settings = () => {
     async function getSettings() {
         setIsLoading(true);
         try {
-            await fetch("http://localhost:3000/user/settings/get", {
+            await fetch(`${process.env.REACT_APP_REQUEST_URL}/user/settings/get`, {
                 method: "GET",
                 credentials: "include",
             })
@@ -60,7 +60,7 @@ const Settings = () => {
     };
 
     async function checkIf2FAEnabled() {
-        await fetch("http://localhost:3000/auth/totp/is-enabled", {
+        await fetch(`${process.env.REACT_APP_REQUEST_URL}/auth/totp/is-enabled`, {
             method: "GET",
             credentials: "include",
         })
@@ -75,7 +75,7 @@ const Settings = () => {
             });
     }
     async function disable2FA() {
-        await fetch("http://localhost:3000/auth/totp/remove", {
+        await fetch(`${process.env.REACT_APP_REQUEST_URL}/auth/totp/remove`, {
             method: "PATCH",
             credentials: "include",
         })
@@ -96,7 +96,7 @@ const Settings = () => {
         for (const name in settings)
             formData.append(name, settings[name as keyof typeof settings]);
         fetch(
-            "http://localhost:3000/user/settings/",
+            `${process.env.REACT_APP_REQUEST_URL}/user/settings/`,
             {
                 method: "PATCH",
                 credentials: "include",

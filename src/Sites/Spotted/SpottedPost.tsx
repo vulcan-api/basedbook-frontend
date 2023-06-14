@@ -68,7 +68,7 @@ const SpottedPost = () => {
     setIsLoading(true);
     setIsError(false);
     setError("");
-    await fetch(`http://localhost:3000/spotted/post/${id}`, {
+    await fetch(`${process.env.REACT_APP_REQUEST_URL}/spotted/post/${id}`, {
       method: "GET",
       credentials: "include",
     })
@@ -107,7 +107,7 @@ const SpottedPost = () => {
   }
 
   const like = async () => {
-    await fetch(`http://localhost:3000/spotted/post/${postId}/like`, {
+    await fetch(`${process.env.REACT_APP_REQUEST_URL}/spotted/post/${postId}/like`, {
       method: "POST",
       credentials: "include",
     })
@@ -118,7 +118,7 @@ const SpottedPost = () => {
   };
 
   const unlike = async () => {
-    await fetch(`http://localhost:3000/spotted/post/${postId}/unlike`, {
+    await fetch(`${process.env.REACT_APP_REQUEST_URL}/spotted/post/${postId}/unlike`, {
       method: "POST",
       credentials: "include",
     })
@@ -153,13 +153,14 @@ const SpottedPost = () => {
     }
     if (body.text.length > 200) {
       NotificationManager.error(
-          "Wpisz tytul krotszy niż 200 znakow",
+          "Wpisz tytuł krótszy niż 200 znaków",
           "Błąd przy dodawaniu komentarza",
           3000
       );
       return;
     }
-    await fetch(`http://localhost:3000/spotted/post/comment/${postId}`, {
+
+    await fetch(`${process.env.REACT_APP_REQUEST_URL}/spotted/post/comment/${postId}`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -178,7 +179,7 @@ const SpottedPost = () => {
   };
   const deleteComment = async (commentId: number) => {
     const response = await fetch(
-        `http://localhost:3000/spotted/post/comment/${commentId}`,
+        `${process.env.REACT_APP_REQUEST_URL}/spotted/post/comment/${commentId}`,
         {
           method: "DELETE",
           credentials: "include",

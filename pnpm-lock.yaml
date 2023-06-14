@@ -26,6 +26,9 @@ dependencies:
   '@types/react-dom':
     specifier: ^18.0.10
     version: 18.0.10
+  dotenv-expand:
+    specifier: ^10.0.0
+    version: 10.0.0
   js-cookie:
     specifier: ^3.0.1
     version: 3.0.1
@@ -4495,6 +4498,11 @@ packages:
     dependencies:
       no-case: 3.0.4
       tslib: 2.5.0
+    dev: false
+
+  /dotenv-expand@10.0.0:
+    resolution: {integrity: sha512-GopVGCpVS1UKH75VKHGuQFqS1Gusej0z4FyQkPdwjil2gNIv+LNsqBlboOzpJFZKVT95GkCyWJbBSdFEFUWI2A==}
+    engines: {node: '>=12'}
     dev: false
 
   /dotenv-expand@5.1.0:

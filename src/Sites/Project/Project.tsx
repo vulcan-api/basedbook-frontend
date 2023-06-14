@@ -38,7 +38,7 @@ const Project = () => {
   async function getAllProjects() {
     setIsLoading(true);
     try {
-      await fetch("http://localhost:3000/project?take=20", {
+      await fetch(`${process.env.REACT_APP_REQUEST_URL}/project?take=20`, {
         method: "GET",
         credentials: "include",
       })
@@ -68,7 +68,7 @@ const Project = () => {
     const applyProject = {
       projectId: id,
     };
-    const response = await fetch("http://localhost:3000/project/apply", {
+    const response = await fetch(`${process.env.REACT_APP_REQUEST_URL}/project/apply`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -90,7 +90,7 @@ const Project = () => {
     const leaveProjectObject = {
       projectId: id,
     };
-    const response = await fetch("http://localhost:3000/project/leave", {
+    const response = await fetch(`${process.env.REACT_APP_REQUEST_URL}/project/leave`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

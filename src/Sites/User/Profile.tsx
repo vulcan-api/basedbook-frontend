@@ -90,7 +90,7 @@ const Profile = () => {
   }
 
   const like = async (id: Number) => {
-    await fetch(`http://localhost:3000/spotted/post/${id}/like`, {
+    await fetch(`${process.env.REACT_APP_REQUEST_URL}/spotted/post/${id}/like`, {
       method: "POST",
       credentials: "include",
     })
@@ -101,7 +101,7 @@ const Profile = () => {
   };
 
   const unlike = async (id: Number) => {
-    await fetch(`http://localhost:3000/spotted/post/${id}/unlike`, {
+    await fetch(`${process.env.REACT_APP_REQUEST_URL}/spotted/post/${id}/unlike`, {
       method: "POST",
       credentials: "include",
     })
@@ -115,7 +115,7 @@ const Profile = () => {
     async function getPublicInfo() {
       setIsLoading(true);
       try {
-        await fetch(`http://localhost:3000/user/${userId}`, {
+        await fetch(`${process.env.REACT_APP_REQUEST_URL}/user/${userId}`, {
           method: "GET",
           credentials: "include",
         })
@@ -138,7 +138,7 @@ const Profile = () => {
   const getUserPosts = useCallback(async () => {
     setIsLoading(true);
     try {
-      await fetch(`http://localhost:3000/user/${userId}/spottedPosts`, {
+      await fetch(`${process.env.REACT_APP_REQUEST_URL}/user/${userId}/spottedPosts`, {
         method: "GET",
         credentials: "include",
       })
@@ -153,7 +153,7 @@ const Profile = () => {
   const getUserProjects = useCallback(async () => {
     setIsLoading(true);
     try {
-      await fetch(`http://localhost:3000/user/${userId}/projects`, {
+      await fetch(`${process.env.REACT_APP_REQUEST_URL}/user/${userId}/projects`, {
         method: "GET",
         credentials: "include",
       })
@@ -195,7 +195,7 @@ const Profile = () => {
     const applyProject = {
       projectId: id,
     };
-    const response = await fetch("http://localhost:3000/project/apply", {
+    const response = await fetch(`${process.env.REACT_APP_REQUEST_URL}/project/apply`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -217,7 +217,7 @@ const Profile = () => {
     const leaveProjectObject = {
       projectId: id,
     };
-    const response = await fetch("http://localhost:3000/project/leave", {
+    const response = await fetch(`${process.env.REACT_APP_REQUEST_URL}/project/leave`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -231,7 +231,7 @@ const Profile = () => {
   }
 
   const followUser = async () => {
-    const response = await fetch("http://localhost:3000/user/follows", {
+    const response = await fetch(`${process.env.REACT_APP_REQUEST_URL}/user/follows`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -249,7 +249,7 @@ const Profile = () => {
   };
 
   const unFollowUser = async () => {
-    const response = await fetch("http://localhost:3000/user/follows", {
+    const response = await fetch(`${process.env.REACT_APP_REQUEST_URL}/user/follows`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

@@ -25,7 +25,7 @@ const ResetPasswordLobby = () => {
     }
 
     let body = { email };
-    fetch(`http://localhost:3000/auth/reset`, {
+    fetch(`${process.env.REACT_APP_REQUEST_URL}/auth/reset`, {
       method: "POST",
       credentials: "include",
       headers: {

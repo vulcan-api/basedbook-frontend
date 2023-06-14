@@ -10,7 +10,7 @@ const UserManagementModal = (props: {
 
   const getConversationMembers = useCallback(() => {
     fetch(
-      `http://localhost:3000/chat/conversation/${props.additionalData.id}/members`,
+      `${process.env.REACT_APP_REQUEST_URL}/chat/conversation/${props.additionalData.id}/members`,
       {
         method: "GET",
         credentials: "include",

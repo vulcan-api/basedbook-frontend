@@ -75,7 +75,7 @@ const SocialsModal = (props: SocialsModalProps) => {
   }, []);
 
   const getSocials = useCallback(() => {
-    fetch(`http://localhost:3000/user/${props.userId}`, {
+    fetch(`${process.env.REACT_APP_REQUEST_URL}/user/${props.userId}`, {
       method: "GET",
       credentials: "include",
     })

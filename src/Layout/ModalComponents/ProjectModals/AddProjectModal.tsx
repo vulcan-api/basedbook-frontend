@@ -30,7 +30,7 @@ const AddProjectModal = (props: {onClose: Function, showSpinner: Function}) => {
         }
 
         const throwObject = {};
-        fetch("http://localhost:3000/project", {
+        fetch(`${process.env.REACT_APP_REQUEST_URL}/project`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

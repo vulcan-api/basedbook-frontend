@@ -30,7 +30,7 @@ const Login = () => {
             password: passwordRef.current.value,
         });
 
-        await fetch("http://localhost:3000/auth/login", {
+        await fetch(`${process.env.REACT_APP_REQUEST_URL}/auth/login`, {
             method: "POST",
             headers: myHeaders,
             body: raw,
