@@ -91,7 +91,6 @@ const Settings = () => {
     }
     async function updateSettings(event: any) {
         setIsLoading(true);
-        event.preventDefault();
         const formData = new FormData();
         for (const name in settings)
             formData.append(name, settings[name as keyof typeof settings]);
@@ -154,7 +153,7 @@ const Settings = () => {
     const handleDescChange = (event: any) => {
         setSettings({
             ...settings,
-            profileDesc: event.target.value.trim(),
+            profileDesc: event.target.value,
         });
     };
 
@@ -210,7 +209,7 @@ const Settings = () => {
                         </div>
                         <div className={classes.twoInputs}>
                             <Input
-                                placeholder="Nazwa kanału na youtubeie"
+                                placeholder="Nazwa kanału na youtubie"
                                 value={settings.youtube}
                                 onChange={handleYTChange}
                             />
@@ -287,7 +286,6 @@ const Settings = () => {
                                             flexDirection: "row",
                                             columnGap: ".3rem",
                                         }}
-                                        onClick={updateSettings}
                                     >
                     Zapisz{" "}
                                         <CheckSquareFill
@@ -299,6 +297,7 @@ const Settings = () => {
                                         />
                   </span>
                                 }
+                                onClick={updateSettings}
                             />
                         </div>
                     </Section>
