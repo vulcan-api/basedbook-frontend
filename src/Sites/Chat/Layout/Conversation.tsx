@@ -103,7 +103,8 @@ const Conversation = (props: ConversationProps) => {
     } else {
       sendHandler();
     }
-    props.setTrigger(props.trigger + 1);
+    if (chatRef.current.value)
+      props.setTrigger(props.trigger + 1);
   };
 
   useEffect(() => {

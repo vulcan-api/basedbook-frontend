@@ -61,10 +61,6 @@
   gap: 1rem;
 }
 
-.message:first-of-type {
-  margin-top: auto;
-}
-
 .senderUsername {
   font-size: 1.125rem;
   font-weight: 600;

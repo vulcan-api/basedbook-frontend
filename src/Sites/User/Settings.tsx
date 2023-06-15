@@ -89,7 +89,7 @@ const Settings = () => {
                 console.error(err);
             });
     }
-    async function updateSettings(event: any) {
+    async function updateSettings() {
         setIsLoading(true);
         const formData = new FormData();
         for (const name in settings)
