@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import classes from "./UsersManagementModal.module.css";
 import Button from "../../../Components/Button";
 import getUserObject from "../../../Lib/getUser";
+import Avatar from "../../../Components/Avatar";
 
 const UserManagementModal = (props: {
   onClose: Function;
@@ -75,16 +76,22 @@ const UserManagementModal = (props: {
         {users.map((user: User) => {
           return (
             <div className={classes.user} key={user.user.id}>
-              <div>
+              <div className={classes.leftSide}>
+                <Avatar
+                  userId={user.user.id}
+                  className={classes.profilePicture}
+                />
+                <div>
                 <p className={classes.username}>
                   {user.user.username}{" "}
-                  {user.isAdmin && <p className={classes.admin}>Admin</p>}
+                  {user.isAdmin && <span className={classes.admin}>Admin</span>}
                 </p>
                 {user.addedBy.username !== user.user.username && (
                   <p className={classes.addedBy}>
                     Dodany przez: {user.addedBy.username}
                   </p>
                 )}
+                </div>
               </div>
               <div>
                 {isUserAdmin.isAdmin && userInfo.id !== user.user.id && (

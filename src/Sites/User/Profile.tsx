@@ -12,7 +12,7 @@ import Modal from "../../Layout/ModalComponents/Modal";
 import ProjectItem from "../Project/ProjectItem";
 import getUserObject from "../../Lib/getUser";
 import { Link, useNavigate } from "react-router-dom";
-import { Avatar } from '../../Components/Avatar';
+import Avatar from '../../Components/Avatar';
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false);
@@ -298,7 +298,7 @@ const Profile = () => {
       )}
       {isLoading && <LoadingSpinner />}
       <div className={classes.personContainer}>
-        <Avatar userId={userId? +userId : 0} />
+        <Avatar userId={userId? +userId : 0} className={classes.avatar} imgClassName={classes.avImage}/>
         <div className={classes.managementContainer}>
           <div className={classes.detailsContainer}>
             <h2>{user.username}</h2>

@@ -7,6 +7,7 @@ import Input from "../../../Components/Input";
 import * as Icon from "react-bootstrap-icons";
 import io from 'socket.io-client';
 import Modal from "../../../Layout/ModalComponents/Modal";
+import Avatar from "../../../Components/Avatar";
 
 interface ConversationProps {
   conversationId: number;
@@ -269,12 +270,7 @@ const Conversation = (props: ConversationProps) => {
                     }
                   >
                     {message.sender.id !== 0 && (
-                      <img
-                        src={
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO-7dlhEBOaxEyaiVVF_T-PY4ylyLjRmJTyCiajDft&s"
-                        }
-                        alt="avatar"
-                      />
+                      <Avatar userId={message.sender.id} className={classes.avatar}/>
                     )}
                     <div>
                       {message.sender.id !== 0 && (
