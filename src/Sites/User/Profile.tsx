@@ -13,6 +13,7 @@ import Modal from "../../Layout/ModalComponents/Modal";
 import ProjectItem from "../Project/ProjectItem";
 import getUserObject from "../../Lib/getUser";
 import { Link, useNavigate } from "react-router-dom";
+import { Avatar } from '../../Components/Avatar';
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false);
@@ -21,6 +22,7 @@ const Profile = () => {
   const [projectId, setProjectId] = useState<any>(null);
   const [postId, setPostId] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState<string>('');
   const [posts, setPosts] = useState([
     {
       id: 69,
@@ -169,6 +171,7 @@ const Profile = () => {
     getPublicInfo();
     getUserPosts();
     getUserProjects();
+
   }, [getUserPosts, getUserProjects, getPublicInfo]);
 
   const closeModal = () => {
@@ -281,6 +284,8 @@ const Profile = () => {
     }
   };
 
+
+
   return (
     <>
       {showModal && (
@@ -295,9 +300,7 @@ const Profile = () => {
       )}
       {isLoading && <LoadingSpinner />}
       <div className={classes.personContainer}>
-        <div className={classes.avatar}>
-          <img className={classes.avImage} src={defaultAvatar} alt="" />
-        </div>
+        <Avatar userId={userId? +userId : 0} />
         <div className={classes.managementContainer}>
           <div className={classes.detailsContainer}>
             <h2>{user.username}</h2>

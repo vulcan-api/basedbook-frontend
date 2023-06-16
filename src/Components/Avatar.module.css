@@ -1,0 +1,30 @@
+.avatar {
+    --size: 20rem;
+    min-width: var(--size);
+    min-height: var(--size);
+    max-width: var(--size);
+    max-height: var(--size);
+    overflow: hidden;
+    border-radius: 100%;
+    filter: drop-shadow(8px 4px 0px var(--add1-500)) drop-shadow(-8px -4px 0px var(--add2-500));
+    box-sizing: border-box;
+}
+
+.avImage {
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width: 900px) {
+    .avatar {
+        position: absolute;
+        right: 0;
+        top: .5rem;
+        --size: 7rem;
+        min-width: var(--size);
+        min-height: var(--size);
+        max-width: var(--size);
+        max-height: var(--size);
+    }
+     
+}
