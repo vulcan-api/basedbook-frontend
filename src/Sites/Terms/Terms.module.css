@@ -1,0 +1,9 @@
+.terms {
+    max-width: 700px;
+    padding: 1rem;
+    margin: auto;
+}
+
+.terms > h2 {
+    margin-top: 1rem;
+}

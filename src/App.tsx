@@ -22,6 +22,7 @@ import ResetPasswordLobby from './Sites/auth/ResetPassword/ResetPasswordLobby';
 import Chat from './Sites/Chat/Chat';
 import Verify from "./Sites/auth/Verify/Verify";
 import useDarkMode from 'use-dark-mode';
+import Terms from './Sites/Terms/Terms';
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
   {
     path: "/auth/reset",
     element: <ResetPasswordLobby />,
+  },
+  {
+    path: "/terms",
+    element: <Terms />,
   },
   {
     path: "/",
