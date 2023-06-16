@@ -5,7 +5,7 @@ import Input from "../../Components/Input";
 import Textarea from "../../Components/Textarea";
 import Button from "../../Components/Button";
 import defaultAvatar from "./Graphics/default.png";
-import {getTheme, toggleTheme} from "../../Lib/getUser";
+import useDarkMode from "use-dark-mode";
 import {
     BrightnessHighFill,
     MoonFill,
@@ -18,7 +18,7 @@ import {NotificationManager} from "react-notifications";
 import Modal from "../../Layout/ModalComponents/Modal";
 
 const Settings = () => {
-    const [darkTheme, setDarkTheme] = useState(getTheme());
+    const darkMode = useDarkMode();
     const [showModal, setShowModal] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [avatar, setAvatar] = useState('');
@@ -54,8 +54,7 @@ const Settings = () => {
     }
 
     const updateTheme = () => {
-        setDarkTheme(!darkTheme);
-        toggleTheme();
+        darkMode.toggle();
         return;
     };
 
@@ -250,13 +249,13 @@ const Settings = () => {
                                 <div className={classes.themeSwitch}>
                                     <div
                                         className={`${classes.ballWrapper} ${
-                                            darkTheme ? classes.right : classes.left
+                                            darkMode.value ? classes.right : classes.left
                                         }`}
                                     >
                                         <BrightnessHighFill
-                                            className={!darkTheme ? classes.current : ""}
+                                            className={!darkMode.value ? classes.current : ""}
                                         />
-                                        <MoonFill className={darkTheme ? classes.current : ""}/>
+                                        <MoonFill className={darkMode.value ? classes.current : ""}/>
                                     </div>
                                 </div>
                                 <label className={classes.label}>Ciemny motyw</label>

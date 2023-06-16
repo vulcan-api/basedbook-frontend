@@ -3,8 +3,6 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../Layout/Sidebar";
 import classes from "./Main.module.css";
 import { useNavigate } from "react-router-dom";
-//@ts-ignore
-import { executeTheme } from "../Lib/getUser";
 
 const Main = (props: {removeWrapper?: boolean}) => {
   const navigate = useNavigate();
@@ -26,7 +24,6 @@ const Main = (props: {removeWrapper?: boolean}) => {
   }, [navigate]);
 
   useEffect(() => {
-    executeTheme();
     fetchPosts();
   }, [fetchPosts]);
 

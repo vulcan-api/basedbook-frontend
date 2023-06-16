@@ -21,6 +21,7 @@ import ResetPassword from './Sites/auth/ResetPassword/ResetPassword';
 import ResetPasswordLobby from './Sites/auth/ResetPassword/ResetPasswordLobby';
 import Chat from './Sites/Chat/Chat';
 import Verify from "./Sites/auth/Verify/Verify";
+import useDarkMode from 'use-dark-mode';
 
 const router = createBrowserRouter([
   {
@@ -99,6 +100,7 @@ const router = createBrowserRouter([
 
 
 function App() {
+    useDarkMode();
     return (
         <>
             <NotificationContainer/>
