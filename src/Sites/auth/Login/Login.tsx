@@ -1,6 +1,5 @@
 import React, {useRef, useState} from "react";
 import Input from "../../../Components/Input";
-import Checkbox from "../../../Components/Checkbox";
 import classes from "./Login.module.css";
 import Button from "../../../Components/Button";
 import loginImg from "./Graphics/loginImg.png";
@@ -13,7 +12,6 @@ const Login = () => {
     const navigate = useNavigate();
     const emailRef: any = useRef();
     const passwordRef: any = useRef();
-    const remeberPasswordRef: any = useRef();
     const [showModal, setShowModal] = useState(false);
 
 
@@ -83,11 +81,6 @@ const Login = () => {
                         <p onClick={() => navigate("/auth/reset")}>
                           Nie pamiętasz hasła?
                         </p>
-                        <Checkbox
-                            ref={remeberPasswordRef}
-                            id="passwordRemember"
-                            label="Zapamiętaj hasło"
-                        />
                         <Button type="submit" buttonText="Zaloguj się"/>
                     </form>
                     <Link to={"/auth/signup"}>Nie masz konta? Zarejestruj się!</Link>
