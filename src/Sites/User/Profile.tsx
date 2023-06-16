@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
 import classes from "./Profile.module.css";
-import defaultAvatar from "./Graphics/default.png";
 import Button from "../../Components/Button";
 import { Instagram } from "react-bootstrap-icons";
 import * as Icon from "react-bootstrap-icons";
@@ -22,7 +21,6 @@ const Profile = () => {
   const [projectId, setProjectId] = useState<any>(null);
   const [postId, setPostId] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [avatarUrl, setAvatarUrl] = useState<string>('');
   const [posts, setPosts] = useState([
     {
       id: 69,

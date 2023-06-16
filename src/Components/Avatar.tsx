@@ -23,7 +23,7 @@ export const Avatar = (props: { userId: number }) => {
     useEffect(() => {
         getAvatarUrl();
         return () => URL.revokeObjectURL(avatarUrl);
-    }, [getAvatarUrl])
+    }, [getAvatarUrl, avatarUrl])
 
 
     return (
