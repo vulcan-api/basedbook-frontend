@@ -4,17 +4,29 @@
     align-items: center;
     justify-content: center;
     padding: 0 10px;
+    gap: 1rem;
 }
 
 .user {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
     padding: 0 10px;
     gap: 1rem;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
 }
 
 .admin {
     color: var(--add1-500);
+}
+
+.addedBy {
+    color: var(--main-300);
+    font-size: .875rem;
+}
+
+.username {
+    gap: 1rem;
+    display: flex;
 }

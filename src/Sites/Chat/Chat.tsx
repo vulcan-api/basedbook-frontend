@@ -79,7 +79,7 @@ const Chat = () => {
         setModalContent={setModalContent}
         trigger={trigger}
       />
-      { conversationId && <Conversation
+      <Conversation
         conversationId={conversationId}
         formatDate={formatDate}
         setShowModal={setShowModal}
@@ -87,7 +87,7 @@ const Chat = () => {
         trigger={trigger}
         setTrigger={setTrigger}
         setAdditionalModalData={setAdditionalModalData}
-      /> }
+      /> 
     </>
   );
 };

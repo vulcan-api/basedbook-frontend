@@ -155,5 +155,6 @@
 
 .adminMessage {
   font-style: italic;
-  color: var(--main-400);
+  margin: .5rem 0;
+  text-align: center;
 }

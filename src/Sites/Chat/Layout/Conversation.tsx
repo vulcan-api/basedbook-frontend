@@ -282,7 +282,7 @@ const Conversation = (props: ConversationProps) => {
                           {message.sender.username}
                         </p>
                       )}
-                      <p>{message.content}</p>
+                      <p style={message.sender.id === 0 ? {color: "var(--main-400)"} : {}}>{message.content}</p>
                       {message.isEdited && (
                         <p className={classes.edited}>(Edytowano)</p>
                       )}
