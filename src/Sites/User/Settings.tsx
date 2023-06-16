@@ -90,6 +90,14 @@ const Settings = () => {
             });
     }
     async function updateSettings() {
+        if (settings.username.length < 2) {
+            NotificationManager.error(
+                "Nazwa uzytkownika nie moze krotsza niz 2 znaki",
+                "Błąd przy zapisywaniu ustawien",
+                3000
+            );
+            return;
+        }
         setIsLoading(true);
         const formData = new FormData();
         for (const name in settings)

@@ -6,6 +6,7 @@ import classes from "./Conversation.module.css";
 import Input from "../../../Components/Input";
 import * as Icon from "react-bootstrap-icons";
 import io from 'socket.io-client';
+import Modal from "../../../Layout/ModalComponents/Modal";
 
 interface ConversationProps {
   conversationId: number;
@@ -40,7 +41,7 @@ const Conversation = (props: ConversationProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const chatRef = useRef<any>("");
   const [edit, setEdit] = useState<any>(false);
-
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   interface Message {
     id: string;
     content: string;
@@ -199,6 +200,9 @@ const Conversation = (props: ConversationProps) => {
   };
   return (
     <>
+      {showDeleteModal && (
+      <Modal onClose={() => setShowDeleteModal(false)} onBgClick={() => setShowDeleteModal(false)} conversationId={chat.id} modalContent="deleteConversation" />
+      )}
       {props.conversationId ? (
         isLoading ? (
           <LoadingSpinner />
@@ -224,6 +228,8 @@ const Conversation = (props: ConversationProps) => {
                     });
                   }}
                 />
+                {chat.isAdmin && (
+                    <>
                 <Icon.PersonPlusFill
                   onClick={() => {
                     props.setShowModal(true);
@@ -245,7 +251,9 @@ const Conversation = (props: ConversationProps) => {
                     });
                   }}
                 />
-                <Icon.TrashFill />
+                <Icon.TrashFill onClick={() => setShowDeleteModal(true)}/>
+                    </>
+              )}
               </div>
             </div>
             <div className={classes.chat}>

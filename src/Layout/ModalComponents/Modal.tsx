@@ -19,6 +19,7 @@ import EditChatModal from "./ChatModals/EditChatModal";
 import AddUserModal from "./ChatModals/AddUserModal";
 import UserManagementModal from "./ChatModals/UsersManagementModal";
 import InvitationsModal from "./ChatModals/InvitationsModal";
+import DeleteChatModal from "./ChatModals/DeleteChatModal";
 
 const Modal = (props: any) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -58,6 +59,9 @@ const Modal = (props: any) => {
           )}
           {props.modalContent === "enable2FA" && (
             <Enable2FAModal onClose={props.onClose} showSpinner={showSpinner} />
+          )}
+          {props.modalContent === "deleteConversation" && (
+              <DeleteChatModal onClose={props.onClose} showSpinner={showSpinner} conversationId={props.conversationId} />
           )}
           {props.modalContent === "projectAppliedUsers" && (
             <ProjectAppliedUsersModal
