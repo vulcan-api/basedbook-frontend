@@ -2,15 +2,10 @@
 @import url('https://fonts.googleapis.com/css?family=Zen+Dots');
 
 :root {
+  color-scheme: dark light;
   --light: #fdfdfd;
   --dark: #2d2d2d;
   --shadow: #17181C;
-  --bg-clr: var(--light);
-  --main-500: var(--black-500);
-  --main-400: var(--black-400);
-  --main-300: var(--black-300);
-  --main-200: var(--black-200);
-  --main-100: var(--black-100);
   --black-500: #17181C;
   --black-400: #17181C80;
   --black-300: #17181C60;
@@ -31,6 +26,26 @@
   --add2-300: #9BA5C960;
   --add2-200: #9BA5C940;
   --add2-100: #9BA5C920;
+}
+
+body.light-mode {
+  --bg-clr: #fdfdfd;
+  --txt-clr: var(--dark);
+  --main-500: var(--black-500);
+  --main-400: var(--black-400);
+  --main-300: var(--black-300);
+  --main-200: var(--black-200);
+  --main-100: var(--black-100);
+}
+
+body.dark-mode {
+  --bg-clr: #1d1d1d;
+  --txt-clr: var(--light);
+  --main-500: var(--light-500);
+  --main-400: var(--light-400);
+  --main-300: var(--light-300);
+  --main-200: var(--light-200);
+  --main-100: var(--light-100);
 }
 
 body {
