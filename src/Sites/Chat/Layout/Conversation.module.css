@@ -59,6 +59,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  position: relative;
 }
 
 .senderUsername {
@@ -72,15 +73,22 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  overflow: hidden;
   aspect-ratio: 1/1;
+}
+
+.content {
+  line-break: anywhere;
 }
 
 .controls {
   display: none;
-  margin-left: auto;
+  position: absolute;
+  right: 1rem;
   align-items: center;
   gap: .5rem;
+  background-color: var(--bg-clr);
+  padding: 1rem;
+  border-radius: 8px;
 }
 
 .controls svg {
