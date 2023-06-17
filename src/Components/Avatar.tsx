@@ -12,7 +12,6 @@ const Avatar = (props: { userId: number; className?: any; imgClassName?: any; })
       }
     )
       .then((res: Response) => {
-        console.log(res);
         if (!res.ok) throw new Error();
         return res.blob();
       })

@@ -1,0 +1,9 @@
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.buttons > button {
+    width: 40%;
+}

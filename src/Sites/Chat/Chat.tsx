@@ -10,51 +10,30 @@ const Chat = () => {
   const [trigger, setTrigger] = useState<number>(0);
   const [additionalModalData, setAdditionalModalData] = useState<any>({});
 
-  const formatDate = (date: Date, hour: Boolean) => {
-    const messageDate = new Date(date);
+  function formatDate(timestamp: number): string {
+    const now = new Date();
+    const messageDate = new Date(timestamp);
 
     if (
-      messageDate.getDate() === new Date().getDate() &&
-      messageDate.getMonth() === new Date().getMonth() &&
-      messageDate.getFullYear() === new Date().getFullYear()
+      messageDate.getDate() === now.getDate() &&
+      messageDate.getMonth() === now.getMonth() &&
+      messageDate.getFullYear() === now.getFullYear()
     ) {
-      return messageDate.getHours() + ":" + messageDate.getMinutes();
-    } else {
-      if (messageDate.getDate() < 10) {
-        if (messageDate.getMonth() < 10) {
-          if (hour) {
-            return (
-              "0" +
-              messageDate.getDate() +
-              "/0" +
-              messageDate.getMonth() +
-              " " +
-              messageDate.getHours() +
-              ":" +
-              messageDate.getMinutes()
-            );
-          } else {
-            return "0" + messageDate.getDate() + "/0" + messageDate.getMonth();
-          }
-        } else {
-          if (hour) {
-            return (
-              "0" +
-              messageDate.getDate() +
-              "/" +
-              messageDate.getMonth() +
-              " " +
-              messageDate.getHours() +
-              ":" +
-              messageDate.getMinutes()
-            );
-          } else {
-            return "0" + messageDate.getDate() + "/" + messageDate.getMonth();
-          }
-        }
-      }
+      const hours = messageDate.getHours();
+      const minutes = messageDate.getMinutes();
+      const formattedHours = hours < 10 ? `0${hours}` : `${hours}`;
+      const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+      return `${formattedHours}:${formattedMinutes}`;
     }
-  };
+
+    if (messageDate.getFullYear() === now.getFullYear()) {
+      const month = messageDate.getMonth() + 1;
+      const day = messageDate.getDate();
+      return `${day}.${month < 10 ? "0" + month : month}`;
+    }
+
+    return messageDate.toLocaleDateString();
+  }
 
   const closeModalHelper = () => {
     setShowModal(false);
@@ -80,6 +59,7 @@ const Chat = () => {
         trigger={trigger}
       />
       <Conversation
+        setConversationId={setConversationId}
         conversationId={conversationId}
         formatDate={formatDate}
         setShowModal={setShowModal}

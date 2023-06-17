@@ -20,6 +20,7 @@ import AddUserModal from "./ChatModals/AddUserModal";
 import UserManagementModal from "./ChatModals/UsersManagementModal";
 import InvitationsModal from "./ChatModals/InvitationsModal";
 import DeleteChatModal from "./ChatModals/DeleteChatModal";
+import LeaveConversationModal from "./ChatModals/LeaveConversationModal";
 
 const Modal = (props: any) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -59,9 +60,6 @@ const Modal = (props: any) => {
           )}
           {props.modalContent === "enable2FA" && (
             <Enable2FAModal onClose={props.onClose} showSpinner={showSpinner} />
-          )}
-          {props.modalContent === "deleteConversation" && (
-              <DeleteChatModal onClose={props.onClose} showSpinner={showSpinner} conversationId={props.conversationId} />
           )}
           {props.modalContent === "projectAppliedUsers" && (
             <ProjectAppliedUsersModal
@@ -144,6 +142,20 @@ const Modal = (props: any) => {
           )}
           {props.modalContent === "invitations" && (
             <InvitationsModal
+              onClose={props.onClose}
+              showSpinner={showSpinner}
+              additionalData={props.additionalModalData}
+            />
+          )}
+          {props.modalContent === "leaveconversation" && (
+            <LeaveConversationModal
+              onClose={props.onClose}
+              showSpinner={showSpinner}
+              additionalData={props.additionalModalData}
+            />
+          )}
+          {props.modalContent === "deleteconversation" && (
+            <DeleteChatModal
               onClose={props.onClose}
               showSpinner={showSpinner}
               additionalData={props.additionalModalData}

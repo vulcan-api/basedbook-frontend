@@ -196,10 +196,22 @@ const SpottedPost = () => {
       NotificationManager.error("Wystąpił błąd!", "Błąd!", 3000);
     }
   };
+
   const handleKeyDown = (event: any) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       addCommentHandler();
+    }
+  };
+
+  const messageLengthHandler = (event: any) => {
+    if (event.target.value.length > 100) {
+      event.target.value = event.target.value.slice(0, 150);
+      NotificationManager.error(
+        "Wiadomość nie może być dłuższa niż 150 znaków!",
+        "Za długa wiadomość!",
+        3000
+      );
     }
   };
   return (
@@ -298,6 +310,7 @@ const SpottedPost = () => {
                   ref={addCommentRef}
                   placeholder="Komentarz"
                   onKeyDown={handleKeyDown}
+                  onChange={messageLengthHandler}
                 />
               </div>
               <Icon.ArrowRightCircleFill onClick={addCommentHandler} />

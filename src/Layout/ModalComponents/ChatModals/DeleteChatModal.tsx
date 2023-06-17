@@ -1,20 +1,23 @@
 
 import Button from "../../../Components/Button";
-import classes from "../SettingsModals/Enable2FAModal.module.css";
+import classes from "./DeleteChatModal.module.css";
 //@ts-ignore
 import {NotificationManager} from "react-notifications";
 import {useEffect} from "react";
 
-const DeleteChatModal = (props: { onClose: Function, showSpinner: Function, conversationId: number }) => {
+const DeleteChatModal = (props: { onClose: Function, showSpinner: Function, additionalData: any }) => {
     const deleteConversationHandler = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_REQUEST_URL}/chat/conversation/delete/${props.conversationId}`, {
+            const response = await fetch(
+              `${process.env.REACT_APP_REQUEST_URL}/chat/conversation/delete/${props.additionalData.id}`,
+              {
                 method: "DELETE",
                 credentials: "include",
                 headers: {
-                    "Content-Type": "application/json",
+                  "Content-Type": "application/json",
                 },
-            });
+              }
+            );
             console.log(response);
             if (response.status === 200) {
                 NotificationManager.success(
@@ -36,15 +39,25 @@ const DeleteChatModal = (props: { onClose: Function, showSpinner: Function, conv
     };
     useEffect(()=> {
         props.showSpinner(false);
-    });
+    }, [props]);
 
     return (
-        <>
-        <p>Czy na pewno chcesz usunac ta konwersacje?</p>
-            <div className={classes.actions}>
-                <Button onClick={deleteConversationHandler} style={{marginTop: 20}} buttonText="Usun konwersacje" />
-            </div>
-           </>
+      <>
+        <p>
+          Czy na pewno chcesz usunąć konwersację {props.additionalData.name}?
+        </p>
+        <div className={classes.buttons}>
+          <Button
+            onClick={() => props.onClose()}
+            buttonText="Wróć"
+            className="alternate"
+          />
+          <Button
+            onClick={deleteConversationHandler}
+            buttonText="Usuń konwersację"
+          />
+        </div>
+      </>
     );
 };
 
