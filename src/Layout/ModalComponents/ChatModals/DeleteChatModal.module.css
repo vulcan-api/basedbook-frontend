@@ -7,3 +7,15 @@
 .buttons > button {
     width: 40%;
 }
+
+@media screen and (max-width: 1200px) {
+    .buttons > button {
+        width: 100%;
+    }
+
+    .buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+}   

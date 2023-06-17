@@ -6,3 +6,11 @@
 .input {
     margin: 2rem 0;
 }
+
+@media screen and (max-width: 1200px) {
+    .main {
+        max-width: none;
+        width: 100%;
+        padding-bottom: 5rem;
+    }
+}

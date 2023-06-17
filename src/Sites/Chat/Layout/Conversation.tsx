@@ -17,6 +17,7 @@ interface ConversationProps {
   trigger: number;
   setTrigger: Function;
   setAdditionalModalData: Function;
+  vievportWidth: number;
 }
 
 const Conversation = (props: ConversationProps) => {
@@ -126,9 +127,11 @@ const Conversation = (props: ConversationProps) => {
   useEffect(() => {
     fetchConversation();
     getConversationMembersCount();
+
     socket.emit("join", {
       conversationId: props.conversationId,
     });
+
     socket.on("receiveMessage", () => {
       fetchConversation();
       chatRef.current.value = "";
@@ -243,6 +246,13 @@ const Conversation = (props: ConversationProps) => {
         ) : (
           <div className={classes.main}>
             <div className={classes.header}>
+              {
+                props.vievportWidth < 1200 && (
+                  <Icon.ArrowLeft
+                    onClick={() => props.setConversationId(0)}
+                  />
+                )
+              }
               <div
                 style={{
                   background: `transparent url("${
@@ -310,7 +320,7 @@ const Conversation = (props: ConversationProps) => {
               </div>
             </div>
             <div className={classes.chat}>
-              {chat.messages.reverse().map((message: any) => {
+              {chat.messages.map((message: any) => {
                 let messageTime = props.formatDate(message.sendTime);
                 return (
                   <div
@@ -373,7 +383,7 @@ const Conversation = (props: ConversationProps) => {
               <div className={classes.inputContainer}>
                 {edit && (
                   <p onClick={() => setEdit(null)}>
-                    Edytuj: {edit.text} <Icon.XCircleFill />
+                    Edytuj: {edit.text.slice(0, 20)}... <Icon.XCircleFill />
                   </p>
                 )}
                 <Input

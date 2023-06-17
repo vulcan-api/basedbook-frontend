@@ -15,6 +15,14 @@ const AddPostModal = (props: { onClose: Function; showSpinner: Function }) => {
 
   async function addPost(event: any) {
     event.preventDefault();
+    if (postText.current.value.trim().length === 0) {
+      NotificationManager.error(
+        "Nie można dodać pustego posta!",
+        "Błąd!",
+        3000
+      );
+      return;
+    }
 
     const post = {
       title: "do not ask",

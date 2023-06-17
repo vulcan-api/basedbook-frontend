@@ -48,7 +48,7 @@ const AddUserModal = (props: {
     );
     if (response.status < 400) {
       NotificationManager.success(
-        `Dodano użytkownika ${username} do konwersacji!`,
+        `Zaproszono użytkownika ${username} do konwersacji!`,
         "Sukces",
         3000
       );

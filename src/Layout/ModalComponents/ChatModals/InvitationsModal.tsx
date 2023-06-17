@@ -54,7 +54,6 @@ const InvitationsModal = (props: {
     });
     if (response.status < 400) {
       const json = await response.json();
-      console.log(json);
       setInvitations(json);
     }
   };

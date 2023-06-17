@@ -76,7 +76,7 @@ const Login = () => {
                     <p>Zaloguj się</p>
                     <img src={loginImg} alt="cool login img"/>
                     <form onSubmit={loginHandler} className={classes.form}>
-                        <Input placeholder="E-Mail" ref={emailRef}/>
+                        <Input placeholder="E-Mail" ref={emailRef} type="email"/>
                         <Input type="password" placeholder="Hasło" ref={passwordRef}/>
                         <p onClick={() => navigate("/auth/reset")}>
                           Nie pamiętasz hasła?

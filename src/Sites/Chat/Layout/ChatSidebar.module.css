@@ -39,9 +39,14 @@
 .conversation {
   display: flex;
   align-items: center;
-  gap: 1rem;
   cursor: pointer;
   padding: 0.5rem 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.info {
+  padding-left: 1rem;
   width: 100%;
   box-sizing: border-box;
 }
@@ -50,7 +55,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 80%;
 }
 
 .avatar {
@@ -101,3 +105,11 @@
 .bottom div:hover * {
   color: var(--add1-500);
 }
+
+@media screen and (max-width: 1200px) {
+  .main {
+    max-width: none;
+    width: 100%;
+    padding-bottom: 5rem;
+  }
+} 

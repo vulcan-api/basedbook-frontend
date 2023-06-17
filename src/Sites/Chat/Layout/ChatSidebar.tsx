@@ -92,8 +92,7 @@ const ChatSidebar = (props: {
               conversations.map((conversation: any) => {
                 if (conversation.lastMessage) {
                   lastMessageTime = props.formatDate(
-                    conversation.lastMessage.sendTime,
-                    false
+                    conversation.lastMessage.sendTime
                   );
                 }
 

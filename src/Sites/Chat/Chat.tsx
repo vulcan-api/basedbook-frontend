@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ChatSidebar from "./Layout/ChatSidebar";
 import Conversation from "./Layout/Conversation";
 import Modal from "../../Layout/ModalComponents/Modal";
@@ -9,6 +9,13 @@ const Chat = () => {
   const [modalContent, setModalContent] = useState<string>("");
   const [trigger, setTrigger] = useState<number>(0);
   const [additionalModalData, setAdditionalModalData] = useState<any>({});
+  const [vievportWidth, setVievportWidth] = useState<number>(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setVievportWidth(window.innerWidth);
+    });
+  }, []);
 
   function formatDate(timestamp: number): string {
     const now = new Date();
@@ -41,6 +48,8 @@ const Chat = () => {
     setTrigger(trigger + 1);
   };
 
+  //1100px max-width
+
   return (
     <>
       {showModal && (
@@ -51,23 +60,26 @@ const Chat = () => {
           additionalModalData={additionalModalData}
         />
       )}
-      <ChatSidebar
+      {(conversationId === 0 || vievportWidth > 1200) && <ChatSidebar
         chooseConversation={setConversationId}
         formatDate={formatDate}
         setShowModal={setShowModal}
         setModalContent={setModalContent}
         trigger={trigger}
-      />
-      <Conversation
-        setConversationId={setConversationId}
-        conversationId={conversationId}
-        formatDate={formatDate}
-        setShowModal={setShowModal}
-        setModalContent={setModalContent}
-        trigger={trigger}
-        setTrigger={setTrigger}
-        setAdditionalModalData={setAdditionalModalData}
-      /> 
+      />}
+      {(vievportWidth > 1200 || conversationId > 0) && (
+        <Conversation
+          setConversationId={setConversationId}
+          conversationId={conversationId}
+          formatDate={formatDate}
+          setShowModal={setShowModal}
+          setModalContent={setModalContent}
+          trigger={trigger}
+          setTrigger={setTrigger}
+          setAdditionalModalData={setAdditionalModalData}
+          vievportWidth={vievportWidth}
+        />
+      )}
     </>
   );
 };

@@ -16,6 +16,22 @@ const AddProjectModal = (props: {onClose: Function, showSpinner: Function}) => {
     async function addProject(event: any) {
         event.preventDefault();
 
+        if (projectTitle.current.value.length === 0) {
+            NotificationManager.error(
+                "Wpisz tytul projektu",
+                "Błąd przy dodawaniu projektu",
+                3000
+            );
+            return;
+        } else if (postText.current.value.length === 0) {
+            NotificationManager.error(
+                "Wpisz treść projektu",
+                "Błąd przy dodawaniu projektu",
+                3000
+            );
+            return;
+        }
+
         const post = {
             title: projectTitle.current.value.trim(),
             text: postText.current.value.trim(),

@@ -50,3 +50,15 @@
   background: transparent url("../../../Sites/Chat/ChatIcons/5.jpg") no-repeat
     center center/contain;
 }
+
+@media screen and (max-width: 1200px) {
+  .radio > input {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .radio {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

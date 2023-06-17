@@ -12,7 +12,10 @@ const ModalSearchResult = (props: any) => {
                 <div>
                     <p className={classes.name}>{props.name}</p>
                 </div>
-                <Icon.PlusCircleFill className={classes.addIcon} style={{color: "var(--main-500)"}}/>
+                <div className={classes.inlinerAdd}>
+                    <Icon.PlusCircleFill className={classes.addIcon} style={{color: "var(--main-500)"}}/>
+                    <p>Dodaj użytkownika</p>
+                </div>
             </div>
         </>
     )

@@ -23,3 +23,29 @@
 .name {
     font-size: 2rem;
 }
+
+.inlinerAdd {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width: 1200px) {
+    .inliner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+    .avatar {
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .addIcon {
+        font-size: 2rem;
+    }
+}

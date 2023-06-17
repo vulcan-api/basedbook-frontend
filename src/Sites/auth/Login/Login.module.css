@@ -7,6 +7,8 @@
     }
     .loginForm {
         width: 100% !important;
+        border: none !important;
+        box-shadow: none !important;
     }
 }
 
@@ -50,9 +52,13 @@
     width: 400px;
 }
 
-.loginForm > p {
+.loginForm p {
     font-size: 1.75rem;
     color: var(--main-400);
+}
+
+.loginForm p:not(:first-of-type) {
+    cursor: pointer;
 }
 
 .loginForm > a {
