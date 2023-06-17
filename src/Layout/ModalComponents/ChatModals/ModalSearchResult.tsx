@@ -1,13 +1,14 @@
 import React from "react";
 import classes from "../../../Components/SearchResult.module.css"
 import * as Icon from "react-bootstrap-icons";
+import Avatar from "../../../Components/Avatar";
 
 const ModalSearchResult = (props: any) => {
     return (
         <>
             <div className={classes.inliner} onClick={() => {props.onClick()}} style={{cursor: "pointer"}}>
                 <div className={classes.avatar}>
-                    <img className={classes.avImage} src={props.image} alt="" />
+                    <Avatar userId={props.id}/>
                 </div>
                 <div>
                     <p className={classes.name}>{props.name}</p>
