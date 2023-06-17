@@ -134,6 +134,10 @@ const Conversation = (props: ConversationProps) => {
       chatRef.current.value = "";
       props.setTrigger(props.trigger + 1);
     });
+
+    return () => {
+      socket.emit('leave', { conversationId: props.conversationId });
+    };
   }, [fetchConversation, props, socket, getConversationMembersCount]);
 
   const editHandler = async () => {
