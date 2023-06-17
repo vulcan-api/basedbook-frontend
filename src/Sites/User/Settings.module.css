@@ -45,6 +45,10 @@
     max-width: 15rem;
 }
 
+.hide {
+    visibility: hidden;
+}
+
 .avImage {
     composes: orImg;
 }

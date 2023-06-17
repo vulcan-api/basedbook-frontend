@@ -4,7 +4,7 @@ import Section from "../../Layout/Section";
 import Input from "../../Components/Input";
 import Textarea from "../../Components/Textarea";
 import Button from "../../Components/Button";
-import defaultAvatar from "./Graphics/default.png";
+import getUserObject from "../../Lib/getUser";
 import useDarkMode from "use-dark-mode";
 import {
     BrightnessHighFill,
@@ -16,8 +16,10 @@ import LoadingSpinner from "../../Components/LoadingSpinner";
 //@ts-ignore
 import {NotificationManager} from "react-notifications";
 import Modal from "../../Layout/ModalComponents/Modal";
+import Avatar from "../../Components/Avatar";
 
 const Settings = () => {
+    const user = getUserObject();
     const darkMode = useDarkMode();
     const [showModal, setShowModal] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -236,15 +238,16 @@ const Settings = () => {
                             </div>
                             <div className={classes.inputHolder}>
                                 <label htmlFor="avatarUploader" className={classes.avatar}>
-                  <span className={`${classes.coverer} ${classes.hidden}`}>
-                    <PencilFill className={classes.covererIcon}/>
-                  </span>
-                                    <img className={classes.avImage} src={avatar ? avatar : defaultAvatar} alt=""/>
+                                    <span className={`${classes.coverer} ${classes.hidden}`}>
+                                        <PencilFill className={classes.covererIcon}/>
+                                    </span>
+                                    <Avatar userId={user.id} override={avatar} />
                                 </label>
                             </div>
                             <input
                                 type="file"
                                 id="avatarUploader"
+                                accept="image/jpeg"
                                 className={classes.invisible}
                                 onChange={handleAvatarChange}
                             />

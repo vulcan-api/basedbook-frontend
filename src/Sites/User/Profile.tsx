@@ -298,7 +298,7 @@ const Profile = () => {
       )}
       {isLoading && <LoadingSpinner />}
       <div className={classes.personContainer}>
-        <Avatar userId={userId? +userId : 0} className={classes.avatar} imgClassName={classes.avImage}/>
+        <Avatar userId={userId ? +userId : -1} className={classes.avatar} imgClassName={classes.avImage}/>
         <div className={classes.managementContainer}>
           <div className={classes.detailsContainer}>
             <h2>{user.username}</h2>

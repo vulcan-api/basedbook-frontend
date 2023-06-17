@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
-import defaultAvatar from "../Sites/User/Graphics/default.png";
 import Input from "../Components/Input";
 import classes from "./Searchbar.module.css";
 import SearchResult from "./SearchResult";
@@ -60,7 +59,6 @@ const Searchbar = (props: {
                 key={result["id"]}
                 id={result["id"]}
                 name={`${result["name"]} ${result["surname"]} - ${result["username"]}`}
-                image={defaultAvatar}
                 onClick={() => { if(props.onResClick) props.onResClick()}}
               />
             );
