@@ -220,10 +220,10 @@ const Conversation = (props: ConversationProps) => {
   };
 
   const messageLengthHandler = (event: any) => {
-    if (event.target.value.length > 100) {
-      event.target.value = event.target.value.slice(0, 150);
+    if (event.target.value.length > 300) {
+      event.target.value = event.target.value.slice(0, 300);
       NotificationManager.error(
-        "Wiadomość nie może być dłuższa niż 150 znaków!",
+        "Wiadomość nie może być dłuższa niż 300 znaków!",
         "Za długa wiadomość!",
         3000
       );

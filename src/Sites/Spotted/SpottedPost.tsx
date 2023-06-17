@@ -205,10 +205,10 @@ const SpottedPost = () => {
   };
 
   const messageLengthHandler = (event: any) => {
-    if (event.target.value.length > 100) {
-      event.target.value = event.target.value.slice(0, 150);
+    if (event.target.value.length > 300) {
+      event.target.value = event.target.value.slice(0, 300);
       NotificationManager.error(
-        "Wiadomość nie może być dłuższa niż 150 znaków!",
+        "Kometarz nie może być dłuższy niż 300 znaków!",
         "Za długa wiadomość!",
         3000
       );
