@@ -61,3 +61,11 @@
   padding: 1rem;
   padding-left: 0;
 }
+
+@media screen and (max-width: 1300px) {
+  .comments {
+    min-height: fit-content;
+    max-height: 80vh;
+    padding-bottom: 4rem;
+  }
+}

@@ -195,3 +195,21 @@
   justify-content: space-between;
   align-items: center;
 }
+
+@media screen and (max-width: 1300px) {
+  .main {
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 4rem;
+    height: auto;
+  }
+
+  .main > * {
+    width: 100% !important;
+    margin-block: 0 !important;
+  }
+
+  .post {
+    margin-top: 4rem;
+  }
+}

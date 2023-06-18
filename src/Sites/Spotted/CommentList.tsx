@@ -38,7 +38,10 @@ const CommentList = (props: any) => {
             </Link>
           </div>
           {(comment.isOwned || props.isPostOwned) && (
-            <Icon.Trash onClick={() => props.deleteHandler(comment.id)} style={{cursor: 'pointer'}}/>
+            <Icon.Trash
+              onClick={() => props.deleteHandler(comment.id)}
+              style={{ cursor: "pointer" }}
+            />
           )}
         </div>
         <p>{comment.text}</p>
@@ -51,10 +54,13 @@ const CommentList = (props: any) => {
       </div>
       {comment.replies && (
         <>
-          <p style={{ color: "var(--main-400)" }} className={classes.replyTo}>
+          <p
+            style={{ color: "var(--main-400)" }}
+            className={classes.replyTo}
+          >
             Odpowiedzi na {comment.text} :
           </p>
-          <div style={{ marginLeft: "2rem" }}>
+          <div>
             {Object.values(comment.replies).map((reply) =>
               renderComment(reply)
             )}
