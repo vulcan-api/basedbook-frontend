@@ -12,7 +12,6 @@
   background-color: var(--bg-clr);
   overflow-y: hidden;
   box-sizing: border-box;
-  z-index: 50;
   position: relative;
   min-width: 15%;
 }
@@ -112,4 +111,12 @@
     width: 100%;
     padding-bottom: 5rem;
   }
-} 
+}
+
+.siteTitle {
+  font-size: 2rem;
+  color: var(--add1-500);
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 500;
+}

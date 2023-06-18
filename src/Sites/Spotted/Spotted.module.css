@@ -138,6 +138,14 @@
     width: 30%;
 } 
 
+.siteTitle {
+    font-size: 2rem;
+    color: var(--add1-500);
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 500;
+}
+
 @media screen and (max-width: 900px) {
     .loadMoreButton > button {
         width: 100%;

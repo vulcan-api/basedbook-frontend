@@ -85,7 +85,7 @@ const ChatSidebar = (props: {
     <>
       <div className={classes.main}>
         <div className={classes.top}>
-          <h2>Chat</h2>
+          <p className={classes.siteTitle}>Chat</p>
           {isLoading && <LoadingSpinner />}
           <div className={classes.conversations}>
             {conversations.length > 0 &&

@@ -122,6 +122,7 @@ const Spotted = (props: any) => {
           modalContent={modalContent}
         />
       )}
+      <p className={classes.siteTitle}>Spotted</p>
       {(!props.hideNav || false) && <div className={classes.menu}>
         <div className={classes.managementIcons}>
           <Icon.List

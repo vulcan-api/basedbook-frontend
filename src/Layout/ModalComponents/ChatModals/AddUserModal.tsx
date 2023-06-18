@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import Input from "../../../Components/Input";
 import ModalSearchResult from "./ModalSearchResult";
 import defaultAvatar from "../../../Sites/User/Graphics/default.png";
@@ -16,9 +16,49 @@ const AddUserModal = (props: {
     { id: 0, name: "", surname: "", username: "" },
   ]);
 
-  useEffect(() => {
-    props.showSpinner(false);
+  const [usersInConversation, setUsersInConversation] = useState<any[]>([{
+    addedBy: {
+      username: "",
+    },
+    isAdmin: false,
+    user: {
+      id: 0,
+      username: "",
+    },
+  }]); 
+
+  const fetchUsersInConversation = useCallback(async () => {
+    await fetch(
+      `${process.env.REACT_APP_REQUEST_URL}/chat/conversation/${props.additionalData.id}/members`,
+      {
+        method: "GET",
+        credentials: "include",
+      }
+    )
+      .then((res) => res.json())
+      .then((json) => setUsersInConversation(json))
+      .finally(() => props.showSpinner(false));
   }, [props]);
+
+  useEffect(() => {
+    fetchUsersInConversation();
+  }, [fetchUsersInConversation]);
+
+  const filterUsers = useCallback((users: any) => {
+    let filteredUsers = users.filter((user: any) => {
+      let isInConversation = false;
+      usersInConversation.forEach((userInConversation) => {
+        if (userInConversation.user.id === user.id) {
+          isInConversation = true;
+        }
+      });
+      if (!isInConversation) {
+        return user;
+      }
+      return null;
+    });
+    setUsers(filteredUsers);
+  }, [usersInConversation]);
 
   const fetchUsers = async () => {
     const val = inputRef.current?.value;
@@ -27,7 +67,7 @@ const AddUserModal = (props: {
       credentials: "include",
     })
       .then((res) => res.json())
-      .then((json) => setUsers(json));
+      .then((json) => filterUsers(json));
   };
 
   const addUserHandler = async (id: number, username: String) => {
@@ -46,7 +86,13 @@ const AddUserModal = (props: {
         body: JSON.stringify(body),
       }
     );
-    if (response.status < 400) {
+    if (response.status === 409) {
+      NotificationManager.error(
+        `Użytkownik ${username} jest już w konwersacji!`,
+        "Błąd",
+        3000
+      );
+    } else if (response.status < 400) {
       NotificationManager.success(
         `Zaproszono użytkownika ${username} do konwersacji!`,
         "Sukces",

@@ -48,8 +48,6 @@ const Chat = () => {
     setTrigger(trigger + 1);
   };
 
-  //1100px max-width
-
   return (
     <>
       {showModal && (

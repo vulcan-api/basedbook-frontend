@@ -9,6 +9,22 @@
     color: var(--add2-500);
 }
 
+.inlinerSpaced {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+    padding-top: 2rem;
+    color: var(--add2-500);
+}
+
+.inlinerSpaced > div:first-of-type {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .avatar {
     width: 2rem;
     height: 2rem;
@@ -39,6 +55,10 @@
         align-items: flex-start;
     }
 
+    .inlinerSpaced {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
     .avatar {
         width: 5rem;

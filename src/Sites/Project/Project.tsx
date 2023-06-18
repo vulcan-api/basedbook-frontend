@@ -126,6 +126,7 @@ const Project = () => {
           modalContent={modalContent}
         />
       )}
+      <p className={classes.siteTitle}>Projekty</p>
       <div className={classes.menu}>
         <div className={classes.managementIcons}>
           <Icon.List
