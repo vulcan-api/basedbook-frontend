@@ -3,7 +3,7 @@ import defaultAvatar from "./Graphics/default.png";
 import classes from "../Sites/User/Settings.module.css"
 
 const Avatar = (props: { userId?: number; className?: any; imgClassName?: any; override?: string }) => {
-  const [avatarUrl, setAvatarUrl] = useState(defaultAvatar);
+  const [avatarUrl, setAvatarUrl] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   const getAvatarUrl = useCallback(async (): Promise<void> => {
@@ -16,11 +16,11 @@ const Avatar = (props: { userId?: number; className?: any; imgClassName?: any; o
       }
     )
       .then((res: Response) => {
-        if (!res.ok) throw new Error();
+        if (!res.ok || res.status === 204) throw new Error();
         return res.blob();
       })
       .then((blob) => setAvatarUrl(URL.createObjectURL(blob)))
-      .catch(err => { console.log('Could not download avatar correctly')})
+      .catch(err => setAvatarUrl(defaultAvatar))
       .finally(() => { setIsLoading(false)});
       else
     setIsLoading(false)
