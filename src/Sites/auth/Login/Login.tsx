@@ -37,6 +37,13 @@ const Login = () => {
         })
             .then((response) => response.json())
             .then((data) => {
+                console.log('============================================');
+                console.log('============================================');
+                console.log('============================================');
+                console.log(JSON.stringify(data))
+                console.log('============================================');
+                console.log('============================================');
+                console.log('============================================');
                 if (data.statusCode >= 400) {
                     NotificationManager.error(
                         "Błędny login lub hasło",

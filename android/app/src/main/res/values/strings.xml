@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">BasedBook</string>
+    <string name="title_activity_main">BasedBook</string>
+    <string name="package_name">com.sevedev.basedbook</string>
+    <string name="custom_url_scheme">com.sevedev.basedbook</string>
+</resources>
